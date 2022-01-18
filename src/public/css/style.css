@@ -310,12 +310,38 @@ html {
 }
 
 
+/* ============================================================= content ============================================================ */
+
+.home {
+    background: url(https://cf.shopee.vn/file/789323fd44c750feeb24cdcfa62f46fe) no-repeat top / 100%;
+    width: 100%;
+    height: 500px;
+}
+
+.banners {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.banners-carousel {
+    width: 60%;
+    height: 60%;
+    background: #000;
+}
+
+.slider , .slider-item, .slider-item img{
+    width: 100%;
+    height: 100% !important;
+}
 
 
+.banners-others {
+    width: 39%;
+    display: flex;
+    flex-direction: column;
+}
 
-
-
-
-
-
-
+.banners-others img {
+    width: 100%;
+}
