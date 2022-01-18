@@ -126,7 +126,7 @@
 
 .header-notification-show {
     width: 400px;
-    height: 400px;
+    height: 370px;
     background:#fff;
     position : absolute;
     left: -350%;
@@ -137,8 +137,43 @@
     align-items:center;
     flex-direction: column;
     border-radius: 5px;
-    box-shadow: 2px 1px 2px 2px #ccc;
-    overflow: hidden;
+    box-shadow: 0px 3px 2px 1px #ccc;
+    transform-origin: 90% top ;
+    animation: showNotification ease-in 0.25s;
+    display: none;
+}
+
+@keyframes showNotification {
+    from {
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+.header-notification-show::before {
+    content: "";
+    position: absolute;
+    border-style: solid ;
+    border-width: 20px 30px;
+    border-color: transparent transparent #fff transparent;
+    top: -30px;
+    right: 0;
+}
+
+.header-notification-show::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 30px;
+    top: -10px;
+    width: 80px;
+    height: 15px;
+}
+
+.header-notification:hover .header-notification-show {
+    display: flex ;
 }
 
 .header-notification-show img {
@@ -147,8 +182,8 @@
 }
 
 .header-notification-show h3 {
-    font-size:20px;
-    line-height:20px;
+    font-size:15px;
+    line-height:15px;
     color:#000;
     font-weight: normal;
 }
@@ -161,6 +196,9 @@
     top: 23%;
     align-items:center;
     justify-content: space-between;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .header-notification-show-btn_login a {
@@ -168,9 +206,15 @@
     width: 50%;
     text-align: center;
     color:#000;
-    background-color: rgb(240, 233, 227);
+    background-color: rgb(247, 246, 239);
+    font-size: 15px;
+    padding: 2px 0;
 }
 
+.header-notification-show-btn_login a:hover {
+    background-color: #ccc;
+    color: red;
+}
 
 
 
