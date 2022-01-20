@@ -15,6 +15,8 @@ html {
     background: linear-gradient(-180deg,#642b73, #c6426e);
     color: #fff;
     font-size: 15px;
+    position: fixed;
+    z-index: 100;
 }
 
 :root a {
@@ -89,10 +91,11 @@ html {
 }
 
 .some_app {
-    padding:0 0 10px 0;
+    padding:0 8px 10px 8px;
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .some_app img {
@@ -285,6 +288,8 @@ html {
     display: none;
     transform-origin: 95% top;
     animation: showList ease-in 0.25s;
+    z-index: 5;
+    border-radius: 4px;
 }
 
 
@@ -365,13 +370,20 @@ html {
 
 .content-category {
     width: 100%;
-    height: 500px;
+    height: 390px;
     background-color: #fff;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .content-category h3 {
     font-size: 20px;
     padding: 10px;
+    box-sizing: border-box;
+}
+
+.content-category-carousel-product {
+    max-height: 300px;
 }
 
 .content-category-product {
@@ -428,7 +440,7 @@ html {
     top: -165px;
 }
 
-.carousel-item {
+.carousel-arrow_item {
     width: 30px;
     height: 30px;
     background-color: #fff;
@@ -439,26 +451,58 @@ html {
     box-shadow: 0 0 4px 0 #ccc;
     cursor: pointer;
 }
-
-.content-category-carousel-product:hover .carousel-item{
-    width: 40px;
-    height: 40px;
+/* .content-category-carousel-product:hover .carousel-arrow_item{
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    
+} */
+.content-category-carousel-product:active .carousel-arrow_item {
+    background-color: #ddd;
 }
 
 
+/* ---------------------------------------------------------- product list -------------------------------------------------------- */
 
+.content-product_list {
+    height: 300px;
+    width: 230px;
+}
 
+.content-product_list a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+}
 
+.content-product_list-item img {
+    width: 100%;
+    height: 60%;
+}
 
+.content-product_list-item-introduction {
+    width: 100%;
+    height: 40%;
+}
 
+.content-product_list-item-description {
+    font-size: 15px;
+    line-height: 15px;
+    height: 30px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+}
 
-
-
-
-
-
-
-
+.content-product_list-item-discount {
+    padding: 3px;
+    color:#fff;
+    background-color: rgb(13, 151, 36);
+}
 
 
 

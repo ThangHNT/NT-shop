@@ -83,6 +83,7 @@
             </div>
         </div>
         <div id="content">
+            <!-- quảng cáo -->
             <div class="home">
                 <div class="banners container">
                     <div id="carousel" class="banners-carousel carousel slide" data-ride="carousel">
@@ -127,6 +128,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Danh mục sản phẩm -->
             <div class="content-category container">
                 <h3>Danh mục</h3>
                 <div class="content-category-carousel-product">
@@ -327,18 +329,70 @@
                         </div>
                     </div>
                     <div class="content-category-carousel">
-                        <div class="content-category-arrow_pre carousel-item">
+                        <div class="content-category-arrow_pre carousel-arrow_item">
                             <i class="fas fa-chevron-left"></i>
                         </div>
-                        <div class="content-category-arrow_next carousel-item">
+                        <div class="content-category-arrow_next carousel-arrow_item">
                             <i class="fas fa-chevron-right"></i>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="content-product_list container">
+                <a href="#" class="content-product_list-item">
+                    <img src="https://cf.shopee.vn/file/594fb14ee9a9b291493f3008c3921cad_tn" alt="">
+                    <div class="content-product_list-item-introduction container">
+                        <p class="content-product_list-item-description">
+                            Tai Nghe Bluetooth i12 5.0 TWS | Không Dây Cảm Biến Vân Tay, Chất Âm Êm, Trong Trẻm Thời Lương Pin Tốt
+                        </p>
+                        <span class="content-product_list-item-discount">Giảm 10k</span>
+                        
+                        <div class="content-product_list-item-price"></div>
+                        <p class="content-product_list-item-sold"></p>
+                    </div>
+                </a>
+            </div>
         </div>
         <div id="footer"></div>
     </div>
+
+    <script>
+        const category = document.querySelectorAll('.content-category-product-wraper');
+        const categoryArrow = document.querySelectorAll('.carousel-arrow_item');
+        categoryArrow[0].style.visibility = 'hidden';
+        for(let i = 0; i < categoryArrow.length; i++){
+            let element = categoryArrow[i];
+            element.onmouseover = function(e) {
+                Object.assign(element.style, {
+                    width: '45px',
+                    height: '45px',
+                    fontsize: '20px'
+                })
+            }
+            element.onmouseleave = function(e){
+                Object.assign(element.style, {
+                    width: '30px',
+                    height: '30px',
+                    fontsize: '15px'
+                })
+            }
+        }
+        categoryArrow[1].onclick = function(e) {
+            for(let i = 0; i < 4; i++){
+                category[i].style.display = 'none';
+            }
+            categoryArrow[0].style.visibility = 'visible';
+            categoryArrow[1].style.visibility = 'hidden';
+        }
+        categoryArrow[0].onclick = function(e) {
+            for(let i = 0; i < 4; i++){
+                category[i].style.display = 'block';
+            }
+            categoryArrow[1].style.visibility = 'visible';
+            categoryArrow[0].style.visibility = 'hidden';
+        }
+    </script>
 
     <!-- bootstrap 3 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
