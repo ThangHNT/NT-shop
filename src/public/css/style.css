@@ -9,6 +9,10 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#main {
+    background-color: rgba(245, 236, 236, 0.8);
+}
+
 #header {
     width:100%;
     height: 120px;
@@ -17,6 +21,7 @@ html {
     font-size: 15px;
     position: fixed;
     z-index: 100;
+    display: block;
 }
 
 :root a {
@@ -325,16 +330,22 @@ html {
 
 #content {
     background-color: rgba(245, 236, 236, 0.8);
+    display: block;
+    position: relative;
+    top: 120px;
 }
 
 .home {
     background: url(https://cf.shopee.vn/file/789323fd44c750feeb24cdcfa62f46fe) no-repeat top / 100%;
     width: 100%;
     height: 300px;
+
 }
 
 .banners {
-    width: 100%;
+    display: flex;
+    margin: auto;
+    width: 1140px;
     height: 100%;
     display: flex;
     padding-top: 20px;
@@ -368,8 +379,10 @@ html {
 
 /* ----------------------------------------------------------- category ----------------------------------------- */
 
+
+
 .content-category {
-    width: 100%;
+    width: 1200px;
     height: 390px;
     background-color: #fff;
     margin-top: 15px;
@@ -465,8 +478,26 @@ html {
 /* ---------------------------------------------------------- product list -------------------------------------------------------- */
 
 .content-product_list {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    display: flex;
+    margin: auto;
+    background-color: rgba(245, 236, 236, 0.8);
+}
+
+.content-product_list-item {
+    max-width: 210px;
     height: 300px;
-    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:0 0 10px 0;
+    box-sizing: border-box;
+    margin-top: 15px;
+    background-color: #fff;
 }
 
 .content-product_list a {
@@ -484,25 +515,132 @@ html {
 .content-product_list-item-introduction {
     width: 100%;
     height: 40%;
+    margin-top: 15px;
 }
 
 .content-product_list-item-description {
-    font-size: 15px;
-    line-height: 15px;
-    height: 30px;
+    font-size: 14px;
+    line-height: 16px;
+    height: 31.5px;
     overflow: hidden;
     display: block;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
 }
 
 .content-product_list-item-discount {
-    padding: 3px;
+    font-size: 13px;
+    padding: 2px 4px;
     color:#fff;
-    background-color: rgb(13, 151, 36);
+    background-color: rgb(53 128 65);
+    display: inline-block;
+    border-radius: 2px;
+    margin-top: 10px;
+    text-align: center;
 }
+
+.content-product_list-item-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.content-product_list-item-status .content-product_list-item-price {
+    color: orange;
+    font-size: 16px;
+}
+
+.content-product_list-item-status .content-product_list-item-sold {
+    color:rgb(134, 126, 126);
+    font-size: 13px;
+}
+
+.content-product_list-item:hover {
+    display: block;
+    border: 1px solid rgb(241, 44, 60);
+    transform: translateY(-2px);
+}
+
+
+/* ========================================================== footer ================================================================ */
+
+#footer {
+    background-color: rgba(245, 236, 236, 0.8);
+}
+
+.footer_wrap {
+    background-color: #fff;
+    display: flex;
+    margin: auto;
+    padding: 20px 0 15px 0;
+    margin-top: 135px;
+    justify-content: space-evenly;
+}
+
+.footer-element {
+    width: 18%;
+}
+
+.footer-element h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.54);
+    text-align: center;
+    font-weight: 550;
+}
+
+.footer-element li {
+    list-style: none;
+    color: rgba(0,0,0,.54);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+.footer-element li:hover {
+    color: red;
+}
+
+.footer-element-payment ul li img {
+    width: 100%;
+    height: 100%;
+}
+
+.footer-element-follow_us ul {
+    margin: 0 8px;
+}
+
+.footer-element-follow_us ul i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.footer-element-download_my_app a {
+    display: flex;
+}
+
+.footer-element-download_my_app-apps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footer-element-download_my_app a > img {
+    width: 50%;
+}
+
+.footer-element-download_my_app-apps img {
+    width: 80%;
+    margin: 5px 0;
+}
+
+
+
+
+
+
 
 
 
