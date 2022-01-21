@@ -282,19 +282,19 @@ html {
     width: 400px;
     height: 260px;
     position: absolute;
-    right: 18.3%;
-    top: 20%;
+    right: 18%;
+    top: 82%;
     background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     box-shadow: 0px 0px 3px 0px #ccc;
-    display: none;
     transform-origin: 95% top;
     animation: showList ease-in 0.25s;
     z-index: 5;
     border-radius: 4px;
+    display: none;
 }
 
 
@@ -519,9 +519,10 @@ html {
 }
 
 .content-product_list-item-description {
+    color: rgb(105, 97, 97);
     font-size: 14px;
     line-height: 16px;
-    height: 31.5px;
+    height: 32px;
     overflow: hidden;
     display: block;
     display: -webkit-box;
@@ -533,7 +534,7 @@ html {
     font-size: 13px;
     padding: 2px 4px;
     color:#fff;
-    background-color: rgb(53 128 65);
+    background-color: rgb(79, 206, 100);
     display: inline-block;
     border-radius: 2px;
     margin-top: 10px;
@@ -548,7 +549,7 @@ html {
 }
 
 .content-product_list-item-status .content-product_list-item-price {
-    color: orange;
+    color: rgb(10, 2, 14);
     font-size: 16px;
 }
 
@@ -588,7 +589,7 @@ html {
     text-transform: uppercase;
     color: rgba(0,0,0,.54);
     text-align: center;
-    font-weight: 550;
+    font-weight: 545;
 }
 
 .footer-element li {
