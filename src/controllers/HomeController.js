@@ -5,10 +5,11 @@ class HomeController {
     home(req, res, next) {
         Product.find()
             .then((products) => {
-                res.render('home', {
-                    products :multiObject(products),
-                    user: req.user
-                })
+                // res.render('home', {
+                //     products :multiObject(products),
+                //     user: req.user
+                // })
+                res.json(req.user);
             })
             .catch(next);
     }
