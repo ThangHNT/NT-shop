@@ -1,5 +1,8 @@
-const homeRouter = require('../routes/home.js');
+const homeRouter = require('./home.js');
+const userRouter = require('./user.js');
+
 function route(app) {
+    app.use('/user',userRouter);
     app.use('/',homeRouter);
 }
 

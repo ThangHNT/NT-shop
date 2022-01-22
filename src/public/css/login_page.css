@@ -4,8 +4,12 @@
     box-sizing: border-box;
 }
 
-#header{
-    margin-top: 15px;
+#main_login {
+    background-color: rgba(245, 236, 236, 0.8);
+}
+
+#header_login{
+    padding: 10px 0; 
 }
 
 .header_content {
@@ -43,7 +47,7 @@
 
 /* ======================================================================== content =============================================== */
 
-#content {
+#content_login {
     background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
     width: 100%;
     display: flex;
@@ -117,11 +121,7 @@
 
 /* ========================================================== footer ================================================================ */
 
-#main {
-    background-color: rgba(245, 236, 236, 0.8);
-}
-
-#footer {
+#footer_login {
     background-color: rgba(245, 236, 236, 0.8);
 }
 
