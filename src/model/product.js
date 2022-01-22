@@ -1,4 +1,4 @@
-const mongoose = require('../connectToDB.js');
+const mongoose = require('../connectToMongooseDB.js');
 
 const Schema = mongoose.Schema;
 const Product = new Schema({

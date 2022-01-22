@@ -4,6 +4,7 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const handlebars = require('express-handlebars');
 const route = require('./routes/main.js');
+const fbauthentication = require('./authentication method/facebook.js');
 
 app.engine('.hbs',handlebars({extname: '.hbs'}));
 app.set('view engine','.hbs');
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
+
+fbauthentication(app);
 route(app);
 
 app.listen(port, () => {
