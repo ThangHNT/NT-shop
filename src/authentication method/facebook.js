@@ -48,14 +48,14 @@ function authenticate(app) {
                     const user = new User({facebookId :id, username : name,authType: 'facebook', avatar : avatar});
                     user.save()
                         .then(() => {
-                            // res.redirect(`/`);
-                            res.status(200).send('thanh cong 2');
+                            res.redirect(`/`);
+                            // res.status(200).send('thanh cong 2');
                         })
                         .catch(next);
                 }
                 else {
-                    // res.redirect(`/`);
-                    res.status(200).send('thanh cong 2');
+                    res.redirect(`/`);
+                    // res.status(200).send('thanh cong 2');
                 }
             })
         });

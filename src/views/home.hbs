@@ -45,8 +45,21 @@
                         Hỗ trợ
                     </div>
                     <div class="header-account header-section-item">
-                        <a class="account_signup" href="/user/login">Đăng ký</a>
-                        <a class="account_login" href="/user/login">Đăng nhập</a>
+                        {{#if user}}
+                        <div class="myAccount">
+                            <img class="avatar" src="https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" alt="">
+                            {{!-- <a href="#" class="username">Thang Hoang</a> --}}
+                            <img class="avatar" src="{{user.avatar}}" alt="">
+                            <a href="#" class="username">{{user.username}}</a>
+                            <div class="myAccount-show">
+                                <a href="#">Tài khoản của tôi</a>
+                                <a href="#">Đăng xuất</a>
+                            </div>
+                        </div>
+                            {{else}}
+                            <a class="account_signup" href="/user/login">Đăng ký</a>
+                            <a class="account_login" href="/user/login">Đăng nhập</a>
+                        {{/if}}
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@ class HomeController {
             .then((products) => {
                 res.render('home', {
                     products :multiObject(products),
+                    user: req.user
                 })
             })
             .catch(next);
