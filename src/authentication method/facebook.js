@@ -49,13 +49,13 @@ function authenticate(app) {
                     user.save()
                         .then(() => {
                             // res.redirect(`/`);
-                            res.status(200).send('thanh cong');
+                            res.status(200).send('thanh cong 2');
                         })
                         .catch(next);
                 }
                 else {
                     // res.redirect(`/`);
-                    res.status(200).send('thanh cong');
+                    res.status(200).send('thanh cong 2');
                 }
             })
         });
