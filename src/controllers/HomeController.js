@@ -8,7 +8,7 @@ class HomeController {
         User.findById({_id:'61ecb7cd767e5e0390c60b8a'}, function(err,user){
             if(user){
                 res.render('home', {
-                    user: user
+                    user: object(user)
                 })
             }
             else {
