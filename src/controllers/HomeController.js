@@ -5,7 +5,7 @@ const {object} = require('../convertToObject.js');
 class HomeController {
     home(req, res, next) {
         res.render('home', {
-            user: req.user
+            user: object(req.user)
         })
     }
 }
