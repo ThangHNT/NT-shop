@@ -1,5 +1,6 @@
 const Product = require('../model/product.js');
 const {multiObject} = require('../convertToObject.js');
+const {object} = require('../convertToObject');
 
 class HomeController {
     home(req, res, next) {
@@ -7,8 +8,7 @@ class HomeController {
             .then((products) => {
                 res.render('home', {
                     products :multiObject(products),
-                    user: req.user,
-                    avatar: req.user.avatar
+                    user: object(req.user),
                 })
             })
             .catch(next);
