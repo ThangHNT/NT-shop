@@ -35,8 +35,8 @@ function authenticate(app) {
         }
     ));
     // xác thục lại mỗi khi đăng nhập
-    app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'})); 
-    // app.get('/auth/facebook', passport.authenticate('facebook'));  // gửi yêu cầu đăng nhập với fb
+    // app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'})); 
+    app.get('/auth/facebook', passport.authenticate('facebook'));  // gửi yêu cầu đăng nhập với fb
     app.get('/auth/facebook/callback',              // fb trả về sau khi đăng nhập thành công
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res, next) {
