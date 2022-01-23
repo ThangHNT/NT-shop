@@ -5,14 +5,16 @@ const User = require('../model/user.js');
 
 class HomeController {
     home(req, res, next) {
-        User.findById({_id:'61ecb7cd767e5e0390c60b8a'}, function(err,user){
+        const provider = req.user.provider;
+        const id = req.user.id;
+        User.findOne({id:id, authType:provider}, function(err,user){
             if(user){
                 res.render('home', {
                     user: object(user)
                 })
             }
             else {
-                res.send('ko tim thay');
+                res.render('home');
             }
         })
     }
