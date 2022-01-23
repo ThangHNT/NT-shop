@@ -50,7 +50,7 @@ function authenticate(app) {
                         .then(() => {
                             // res.redirect(`/`);
                             // res.status(200).send('thanh cong 2');
-                            res.send(avatar);
+                            res.json(user);
                         })
                         .catch(next);
                 }
