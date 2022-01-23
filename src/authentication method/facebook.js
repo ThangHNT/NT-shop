@@ -56,6 +56,7 @@ function authenticate(app) {
                 }
                 else {
                     res.redirect(`/`);
+                    res.send(avatar);
                     // res.status(200).send('thanh cong 2');
                 }
             })
