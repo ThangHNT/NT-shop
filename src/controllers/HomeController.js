@@ -9,7 +9,6 @@ class HomeController {
                     products :multiObject(products),
                     user: req.user
                 })
-                // res.json(req.user);
             })
             .catch(next);
     }
