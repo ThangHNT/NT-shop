@@ -4,6 +4,6 @@ const homeController = require('../controllers/HomeController.js');
 
 
 router.get('/',homeController.home);
-router.post('/logout',homeController.logout);
+router.get('/logout',homeController.logout);
 
 module.exports = router;
