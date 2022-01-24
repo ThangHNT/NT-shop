@@ -1,4 +1,8 @@
 
+.container {
+    display: flex;
+}
+
 :root .navbar_control a {
     color:#000;
 }
@@ -6,7 +10,8 @@
 .navbar_control {
     width: 20%;
     height:500px;
-    background-color: #ccc;
+    background-color: rgba(245, 236, 236, 0.8);
+    /* background-color: #fff; */
     display:flex;
     flex-direction: column;
 }
@@ -14,7 +19,6 @@
 .navbar_control-user {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .navbar_control-user img {
@@ -62,13 +66,47 @@
 }
 
 
+.info_control {
+    width: 80%;
+    height: 300px;
+    background-color: #fff;
+}
+
+.info_control-item-wrap h3 {
+    position: relative;
+}
+
+.info_control-item-wrap h3::after {
+    content: '';
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    opacity: 0.5;
+    position: absolute;
+    top: 42px;
+    left: 0;
+}
+
+.info_control-item-content {
+    margin-top: 32px;
+}
+
+.my_info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.my_info-item label {
+    width: 15%;
+    text-align: center;
+}
 
 
-
-
-
-
-
+.my_info-date_of_birth-item {
+    display: flex;
+}
 
 
 
