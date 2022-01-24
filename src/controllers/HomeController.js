@@ -30,11 +30,6 @@ class HomeController {
                 .catch(next);
         }
     }
-    logout(req,res,next){
-        req.logout();
-        // res.redirect('/');
-        res.send('lanslfknnf ' );
-    }
 }
 
 module.exports = new HomeController;
