@@ -17,11 +17,16 @@ class HomeController {
                         })
                     })
                     .catch(next);
-                    
             })
         }
         else {
-            res.render('home');
+            Product.find()
+                .then((products) => {
+                    res.render('home', {
+                        products : multiObject(products)
+                    })
+                })
+                .catch(next);
         }
     }
 }
