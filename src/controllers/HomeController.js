@@ -17,6 +17,7 @@ class HomeController {
                         })
                     })
                     .catch(next);
+                    
             })
         }
         else {
