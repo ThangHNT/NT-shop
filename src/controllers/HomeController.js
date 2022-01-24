@@ -9,14 +9,9 @@ class HomeController {
             const provider = req.user.provider;
             const id = req.user.id;
             User.findOne({id:id, authType:provider}, function(err,user){
-                if(user){
-                    res.render('home', {
-                        user: object(user)
-                    })
-                }
-                else {
-                    res.render('home');
-                }
+                res.render('home', {
+                    user: object(user)
+                })
             })
         }
         else {
