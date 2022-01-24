@@ -68,7 +68,7 @@
 
 .info_control {
     width: 80%;
-    height: 300px;
+    height: 500px;
     background-color: #fff;
 }
 
@@ -92,29 +92,98 @@
     margin-top: 32px;
 }
 
+.info_control-item-content-my_info {
+    width: 60%;
+}
+
 .my_info-item {
     display: flex;
     align-items: center;
     margin-bottom: 25px;
 }
 
-.my_info-item label {
-    width: 15%;
-    text-align: center;
+.my_info-email a {
+    color: blue;
+    text-decoration: underline;
 }
 
+.my_info-item label {
+    width: 25%;
+    text-align: center;
+    margin: 0;
+}
+
+.wraper-input {
+    width: 75%;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.my_info-item input {
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: 1px;
+    border: none;
+    outline: none;
+}
+
+.my_info-number_phone p {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+}
+
+.my_info-item select {
+    width: 35%;
+    height: 30px;
+    cursor: pointer;
+}
 
 .my_info-date_of_birth-item {
     display: flex;
+    width: 23%;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
 }
 
+.store_profile_btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 2px;
+    font-size: 16px;
+    color:#fff;
+    background-color: rgb(21, 181, 202);
+    margin-left: 56%;
+}
 
+.store_profile_btn:focus {
+    outline: none;
+}
 
+.my_info-date_of_birth-day {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
 
-
-
-
-
+.my_info-date_of_birth-day li {
+    list-style: none;
+    text-align: center;
+}
 
 
 
