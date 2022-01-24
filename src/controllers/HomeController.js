@@ -33,7 +33,7 @@ class HomeController {
     logout(req,res,next){
         req.logout();
         // res.redirect('/');
-        res.send('lanslfknnf ' + req.user);
+        res.send('lanslfknnf ' );
     }
 }
 
