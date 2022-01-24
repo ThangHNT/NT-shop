@@ -1,5 +1,6 @@
 const Product = require('../model/product.js');
 const User = require('../model/user.js');
+const passport = require('passport');
 const {multiObject} = require('../convertToObject.js');
 const {object} = require('../convertToObject.js');
 
@@ -28,6 +29,11 @@ class HomeController {
                 })
                 .catch(next);
         }
+    }
+    logout(req,res,next){
+        req.logout();
+        // res.redirect('/');
+        res.send('lanslfknnf ' + req.user);
     }
 }
 
