@@ -31,6 +31,7 @@ class HomeController {
         }
     }
     logout(req,res,next){
+        req.session.destroy();
         req.user = null;
         res.redirect('/');
     }
