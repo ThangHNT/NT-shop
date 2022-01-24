@@ -30,6 +30,10 @@ class HomeController {
                 .catch(next);
         }
     }
+    logout(req,res,next){
+        req.user = null;
+        res.redirect('/');
+    }
 }
 
 module.exports = new HomeController;
