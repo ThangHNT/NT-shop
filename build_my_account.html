@@ -225,13 +225,79 @@
                                 <div class="line_thin"></div>
                                 <div class="info_control-item-content-my_avatar">
                                     <div class="info_control-item-content-my_avatar-wrapper">
-                                        <input name="avatar" type="file">
+                                        <input class="avatar_profile" name="avatar_profile" type="file" accept=".jpg, .png, .jpeg">
                                     </div>
                                     <button type="button">Chọn ảnh</button>
-                                    <!-- <span>Dung lượng tối đa 1MB</span> -->
                                 </div>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="footer_wrap container">
+                <div class="footer-element">
+                    <div class="footer-element-customer_care">
+                        <h4>CHĂM SÓC KHÁCH HÀNG</h4>
+                        <ul>
+                            <li>Trung tâm trợ giúp</li>
+                            <li>NT Blog</li>
+                            <li>NT Mail</li>
+                            <li>Hướng Dẫn Mua Hàng</li>
+                            <li>Hướng Dẫn Bán Hàng</li>
+                            <li>Thanh Toán</li>
+                            <li>NT coin</li>
+                            <li>Vận Chuyển</li>
+                            <li>Trả Hàng & Hoàn Tiền</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-about_us">
+                        <h4>VỀ NT shop</h4>
+                        <ul>
+                            <li>Giới Thiệu Về NT shop</li>
+                            <li>Tuyển dụng</li>
+                            <li>Điều khoản</li>
+                            <li>Chính Sách Bảo Mật</li>
+                            <li>Chính Hãng</li>
+                            <li>Kênh Người Bán</li>
+                            <li>Flash Sales</li>
+                            <li>Liên Hệ Với Truyền Thông</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-payment">
+                        <h4>THANH TOÁN</h4>
+                        <ul>
+                            <li>
+                                <img src="https://einvoice.vn/FileUpload/ArticleMaterials/images/thanh-toan-dien-tu-4.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-follow_us">
+                        <h4>THEO DÕI CHÚNG TÔI TRÊN</h4>
+                        <ul>
+                            <li><i class="fab fa-facebook"></i>Facebook</li>
+                            <li><i class="fab fa-instagram"></i> Instagram</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-download_my_app">
+                        <h4>TẢI ỨNG DỤNG NT shop NGAY THÔI</h4>
+                        <a href="#">
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png" alt="" class="footer-element-download_my_app-qrcode">
+                            <div class="footer-element-download_my_app-apps">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png" alt="">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/f4f5426ce757aea491dce94201560583.png" alt="">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/1ae215920a31f2fc75b00d4ee9ae8551.png" alt="">
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -262,7 +328,7 @@
             }
         }
         nameInput.oninput = function() {
-            if(nameInput.value.length == 0) {
+            if(nameInput.value.length < 3) {
                 handleErrName();
             }
             else {
@@ -315,6 +381,43 @@
         yearInput.onblur = function() {
             if(yearInput.value.length == 0) handleErrDate();
         }
+
+        // =========================================================== xử lý hình ảnh =======================================
+        let avatar = $('.avatar_profile');
+        const reader = new FileReader();
+        const backgroundAvatar = $('.info_control-item-content-my_avatar-wrapper');
+        avatar.addEventListener("change", (event) => {
+            const files  = event.target.files;
+            reader.readAsDataURL(files[0]);
+            reader.addEventListener("load", (event) => {
+                const binary = event.target.result;
+                var img = binary.slice(binary.lastIndexOf(',')+1);
+                
+                // hàm tạo url cho thuộc tính src của ảnh
+                const b64toBlob = (img, contentType='', sliceSize=512) => {
+                    const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
+                    const byteArrays = [];
+
+                    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                        const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                        const byteNumbers = new Array(slice.length);
+                        for (let i = 0; i < slice.length; i++) {
+                            byteNumbers[i] = slice.charCodeAt(i); // lấy mã Unicode 
+                        }
+
+                        const byteArray = new Uint8Array(byteNumbers); // tạo mảng kiểu 8bit
+                        byteArrays.push(byteArray);
+                    }
+
+                    const blob = new Blob(byteArrays, {type: contentType});
+                    return blob;
+                }
+                const blob = b64toBlob(img, 'image/jpeg');
+                const blobUrl = URL.createObjectURL(blob);  // tạo url mới 
+                backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
+            })
+        })
     </script>
 
     <!-- bootstrap 3 -->
