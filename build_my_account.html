@@ -140,7 +140,7 @@
                                         </div>
                                     </div>
                                     <div class="my_info-item-warning name_warning">
-                                        <span>Vui lòng nhập tên</span>
+                                        <span>Vui lòng nhập tên (Tối thiểu 3 ký tự)</span>
                                     </div>
                                     <div class="my_info-email my_info-item">
                                         <label for="email">Email</label>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="my_info-number_phone my_info-item">
                                         <label for="number-phone">Số điện thoại</label>
-                                        <p name="number_phone" id="number-phone">*******25</p>
+                                        <p name="number_phone" id="number-phone">*********25</p>
                                     </div>
                                     <div class="my_info-gender my_info-item">
                                         <label for="gender">Giới tính</label>
@@ -243,19 +243,78 @@
         const $$ = document.querySelectorAll.bind(document);
         let nameInput = $('.wraper-input input');
         let nameWarning = $('.my_info-item-warning');
+
+        function handleErrName() {
+            nameWarning.style.display = 'block';
+            $('.wraper-input-name').classList.add('warning_input');
+            storebtn.disabled =  true;
+            storebtn.classList.add('disabled');
+        }
+        function handleCorrectName() {
+            nameWarning.style.display = 'none';
+            $('.wraper-input-name').classList.remove('warning_input');
+            storebtn.disabled = false;
+            storebtn.classList.remove('disabled');
+        }
         nameInput.onblur = function(e) {
-            if(this.value.length == 0) {
-                nameWarning.style.display = 'block';
-                $('.wraper-input-name').classList.add('warning_input');
+            if(nameInput.value.length < 3) {
+                handleErrName();
             }
         }
-        nameInput.onkeypress = function() {
-            setTimeout(() => {
-                nameWarning.style.display = 'none';
-                $('.wraper-input-name').classList.remove('warning_input');
-            },200)
+        nameInput.oninput = function() {
+            if(nameInput.value.length == 0) {
+                handleErrName();
+            }
+            else {
+                setTimeout(() => {
+                    handleCorrectName();
+                },200)
+            }
         }
-        // console.log(nameInput.value);
+        
+        let daySelect = $('.my_info-date_of_birth-day');
+        let monthSelect = $('.my_info-date_of_birth-month');
+        let yearInput = $('.my_info-date_of_birth-year');
+        let storebtn = $('.store_profile_btn');
+        let dateWarning = $('.date_warning');
+        
+        function handleErrDate() {
+            storebtn.disabled =  true;
+            storebtn.classList.add('disabled');
+            dateWarning.style.display = 'block';
+        }
+        function namNhuan(a){
+            b = Number(`${a}`);
+            if(b%4 == 0 || b%400 == 0) return 1;
+            return 0;
+        }
+        function checkDate() {
+            let arr = ['04','06','09','08','11'];
+            let a = arr.some((element) => {
+                return (element == monthSelect.value);
+            })
+            if(daySelect.value == '31' && a == true) handleErrDate();
+            else if(daySelect.value == '29' && namNhuan(yearInput.value) == 0 && monthSelect.value == '02') handleErrDate();
+            else if(daySelect.value > '29' && monthSelect.value == '02') handleErrDate();
+            else {
+                storebtn.disabled = false;
+                storebtn.classList.remove('disabled');
+                dateWarning.style.display = 'none';
+            }
+        }
+        daySelect.onchange = function() {
+            checkDate();
+        }
+        monthSelect.onchange = function() {
+            checkDate();
+        }
+        yearInput.onkeypress = function() {
+            checkDate();
+            if(yearInput.value.length < 3) handleErrDate();
+        }
+        yearInput.onblur = function() {
+            if(yearInput.value.length == 0) handleErrDate();
+        }
     </script>
 
     <!-- bootstrap 3 -->

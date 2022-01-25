@@ -73,11 +73,12 @@ html {
     width:180px;
     top: 130%;
     left: -10px;
-    display: none;
     z-index: 5;
     background: #fff;
     transform-origin: top left;
     animation: showList linear 0.2s;
+    box-shadow: 0px 0px 4px 0 #ccc;
+    display: none;
 }
 
 .qrcode_app::before {
