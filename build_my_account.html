@@ -101,7 +101,7 @@
                             <a href="#">Tài khoản của tôi</a>
                             <div class="navbar_control-profile-my_account-wrapper">
                                 <a href="#">
-                                    <p class="profile_item">Hồ sơ</p>
+                                    <p class="profile_item active">Hồ sơ</p>
                                 </a>
                                 <a href="#">
                                     <p class="profile_item">Địa chỉ</p>
@@ -126,7 +126,7 @@
                 <div class="info_control">
                     <div class="info_control-item">
                         <div class="info_control-item-wrap">
-                            <h3>Hồ sơ của tôi</h3>
+                            <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
                             <form action="#" class="info_control-item-content">
                                 <div class="info_control-item-content-my_info">
                                     <div class="my_info-name_account my_info-item">
@@ -135,14 +135,17 @@
                                     </div>
                                     <div class="my_info-name my_info-item">
                                         <label for="name">Tên</label>
-                                        <div class="wraper-input">
-                                            <input name="name" type="text" value="Thắng Hoàng">
+                                        <div class="wraper-input wraper-input-name">
+                                            <input name="name" type="text" value="Thắng Hoàng" size="20">
                                         </div>
+                                    </div>
+                                    <div class="my_info-item-warning name_warning">
+                                        <span>Vui lòng nhập tên</span>
                                     </div>
                                     <div class="my_info-email my_info-item">
                                         <label for="email">Email</label>
                                         <div class="wraper-input">
-                                            <input type="email" placeholder="Nhập email">
+                                            <input type="email" placeholder="Nhập email" size="30">
                                         </div>
                                     </div>
                                     <div class="my_info-number_phone my_info-item">
@@ -160,7 +163,7 @@
                                     <div class="my_info-date_of_birth my_info-item">
                                         <label for="date-of-birth">Ngày sinh</label>
                                         <div class="my_info-date_of_birth-item">
-                                            <select class="my_info-date_of_birth-day">
+                                            <select name="my_info-date_of_birth-day" class="my_info-date_of_birth-day">
                                                 <option value="01">Ngày 01</option>
                                                 <option value="02">Ngày 02</option>
                                                 <option value="03">Ngày 03</option>
@@ -214,10 +217,18 @@
                                             <input class="my_info-date_of_birth-year" name="my_info-date_of_birth-year" type="text" value="2001" maxlength="4">
                                         </div>
                                     </div>
+                                    <div class="my_info-item-warning date_warning">
+                                        <span>Vui lòng chọn ngày hợp lệ</span>
+                                    </div>
                                     <button class="store_profile_btn" type="submit">Lưu</button>
                                 </div>
+                                <div class="line_thin"></div>
                                 <div class="info_control-item-content-my_avatar">
-
+                                    <div class="info_control-item-content-my_avatar-wrapper">
+                                        <input name="avatar" type="file">
+                                    </div>
+                                    <button type="button">Chọn ảnh</button>
+                                    <!-- <span>Dung lượng tối đa 1MB</span> -->
                                 </div>
                             </form>
                         </div>
@@ -226,6 +237,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+        let nameInput = $('.wraper-input input');
+        let nameWarning = $('.my_info-item-warning');
+        nameInput.onblur = function(e) {
+            if(this.value.length == 0) {
+                nameWarning.style.display = 'block';
+                $('.wraper-input-name').classList.add('warning_input');
+            }
+        }
+        nameInput.onkeypress = function() {
+            setTimeout(() => {
+                nameWarning.style.display = 'none';
+                $('.wraper-input-name').classList.remove('warning_input');
+            },200)
+        }
+        // console.log(nameInput.value);
+    </script>
 
     <!-- bootstrap 3 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
