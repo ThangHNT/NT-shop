@@ -288,12 +288,28 @@
 }
 
 
+/* ============================================================ modal ============================================================ */
 
+.modal-content {
+    width: 300px;
+    height: 150px;
+    margin: auto;
+    padding: 10px;
+}
 
+.updated_profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
-
+.close_modal {
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    padding: 6px 10px;
+}
 
 
 
