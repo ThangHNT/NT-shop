@@ -242,7 +242,7 @@
                                     <div class="my_info-item-warning date_warning">
                                         <span>Vui lòng chọn ngày hợp lệ</span>
                                     </div>
-                                    <button class="store_profile_btn" data-toggle="modal" data-target="#myModal" type="button">Lưu</button>
+                                    <button class="store_profile_btn" type="button">Lưu</button>
                                 </div>
                                 <div class="line_thin"></div>
                                 <div class="info_control-item-content-my_avatar">
@@ -331,26 +331,48 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="updated_profile">
-                  <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png" alt="">
-                  <h4>Cập nhật thành công</h4>
-              </div>
-              <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">Close</button>
-          </div>
-        </div>
+    <div class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-body">
+            <div class="modal-body-updated_profile">
+                <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png" alt="">
+                <h4>Cập nhật thành công</h4>
+            </div>
+        </div>   
     </div>
 
     <script>
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
+        let daySelect = $('.my_info-date_of_birth-day');
+        let monthSelect = $('.my_info-date_of_birth-month');
+        let yearInput = $('.my_info-date_of_birth-year');
+        let storebtn = $('.store_profile_btn');
+        let dateWarning = $('.date_warning');
         let nameInput = $('.wraper-input-name input');
         let nameWarning = $('.my_info-item-warning');
         let emailInput = $('.wraper-input-email input');
         let wraperInputs = $$('.wraper-input');
+        let modalOverlay = $('.modal-overlay');
+
+        storebtn.onclick = function(){
+            var promise = Promise.resolve(); 
+            promise
+                .then( () => {
+                    setTimeout(function(){
+                        $('.modal').style.display = 'flex';
+                    },100)
+                })
+                .then( () => {
+                    setTimeout(function(){
+                        $('.modal').style.display = 'none';
+                    },2000)
+                })
+        }
+        modalOverlay.onclick = function() {
+            $('.modal').style.display = 'none';
+        }
 
         function handleBlurInput(input) {
             input.style.border = '1px solid #ccc';
@@ -372,7 +394,7 @@
             storebtn.classList.remove('disabled');
         }
 
-        // khi focus vào thẻ input
+        // -----------------------------  khi focus vào thẻ input
         emailInput.onfocus = function () {
             handleFocusInput(wraperInputs[1]);
         }
@@ -398,12 +420,6 @@
                 }, 200)
             }
         }
-
-        let daySelect = $('.my_info-date_of_birth-day');
-        let monthSelect = $('.my_info-date_of_birth-month');
-        let yearInput = $('.my_info-date_of_birth-year');
-        let storebtn = $('.store_profile_btn');
-        let dateWarning = $('.date_warning');
 
         function handleErrDate() {
             storebtn.disabled = true;
@@ -479,6 +495,7 @@
                 backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
             })
         }) 
+
     </script>
 
     <!-- bootstrap 3 -->
