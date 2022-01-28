@@ -2,7 +2,7 @@ const mongoose = require('../connectToMongooseDB');
 const Schema = mongoose.Schema;
 
 const User = new Schema({
-    username:{type: String, required:true, maxlength:50},
+    username:{type: String, required: true,maxlength:50},
     phoneNumber:{type:String,maxlength: 11},
     gender:{type:String},
     dayOfBirth:{type:String, maxlength: 2},

@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-
 fbauthentication(app);
 ggAthentication(app);
 route(app);

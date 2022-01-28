@@ -127,7 +127,7 @@
                 <div class="info_control-item">
                     <div class="info_control-item-wrap">
                         <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
-                        <form action="#" class="info_control-item-content">
+                        <form method="post" action="/user/updateProfile" class="info_control-item-content" enctype="multipart/form-data">
                             <div class="info_control-item-content-my_info">
                                 <div class="my_info-name_account my_info-item">
                                     <label for="name-account">Tên đăng nhập</label>
@@ -136,7 +136,7 @@
                                 <div class="my_info-name my_info-item">
                                     <label for="name">Tên</label>
                                     <div class="wraper-input wraper-input-name">
-                                        <input name="name" type="text" value="Thắng Hoàng" size="20">
+                                        <input name="username" type="text" value="Thắng Hoàng" size="20">
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning name_warning">
@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="my_info-gender my_info-item">
                                     <label for="gender">Giới tính</label>
-                                    <select name="gender" id="gender" class="">
+                                    <select name="gender" id="gender" class="gender">
                                         <option value="Nam">Nam</option>
                                         <option value="Nữ">Nữ</option>
                                         <option value="khác">Khác</option>
@@ -163,7 +163,7 @@
                                 <div class="my_info-date_of_birth my_info-item">
                                     <label for="date-of-birth">Ngày sinh</label>
                                     <div class="my_info-date_of_birth-item">
-                                        <select name="my_info-date_of_birth-day" class="my_info-date_of_birth-day">
+                                        <select name="day" class="my_info-date_of_birth-day">
                                             <option value="01">Ngày 01</option>
                                             <option value="02">Ngày 02</option>
                                             <option value="03">Ngày 03</option>
@@ -198,7 +198,7 @@
                                         </select>
                                     </div>
                                     <div class="my_info-date_of_birth-item">
-                                        <select class="my_info-date_of_birth-month" name="my_info-date_of_birth-month"
+                                        <select class="my_info-date_of_birth-month" name="month"
                                             id="">
                                             <option value="01">Tháng 01</option>
                                             <option value="02">Tháng 02</option>
@@ -215,7 +215,7 @@
                                         </select>
                                     </div>
                                     <div class="my_info-date_of_birth-item">
-                                        <input class="my_info-date_of_birth-year" name="my_info-date_of_birth-year"
+                                        <input class="my_info-date_of_birth-year" name="year"
                                             type="text" value="2001" maxlength="4">
                                     </div>
                                 </div>
@@ -326,6 +326,7 @@
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
 
+    let formUpdate = $('.info_control-item-content');
     let daySelect = $('.my_info-date_of_birth-day');
     let monthSelect = $('.my_info-date_of_birth-month');
     let yearInput = $('.my_info-date_of_birth-year');
@@ -337,9 +338,46 @@
     let wraperInputs = $$('.wraper-input');
     let modalOverlay = $('.modal-overlay');
 
+    formUpdate.onsubmit = function (e) {
+        e.preventDefault();
+    }
+    let url = '/user/updateProfile';
+    var data;
+    function updateProfile(url, data) {
+        var option = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi');
+            })
+    }
+
     storebtn.onclick = function () {
+        data = {
+            username: $('.wraper-input-name input').value,
+            email: $('.wraper-input-email input').value,
+            gender: $('.gender').value,
+            day: $('.my_info-date_of_birth-day').value,
+            month: $('.my_info-date_of_birth-month').value,
+            year: $('.my_info-date_of_birth-year').value
+        }
+        console.log(data);
         var promise = Promise.resolve();
         promise
+            .then(() => {
+                updateProfile(url,data);
+                return new Promise((resolve, reject) =>{
+                    setTimeout(resolve,100);
+                })
+            })
             .then(() => {
                 setTimeout(function () {
                     $('.modal').style.display = 'flex';
@@ -350,6 +388,7 @@
                     $('.modal').style.display = 'none';
                 }, 2000)
             })
+            .catch(() => { console.log('co loi') });
     }
     modalOverlay.onclick = function () {
         $('.modal').style.display = 'none';
@@ -476,5 +515,4 @@
             backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
         })
     })
-
 </script>
