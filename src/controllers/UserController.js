@@ -11,16 +11,21 @@ class UserController {
         var id = req.user.id;
         User.findOne({id: id, authType: provider}, function(err, user){
             // res.json(user);
-            res.render('myAccount', {
-                user: user,
-                username: username,
-                email: user.email,
-                phoneNumber: user.phoneNumber,
-                gender: user.gender,
-                dayOfBirth: user.dayOfBirth,
-                monthOfBirth: user.monthOfBirth,
-                yearOfBirth: user.yearOfBirth,
-            });
+            if(user){
+                res.render('myAccount', {
+                    user: user,
+                    username: user.username,
+                    email: user.email,
+                    phoneNumber: user.phoneNumber,
+                    gender: user.gender,
+                    dayOfBirth: user.dayOfBirth,
+                    monthOfBirth: user.monthOfBirth,
+                    yearOfBirth: user.yearOfBirth,
+                });
+            }
+            else {
+                res.render('myAccount');
+            }
         })
     }
 
