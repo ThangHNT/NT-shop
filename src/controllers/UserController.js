@@ -10,9 +10,10 @@ class UserController {
         const provider = req.user.provider;
         var id = req.user.id;
         User.findOne({id: id, provider: provider}, function(err, user){
-            res.render('myAccount', {
-                user: user,
-            });
+            res.json(user);
+            // res.render('myAccount', {
+            //     user: user,
+            // });
         })
     }
 
