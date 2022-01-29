@@ -164,7 +164,7 @@
                                 <div class="my_info-date_of_birth my_info-item">
                                     <label for="date-of-birth">Ngày sinh</label>
                                     <div class="my_info-date_of_birth-item">
-                                        <select value="{{dayOfBirth}}" name="day" class="my_info-date_of_birth-day">
+                                        <select data="{{dayOfBirth}}" name="day" class="my_info-date_of_birth-day">
                                             <option value="01">Ngày 01</option>
                                             <option value="02">Ngày 02</option>
                                             <option value="03">Ngày 03</option>
@@ -199,7 +199,7 @@
                                         </select>
                                     </div>
                                     <div class="my_info-date_of_birth-item">
-                                        <select value="{{monthOfBirth}}" class="my_info-date_of_birth-month" name="month"
+                                        <select data="{{monthOfBirth}}" class="my_info-date_of_birth-month" name="month"
                                             id="">
                                             <option value="01">Tháng 01</option>
                                             <option value="02">Tháng 02</option>
@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="my_info-date_of_birth-item">
                                         <input class="my_info-date_of_birth-year" name="year"
-                                            type="text" value="{{yearOfBirth}}" maxlength="4">
+                                            type="text" data="{{yearOfBirth}}" maxlength="4">
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning date_warning">
@@ -339,6 +339,12 @@
     let emailInput = $('.wraper-input-email input');
     let wraperInputs = $$('.wraper-input');
     let modalOverlay = $('.modal-overlay');
+
+    let selects = document.getElementsByTagName('select');
+    for(let k = 0; k < selects.length; k++){
+        let data = select.getAttribute('data');
+        select.value = data.toString();
+    }
 
     formUpdate.onsubmit = function (e) {
         e.preventDefault();
