@@ -7,13 +7,19 @@ class UserController {
     }
 
     myAccount(req,res,next){
-        res.render('myAccount');
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, provider: provider}, function(err, user){
+            res.render('myAccount', {
+                user: user,
+            });
+        })
     }
 
     updateProfile(req,res,next) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, provider: provider}, function(err, user){
             if(user){
                 user.username = req.body.username;
                 user.email = req.body.email;
