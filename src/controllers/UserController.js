@@ -13,6 +13,13 @@ class UserController {
             // res.json(user);
             res.render('myAccount', {
                 user: user,
+                username: username,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                gender: user.gender,
+                dayOfBirth: user.dayOfBirth,
+                monthOfBirth: user.monthOfBirth,
+                yearOfBirth: user.yearOfBirth,
             });
         })
     }

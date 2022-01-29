@@ -132,12 +132,12 @@
                             <div class="info_control-item-content-my_info">
                                 <div class="my_info-name_account my_info-item">
                                     <label for="name-account">Tên đăng nhập</label>
-                                    <p id="name-account">{{user.username}}</p>
+                                    <p id="name-account">{{username}}</p>
                                 </div>
                                 <div class="my_info-name my_info-item">
                                     <label for="name">Tên</label>
                                     <div class="wraper-input wraper-input-name">
-                                        <input name="username" type="text" value="{{user.username}}" size="20">
+                                        <input name="username" type="text" value="{{username}}" size="20">
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning name_warning">
@@ -146,16 +146,16 @@
                                 <div class="my_info-email my_info-item">
                                     <label for="email">Email</label>
                                     <div class="wraper-input wraper-input-email">
-                                        <input type="email" placeholder="Nhập email" size="30" value="{{user.email}}">
+                                        <input type="email" placeholder="Nhập email" size="30" value="{{email}}">
                                     </div>
                                 </div>
                                 <div class="my_info-number_phone my_info-item">
                                     <label for="number-phone">Số điện thoại</label>
-                                    <p name="number_phone" id="number-phone">*********25</p>
+                                    <p name="number_phone" id="number-phone">{{phoneNumber}}</p>
                                 </div>
                                 <div class="my_info-gender my_info-item">
                                     <label for="gender">Giới tính</label>
-                                    <select name="gender" id="gender" data="{{user.gender}}" class="gender">
+                                    <select name="gender" id="gender" data="{{gender}}" class="gender">
                                         <option value="Nam">Nam</option>
                                         <option value="Nữ">Nữ</option>
                                         <option value="khác">Khác</option>
@@ -164,7 +164,7 @@
                                 <div class="my_info-date_of_birth my_info-item">
                                     <label for="date-of-birth">Ngày sinh</label>
                                     <div class="my_info-date_of_birth-item">
-                                        <select data="{{user.dayOfBirth}}" name="day" class="my_info-date_of_birth-day">
+                                        <select data="{{dayOfBirth}}" name="day" class="my_info-date_of_birth-day">
                                             <option value="01">Ngày 01</option>
                                             <option value="02">Ngày 02</option>
                                             <option value="03">Ngày 03</option>
@@ -199,7 +199,7 @@
                                         </select>
                                     </div>
                                     <div class="my_info-date_of_birth-item">
-                                        <select data="{{user.monthOfBirth}}" class="my_info-date_of_birth-month" name="month"
+                                        <select data="{{monthOfBirth}}" class="my_info-date_of_birth-month" name="month"
                                             id="">
                                             <option value="01">Tháng 01</option>
                                             <option value="02">Tháng 02</option>
@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="my_info-date_of_birth-item">
                                         <input class="my_info-date_of_birth-year" name="year"
-                                            type="text" value="{{user.yearOfBirth}}" maxlength="4">
+                                            type="text" value="{{yearOfBirth}}" maxlength="4">
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning date_warning">
