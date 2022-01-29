@@ -342,8 +342,8 @@
 
     let selects = document.getElementsByTagName('select');
     for(let k = 0; k < selects.length; k++){
-        let data = select.getAttribute('data');
-        select.value = data.toString();
+        let data = selects[k].getAttribute('data');
+        selects[k].value = data.toString();
     }
 
     formUpdate.onsubmit = function (e) {
