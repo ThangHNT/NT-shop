@@ -55,8 +55,11 @@
                 </div>
                 <div class="header-account header-section-item">
                     <div class="myAccount">
-                        <img class="avatar"
-                            src="https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" alt="">
+                        {{#if avatar_base64}}
+                        <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                            {{else}}
+                            <img class="avatar" src="{{avatar}}" alt="avatar">
+                        {{/if}}
                         <a href="#" class="username">Thắng Hoàng</a>
                         <div class="myAccount-show">
                             <a href="/">Trang chủ</a>
@@ -90,10 +93,12 @@
         <div class="container">
             <div class="navbar_control">
                 <div class="navbar_control-user">
-                    <img class="navbar_control-user-img"
-                        src="https://baoninhbinh.org.vn//DATA/ARTICLES/2021/5/17/cuoc-dua-lot-vao-top-100-anh-dep-di-san-van-hoa-va-thien-7edf3.jpg"
-                        alt="">
-                    <p>Thắng Hoàng</p>
+                    {{#if avatar_base64}}
+                    <img class="navbar_control-user-img" src="data:image/jpeg;base64,{{avatar_base64}}" alt="">
+                        {{else}}
+                        <img class="navbar_control-user-img" src="{{avatar}}" alt="">
+                    {{/if}}
+                    <p>{{username}}</p>
                 </div>
                 <div class="navbar_control-profile navbar_control-item">
                     <div class="navbar_control-profile-my_account">
@@ -155,7 +160,7 @@
                                 </div>
                                 <div class="my_info-gender my_info-item">
                                     <label for="gender">Giới tính</label>
-                                    <select name="gender" id="gender" value="{{gender}}" class="gender">
+                                    <select name="gender" id="gender" data="{{gender}}" class="gender">
                                         <option value="Nam">Nam</option>
                                         <option value="Nữ">Nữ</option>
                                         <option value="khác">Khác</option>
@@ -217,7 +222,7 @@
                                     </div>
                                     <div class="my_info-date_of_birth-item">
                                         <input class="my_info-date_of_birth-year" name="year"
-                                            type="text" data="{{yearOfBirth}}" maxlength="4">
+                                            type="text" value="{{yearOfBirth}}" maxlength="4">
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning date_warning">

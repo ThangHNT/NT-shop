@@ -7,9 +7,9 @@ class UserController {
     }
 
     myAccount(req,res,next){
-        const provider = req.user.provider;
-        var id = req.user.id;
-        User.findOne({id: id, authType: provider}, function(err, user){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
             // res.json(user);
             if(user){
                 res.render('myAccount', {
@@ -21,6 +21,8 @@ class UserController {
                     dayOfBirth: user.dayOfBirth,
                     monthOfBirth: user.monthOfBirth,
                     yearOfBirth: user.yearOfBirth,
+                    avatar_base64: user.avatar_base64.data,
+                    avatar: user.avatar,
                 });
             }
             else {
