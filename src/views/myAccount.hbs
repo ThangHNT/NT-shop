@@ -232,10 +232,15 @@
                             </div>
                             <div class="line_thin"></div>
                             <div class="info_control-item-content-my_avatar">
-                                <div class="info_control-item-content-my_avatar-wrapper">
-                                    <input class="avatar_profile" name="avatar_profile" type="file"
-                                        accept=".jpg, .png, .jpeg">
+                                {{#if avatar_base64}}
+                                <div  class="info_control-item-content-my_avatar-wrapper">
+                                    <input class="avatar_profile" name="avatar_profile" type="file" accept=".jpg, .png, .jpeg">
                                 </div>
+                                    {{else}}
+                                    <div class="info_control-item-content-my_avatar-wrapper">
+                                        <input class="avatar_profile" name="avatar_profile" type="file" accept=".jpg, .png, .jpeg">
+                                    </div>
+                                {{/if}}
                                 <button type="button">Chọn ảnh</button>
                             </div>
                         </form>
@@ -344,8 +349,15 @@
     let emailInput = $('.wraper-input-email input');
     let wraperInputs = $$('.wraper-input');
     let modalOverlay = $('.modal-overlay');
-
     let selects = document.getElementsByTagName('select');
+    let avatar = $('.avatar_profile');
+    const reader = new FileReader();
+    let backgroundAvatar = $('.info_control-item-content-my_avatar-wrapper');
+    let base64String = "";
+
+    let dataAvatar = $('.navbar_control-user img');
+    backgroundAvatar.style.backgroundImage = 'url(' + dataAvatar.src + ')';
+
     for(let k = 0; k < selects.length; k++){
         let data = selects[k].getAttribute('data');
         selects[k].value = data.toString();
@@ -373,19 +385,20 @@
             })
     }
 
+
     storebtn.onclick = function () {
         data = {
-            username: $('.wraper-input-name input').value,
-            email: $('.wraper-input-email input').value,
-            gender: $('.gender').value,
-            day: $('.my_info-date_of_birth-day').value,
-            month: $('.my_info-date_of_birth-month').value,
-            year: $('.my_info-date_of_birth-year').value,
-            avatar_base64: {
-                data: base64String,
-                contentType: 'image/png'
+                username: $('.wraper-input-name input').value,
+                email: $('.wraper-input-email input').value,
+                gender: $('.gender').value,
+                day: $('.my_info-date_of_birth-day').value,
+                month: $('.my_info-date_of_birth-month').value,
+                year: $('.my_info-date_of_birth-year').value,
+                avatar_base64: {
+                    data: base64String,
+                    contentType: 'image/png'
+                }
             }
-        }
         var promise = Promise.resolve();
         promise
             .then(() => {
@@ -496,10 +509,6 @@
     }
 
     // =========================================================== xử lý hình ảnh =======================================
-    let avatar = $('.avatar_profile');
-    const reader = new FileReader();
-    const backgroundAvatar = $('.info_control-item-content-my_avatar-wrapper');
-    let base64String = "";
 
     avatar.addEventListener("change", (event) => {
         const files = event.target.files;

@@ -43,8 +43,10 @@ class UserController {
                 user.dayOfBirth = req.body.day;
                 user.monthOfBirth = req.body.month;
                 user.yearOfBirth = req.body.year;
-                user.avatar_base64.data = req.body.avatar_base64.data;
-                user.avatar_base64.contentType = req.body.avatar_base64.contentType;
+                if(req.body.avatar_base64.data !== ''){
+                    user.avatar_base64.data = req.body.avatar_base64.data;
+                    user.avatar_base64.contentType = req.body.avatar_base64.contentType;
+                }
                 user.save();
             }
             return;
