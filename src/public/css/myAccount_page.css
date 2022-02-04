@@ -194,6 +194,14 @@
     margin-left: 56%;
 }
 
+.store_profile_btn:hover {
+    background-color: rgb(13, 206, 231);
+}
+
+.store_profile_btn:active {
+    opacity: 0.8;
+}
+
 .store_profile_btn:focus {
     outline: none;
 }

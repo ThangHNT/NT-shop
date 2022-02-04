@@ -56,9 +56,9 @@
                 <div class="header-account header-section-item">
                     <div class="myAccount">
                         {{#if avatar_base64}}
-                        <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        <img class="avatar avatar-item" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
                             {{else}}
-                            <img class="avatar" src="{{avatar}}" alt="avatar">
+                            <img class="avatar avatar-item" src="{{avatar}}" alt="avatar">
                         {{/if}}
                         <a href="#" class="username">Thắng Hoàng</a>
                         <div class="myAccount-show">
@@ -94,9 +94,9 @@
             <div class="navbar_control">
                 <div class="navbar_control-user">
                     {{#if avatar_base64}}
-                    <img class="navbar_control-user-img" src="data:image/jpeg;base64,{{avatar_base64}}" alt="">
+                    <img class="navbar_control-user-img avatar-item" src="data:image/jpeg;base64,{{avatar_base64}}" alt="">
                         {{else}}
-                        <img class="navbar_control-user-img" src="{{avatar}}" alt="">
+                        <img class="navbar_control-user-img avatar-item" src="{{avatar}}" alt="">
                     {{/if}}
                     <p>{{username}}</p>
                 </div>
@@ -351,9 +351,10 @@
     let modalOverlay = $('.modal-overlay');
     let selects = document.getElementsByTagName('select');
     let avatar = $('.avatar_profile');
-    const reader = new FileReader();
     let backgroundAvatar = $('.info_control-item-content-my_avatar-wrapper');
+    let avatarImgs = $$('.avatar-item');
     let base64String = "";
+    const reader = new FileReader();
 
     let dataAvatar = $('.navbar_control-user img');
     backgroundAvatar.style.backgroundImage = 'url(' + dataAvatar.src + ')';
@@ -366,7 +367,25 @@
     formUpdate.onsubmit = function (e) {
         e.preventDefault();
     }
+
+    function updateAvatar(url) {
+        fetch(url) 
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (avatarBinary) {
+                for(let j = 0; j < avatarImgs.length; j++) {    // thay đổi avatar từ ảnh vừa chọn
+                    let element = avatarImgs[j];
+                    element.src = "data:image/jpeg;base64," + avatarBinary;
+                }
+                return;
+            })
+            .catch(err => { console.log('loi anh')});
+    }
+
+    // cập nhật dữ liệu về server
     let url = '/user/updateProfile';
+    let urlAvatarBase64 = '/user/json/avatar';
     var data;
     function updateProfile(url, data) {
         var option = {
@@ -385,7 +404,7 @@
             })
     }
 
-
+    // --------------------------------------------- khi ấn nút lưu ---------------------------------------------------------
     storebtn.onclick = function () {
         data = {
                 username: $('.wraper-input-name input').value,
@@ -404,18 +423,21 @@
             .then(() => {
                 updateProfile(url,data);
                 return new Promise((resolve, reject) =>{
-                    setTimeout(resolve,100);
+                    setTimeout(resolve,800);
                 })
             })
             .then(() => {
                 setTimeout(function () {
                     $('.modal').style.display = 'flex';
-                }, 100)
+                }, 100);
             })
             .then(() => {
                 setTimeout(function () {
                     $('.modal').style.display = 'none';
-                }, 2000)
+                }, 2000);
+            })
+            .then(() => {
+                updateAvatar(urlAvatarBase64);
             })
             .catch(() => { console.log('co loi') });
     }
@@ -443,7 +465,7 @@
         storebtn.classList.remove('disabled');
     }
 
-    // -----------------------------  khi focus vào thẻ input
+    // -----------------------------  khi focus vào thẻ input -------------------------------------------------------
     emailInput.onfocus = function () {
         handleFocusInput(wraperInputs[1]);
     }
@@ -515,7 +537,8 @@
         reader.readAsDataURL(files[0]);
         reader.addEventListener("load", (event) => {
             base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-            {{!-- console.log(base64String); --}}
+            {{!-- console.log(base64String);    // lấy dạng base64 của hình ảnh vừa chọn --}}
+
             const binary = event.target.result;
             var img = binary.slice(binary.lastIndexOf(',') + 1);
 
