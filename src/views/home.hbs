@@ -56,10 +56,10 @@
                 <div class="header-account header-section-item">
                     {{#if user}}
                     <div class="myAccount">
-                        {{#if avatar}}
-                        <img class="avatar" src="{{user.avatar}}" alt="avatar">
-                        {{else}}
+                        {{#if avatar_base64}}
                             <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
                         {{/if}}
                         <a href="#" class="username">{{user.username}}</a>
                         <div class="myAccount-show">
