@@ -14,8 +14,8 @@ class HomeController {
                     .then((products) => {
                         res.render('home', {
                             user: object(user),
-                            avatar: req.user.avatar,
-                            avatar_base64: req.user.avatar_base64,
+                            avatar: user.avatar,
+                            avatar_base64: user.avatar_base64.data,
                             products : multiObject(products)
                         })
                     })
