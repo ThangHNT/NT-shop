@@ -60,7 +60,11 @@
                             src="https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" alt="">
                         --}}
                         {{!-- <a href="#" class="username">Thang Hoang</a> --}}
-                        <img class="avatar" src="{{user.avatar}}" alt="avatar">
+                        {{#if avatar}}
+                        <img class="avatar avatar-item" src="{{user.avatar}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar avatar-item" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{/if}}
                         <a href="#" class="username">{{user.username}}</a>
                         <div class="myAccount-show">
                             <a href="/user/myAccount">Tài khoản của tôi</a>
@@ -68,8 +72,8 @@
                         </div>
                     </div>
                     {{else}}
-                    <a class="account_signup" href="/user/login">Đăng ký</a>
-                    <a class="account_login" href="/user/login">Đăng nhập</a>
+                        <a class="account_signup" href="/user/login">Đăng ký</a>
+                        <a class="account_login" href="/user/login">Đăng nhập</a>
                     {{/if}}
                 </div>
             </div>
