@@ -142,7 +142,7 @@
                                 <div class="my_info-name my_info-item">
                                     <label for="name">Tên</label>
                                     <div class="wraper-input wraper-input-name">
-                                        <input name="username" type="text" value="{{username}}" size="20">
+                                        <input name="username" type="text" value="{{username}}" size="20" required>
                                     </div>
                                 </div>
                                 <div class="my_info-item-warning name_warning">
@@ -157,6 +157,9 @@
                                 <div class="my_info-number_phone my_info-item">
                                     <label for="number-phone">Số điện thoại</label>
                                     <p name="number_phone" id="number-phone">{{phoneNumber}}</p>
+                                    <span class="change-number">Thay đổi</span>
+                                    <input class="my_info-number_phone-input" maxlength="11" autofocus type="text" name="number-phone" value="">
+                                    <span class="cancel">Hủy bỏ</span>
                                 </div>
                                 <div class="my_info-gender my_info-item">
                                     <label for="gender">Giới tính</label>
@@ -355,10 +358,24 @@
     let avatarImgs = $$('.avatar-item');
     let base64String = "";
     const reader = new FileReader();
+    let changeNumberBtn = $('.change-number');
+    
+    changeNumberBtn.onclick = function() {
+        changeNumberBtn.style.display = 'none';
+        $('#number-phone').style.display = 'none';
+        $('.my_info-number_phone-input').style.display = 'block';
+        $('.cancel').style.display = 'block';
+    }
+    $('.cancel').onclick = function() {
+        $('.cancel').style.display = 'none';
+        $('.my_info-number_phone-input').value = '';
+        $('.my_info-number_phone-input').style.display = 'none';
+        changeNumberBtn.style.display = 'block';
+        $('#number-phone').style.display = 'block';
+    }
 
     let dataAvatar = $('.navbar_control-user img');
     backgroundAvatar.style.backgroundImage = 'url(' + dataAvatar.src + ')';
-
     for(let k = 0; k < selects.length; k++){
         let data = selects[k].getAttribute('data');
         selects[k].value = data.toString();
@@ -382,7 +399,6 @@
             })
             .catch(err => { console.log('loi anh')});
     }
-
     // cập nhật dữ liệu về server
     let url = '/user/updateProfile';
     let urlAvatarBase64 = '/user/json/avatar';
@@ -413,6 +429,7 @@
                 day: $('.my_info-date_of_birth-day').value,
                 month: $('.my_info-date_of_birth-month').value,
                 year: $('.my_info-date_of_birth-year').value,
+                phoneNumber: $('.my_info-number_phone-input').value,
                 avatar_base64: {
                     data: base64String,
                     contentType: 'image/png'
@@ -435,6 +452,16 @@
                 setTimeout(function () {
                     $('.modal').style.display = 'none';
                 }, 2000);
+            })
+            .then(() => {
+                if($('.my_info-number_phone-input').value.length > 0){
+                    $('.cancel').style.display = 'none';
+                    $('.my_info-number_phone-input').style.display= 'none';
+                    $('#number-phone').innerHTML = $('.my_info-number_phone-input').value;
+                    $('#number-phone').style.display = 'block';
+                    $('.change-number').style.display = 'block';
+                    $('.my_info-number_phone-input').value = '';
+                }
             })
             .then(() => {
                 updateAvatar(urlAvatarBase64);

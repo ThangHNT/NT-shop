@@ -156,7 +156,7 @@
                                     <div class="my_info-name my_info-item">
                                         <label for="name">Tên</label>
                                         <div class="wraper-input wraper-input-name">
-                                            <input name="name" type="text" value="Thắng Hoàng" size="20">
+                                            <input name="name" type="text" value="Thắng Hoàng" size="20" required>
                                         </div>
                                     </div>
                                     <div class="my_info-item-warning name_warning">
@@ -170,7 +170,10 @@
                                     </div>
                                     <div class="my_info-number_phone my_info-item">
                                         <label for="number-phone">Số điện thoại</label>
-                                        <p name="number_phone" id="number-phone">*********25</p>
+                                        <p name="number_phone" id="number-phone">0123456789</p>
+                                        <span class="change-number">Thay đổi</span>
+                                        <input class="my_info-number_phone-input" maxlength="11" autofocus type="text" name="number-phone" value="">
+                                        <span class="cancel">Hủy bỏ</span>
                                     </div>
                                     <div class="my_info-gender my_info-item">
                                         <label for="gender">Giới tính</label>

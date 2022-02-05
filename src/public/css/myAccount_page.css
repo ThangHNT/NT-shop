@@ -160,6 +160,36 @@
     padding: 0;
     letter-spacing: 0.5px;
     font-size: 15px;
+    letter-spacing: 1px;
+    /* display: none; */
+}
+
+.my_info-number_phone .change-number {
+    color: rgb(10, 190, 49);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px;
+    /* display: none; */
+}
+
+.my_info-number_phone .cancel {
+    flex: 1;
+    color: rgb(216, 29, 29);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px;
+    display: none;
+}
+
+.my_info-number_phone .cancel:hover {
+    color: rgb(245, 14, 14);
+}
+
+.my_info-number_phone-input {
+    flex:1;
+    height:100% !important;
+    border-bottom: 1px solid #ccc !important;
+    display: none;
 }
 
 .my_info-item select {
