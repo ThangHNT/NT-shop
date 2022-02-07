@@ -45,15 +45,20 @@
     margin-top: 12px;
 }
 
+.navbar_control-item:hover > p {
+    transform: scale(1.1);
+}
+
 .navbar_control-item i {
     font-size: 24px;
     margin-right: 10px;
 }
 
-.navbar_control-item a {
+.navbar_control-item p {
     font-size: 15px;
     line-height: 15px;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .navbar_control-purchase_order i {
@@ -64,12 +69,25 @@
     font-size: 18px;
 }
 
+.navbar_control-profile-my_account-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.navbar_control-profile-my_account-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .navbar_control-profile-my_account-wrapper .profile_item {
     font-size: 15px;
-    margin:5px 0 5px 36px;
+    margin:0px 0 5px 36px;
     padding: 5px 0;
 }
 
+.profile_item:hover {
+    transform: scale(1.1);
+}
 
 .info_control {
     width: 80%;

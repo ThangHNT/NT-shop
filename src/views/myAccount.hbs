@@ -101,30 +101,28 @@
                     <p>{{username}}</p>
                 </div>
                 <div class="navbar_control-profile navbar_control-item">
-                    <div class="navbar_control-profile-my_account">
-                        <i class="far fa-user"></i>
-                        <a href="#">Tài khoản của tôi</a>
+                    <div class="navbar_control-profile-my_account active-item">
+                        <div class="navbar_control-profile-my_account-wrap">
+                            <i class="far fa-user"></i>
+                            <p>Tài khoản của tôi</p>
+                        </div>
                         <div class="navbar_control-profile-my_account-wrapper">
-                            <a href="#">
-                                <p class="profile_item active">Hồ sơ</p>
-                            </a>
-                            <a href="#">
-                                <p class="profile_item">Địa chỉ</p>
-                            </a>
+                            <p class="profile_item active">Hồ sơ</p>
+                            <p class="profile_item">Địa chỉ</p>
                         </div>
                     </div>
                 </div>
-                <div class="navbar_control-purchase_order navbar_control-item">
+                <div class="navbar_control-purchase_order navbar_control-item active-item">
                     <i class="fas fa-file-invoice"></i>
-                    <a href="#">Đơn mua</a>
+                    <p>Đơn mua</p>
                 </div>
-                <div class="navbar_control-notification navbar_control-item">
+                <div class="navbar_control-notification navbar_control-item active-item">
                     <i class="far fa-bell"></i>
-                    <a href="#">Thông báo</a>
+                    <p>Thông báo</p>
                 </div>
-                <div class="navbar_control-voucher navbar_control-item">
+                <div class="navbar_control-voucher navbar_control-item active-item">
                     <i class="fas fa-tags"></i>
-                    <a href="#">Kho Voucher</a>
+                    <p>Kho Voucher</p>
                 </div>
             </div>
 
@@ -594,4 +592,29 @@
             backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
         })
     })
+</script>
+
+
+<script>
+    let activeItems = $$('.active-item p');
+    for(let i = 1; i < activeItems.length; i++){
+        let element = activeItems[i];
+        element.onclick = function() {
+            this.classList.add('active');
+            for(let j = 1; j < activeItems.length; j++){
+                if(j != i){
+                    activeItems[j].classList.remove('active');
+                }
+            }
+        }
+    }
+    activeItems[0].onclick = function() {
+        activeItems[1].classList.add('active');
+        for(let j = 2; j < activeItems.length; j++){
+            activeItems[j].classList.remove('active');
+        }
+    }
+
+
+
 </script>
