@@ -10,7 +10,6 @@ const User = new Schema({
     monthOfBirth:{type:String, maxlength:2, default:'01'},
     yearOfBirth:{type:String, maxlength: 4,default:'2000'},
     seller:{type:Boolean},
-    address:[{type: String, maxlength:200}],
     bankAccount:{type:String},
     purchaseOrder:[{type:Schema.Types.ObjectId, ref:'Product'}],
     authType:{type:String},

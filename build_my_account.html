@@ -308,7 +308,7 @@
                                 </div>
                                 <div class="address-content-item-detail-info">
                                     <span>Địa chỉ</span>
-                                    <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
+                                    <p>14 ngõ 159 Phùng Khoang Nam Từ Liêm </p>
                                 </div>
                             </div>
                             <div class="address-content-item-option">
@@ -320,6 +320,14 @@
                             </div>
                         </div>
                         
+                        <select name="calc_shipping_provinces" required="">
+                            <option value="">Tỉnh / Thành phố</option>
+                          </select>
+                          <select name="calc_shipping_district" required="">
+                            <option value="">Quận / Huyện</option>
+                          </select>
+                          <input class="billing_address_1" name="" type="hidden" value="">
+                          <input class="billing_address_2" name="" type="hidden" value="">
                     </div>
                 </div>
 
@@ -563,7 +571,6 @@
                 backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
             })
         }) 
-
     </script>
 
     <!-- bootstrap 3 -->

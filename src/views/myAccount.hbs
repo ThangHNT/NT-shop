@@ -383,23 +383,14 @@
         e.preventDefault();
     }
 
-    function updateAvatar(url) {
-        fetch(url) 
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (avatarBinary) {
-                for(let j = 0; j < avatarImgs.length; j++) {    // thay đổi avatar từ ảnh vừa chọn
-                    let element = avatarImgs[j];
-                    element.src = "data:image/jpeg;base64," + avatarBinary;
-                }
-                return;
-            })
-            .catch(err => { console.log('loi anh')});
+    function updateAvatar() {
+        for(let j = 0; j < avatarImgs.length; j++) {    // thay đổi avatar từ ảnh vừa chọn
+            let element = avatarImgs[j];
+            element.src = "data:image/jpeg;base64," + base64String;
+        }
     }
     // cập nhật dữ liệu về server
     let url = '/user/updateProfile';
-    let urlAvatarBase64 = '/user/json/avatar';
     var data;
     function updateProfile(url, data) {
         var option = {
@@ -462,7 +453,7 @@
                 }
             })
             .then(() => {
-                updateAvatar(urlAvatarBase64);
+                updateAvatar();
             })
             .catch(() => { console.log('co loi') });
     }
