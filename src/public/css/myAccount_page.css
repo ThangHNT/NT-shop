@@ -93,6 +93,7 @@
     width: 80%;
     height: 500px;
     background-color: #fff;
+    display: none;
 }
 
 .info_control-item-wrap h3{
@@ -383,14 +384,42 @@
     align-items: center;
 }
 
+/* ---------------------------------------------------- Địa chỉ ---------------------------------------------------------------- */
+.info_control-address {
+    background-color:#fff;
+    width: 80%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
 
+.info_control-address-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.info_control-address-title-add_address {
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    background-color: rgb(23, 154, 177);
+    text-align: center;
+    margin: 0;
+    padding: 0 10px;
+    border-radius: 3px;
+    color: #fff;
+    margin-top: 12px;
+}
 
+.info_control-address-title-add_address i {
+    margin-right: 5px;
+}
 
-
-
-
-
+.info_control-address-title-add_address:hover {
+    opacity: 0.8;
+}
 
 
 
