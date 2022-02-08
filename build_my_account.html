@@ -260,7 +260,7 @@
                     </div>
                 </div>
                 <!-- ========================================= address ========================================= -->
-                <div class="info_control-address">
+                <div class="info_control-address hidden">
                     <div class="info_control-address-title">
                         <h3>Địa chỉ của tôi</h3>
                         <div class="info_control-address-title-add_address">
@@ -320,17 +320,8 @@
                             </div>
                         </div>
                         
-                        <select name="calc_shipping_provinces" required="">
-                            <option value="">Tỉnh / Thành phố</option>
-                          </select>
-                          <select name="calc_shipping_district" required="">
-                            <option value="">Quận / Huyện</option>
-                          </select>
-                          <input class="billing_address_1" name="" type="hidden" value="">
-                          <input class="billing_address_2" name="" type="hidden" value="">
                     </div>
                 </div>
-
 
             </div>
         </div>
@@ -407,14 +398,66 @@
             </div>
         </div>
     </div>
-    <div class="modal">
+    <!-- =================================================== modal layer ============================================== -->
+    <div class="modal store_successfully hidden">
         <div class="modal-overlay"></div>
         <div class="modal-body">
-            <div class="modal-body-updated_profile">
-                <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png" alt="">
-                <h4>Cập nhật thành công</h4>
+            <div class="modal-body">
+                <div class="modal-body-updated_profile">
+                    <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png" alt="">
+                    <h4>Cập nhật thành công</h4>
+                </div>
             </div>
         </div>   
+    </div>
+    <div class="modal create_new_address ">
+        <div class="modal-overlay"></div>
+        <div class="modal-body-address">
+            <div class="modal-body-address-wrapper">
+                <h4>Địa chỉ mới</h4>
+                <div class="modal-body-address-item modal-body-address-name">
+                    <label for="modal-body-address-item-name">Họ và tên</label>
+                    <input name="address-name" class = "modal-body-address-item-name" id="modal-body-address-item-name" type="text" maxlength="40" required>
+                </div>
+                <div class="modal-body-address-item modal-body-address-phone">
+                    <label for="modal-body-address-item-number_phone">Số điện thoại</label>
+                    <input name="address-phone_number" class="modal-body-address-item-number_phone" id="modal-body-address-item-number_phone" type="text" required maxlength="11">
+                </div>
+                <div class="modal-body-address-item modal-body-address-location">
+                    <input class="modal-body-address-item-location" required maxlength="100" type="text" name="location" placeholder="Tỉnh/ Thành Phố, Quận/ Huyện">
+                    <i class="fas fa-caret-down"></i>
+                    <div class="modal-body-address-city_district">
+                        <div class="modal-body-address-city_district-title">
+                            <span>Tỉnh/ Thành Phố</span>
+                            <span>Quận/ Huyện</span>
+                        </div>
+                        <div class="modal-body-address-city_district-list">
+                            <ul>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                                <li>thanh pho 1</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body-address-item modal-body-address-location modal-body-address-location-detail">
+                    <input type="text" name="locaiton-detail" maxlength="100" placeholder="Địa chỉ cụ thể">
+                </div>
+                <div class="modal-body-address-wrapper-btn">
+                    <button type="button" class="back_btn">Trở lại</button>
+                    <button type="button" class="comfirm_btn">Xác nhận</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -430,24 +473,24 @@
         let nameWarning = $('.my_info-item-warning');
         let emailInput = $('.wraper-input-email input');
         let wraperInputs = $$('.wraper-input');
-        let modalOverlay = $('.modal-overlay');
+        let modalOverlay = $('.store_successfully .modal-overlay');
 
         storebtn.onclick = function(){
             var promise = Promise.resolve(); 
             promise
                 .then( () => {
                     setTimeout(function(){
-                        $('.modal').style.display = 'flex';
+                        $('.store_successfully').style.display = 'flex';
                     },100)
                 })
                 .then( () => {
                     setTimeout(function(){
-                        $('.modal').style.display = 'none';
+                        $('.store_successfully').style.display = 'none';
                     },2000)
                 })
         }
         modalOverlay.onclick = function() {
-            $('.modal').style.display = 'none';
+            $('.store_successfully').style.display = 'none';
         }
 
         function handleBlurInput(input) {
@@ -573,6 +616,8 @@
         }) 
     </script>
 
+    <script src="./city_and_district_vn.js"></script>
+
     <!-- bootstrap 3 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -586,6 +631,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+    
 </body>
 
 </html>

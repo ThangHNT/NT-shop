@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            <div class="info_control">
+            <div class="info_control hidden">
                 <div class="info_control-item">
                     <div class="info_control-item-wrap">
                         <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
@@ -249,6 +249,69 @@
                     </div>
                 </div>
             </div>
+            <!-- ========================================= address ========================================= -->
+                <div class="info_control-address">
+                    <div class="info_control-address-title">
+                        <h3>Địa chỉ của tôi</h3>
+                        <div class="info_control-address-title-add_address">
+                            <i class="fas fa-plus"></i>
+                            <p>Thêm Địa Chỉ Mới</p>
+                        </div>
+                    </div>
+                    <div class="info_control-address-content">
+                        <div class="separation_line"></div>
+                        <div class="info_control-address-content-item">
+                            <div class="address-content-item-detail">
+                                <div class="address-content-item-detail-info">
+                                    <span>Họ và tên</span>
+                                    <p>Hoàng Ngọc Thắng</p>
+                                    <div class="default_address">Mặc định</div>
+                                </div>
+                                <div class="address-content-item-detail-info">
+                                    <span>Số Điện Thoại</span>
+                                    <p>(+84) 946599502</p>
+                                </div>
+                                <div class="address-content-item-detail-info">
+                                    <span>Địa chỉ</span>
+                                    <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
+                                </div>
+                            </div>
+                            <div class="address-content-item-option">
+                                <div class="address-content-item-option-edit">
+                                    <span class="address-content-item-option-edit-modify">Sửa</span>
+                                    <span class="address-content-item-option-edit-delete">Xóa</span>
+                                </div>
+                                <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                            </div>
+                        </div>
+                        <div class="separation_line"></div>
+                        <div class="info_control-address-content-item">
+                            <div class="address-content-item-detail">
+                                <div class="address-content-item-detail-info">
+                                    <span>Họ và tên</span>
+                                    <p>Hoàng Ngọc Thắng</p>
+                                    <div class="default_address">Mặc định</div>
+                                </div>
+                                <div class="address-content-item-detail-info">
+                                    <span>Số Điện Thoại</span>
+                                    <p>(+84) 946599502</p>
+                                </div>
+                                <div class="address-content-item-detail-info">
+                                    <span>Địa chỉ</span>
+                                    <p>14 ngõ 159 Phùng Khoang Nam Từ Liêm </p>
+                                </div>
+                            </div>
+                            <div class="address-content-item-option">
+                                <div class="address-content-item-option-edit">
+                                    <span class="address-content-item-option-edit-modify">Sửa</span>
+                                    <span class="address-content-item-option-edit-delete">Xóa</span>
+                                </div>
+                                <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
         </div>
     </div>
     <div id="footer-account">
@@ -324,7 +387,7 @@
         </div>
     </div>
 </div>
-<div class="modal">
+<div class="modal store_successfully">
     <div class="modal-overlay"></div>
     <div class="modal-body">
         <div class="modal-body-updated_profile">
@@ -333,6 +396,12 @@
             <h4>Cập nhật thành công</h4>
         </div>
     </div>
+</div>
+<div class="modal create_new_address">
+    <div class="modal-overlay"></div>
+    <div class="modal-body">
+
+    </div>   
 </div>
 
 <script>
@@ -349,7 +418,7 @@
     let nameWarning = $('.my_info-item-warning');
     let emailInput = $('.wraper-input-email input');
     let wraperInputs = $$('.wraper-input');
-    let modalOverlay = $('.modal-overlay');
+    let modalOverlay = $('.store_successfully .modal-overlay');
     let selects = document.getElementsByTagName('select');
     let avatar = $('.avatar_profile');
     let backgroundAvatar = $('.info_control-item-content-my_avatar-wrapper');
@@ -384,9 +453,11 @@
     }
 
     function updateAvatar() {
-        for(let j = 0; j < avatarImgs.length; j++) {    // thay đổi avatar từ ảnh vừa chọn
-            let element = avatarImgs[j];
-            element.src = "data:image/jpeg;base64," + base64String;
+        if(base64String.length > 0){
+            for(let j = 0; j < avatarImgs.length; j++) {    // thay đổi avatar từ ảnh vừa chọn
+                let element = avatarImgs[j];
+                element.src = "data:image/jpeg;base64," + base64String;
+            }
         }
     }
     // cập nhật dữ liệu về server
@@ -434,12 +505,12 @@
             })
             .then(() => {
                 setTimeout(function () {
-                    $('.modal').style.display = 'flex';
+                    $('.store_successfully').style.display = 'flex';
                 }, 100);
             })
             .then(() => {
                 setTimeout(function () {
-                    $('.modal').style.display = 'none';
+                    $('.store_successfully').style.display = 'none';
                 }, 2000);
             })
             .then(() => {
@@ -458,7 +529,7 @@
             .catch(() => { console.log('co loi') });
     }
     modalOverlay.onclick = function () {
-        $('.modal').style.display = 'none';
+        $('.store_successfully').style.display = 'none';
     }
 
     function handleBlurInput(input) {
@@ -584,7 +655,6 @@
         })
     })
 </script>
-
 
 <script>
     let activeItems = $$('.active-item p');

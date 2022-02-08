@@ -356,7 +356,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    display: none ;
 }
 
 .modal-overlay {
@@ -366,9 +365,9 @@
 }
 
 .modal-body {
-    position: absolute;
     width: 250px;
     height: 100px;
+    position: absolute;
     background-color:#fff;
     left: 50%;
     top: 50%;
@@ -383,6 +382,145 @@
     justify-content: center;
     align-items: center;
 }
+
+.modal-body-address {
+    width: 500px;
+    height:550px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.modal-body-address-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.modal-body-address-wrapper h4 {
+    font-weight: 550;
+}
+
+.modal-body-address-item {
+    margin: 20px 0;
+}
+
+.modal-body-address-item input {
+    border: 1px solid #aaa;
+    padding: 6px 8px;
+    width: 70%;
+    font-size: 15px;
+    border-radius:3px;
+}
+
+.modal-body-address-item label {
+    min-width: 25%;
+    text-align: center;
+}
+
+.modal-body-address-location {
+    position: relative;
+}
+
+.modal-body-address-location input {
+    border: 1px solid #aaa;
+    width: 100%;
+}
+
+.modal-body-address-location i {
+    position: absolute;
+    font-size: 20px;
+    right: 4%;
+    bottom: 18%;
+    color: #aaa;
+}
+
+.modal-body-address-location-detail input {
+    padding-bottom: 20px;
+}
+
+.modal-body-address-wrapper-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.modal-body-address-wrapper button {
+    padding: 8px 10px;
+    min-width: 90px;
+    border-radius: 3px;
+    border:none;
+    font-size: 15px;
+    width: 100px;
+}
+
+.comfirm_btn {
+    background-color: rgb(4, 197, 13);
+    color: #fff;
+}
+
+.comfirm_btn:hover {
+    background-color: rgb(6, 148, 13);
+}
+
+.back_btn:hover {
+    background-color: rgb(161, 156, 156);
+    color: #fff;
+}
+
+.modal-body-address-city_district {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    border-color: #ddd;
+    z-index: 1;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.modal-body-address-city_district-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    height: 40px;
+}
+
+.modal-body-address-city_district-title span {
+    cursor: pointer;
+}
+
+.modal-body-address-city_district-list {
+    width: 100%;
+    height: calc(250px - 40px);
+    overflow-x: hidden;
+    background: #fff;
+    box-shadow: 0 0 2px 0 #ccc;
+}
+
+.modal-body-address-city_district-list ul {
+    margin-top: 5px;
+}
+
+.modal-body-address-city_district-list ul li {
+    font-size: 15px;
+    list-style: none;
+    text-transform: capitalize;
+    padding: 4px 0;
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.modal-body-address-city_district-list ul li:hover {
+    background-color: #eee;
+}
+
 
 /* ---------------------------------------------------- Địa chỉ ---------------------------------------------------------------- */
 .info_control-address {
