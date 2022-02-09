@@ -426,18 +426,15 @@
                 <div class="modal-body-address-item modal-body-address-location">
                     <input class="modal-body-address-item-location" required maxlength="100" type="text" name="location" placeholder="Tỉnh/ Thành Phố, Quận/ Huyện">
                     <i class="fas fa-caret-down"></i>
-                    <div class="modal-body-address-city_district">
+                    <span class="modal-body-address-delete-location">X</span>
+                    <div class="modal-body-address-city_district hidden">
                         <div class="modal-body-address-city_district-title">
-                            <span>Tỉnh/ Thành Phố</span>
-                            <span>Quận/ Huyện</span>
+                            <span class="modal-body-address-city_district-title-city">Tỉnh/ Thành Phố</span>
+                            <span class="modal-body-address-city_district-title-district">Quận/ Huyện</span>
                         </div>
                         <div class="modal-body-address-city_district-list">
-                            <ul class="list_city">
-                                <!-- <li>thanh pho 1</li> -->
-                            </ul>
-                            <ul class="list_district">
-
-                            </ul>
+                            <ul class="list_city"></ul>
+                            <ul class="list_district"></ul>
                         </div>
                     </div>
                 </div>
@@ -614,34 +611,75 @@
         
         let listCity = $('.modal-body-address-city_district-list .list_city');
         let listDistrict = $('.modal-body-address-city_district-list .list_district');
-        c.forEach( (element) => {
-            listCity.innerHTML += `<li>${element}</li>`
-        })
+        function renderCity(listCity,c){   // hiện thị các tỉnh thành phố
+            c.forEach( (element) => {
+                listCity.innerHTML += `<li>${element}</li>`;
+            })
+        }
+        renderCity(listCity,c);
 
         let cities = $$('.modal-body-address-city_district-list .list_city li');
-        let districts;
-        console.log(districts);
         let addressInput = $('.modal-body-address-item-location');
-        cities.forEach((element,index) => {
-            element.onclick = function () {
-                addressInput.value = element.innerText + ', ';
-                let Districts = arr[index];
-                Districts.forEach((item) => {
-                    listDistrict.innerHTML += `<li>${item}</li>`;
-                })
-                districts = $$('.modal-body-address-city_district-list .list_district li');
-                listCity.style.display = 'none';
-            }
-        })
-        if(districts) {
-            districts.forEach((element) => {
-                element.onclick = function() {
-                    console.log(element);
-                    // addressInput.value += element.innerText ;
+        function renderDistricts(Districts){
+            Districts.forEach((item) => {
+                listDistrict.innerHTML += `<li>${item}</li>`;
+            })
+        }
+        function selectedDistrict(){    // hiển thị các quận huyện tương ứng vs thành phố đã chọn
+            let districts = $$('.modal-body-address-city_district-list .list_district li');
+            let clicked = false;
+            districts.forEach((element,index) => {
+                element.onclick = function () {
+                    if(!clicked) {
+                        addressInput.value += element.innerText ;
+                        $('.modal-body-address-city_district').classList.add('hidden');
+                    }
+                    clicked = true;    
                 }
             })
         }
+        function deleteAllDistricts(){
+            let districts = $$('.modal-body-address-city_district-list .list_district li');
+            districts.forEach((element) => {
+                element.remove();
+            })
+        }
+        function selectedCity(cities) {     // sau khi chọn thành phố sẽ hiển thị quận huyện tương ứng với thành phố
+            cities.forEach((element,index) => {
+                element.onclick = function () {
+                    deleteAllDistricts();
+                    addressInput.value = element.innerText + ', ';
+                    let Districts = arr[index];
+                    listCity.style.display = 'none';
 
+                    var promise = Promise.resolve();
+                    promise
+                        .then(() => {
+                            renderDistricts(Districts);
+                            listDistrict.style.display = 'block';
+                        })
+                        .then(() => {
+                            selectedDistrict();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
+            
+            })
+        }
+        selectedCity(cities);
+
+        $('.modal-body-address-delete-location').onclick = function () {
+            addressInput.value = '' ;
+            listDistrict.style.display = 'none';
+            listCity.style.display = 'block';
+        }
+
+        let selectCityInput = $('.modal-body-address-item-location');
+        selectCityInput.onclick = function () {
+            $('.modal-body-address-city_district').classList.remove('hidden');
+        }
 
     </script>
 

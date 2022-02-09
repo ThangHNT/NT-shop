@@ -439,6 +439,15 @@
     color: #aaa;
 }
 
+.modal-body-address-delete-location {
+    position: absolute;
+    padding: 5px;
+    cursor: pointer;
+    right: 8%;
+    bottom: 4%;
+    color: #aaa;
+}
+
 .modal-body-address-location-detail input {
     padding-bottom: 20px;
 }
@@ -494,6 +503,19 @@
 
 .modal-body-address-city_district-title span {
     cursor: pointer;
+    padding: 10px 0;
+    position: relative;
+}
+
+.modal-body-address-city_district-title-city::after, .modal-body-address-city_district-title-district::after {
+    content: "";
+    width: 100%;
+    height: 1.5px;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: none;
 }
 
 .modal-body-address-city_district-list {
