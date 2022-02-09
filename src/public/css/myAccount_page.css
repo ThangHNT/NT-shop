@@ -407,6 +407,7 @@
 
 .modal-body-address-item {
     margin: 20px 0;
+    position: relative;
 }
 
 .modal-body-address-item input {
@@ -420,6 +421,14 @@
 .modal-body-address-item label {
     min-width: 25%;
     text-align: center;
+}
+
+.modal-body-address-name i, .modal-body-address-phone i {
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 32%;
+    right: 7%;
 }
 
 .modal-body-address-location {
