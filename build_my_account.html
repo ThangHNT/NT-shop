@@ -413,7 +413,7 @@
     <div class="modal create_new_address ">
         <div class="modal-overlay"></div>
         <div class="modal-body-address">
-            <div class="modal-body-address-wrapper">
+            <form class="modal-body-address-wrapper">
                 <h4>Địa chỉ mới</h4>
                 <div class="modal-body-address-item modal-body-address-name">
                     <label for="modal-body-address-item-name">Họ và tên</label>
@@ -432,6 +432,7 @@
                             <span class="modal-body-address-city_district-title-city">Tỉnh/ Thành Phố</span>
                             <span class="modal-body-address-city_district-title-district">Quận/ Huyện</span>
                         </div>
+                        <div class="red_line"></div>
                         <div class="modal-body-address-city_district-list">
                             <ul class="list_city"></ul>
                             <ul class="list_district"></ul>
@@ -445,7 +446,7 @@
                     <button type="button" class="back_btn">Trở lại</button>
                     <button type="button" class="comfirm_btn">Xác nhận</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -611,15 +612,16 @@
         
         let listCity = $('.modal-body-address-city_district-list .list_city');
         let listDistrict = $('.modal-body-address-city_district-list .list_district');
+        let addressInput = $('.modal-body-address-item-location');
         function renderCity(listCity,c){   // hiện thị các tỉnh thành phố
             c.forEach( (element) => {
                 listCity.innerHTML += `<li>${element}</li>`;
             })
+            addressInput.value = '';
         }
         renderCity(listCity,c);
 
         let cities = $$('.modal-body-address-city_district-list .list_city li');
-        let addressInput = $('.modal-body-address-item-location');
         function renderDistricts(Districts){
             Districts.forEach((item) => {
                 listDistrict.innerHTML += `<li>${item}</li>`;
@@ -627,14 +629,12 @@
         }
         function selectedDistrict(){    // hiển thị các quận huyện tương ứng vs thành phố đã chọn
             let districts = $$('.modal-body-address-city_district-list .list_district li');
-            let clicked = false;
             districts.forEach((element,index) => {
                 element.onclick = function () {
-                    if(!clicked) {
-                        addressInput.value += element.innerText ;
-                        $('.modal-body-address-city_district').classList.add('hidden');
-                    }
-                    clicked = true;    
+                    let index = addressInput.value.indexOf(",")+2;
+                    addressInput.value = addressInput.value.slice(0,index) ;
+                    addressInput.value += element.innerText;
+                    $('.modal-body-address-city_district').classList.add('hidden');
                 }
             })
         }
@@ -651,7 +651,7 @@
                     addressInput.value = element.innerText + ', ';
                     let Districts = arr[index];
                     listCity.style.display = 'none';
-
+                    moveRedLine();
                     var promise = Promise.resolve();
                     promise
                         .then(() => {
@@ -670,16 +670,29 @@
         }
         selectedCity(cities);
 
-        $('.modal-body-address-delete-location').onclick = function () {
+        $('.modal-body-address-delete-location').onclick = function () { // khi ấn dấu X để xóa value input
             addressInput.value = '' ;
             listDistrict.style.display = 'none';
             listCity.style.display = 'block';
+            $('.red_line').classList.remove('red_line-move');
         }
 
         let selectCityInput = $('.modal-body-address-item-location');
         selectCityInput.onclick = function () {
             $('.modal-body-address-city_district').classList.remove('hidden');
         }
+        function moveRedLine(){
+            $('.red_line').classList.add('red_line-move');
+        }
+
+        $('.modal-body-address-city_district-title-city').onclick = function () {   
+            $('.red_line').classList.remove('red_line-move');
+            listCity.style.display = 'block';
+        }
+
+        $('.modal-body-address-city_district').addEventListener('focusout',function(){
+            console.log(1);
+        })
 
     </script>
 

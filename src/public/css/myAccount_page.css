@@ -507,15 +507,15 @@
     position: relative;
 }
 
-.modal-body-address-city_district-title-city::after, .modal-body-address-city_district-title-district::after {
-    content: "";
-    width: 100%;
+.red_line {
+    width: 50%;
     height: 1.5px;
     background-color: red;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: none;
+    transition: transform 0.2s linear 0.2s;
+}
+
+.red_line-move {
+    transform: translateX(100%);
 }
 
 .modal-body-address-city_district-list {
