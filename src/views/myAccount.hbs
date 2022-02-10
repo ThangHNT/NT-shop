@@ -107,26 +107,26 @@
                             <p>Tài khoản của tôi</p>
                         </div>
                         <div class="navbar_control-profile-my_account-wrapper">
-                            <p class="profile_item active">Hồ sơ</p>
-                            <p class="profile_item">Địa chỉ</p>
+                            <p class="profile_item profile_item-my_profile active">Hồ sơ</p>
+                            <p class="profile_item profile_item-my_address">Địa chỉ</p>
                         </div>
                     </div>
                 </div>
                 <div class="navbar_control-purchase_order navbar_control-item active-item">
                     <i class="fas fa-file-invoice"></i>
-                    <p>Đơn mua</p>
+                    <p class="profile_item-my_purchase">Đơn mua</p>
                 </div>
                 <div class="navbar_control-notification navbar_control-item active-item">
                     <i class="far fa-bell"></i>
-                    <p>Thông báo</p>
+                    <p class="profile_item-my_notification">Thông báo</p>
                 </div>
                 <div class="navbar_control-voucher navbar_control-item active-item">
                     <i class="fas fa-tags"></i>
-                    <p>Kho Voucher</p>
+                    <p class="profile_item-my_voucher">Kho Voucher</p>
                 </div>
             </div>
-
-            <div class="info_control hidden">
+            {{!-- ========================================== profile ======================================================= --}}
+            <div class="info_control info_control-category">
                 <div class="info_control-item">
                     <div class="info_control-item-wrap">
                         <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
@@ -250,68 +250,77 @@
                 </div>
             </div>
             <!-- ========================================= address ========================================= -->
-                <div class="info_control-address">
-                    <div class="info_control-address-title">
-                        <h3>Địa chỉ của tôi</h3>
-                        <div class="info_control-address-title-add_address">
-                            <i class="fas fa-plus"></i>
-                            <p>Thêm Địa Chỉ Mới</p>
-                        </div>
-                    </div>
-                    <div class="info_control-address-content">
-                        <div class="separation_line"></div>
-                        <div class="info_control-address-content-item">
-                            <div class="address-content-item-detail">
-                                <div class="address-content-item-detail-info">
-                                    <span>Họ và tên</span>
-                                    <p>Hoàng Ngọc Thắng</p>
-                                    <div class="default_address">Mặc định</div>
-                                </div>
-                                <div class="address-content-item-detail-info">
-                                    <span>Số Điện Thoại</span>
-                                    <p>(+84) 946599502</p>
-                                </div>
-                                <div class="address-content-item-detail-info">
-                                    <span>Địa chỉ</span>
-                                    <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
-                                </div>
-                            </div>
-                            <div class="address-content-item-option">
-                                <div class="address-content-item-option-edit">
-                                    <span class="address-content-item-option-edit-modify">Sửa</span>
-                                    <span class="address-content-item-option-edit-delete">Xóa</span>
-                                </div>
-                                <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
-                            </div>
-                        </div>
-                        <div class="separation_line"></div>
-                        <div class="info_control-address-content-item">
-                            <div class="address-content-item-detail">
-                                <div class="address-content-item-detail-info">
-                                    <span>Họ và tên</span>
-                                    <p>Hoàng Ngọc Thắng</p>
-                                    <div class="default_address">Mặc định</div>
-                                </div>
-                                <div class="address-content-item-detail-info">
-                                    <span>Số Điện Thoại</span>
-                                    <p>(+84) 946599502</p>
-                                </div>
-                                <div class="address-content-item-detail-info">
-                                    <span>Địa chỉ</span>
-                                    <p>14 ngõ 159 Phùng Khoang Nam Từ Liêm </p>
-                                </div>
-                            </div>
-                            <div class="address-content-item-option">
-                                <div class="address-content-item-option-edit">
-                                    <span class="address-content-item-option-edit-modify">Sửa</span>
-                                    <span class="address-content-item-option-edit-delete">Xóa</span>
-                                </div>
-                                <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
-                            </div>
-                        </div>
-                        
+            <div class="info_control-address info_control-category hidden">
+                <div class="info_control-address-title">
+                    <h3>Địa chỉ của tôi</h3>
+                    <div class="info_control-address-title-add_address">
+                        <i class="fas fa-plus"></i>
+                        <p>Thêm Địa Chỉ Mới</p>
                     </div>
                 </div>
+                <div class="info_control-address-content">
+                    <div class="separation_line"></div>
+                    <div class="info_control-address-content-item">
+                        <div class="address-content-item-detail">
+                            <div class="address-content-item-detail-info">
+                                <span>Họ và tên</span>
+                                <p>Hoàng Ngọc Thắng</p>
+                                <div class="default_address">Mặc định</div>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Số Điện Thoại</span>
+                                <p>(+84) 946599502</p>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Địa chỉ</span>
+                                <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
+                            </div>
+                        </div>
+                        <div class="address-content-item-option">
+                            <div class="address-content-item-option-edit">
+                                <span class="address-content-item-option-edit-modify">Sửa</span>
+                                <span class="address-content-item-option-edit-delete">Xóa</span>
+                            </div>
+                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                        </div>
+                    </div>
+                    <div class="separation_line"></div>
+                    <div class="info_control-address-content-item">
+                        <div class="address-content-item-detail">
+                            <div class="address-content-item-detail-info">
+                                <span>Họ và tên</span>
+                                <p>Hoàng Ngọc Thắng</p>
+                                <div class="default_address">Mặc định</div>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Số Điện Thoại</span>
+                                <p>(+84) 946599502</p>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Địa chỉ</span>
+                                <p>14 ngõ 159 Phùng Khoang Nam Từ Liêm </p>
+                            </div>
+                        </div>
+                        <div class="address-content-item-option">
+                            <div class="address-content-item-option-edit">
+                                <span class="address-content-item-option-edit-modify">Sửa</span>
+                                <span class="address-content-item-option-edit-delete">Xóa</span>
+                            </div>
+                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            {{!-- ======================================================= purchase ==================================== --}}
+            <div class="info_control-purchase info_control-category"></div>
+
+            {{!-- ======================================================= notification ==================================== --}}
+            <div class="info_control-notification info_control-category"></div>
+
+            {{!-- ======================================================= voucher ==================================== --}}
+            <div class="info_control-voucher info_control-category"></div>
         </div>
     </div>
     <div id="footer-account">
@@ -802,7 +811,7 @@
     let checkValidedInput = true;
     let addressData;
 
-    $('.comfirm_btn').onclick = function() {
+    $('.comfirm_btn').onclick = function() {        // ấn nút xác nhận
         inputItems.forEach((element) => {
             if(element.value < 1){
                 element.classList.add('warning_input');
@@ -874,14 +883,16 @@
             element.value = '';
             deleteAllDistricts();
             listCity.style.display = 'block';
+            element.classList.remove('warning_input');
         })
     }
 
 </script>
 
-
+{{!-- =============================================== click vào item ở navbar ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
+
     for(let i = 1; i < activeItems.length; i++){
         let element = activeItems[i];
         element.onclick = function() {
@@ -891,6 +902,18 @@
                     activeItems[j].classList.remove('active');
                 }
             }
+            if(i == 1){
+                $$('.info_control-category').forEach((element) =>{
+                    element.classList.add('hidden');
+                })
+                $('.info_control').classList.remove('hidden');
+            }
+            if(i == 2){
+                $$('.info_control-category').forEach((element) =>{
+                    element.classList.add('hidden');
+                })
+                $('.info_control-address').classList.remove('hidden');
+            }
         }
     }
     activeItems[0].onclick = function() {
@@ -899,7 +922,6 @@
             activeItems[j].classList.remove('active');
         }
     }
-
 
 
 </script>
