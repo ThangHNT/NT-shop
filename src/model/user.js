@@ -12,7 +12,7 @@ const User = new Schema({
     seller:{type:Boolean},
     bankAccount:{type:String},
     purchaseOrder:[{type:Schema.Types.ObjectId, ref:'Product'}],
-    address:[{type:Schema.Types.ObjectId, ref:'Address'}],
+    address:[{type:Schema.Types.ObjectId, ref:'Address', index:true}],
     authType:{type:String},
     facebookId:{type:String},
     googleId:{type:String},

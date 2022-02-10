@@ -259,7 +259,7 @@
                     </div>
                 </div>
                 <div class="info_control-address-content">
-                    <div class="separation_line"></div>
+                    {{!-- <div class="separation_line"></div>
                     <div class="info_control-address-content-item">
                         <div class="address-content-item-detail">
                             <div class="address-content-item-detail-info">
@@ -283,32 +283,8 @@
                             </div>
                             <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
                         </div>
-                    </div>
-                    <div class="separation_line"></div>
-                    <div class="info_control-address-content-item">
-                        <div class="address-content-item-detail">
-                            <div class="address-content-item-detail-info">
-                                <span>Họ và tên</span>
-                                <p>Hoàng Ngọc Thắng</p>
-                                <div class="default_address">Mặc định</div>
-                            </div>
-                            <div class="address-content-item-detail-info">
-                                <span>Số Điện Thoại</span>
-                                <p>(+84) 946599502</p>
-                            </div>
-                            <div class="address-content-item-detail-info">
-                                <span>Địa chỉ</span>
-                                <p>14 ngõ 159 Phùng Khoang Nam Từ Liêm </p>
-                            </div>
-                        </div>
-                        <div class="address-content-item-option">
-                            <div class="address-content-item-option-edit">
-                                <span class="address-content-item-option-edit-modify">Sửa</span>
-                                <span class="address-content-item-option-edit-delete">Xóa</span>
-                            </div>
-                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
-                        </div>
-                    </div>
+                    </div> --}}
+                    
                     
                 </div>
             </div>
@@ -448,6 +424,7 @@
         </form>
     </div>
 </div>
+
 
 <script>
     const $ = document.querySelector.bind(document);
@@ -773,7 +750,7 @@
     }
 
     let selectCityInput = $('.modal-body-address-item-location');
-    selectCityInput.onclick = function () {      // khi ấn vào ô input chọn tp thì hiển thị list city
+    selectCityInput.onfocus = function () {      // khi ấn vào ô input chọn tp thì hiển thị list city
         $('.modal-body-address-city_district').classList.remove('hidden');
         blur = 1;
     }
@@ -810,6 +787,7 @@
     let addressItems = $$('.modal-body-address-item');
     let checkValidedInput = true;
     let addressData;
+    let method = '';
 
     $('.comfirm_btn').onclick = function() {        // ấn nút xác nhận
         inputItems.forEach((element) => {
@@ -818,7 +796,7 @@
                 checkValidedInput = false;
             }
         })
-        if(checkValidedInput){
+        if(checkValidedInput){   // kiểm tra các thẻ input
             var cityDistrict = $('.modal-body-address-item-location').value;
             let index = cityDistrict.indexOf(',');
             addressData = {
@@ -831,7 +809,9 @@
             var promise = Promise.resolve();
             promise
                 .then(() => {
-                    updateAddress('/user/update/address',addressData);
+                    // ============================== thêm địa chỉ mới ==============================
+                    {{!-- createNewAddress('/user/create/address',addressData,method);   --}}
+                    console.log(method);
                 })
                 .then(() => {
                     setTimeout(() => {
@@ -843,13 +823,18 @@
                         })
                     },300);
                 })
+                .then(() => {
+                    setTimeout(() => {
+                        renderAddress('/user/json/address');
+                    },400);
+                })
                 .catch(() => {console.log('loi cap nhat dia chi')});
         }
     }
 
-    function updateAddress(url, data) {
+    function createNewAddress(url, data, Method) {
         var option = {
-            method: "POST",
+            method: Method,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -876,6 +861,7 @@
 
     $('.info_control-address-title-add_address').onclick = function(){ // ấn nút thêm địa chỉ để hiện thị modal
         $('.create_new_address').classList.remove('hidden');
+        method = 'POST';
     }
     $('.back_btn').onclick = function(){        // ấn nút quay lại ẩn modal
         $('.create_new_address').classList.add('hidden');
@@ -889,10 +875,12 @@
 
 </script>
 
-{{!-- =============================================== click vào item ở navbar ============================================ --}}
+{{!-- ========================================= click vào item ở navbar, chỉnh sửa or xóa địa chỉ  ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
-
+    $('body').onload = function() {
+        renderAddress('/user/json/address');
+    }
     for(let i = 1; i < activeItems.length; i++){
         let element = activeItems[i];
         element.onclick = function() {
@@ -913,9 +901,78 @@
                     element.classList.add('hidden');
                 })
                 $('.info_control-address').classList.remove('hidden');
+                $$('.address-content-item-option-edit-modify').forEach(function(element,index) {
+                    element.onclick = function() {
+                        method = "PUT";
+                        let promise = Promise.resolve();
+                        promise 
+                            .then(() => {
+                                getAddressToUpdate('/user/json/address',index);
+                            })
+                            .then(() => {
+                                setTimeout(function() {
+                                    $('.create_new_address').classList.remove('hidden');
+                                },300);
+                            })
+                            .catch(() => {console.log('co loi ne')});
+                    }
+                })
             }
         }
     }
+
+    function getAddressToUpdate(url,index){
+        fetch(url)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(addresses) {
+                const thisAddress = addresses[index];
+                $('.modal-body-address-item-name').value = thisAddress.receiverName;
+                $('.modal-body-address-item-number_phone').value = thisAddress.phoneNumber;
+                $('.modal-body-address-item-location').value = thisAddress.city + ', '+ thisAddress.district;
+                $('.modal-body-address-item-location-detail').value = thisAddress.detail;
+            })
+            .catch(() => { console.log('loi hien thi cap nhat dia chi')});
+    }
+
+    function renderAddress(url){
+        fetch(url)
+            .then(function(response){
+                return response.json(); // chuyen ve dang json
+            })
+            .then(function (addesses) {
+                var htmls = addesses.map((element) =>{
+                    return `<div class="separation_line"></div>
+                    <div class="info_control-address-content-item">
+                        <div class="address-content-item-detail">
+                            <div class="address-content-item-detail-info">
+                                <span>Họ và tên</span>
+                                <p>${element.receiverName}</p>
+                                <div class="default_address">Mac dinh</div>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Số Điện Thoại</span>
+                                <p>(+84) ${element.phoneNumber}</p>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Địa chỉ</span>
+                                <p>${element.detail} <br> ${element.district} <br> ${element.city} </p>
+                            </div>
+                        </div>
+                        <div class="address-content-item-option">
+                            <div class="address-content-item-option-edit">
+                                <span class="address-content-item-option-edit-modify">Sửa</span>
+                                <span class="address-content-item-option-edit-delete">Xóa</span>
+                            </div>
+                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                        </div>
+                    </div>`;
+                })
+                $('.info_control-address-content').innerHTML = htmls.join('');
+            })
+    }
+
     activeItems[0].onclick = function() {
         activeItems[1].classList.add('active');
         for(let j = 2; j < activeItems.length; j++){
@@ -923,5 +980,5 @@
         }
     }
 
-
 </script>
+

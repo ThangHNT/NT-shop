@@ -632,11 +632,12 @@
 
 .address-content-item-detail-info span {
     color: rgb(139, 133, 133);
+    text-transform: capitalize;
 }
 
 .default_address {
     background-color: rgb(253, 249, 8);
-    padding: 2px 5px;
+    /* padding: 2px 5px; */
     border-radius:  5px;
     font-size: 14px;
     margin-left: 15px;
