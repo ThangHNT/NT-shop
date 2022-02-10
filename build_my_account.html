@@ -410,10 +410,10 @@
             </div>
         </div>   
     </div>
-    <div class="modal create_new_address hidden">
+    <div class="modal create_new_address">
         <div class="modal-overlay"></div>
         <div class="modal-body-address">
-            <form class="modal-body-address-wrapper">
+            <form class="modal-body-address-wrapper" autocomplete="off">
                 <h4>Địa chỉ mới</h4>
                 <div class="modal-body-address-item modal-body-address-name">
                     <label for="modal-body-address-item-name">Họ và tên</label>
@@ -611,10 +611,29 @@
     <!-- ============================================= Sự kiện ấn nút thêm địa chỉ, trở về, lưu địa chỉ mới ========================================================= -->
     <script>
         let inputItems = $$('.modal-body-address-item input');
+        let addressItems = $$('.modal-body-address-item');
+        let checkValidedInput = true;
+        $('.comfirm_btn').onclick = function() {
+            inputItems.forEach((element) => {
+                if(element.value < 1){
+                    element.classList.add('warning_input');
+                    checkValidedInput = false;
+                }
+            })
+            if(checkValidedInput){
+                
+            }
+        }
 
-        // $('.comfirm_btn').onclick = function() {
+        $('.modal-body-address-city_district').onclick = function() {
+            $('.modal-body-address-item-location').classList.remove('warning_input');
+        }
 
-        // }
+        inputItems.forEach((element,index) => {
+            element.oninput = function(){
+                element.classList.remove('warning_input');
+            }
+        })
 
         $('.info_control-address-title-add_address').onclick = function(){ // ấn nút thêm địa chỉ để hiện thị modal
             $('.create_new_address').classList.remove('hidden');

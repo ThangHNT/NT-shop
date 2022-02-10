@@ -795,6 +795,48 @@
 
 </script>
 
+<!-- ============================================= Sự kiện ấn nút thêm địa chỉ, trở về, lưu địa chỉ mới ========================================================= -->
+    <script>
+        let inputItems = $$('.modal-body-address-item input');
+        let addressItems = $$('.modal-body-address-item');
+        let checkValidedInput = true;
+        $('.comfirm_btn').onclick = function() {
+            inputItems.forEach((element) => {
+                if(element.value < 1){
+                    element.classList.add('warning_input');
+                    checkValidedInput = false;
+                }
+            })
+            if(checkValidedInput){
+                console.log(6);
+            }
+        }
+
+        $('.modal-body-address-city_district').onclick = function() {
+            $('.modal-body-address-item-location').classList.remove('warning_input');
+        }
+
+        inputItems.forEach((element,index) => {
+            element.oninput = function(){
+                element.classList.remove('warning_input');
+            }
+        })
+
+        $('.info_control-address-title-add_address').onclick = function(){ // ấn nút thêm địa chỉ để hiện thị modal
+            $('.create_new_address').classList.remove('hidden');
+        }
+        $('.back_btn').onclick = function(){        // ấn nút quay lại ẩn modal
+            $('.create_new_address').classList.add('hidden');
+            inputItems.forEach((element,index) => {
+                element.value = '';
+                deleteAllDistricts();
+                listCity.style.display = 'block';
+            })
+        }
+
+    </script>
+
+
 <script>
     let activeItems = $$('.active-item p');
     for(let i = 1; i < activeItems.length; i++){
