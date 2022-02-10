@@ -398,10 +398,10 @@
     </div>
 </div>
 
-<div class="modal create_new_address ">
+<div class="modal create_new_address hidden">
     <div class="modal-overlay"></div>
     <div class="modal-body-address">
-        <form class="modal-body-address-wrapper">
+        <form class="modal-body-address-wrapper" autocomplete="off">
             <h4>Địa chỉ mới</h4>
             <div class="modal-body-address-item modal-body-address-name">
                 <label for="modal-body-address-item-name">Họ và tên</label>
@@ -430,7 +430,7 @@
                 </div>
             </div>
             <div class="modal-body-address-item modal-body-address-location modal-body-address-location-detail">
-                <input type="text" name="locaiton-detail" maxlength="100" placeholder="Địa chỉ cụ thể">
+                <input class="modal-body-address-item-location-detail" type="text" name="locaiton-detail" maxlength="100" placeholder="Địa chỉ cụ thể">
             </div>
             <div class="modal-body-address-wrapper-btn">
                 <button type="button" class="back_btn">Trở lại</button>
@@ -479,7 +479,7 @@
 
     let dataAvatar = $('.navbar_control-user img');
     backgroundAvatar.style.backgroundImage = 'url(' + dataAvatar.src + ')';
-    for(let k = 0; k < selects.length; k++){
+    for(let k = 0; k < selects.length; k++){       // gán data từ db cho thẻ select
         let data = selects[k].getAttribute('data');
         selects[k].value = data.toString();
     }
@@ -530,14 +530,14 @@
                     data: base64String,
                     contentType: 'image/png'
                 }
-            }
+        }
         var promise = Promise.resolve();
         promise
             .then(() => {
                 updateProfile(url,data);
-                return new Promise((resolve, reject) =>{
+                {{!-- return new Promise((resolve, reject) =>{
                     setTimeout(resolve,800);
-                })
+                }) --}}
             })
             .then(() => {
                 setTimeout(function () {
@@ -796,45 +796,88 @@
 </script>
 
 <!-- ============================================= Sự kiện ấn nút thêm địa chỉ, trở về, lưu địa chỉ mới ========================================================= -->
-    <script>
-        let inputItems = $$('.modal-body-address-item input');
-        let addressItems = $$('.modal-body-address-item');
-        let checkValidedInput = true;
-        $('.comfirm_btn').onclick = function() {
-            inputItems.forEach((element) => {
-                if(element.value < 1){
-                    element.classList.add('warning_input');
-                    checkValidedInput = false;
-                }
-            })
-            if(checkValidedInput){
-                console.log(6);
-            }
-        }
+<script>
+    let inputItems = $$('.modal-body-address-item input');
+    let addressItems = $$('.modal-body-address-item');
+    let checkValidedInput = true;
+    let addressData;
 
-        $('.modal-body-address-city_district').onclick = function() {
-            $('.modal-body-address-item-location').classList.remove('warning_input');
-        }
-
-        inputItems.forEach((element,index) => {
-            element.oninput = function(){
-                element.classList.remove('warning_input');
+    $('.comfirm_btn').onclick = function() {
+        inputItems.forEach((element) => {
+            if(element.value < 1){
+                element.classList.add('warning_input');
+                checkValidedInput = false;
             }
         })
-
-        $('.info_control-address-title-add_address').onclick = function(){ // ấn nút thêm địa chỉ để hiện thị modal
-            $('.create_new_address').classList.remove('hidden');
+        if(checkValidedInput){
+            var cityDistrict = $('.modal-body-address-item-location').value;
+            let index = cityDistrict.indexOf(',');
+            addressData = {
+                receiverName: $('.modal-body-address-item-name').value,
+                phoneNumber: $('.modal-body-address-item-number_phone').value,
+                city: cityDistrict.slice(0,index),
+                district: cityDistrict.slice(index+2, cityDistrict.length), 
+                detail: $('.modal-body-address-item-location-detail').value
+            }
+            var promise = Promise.resolve();
+            promise
+                .then(() => {
+                    updateAddress('/user/update/address',addressData);
+                })
+                .then(() => {
+                    setTimeout(() => {
+                        $('.create_new_address').classList.add('hidden');
+                        inputItems.forEach((element,index) => {
+                            element.value = '';
+                            deleteAllDistricts();
+                            listCity.style.display = 'block';
+                        })
+                    },300);
+                })
+                .catch(() => {console.log('loi cap nhat dia chi')});
         }
-        $('.back_btn').onclick = function(){        // ấn nút quay lại ẩn modal
-            $('.create_new_address').classList.add('hidden');
-            inputItems.forEach((element,index) => {
-                element.value = '';
-                deleteAllDistricts();
-                listCity.style.display = 'block';
+    }
+
+    function updateAddress(url, data) {
+        var option = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
             })
-        }
+            .catch(() => {
+                console.log('da xay ra loi');
+            })
+    }
 
-    </script>
+    $('.modal-body-address-city_district').onclick = function() {
+        $('.modal-body-address-item-location').classList.remove('warning_input');
+    }
+
+    inputItems.forEach((element,index) => {
+        element.oninput = function(){
+            element.classList.remove('warning_input');
+        }
+    })
+
+    $('.info_control-address-title-add_address').onclick = function(){ // ấn nút thêm địa chỉ để hiện thị modal
+        $('.create_new_address').classList.remove('hidden');
+    }
+    $('.back_btn').onclick = function(){        // ấn nút quay lại ẩn modal
+        $('.create_new_address').classList.add('hidden');
+        inputItems.forEach((element,index) => {
+            element.value = '';
+            deleteAllDistricts();
+            listCity.style.display = 'block';
+        })
+    }
+
+</script>
 
 
 <script>

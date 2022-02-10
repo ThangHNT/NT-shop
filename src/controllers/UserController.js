@@ -1,5 +1,6 @@
 
 const User = require('../model/user.js');
+const Address = require('../model/address.js');
 
 class UserController {
     login(req,res,next){
@@ -60,6 +61,27 @@ class UserController {
         User.findOne({id: '1384771445288690'}, function(err, user){
         // User.findOne({id: id, authType: provider}, function(err, user){
             res.json(user.avatar_base64.data.toString());
+        })
+    }
+
+    updateAddress(req,res,next){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
+            if(user){
+                const address = new Address();
+                address.receiverName = req.body.receiverName;
+                address.phoneNumber = req.body.phoneNumber;
+                address.city = req.body.city;
+                address.district = req.body.district;
+                address.detail = req.body.detail;
+                address.user = user._id;
+                address.save();
+                // user.address.push(address._id);
+                // user.save();
+            }
+            return;
         })
     }
 
