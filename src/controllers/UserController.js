@@ -8,10 +8,10 @@ class UserController {
     }
 
     myAccount(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 res.render('myAccount', {
                     user: user,
@@ -56,40 +56,40 @@ class UserController {
     }
 
     getJsonAvatar(req, res) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             res.json(user.avatar_base64.data.toString());
         })
     }
 
     createAddress(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-            // User.findOne({id: id, authType: provider}, function(err, user){
-                if(user){
-                    const address = new Address();
-                    address.receiverName = req.body.receiverName;
-                    address.phoneNumber = req.body.phoneNumber;
-                    address.city = req.body.city;
-                    address.district = req.body.district;
-                    address.detail = req.body.detail;
-                    address.user = user._id;
-                    address.save();
-                    user.address.push(address._id);
-                    user.save();
-                }
-                return;
-            })
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            if(user){
+                const address = new Address();
+                address.receiverName = req.body.receiverName;
+                address.phoneNumber = req.body.phoneNumber;
+                address.city = req.body.city;
+                address.district = req.body.district;
+                address.detail = req.body.detail;
+                address.user = user._id;
+                address.save();
+                user.address.push(address._id);
+                user.save();
+            }
+            return;
+        })
     }
 
     getJsonAddress(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             Address.find({user: user._id}, function(err, addresses){
                 if(addresses){
                     res.json(addresses);
@@ -100,23 +100,36 @@ class UserController {
     }
 
     editAddress(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
-                Address.findOne({_id: user.address[req.body.index]}, function(err, address){
-                    if(address){
-                        address.receiverName = req.body.receiverName;
-                        address.phoneNumber = req.body.phoneNumber;
-                        address.city = req.body.city;
-                        address.district = req.body.district;
-                        address.detail = req.body.detail;
-                        address.user = user._id;
-                        address.save();
-                    }
-                })
-                return;
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            Address.findOne({_id: user.address[req.body.index]}, function(err, address){
+                if(address){
+                    address.receiverName = req.body.receiverName;
+                    address.phoneNumber = req.body.phoneNumber;
+                    address.city = req.body.city;
+                    address.district = req.body.district;
+                    address.detail = req.body.detail;
+                    address.user = user._id;
+                    address.save();
+                }
             })
+            return;
+        })
+    }
+
+    deleteAddress(req,res,next) {
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            Address.findOneAndDelete({_id: user.address[req.body.index]}, function(err, address){
+            })
+            user.address.splice(req.body.index, 1);
+            user.save();
+            return;
+        })
     }
 
 }

@@ -401,7 +401,7 @@
     <!-- =================================================== modal layer ============================================== -->
     <div class="modal store_successfully hidden">
         <div class="modal-overlay"></div>
-        <div class="modal-body">
+        <div class="modal-body modal-content">
             <div class="modal-body">
                 <div class="modal-body-updated_profile">
                     <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png" alt="">
@@ -410,9 +410,26 @@
             </div>
         </div>   
     </div>
-    <div class="modal create_new_address">
+
+    <div class="modal comfirm_delete_address">
         <div class="modal-overlay"></div>
-        <div class="modal-body-address">
+        <div class="modal-body-delete_address modal-content">
+            <div class="modal-body-delete_address-wrapper">
+                <div class="modal-body-delete_address-title">
+                    <h4>Bạn chắc chắn muốn xóa địa chỉ này ?</h4>
+                    <i class="fa-solid fa-rectangle-xmark close_modal_delete_address"></i>
+                </div>
+                <div class="modal-body-delete_address-content">
+                    <button class="modal-body-delete_address-close_btn close_modal_delete_address" type="button">Không</button>
+                    <button class="modal-body-delete_address-delete_btn" type="button">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal create_new_address hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-body-address modal-content">
             <form class="modal-body-address-wrapper" autocomplete="off">
                 <h4>Địa chỉ mới</h4>
                 <div class="modal-body-address-item modal-body-address-name">
