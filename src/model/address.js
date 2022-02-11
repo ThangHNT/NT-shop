@@ -8,7 +8,7 @@ const Address = new Schema({
     city: {type: String, required: true, default: '', maxlength: 50},
     district: {type: String, required: true, default:'', maxlength: 50},
     detail: {type: String, default: '' ,maxlength: 100},
-    setUpDefault: {type: String, default: '', maxlength: 1},
+    setUpDefault: {type: String, unique: true},
 });
 
 module.exports = mongoose.model('Address',Address);

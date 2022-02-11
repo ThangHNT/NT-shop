@@ -788,8 +788,10 @@
     let checkValidedInput = true;
     let addressData;
     let method = '';
+    let indexEditBtn = '';
 
     $('.comfirm_btn').onclick = function() {        // ấn nút xác nhận
+        checkValidedInput = true;
         inputItems.forEach((element) => {
             if(element.value < 1){
                 element.classList.add('warning_input');
@@ -809,9 +811,22 @@
             var promise = Promise.resolve();
             promise
                 .then(() => {
-                    // ============================== thêm địa chỉ mới ==============================
-                    {{!-- createNewAddress('/user/create/address',addressData,method);   --}}
-                    console.log(method);
+                    //============================== thêm địa chỉ mới ==============================
+                    if(method == 'POST'){
+                        createNewAddress('/user/create/address',addressData,method);  
+                        console.log('tao moi dia chi');
+                    }
+                    else if(method == 'PUT'){
+                        addressData = {
+                            receiverName: $('.modal-body-address-item-name').value,
+                            phoneNumber: $('.modal-body-address-item-number_phone').value,
+                            city: cityDistrict.slice(0,index),
+                            district: cityDistrict.slice(index+2, cityDistrict.length), 
+                            detail: $('.modal-body-address-item-location-detail').value,
+                            index: indexEditBtn,
+                        }
+                        editAddress('/user/edit/address',addressData,method);
+                    }
                 })
                 .then(() => {
                     setTimeout(() => {
@@ -849,6 +864,23 @@
             })
     }
 
+    function editAddress(url,data,Method) {
+        var option = {
+            method: Method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi cap nhat dia chi');
+            })
+    }
+
     $('.modal-body-address-city_district').onclick = function() {
         $('.modal-body-address-item-location').classList.remove('warning_input');
     }
@@ -878,47 +910,63 @@
 {{!-- ========================================= click vào item ở navbar, chỉnh sửa or xóa địa chỉ  ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
-    $('body').onload = function() {
+    let editBtns ;
+    window.addEventListener('load', (event) => {
         renderAddress('/user/json/address');
+    });
+
+    // click vào 1 item ở navbar 
+    activeItems[1].onclick = function() {       // khi ấn vào mục hồ sơ
+        hideCategories();
+        $('.info_control').classList.remove('hidden');
+        removeActiveItems();
+        this.classList.add('active');
     }
-    for(let i = 1; i < activeItems.length; i++){
-        let element = activeItems[i];
-        element.onclick = function() {
-            this.classList.add('active');
-            for(let j = 1; j < activeItems.length; j++){
-                if(j != i){
-                    activeItems[j].classList.remove('active');
-                }
+    activeItems[2].onclick = function() {       // khi ấn vào mục địa chỉ
+        hideCategories();
+        $('.info_control-address').classList.remove('hidden');
+        removeActiveItems();
+        this.classList.add('active');
+        clickEditBtn();
+    }
+
+    $('.info_control-address').onmouseover = function() {
+        clickEditBtn();
+    }
+
+    // function ẩn các mục giao diện tương ứng bên navbar
+    function hideCategories(){
+        $$('.info_control-category').forEach((element) =>{
+            element.classList.add('hidden');
+        })
+    }
+
+    // function loại bỏ màu chữ xanh active
+    function removeActiveItems(){
+        activeItems.forEach(function(element){
+            element.classList.remove('active');
+        })
+    }
+
+    // click vào nút sửa 
+    function clickEditBtn() {
+        $$('.address-content-item-option-edit-modify').forEach(function(element,index) {
+            element.onclick = function() {
+                indexEditBtn = index;
+                method = 'PUT';
+                let promise = Promise.resolve();
+                promise 
+                    .then(() => {
+                        getAddressToUpdate('/user/json/address',index);
+                    })
+                    .then(() => {
+                        setTimeout(function() {
+                            $('.create_new_address').classList.remove('hidden');
+                        },300);
+                    })
+                    .catch(() => {console.log('co loi ne')});
             }
-            if(i == 1){
-                $$('.info_control-category').forEach((element) =>{
-                    element.classList.add('hidden');
-                })
-                $('.info_control').classList.remove('hidden');
-            }
-            if(i == 2){
-                $$('.info_control-category').forEach((element) =>{
-                    element.classList.add('hidden');
-                })
-                $('.info_control-address').classList.remove('hidden');
-                $$('.address-content-item-option-edit-modify').forEach(function(element,index) {
-                    element.onclick = function() {
-                        method = "PUT";
-                        let promise = Promise.resolve();
-                        promise 
-                            .then(() => {
-                                getAddressToUpdate('/user/json/address',index);
-                            })
-                            .then(() => {
-                                setTimeout(function() {
-                                    $('.create_new_address').classList.remove('hidden');
-                                },300);
-                            })
-                            .catch(() => {console.log('co loi ne')});
-                    }
-                })
-            }
-        }
+        })
     }
 
     function getAddressToUpdate(url,index){

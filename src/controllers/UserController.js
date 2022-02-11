@@ -64,25 +64,25 @@ class UserController {
         })
     }
 
-    updateAddress(req,res,next){
+    createAddress(req,res,next){
         // const provider = req.user.provider;
         // var id = req.user.id;
         User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
-            if(user){
-                const address = new Address();
-                address.receiverName = req.body.receiverName;
-                address.phoneNumber = req.body.phoneNumber;
-                address.city = req.body.city;
-                address.district = req.body.district;
-                address.detail = req.body.detail;
-                address.user = user._id;
-                address.save();
-                user.address.push(address._id);
-                user.save();
-            }
-            return;
-        })
+            // User.findOne({id: id, authType: provider}, function(err, user){
+                if(user){
+                    const address = new Address();
+                    address.receiverName = req.body.receiverName;
+                    address.phoneNumber = req.body.phoneNumber;
+                    address.city = req.body.city;
+                    address.district = req.body.district;
+                    address.detail = req.body.detail;
+                    address.user = user._id;
+                    address.save();
+                    user.address.push(address._id);
+                    user.save();
+                }
+                return;
+            })
     }
 
     getJsonAddress(req, res, next){
@@ -97,6 +97,26 @@ class UserController {
             })
         })
         return;
+    }
+
+    editAddress(req, res, next){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
+                Address.findOne({_id: user.address[req.body.index]}, function(err, address){
+                    if(address){
+                        address.receiverName = req.body.receiverName;
+                        address.phoneNumber = req.body.phoneNumber;
+                        address.city = req.body.city;
+                        address.district = req.body.district;
+                        address.detail = req.body.detail;
+                        address.user = user._id;
+                        address.save();
+                    }
+                })
+                return;
+            })
     }
 
 }
