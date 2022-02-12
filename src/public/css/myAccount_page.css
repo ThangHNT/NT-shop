@@ -737,6 +737,7 @@
     margin-top: 20px;
     padding: 6px 10px;
     border-radius: 3px;
+    user-select: none;
 }
 
 .address-content-item-option-set_default:hover {

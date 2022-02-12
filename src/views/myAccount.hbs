@@ -845,6 +845,11 @@
                             detail: $('.modal-body-address-item-location-detail').value,
                             index: indexEditBtn,
                         }
+                        $$('.address-content-item-detail-info p')[indexEditBtn*5 + 0].innerText = $('.modal-body-address-item-name').value;
+                        $$('.address-content-item-detail-info p')[indexEditBtn*5 + 1].innerText = '(+84) ' + $('.modal-body-address-item-number_phone').value;
+                        $$('.address-content-item-detail-info p')[indexEditBtn*5 + 2].innerText = $('.modal-body-address-item-location-detail').value;
+                        $$('.address-content-item-detail-info p')[indexEditBtn*5 + 3].innerText = cityDistrict.slice(index+2, cityDistrict.length);
+                        $$('.address-content-item-detail-info p')[indexEditBtn*5 + 4].innerText = cityDistrict.slice(0,index);
                         editAddress('/user/edit/address',addressData,method);
                     }
                 })
@@ -859,9 +864,12 @@
                     },300);
                 })
                 .then(() => {
-                    setTimeout(() => {
-                        renderAddress('/user/json/address');
-                    },400);
+                    if(method == 'POST'){
+                        setTimeout(() => {
+                            renderAddress('/user/json/address');
+                        },400);
+                    }
+                    return;
                 })
                 .catch(() => {console.log('loi cap nhat dia chi')});
         }
@@ -930,9 +938,9 @@
 {{!-- ============================ click vào item ở navbar, chỉnh sửa or xóa địa chỉ, thay đổi địa chỉ mặc định  ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
-    window.addEventListener('load', (event) => {
+    {{!-- window.addEventListener('load', (event) => {
         renderAddress('/user/json/address');
-    });
+    }); --}}
     let indexDeleteBtn;
     
 
@@ -1075,30 +1083,30 @@
             element.onclick = function() {
                 indexEditBtn = index;
                 method = 'PUT';
-                getAddressToUpdate('/user/json/address',index);
+                getAddressToUpdate(index);
                 setTimeout(function() {
                     $('.create_new_address').classList.remove('hidden');
                 },300);
-                {{!-- let promise = Promise.resolve();
+                let promise = Promise.resolve();
                 promise 
                     .then(() => {
-                        getAddressToUpdate('/user/json/address',index);
+                        getAddressToUpdate(index);
                     })
                     .then(() => {
                         setTimeout(function() {
                             $('.create_new_address').classList.remove('hidden');
                         },300);
                     })
-                    .catch(() => {console.log('co loi ne')}); --}}
+                    .catch(() => {console.log('co loi ne')});
             }
         })
     }
-    function getAddressToUpdate(url,index){
+    function getAddressToUpdate(index){
         let numberPhone = $$('.address-content-item-detail-info p')[5*index + 1].innerText;
-        numberPhone = numberPhone.slice(6);
+        let oldPhoneNumber = numberPhone.slice(6);
         $('.modal-body-address-item-name').value = $$('.address-content-item-detail-info p')[5*index + 0].innerText;
-        $('.modal-body-address-item-number_phone').value = numberPhone;
-        $('.modal-body-address-item-location').value = $$('.address-content-item-detail-info p')[5*index + 3].innerText + ' ' +$$('.address-content-item-detail-info p')[5*index + 4].innerText;;
+        $('.modal-body-address-item-number_phone').value = oldPhoneNumber;
+        $('.modal-body-address-item-location').value = $$('.address-content-item-detail-info p')[5*index + 3].innerText + ', ' +$$('.address-content-item-detail-info p')[5*index + 4].innerText;
         $('.modal-body-address-item-location-detail').value = $$('.address-content-item-detail-info p')[5*index + 2].innerText;
         
         return;
@@ -1148,6 +1156,7 @@
 
     activeItems[0].onclick = function() {
         activeItems[1].classList.add('active');
+        console.log('10');
         for(let j = 2; j < activeItems.length; j++){
             activeItems[j].classList.remove('active');
         }

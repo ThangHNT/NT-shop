@@ -8,10 +8,10 @@ class UserController {
     }
 
     myAccount(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 res.render('myAccount', {
                     user: user,
@@ -65,10 +65,10 @@ class UserController {
     }
 
     getJsonAddress(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             Address.find({user: user._id}, function(err, addresses){
                 if(addresses){
                     res.json(addresses);
@@ -79,10 +79,10 @@ class UserController {
     }
 
     createAddress(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 const address = new Address();
                 address.receiverName = req.body.receiverName;
@@ -103,10 +103,10 @@ class UserController {
     }
 
     editAddress(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             Address.findOne({_id: user.address[req.body.index]}, function(err, address){
                 if(address){
                     address.receiverName = req.body.receiverName;
@@ -123,10 +123,10 @@ class UserController {
     }
 
     deleteAddress(req,res,next) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             Address.findOneAndDelete({_id: user.address[req.body.index]}, function(err, address){
             })
             user.address.splice(req.body.index, 1);
@@ -136,21 +136,15 @@ class UserController {
     }
 
     changeDefaultAddress(req, res, next) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             let thisindex = req.body.index;
-            // Address.findOne({_id: user.address[index]},function(err, address){
-            //     if(address){
-            //         address.default = 'Mac dinh';
-            //         address.save();
-            //     }
-            // })
             Address.find({}, function(err, addresses){
                 addresses.forEach((address,index)=>{
                     if(index == thisindex){
-                        address.default = 'Mac dinh';
+                        address.default = 'Mặc định';
                         address.save();
                     }
                     else {
