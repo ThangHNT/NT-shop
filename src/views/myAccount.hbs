@@ -259,8 +259,8 @@
                     </div>
                 </div>
                 <div class="info_control-address-content">
-                    {{!-- <div class="separation_line"></div>
-                    <div class="info_control-address-content-item">
+                    <div class="separation_line"></div>
+                    {{!-- <div class="info_control-address-content-item">
                         <div class="address-content-item-detail">
                             <div class="address-content-item-detail-info">
                                 <span>Họ và tên</span>
@@ -273,7 +273,11 @@
                             </div>
                             <div class="address-content-item-detail-info">
                                 <span>Địa chỉ</span>
-                                <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
+                                <div class="address-content-item-detail-info-wrapper">
+                                    <p>Tổ dân phố số 1 Lương Xá, Lộc Hòa </p>
+                                    <p>tp nam dinh</p>
+                                    <p>tinh nam dinh</p>
+                                </div>
                             </div>
                         </div>
                         <div class="address-content-item-option">
@@ -411,7 +415,7 @@
             </div>
             <div class="modal-body-address-item modal-body-address-phone">
                 <label for="modal-body-address-item-number_phone">Số điện thoại</label>
-                <input name="address-phone_number" class="modal-body-address-item-number_phone" id="modal-body-address-item-number_phone" type="text" required maxlength="11">
+                <input name="address-phone_number" class="modal-body-address-item-number_phone" id="modal-body-address-item-number_phone" type="text" required maxlength="18">
                 <i class="fa-solid fa-circle-xmark"></i>
             </div>
             <div class="modal-body-address-item modal-body-address-location">
@@ -923,7 +927,7 @@
 
 </script>
 
-{{!-- ========================================= click vào item ở navbar, chỉnh sửa or xóa địa chỉ  ============================================ --}}
+{{!-- ============================ click vào item ở navbar, chỉnh sửa or xóa địa chỉ, thay đổi địa chỉ mặc định  ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
     window.addEventListener('load', (event) => {
@@ -944,14 +948,69 @@
         $('.info_control-address').classList.remove('hidden');
         removeActiveItems();
         this.classList.add('active');
+        renderAddress('/user/json/address');
         clickEditBtn();
         clickDeleteBtn();
+        setupDefaultAddress();
     }
 
     $('.info_control-address').onmouseover = function() {
         clickEditBtn();
         clickDeleteBtn();
+        setupDefaultAddress();
     }
+
+    function setupDefaultAddress(){
+        setupDefaultBtn = $$('.address-content-item-option-set_default');
+        displayCurrentDefaultAddress();
+        setupDefaultBtn.forEach(function(element,index){
+            element.onclick = function() {
+                if(!element.classList.contains('disabled')){
+                    console.log(5);
+                    chageDefaultAddress('/user/default/address',index);
+                    setTimeout(() => {
+                        displayCurrentDefaultAddress();
+                        $$('.default_address').forEach(function(element,index){
+                            element.innerText = '';
+                        })
+                        $$('.default_address')[index].innerText = 'Mặc định';
+                    },200);
+                }
+                
+            }
+        })
+    }
+
+    function displayCurrentDefaultAddress(){
+        $$('.default_address').forEach(function(element,index) {
+            if(element.innerText != '') {
+                setupDefaultBtn[index].classList.add('disabled');
+            }
+            else {
+                setupDefaultBtn[index].classList.remove('disabled');
+            }
+        })
+    }
+
+    function chageDefaultAddress(url,index){
+        let data = {index: index};
+        var option = {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('loi cap nhat dia chi mac dinh');
+            })
+        return;
+    }
+
 
     // function ẩn các mục giao diện tương ứng bên navbar
     function hideCategories(){
@@ -990,6 +1049,7 @@
             .catch(() => {
                 console.log('da xay ra loi xoa dia chi');
             })
+        return;
     }
 
     // khi đóng modal xóa address
@@ -1015,7 +1075,11 @@
             element.onclick = function() {
                 indexEditBtn = index;
                 method = 'PUT';
-                let promise = Promise.resolve();
+                getAddressToUpdate('/user/json/address',index);
+                setTimeout(function() {
+                    $('.create_new_address').classList.remove('hidden');
+                },300);
+                {{!-- let promise = Promise.resolve();
                 promise 
                     .then(() => {
                         getAddressToUpdate('/user/json/address',index);
@@ -1025,24 +1089,19 @@
                             $('.create_new_address').classList.remove('hidden');
                         },300);
                     })
-                    .catch(() => {console.log('co loi ne')});
+                    .catch(() => {console.log('co loi ne')}); --}}
             }
         })
     }
-
     function getAddressToUpdate(url,index){
-        fetch(url)
-            .then(function(response){
-                return response.json();
-            })
-            .then(function(addresses) {
-                const thisAddress = addresses[index];
-                $('.modal-body-address-item-name').value = thisAddress.receiverName;
-                $('.modal-body-address-item-number_phone').value = thisAddress.phoneNumber;
-                $('.modal-body-address-item-location').value = thisAddress.city + ', '+ thisAddress.district;
-                $('.modal-body-address-item-location-detail').value = thisAddress.detail;
-            })
-            .catch(() => { console.log('loi hien thi cap nhat dia chi')});
+        let numberPhone = $$('.address-content-item-detail-info p')[5*index + 1].innerText;
+        numberPhone = numberPhone.slice(6);
+        $('.modal-body-address-item-name').value = $$('.address-content-item-detail-info p')[5*index + 0].innerText;
+        $('.modal-body-address-item-number_phone').value = numberPhone;
+        $('.modal-body-address-item-location').value = $$('.address-content-item-detail-info p')[5*index + 3].innerText + ' ' +$$('.address-content-item-detail-info p')[5*index + 4].innerText;;
+        $('.modal-body-address-item-location-detail').value = $$('.address-content-item-detail-info p')[5*index + 2].innerText;
+        
+        return;
     }
 
     function renderAddress(url){
@@ -1058,7 +1117,7 @@
                             <div class="address-content-item-detail-info">
                                 <span>Họ và tên</span>
                                 <p>${element.receiverName}</p>
-                                <div class="default_address">Mac dinh</div>
+                                <div class="default_address">${element.default}</div>
                             </div>
                             <div class="address-content-item-detail-info">
                                 <span>Số Điện Thoại</span>
@@ -1066,7 +1125,11 @@
                             </div>
                             <div class="address-content-item-detail-info">
                                 <span>Địa chỉ</span>
-                                <p>${element.detail} <br> ${element.district} <br> ${element.city} </p>
+                                <div class="address-content-item-detail-info-wrapper">
+                                    <p class="address_detail">${element.detail}</p>
+                                    <p class="address_detail">${element.district}</p>
+                                    <p class="address_detail">${element.city}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="address-content-item-option">
@@ -1080,6 +1143,7 @@
                 })
                 $('.info_control-address-content').innerHTML = htmls.join('');
             })
+        return;
     }
 
     activeItems[0].onclick = function() {
@@ -1090,4 +1154,6 @@
     }
 
 </script>
+
+
 
