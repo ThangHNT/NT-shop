@@ -57,7 +57,11 @@
     height: 80px;
     margin-right: 2%;
     cursor: pointer;
-    border: 1px solid red;
+    border: 1px solid #aaa;
+}
+
+.product-introduction-illustration-some_img-item:hover {
+    border-color: red;
 }
 
 .product-introduction-social {
@@ -65,6 +69,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 10px;
 }
 
 .product-introduction-social-share_product {
@@ -249,17 +254,23 @@
 .product-introduction-option-select_color-content {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .product-introduction-option-select_color-btn {
     background-color: #fff;
-    padding: 2px 15px;
+    padding: 3px 13px;
     min-width: 80px;
     box-sizing: border-box;
     border-radius: 3px;
     margin-right:10px ;
     border: 2px solid rgb(236, 229, 229);
     color: rgb(58, 56, 56);
+}
+
+.product-introduction-option-select_color-btn i {
+    color: rgb(15, 216, 15);
+    margin-left: 5px;
 }
 
 .product-introduction-option-select_color-btn:hover {
@@ -379,21 +390,20 @@
     margin-top: 70px;
 }
 
-.product-detail-title {
+.title_header {
     width: 100%;
     background-color: #ddd;
     height: 50px;
     display: flex;
     align-items: center ;
-
 }
 
-.product-detail-title h3 {
+.title_header h3 {
     font-size: 25px;
     line-height: 25px;
     margin: 0;
     margin-left: 30px;
-    
+    text-transform: uppercase;
 }
 
 .product-detail-content {
@@ -418,16 +428,158 @@
     text-transform: capitalize;
 }
 
+/* ========================================================= Mô tả sản phẩm ==================================================== */
+
+.product-description {
+    margin-top: 60px;
+}
+
+.product-description-content {
+    width: 100%;
+    padding:0 30px ;
+    margin-top: 40px;
+}
+
+.product-description-content h5 {
+    font-size: 16px;
+    font-weight: 550;
+    margin: 18px 0 8px 0;
+}
+
+.product-description-content p {
+    font-size: 14px;
+    margin: 10px 0
+}
+
+/* ============================================================ Đánh giá ====================================================== */
+
+.product-review {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.product-review-content{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.product-review-content-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(109, 222, 226);
+    padding: 30px;
+}
+
+.product-review-content-header-star {
+    color: rgb(248, 19, 19);
+}
+
+.product-review-content-header-star-average {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.product-review-content-header-star-average h2 {
+    margin: 0;
+}
+
+.product-review-content-header-star-average span {
+    font-size: 18px;
+    line-height: 30px;
+    margin-left: 5px;
+}
+
+.product-review-content-header-summary {
+    margin-left: 50px;
+    width: 70%;
+}
+
+.product-review-content-header-summary-count_star {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-review-content-header-star_btn {
+    min-width: 80px;
+    padding: 5px 10px;
+    border: 1px solid rgb(219, 209, 209);
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.product-review-content-header-summary-comment_imgs {
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-top: 15px;
+}
+
+.product-review-content-header-summary-comment_imgs span:first-child {
+    margin-right: 15px;
+}
 
 
+/*  ========================================================= comment =========================================================== */
 
+.product-review-content-body {
+    padding: 0 30px;
+    margin-top: 20px;
+}
 
+.product-review-comment-user_comment {
+    margin-left: 10px;
+}
 
+.product-review-content-body, .product-review-content-comment-item {
+    width: 100%;
+}
 
+.product-review-content-comment-item {
+    display: flex;
+}
 
+.product-review-comment-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
 
+.product-review-comment-user-name {
+    color: rgb(10, 173, 37);
+}
 
+.product-review-comment-user-evaluate i {
+    color: rgb(248, 19, 19);
+}
 
+.product-review-comment-user-kind_product {
+    color: rgb(124, 121, 121);
+}
 
+.product-review-comment-content {
+    margin: 10px 0 15px 0 !important;
+}
 
+.product-review-comment-user-illustration_imgs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.product-review-comment-user-illustration_imgs img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    cursor: zoom-in;
+    border-radius: 2px;
+}
+
+.separate_comment {
+    width: 100%;
+    height: 2px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
 

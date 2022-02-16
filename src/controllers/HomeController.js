@@ -32,10 +32,15 @@ class HomeController {
                 .catch(next);
         }
     }
+
     logout(req,res,next){
         req.session.destroy();
         req.user = null;
         res.redirect('/');
+    }
+
+    productDetail(req,res,next) {
+        res.render('productDetail');
     }
 }
 
