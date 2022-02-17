@@ -95,19 +95,22 @@
         <div id="content_product_detail">
             <div class="product-introduction">
                 <div class="product-introduction-illustration">
-                    <img class="product-introduction-illustration-main_img" src="https://cf.shopee.vn/file/594fb14ee9a9b291493f3008c3921cad_tn" alt="">
+                    <img class="product-introduction-illustration-main_img" src="https://cf.shopee.vn/file/12f8124fbaedac0fbd969962f6050f04" alt="">
                     <div class="product-introduction-illustration-change_img_arrow">
                         <i class="fa-solid fa-angle-left"></i>
                         <i class="fa-solid fa-angle-right"></i>
                     </div>
                     <div class="product-introduction-illustration-some_img">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
-                        <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
+                        <div class="product-introduction-illustration-some_img-wrapper">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/9fa4e1c9ded85d0c6e3446b6844a1984" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/7102de862a95b55db1fb31662a270ab5" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/1c1be86528ba45aba75d19a67f3ff24f" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/f7df2485a1307c861dc37914a783fe1d" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/e18879278a1984ff60db58391bf3600d" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/950fc9f01c45007d4bdcf7f964ea8ce8" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/3904d73abbe2d7fa57c223359bf5248a" alt="">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/222a823cf1dff24033ed739b9a3f2a5e" alt="">
+                        </div>
                     </div>
                     <div class="product-introduction-social">
                         <div class="product-introduction-social-share_product">
@@ -119,7 +122,7 @@
                         </div>
                         <div class="separate_line"></div>
                         <div class="like_product">
-                            <img class="like_product-heart_reaction" src="https://icons-for-free.com/iconfiles/png/512/heart-131965017458786724.png" alt="">
+                            <i class="fa-solid fa-heart like_product-heart_reaction"></i>
                             <p>Đã thích (560)</p>
                         </div>
                     </div>
@@ -436,7 +439,74 @@
         
     </div>
 
-    
+    <script>
+        "use strict"
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+
+        // ----------------------------------------------------- Chọn loại sản phẩm -------------------------------------------
+        let selectColorBtn = $$('.product-introduction-option-select_color-btn');
+        function removeSelectBtn(){
+            selectColorBtn.forEach( function(element,index){
+                element.classList.remove('select_color');
+            })
+            $$('.product-introduction-option-select_color-btn i').forEach( function(element){
+                element.classList.add('hidden');
+            })
+        }
+        selectColorBtn.forEach( function(element,index){
+            element.onfocus = function(e){
+                removeSelectBtn();
+                element.classList.add('select_color');
+                $$('.product-introduction-option-select_color-btn i')[index].classList.remove('hidden');
+            }
+        })
+
+        // -------------------------------------------------- chọn số lượng sp --------------------------------------------------
+
+        let quantityProduct = $('.product-introduction-option-quantity_choosen');
+        
+        $('.increase_btn').onclick = function(){
+            quantityProduct.value = (Number(quantityProduct.value) + 1) + '';    
+        }
+        $('.decrease_btn').onclick = function(){
+            if(quantityProduct.value > 1){
+                quantityProduct.value = (Number(quantityProduct.value) - 1) + ''; 
+            }
+        }
+
+        $('.like_product').onclick = function(){
+            $('.like_product-heart_reaction').classList.toggle('active_heart_product');
+        }
+
+        let productImgIndex = -1;
+        let productImgList = $$('.product-introduction-illustration-some_img-item');
+        $('.fa-angle-right').onclick = function(){
+            if(productImgIndex < productImgList.length-6){
+                productImgIndex += 1;
+                productImgList[productImgIndex].classList.add('hidden');
+            }
+        }
+        $('.fa-angle-left').onclick = function(){
+            if(productImgIndex > 0){
+                productImgList[productImgIndex].classList.remove('hidden');
+                productImgIndex -= 1;
+            }
+        }
+
+        let evaluateStar = $$('.product-review-content-header-star_btn');
+        evaluateStar.forEach(function(element){
+            element.onclick = function(){
+                evaluateStar.forEach(function(element){
+                    element.classList.remove('evaluate_star');
+                })
+                element.classList.add('evaluate_star');
+            }
+        })
+
+    </script>
+
+
     <!-- link fontawesome icons -->
     <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>
     <!-- bootstrap 3 -->
