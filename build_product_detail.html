@@ -102,6 +102,7 @@
                     </div>
                     <div class="product-introduction-illustration-some_img">
                         <div class="product-introduction-illustration-some_img-wrapper">
+                            <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/12f8124fbaedac0fbd969962f6050f04" alt="">
                             <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/9fa4e1c9ded85d0c6e3446b6844a1984" alt="">
                             <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/7102de862a95b55db1fb31662a270ab5" alt="">
                             <img class="product-introduction-illustration-some_img-item" src="https://cf.shopee.vn/file/1c1be86528ba45aba75d19a67f3ff24f" alt="">
@@ -336,10 +337,11 @@
                                 </span>
                                 <p class="product-review-comment-content">Mình đã đặt 1 cái và bị lỗi shop đã hỗ trợ đổi lại cho mình cái khác ngay lập tức khá là hài longg với cách làm viênc này của shop. Shop QT thì giao hàng lâu khỏi bàn, tai nghe ổn ko hề bị delay nghe nhạc cũng khá oke nhá mng</p>
                                 <div class="product-review-comment-user-illustration_imgs">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
+                                    <img data="0" src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
+                                    <img data="0" src="https://cf.shopee.vn/file/6642d3b709a072131b19f2c68bfa86fd" alt="">
+                                    <img data="0" src="https://cf.shopee.vn/file/4e72c105d5b8bbb0df65b837eb4c86a1" alt="">
                                 </div>
+                                <img data="0" class="product-review-comment-user-illustration_imgs-zoom hidden" src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="" >
                             </div>
                         </div>
                         <div class="separate_comment"></div>
@@ -358,10 +360,11 @@
                                 </span>
                                 <p class="product-review-comment-content">Mình đã đặt 1 cái và bị lỗi shop đã hỗ trợ đổi lại cho mình cái khác ngay lập tức khá là hài longg với cách làm viênc này của shop. Shop QT thì giao hàng lâu khỏi bàn, tai nghe ổn ko hề bị delay nghe nhạc cũng khá oke nhá mng</p>
                                 <div class="product-review-comment-user-illustration_imgs">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
-                                    <img src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
+                                    <img data="1" src="https://cf.shopee.vn/file/ebe84dcc0b8b6fa93ca1964ee56c9b65" alt="">
+                                    <img data="1" src="https://cf.shopee.vn/file/88038a9c9855a62c761729b7f719948a" alt="">
+                                    <img data="1" src="https://cf.shopee.vn/file/ac198d6ec275966edded8cd7c5fb406a" alt="">
                                 </div>
+                                <img data="1" class="product-review-comment-user-illustration_imgs-zoom hidden" src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="" >
                             </div>
                         </div>
                     </div>
@@ -435,6 +438,9 @@
                     </div>
                 </div>
             </div>
+            <a href="#" class="move_top">
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
         </div>
         
     </div>
@@ -523,12 +529,35 @@
 
         // ------------------------------------------------- phóng to ảnh ở phần bình luận --------------------------------------
         let commentImgs = $$('.product-review-comment-user-illustration_imgs img');
+        let zoomImg = $$('.product-review-comment-user-illustration_imgs-zoom');
+        function zoomInImg(smallImg){
+            let zoomImgId = Number(smallImg.getAttribute('data'));
+            zoomImg[zoomImgId].src = smallImg.src;
+            zoomImg[zoomImgId].classList.remove('hidden');
+            zoomImg.forEach( function(item,index){
+                item.onclick = function(){
+                    item.classList.toggle('hidden');
+                    smallImg.classList.remove('select_comment_img');
+                }
+            })
+        }
+        function zoomOutImg(smallImg){
+            let zoomImgId = Number(smallImg.getAttribute('data'));
+            zoomImg[zoomImgId].src = '';
+            zoomImg[zoomImgId].classList.add('hidden');
+        }
         commentImgs.forEach( function(element,index){
             element.onclick = function(){
-                commentImgs.forEach( function(element,index){
-                    element.classList.remove('select_comment_img');
+                commentImgs.forEach( function(item,index2){
+                    if(index2 != index){
+                        item.classList.remove('select_comment_img');
+                    }
+                    else item.classList.toggle('select_comment_img');
                 })
-                element.classList.toggle('select_comment_img');
+                if(this.classList.contains('select_comment_img')){
+                    zoomInImg(element);
+                }
+                else zoomOutImg(element);
             }
         })
 
