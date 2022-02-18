@@ -123,7 +123,7 @@
                         <div class="separate_line"></div>
                         <div class="like_product">
                             <i class="fa-solid fa-heart like_product-heart_reaction"></i>
-                            <p>Đã thích (560)</p>
+                            <p>Đã thích (<span>560</span>)</p>
                         </div>
                     </div>
                 </div>
@@ -475,10 +475,20 @@
             }
         }
 
+        // ---------------------------------------------- khi bấm like sản phẩm -------------------------------------------
         $('.like_product').onclick = function(){
             $('.like_product-heart_reaction').classList.toggle('active_heart_product');
+            let likeNumber = $('.like_product span');
+            let sl = Number(likeNumber.innerText);
+            if($('.like_product-heart_reaction').classList.contains('active_heart_product')){
+                likeNumber.innerHTML = (sl + 1) + '';
+            }
+            else {
+                likeNumber.innerHTML = (sl - 1) + '';
+            }
         }
 
+        //---------------------------------------------------------- list product image ------------------------------------------
         let productImgIndex = -1;
         let productImgList = $$('.product-introduction-illustration-some_img-item');
         $('.fa-angle-right').onclick = function(){
@@ -494,6 +504,13 @@
             }
         }
 
+        productImgList.forEach( function(element,index){
+            element.onmouseover = function(){
+                let src = element.src;
+                $('.product-introduction-illustration-main_img').src = src;
+            }
+        })
+
         let evaluateStar = $$('.product-review-content-header-star_btn');
         evaluateStar.forEach(function(element){
             element.onclick = function(){
@@ -501,6 +518,17 @@
                     element.classList.remove('evaluate_star');
                 })
                 element.classList.add('evaluate_star');
+            }
+        })
+
+        // ------------------------------------------------- phóng to ảnh ở phần bình luận --------------------------------------
+        let commentImgs = $$('.product-review-comment-user-illustration_imgs img');
+        commentImgs.forEach( function(element,index){
+            element.onclick = function(){
+                commentImgs.forEach( function(element,index){
+                    element.classList.remove('select_comment_img');
+                })
+                element.classList.toggle('select_comment_img');
             }
         })
 

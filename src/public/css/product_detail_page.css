@@ -599,8 +599,12 @@
     margin: 20px 0;
 }
 
-
 .evaluate_star {
     border: 2px solid rgb(24, 223, 41);
     background-color: rgb(238, 229, 229);
+}
+
+.select_comment_img {
+    cursor: zoom-out !important;
+    border: 3px solid blue !important;
 }
