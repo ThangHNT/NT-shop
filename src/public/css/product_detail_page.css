@@ -332,6 +332,11 @@
     color: rgb(94, 91, 91);
     font-size: 15px;
     margin-left: 20px;
+    display: flex;
+}
+
+.product_available p {
+    margin-right: 6px;
 }
 
 /* ------------------------------------------------------------- nút mua hàng ---------------------------------------------- */
