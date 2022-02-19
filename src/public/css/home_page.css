@@ -420,6 +420,7 @@ html {
     display: block;
     position: relative;
     top: 120px;
+    margin-bottom: 150px;
 }
 
 .home {
@@ -565,14 +566,15 @@ html {
 /* ---------------------------------------------------------- product list -------------------------------------------------------- */
 
 .content-product_list {
-    background-color: #fff;
+    background-color: #fff !important;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1140px;
     display: flex;
     margin: auto;
     background-color: rgba(245, 236, 236, 0.8);
+    padding-bottom: 30px;
 }
 
 .content-product_list-item {
