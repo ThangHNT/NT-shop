@@ -24,7 +24,7 @@
             <div class="content_seller_signup-wrapper">
                 <form  class="content_seller_signup-form" method="post" autocomplete="off">
                     <h4 class="content_seller_signup-form-title">Đăng ký chủ sở hữu</h4>
-                    <div class="content_seller_signup-user_info">
+                    <div class="content_seller_signup-user_info hidden">
                         <div class="wrapper_input">
                             <input name="name" class="wrapper_input-input input_name" type="text" placeholder=" " maxlength="50" required>
                             <label class="wrapper_input-label" for="name">Họ tên</label>
@@ -49,12 +49,34 @@
                         </div>
                         <span class="next_btn signup_btn">Tiếp</span>
                     </div>
+                    <div class="content_seller_signup-shop_info">
+                        <div class="wrapper_input">
+                            <input name="shop_name" class="wrapper_input-input input_name" type="text" placeholder=" " maxlength="50" required>
+                            <label class="wrapper_input-label" for="shop_name">Tên shop</label>
+                        </div>
+                        <div class="wrapper_input">
+                            <textarea class="wrapper_input-input textarea_name" wrap="hard" rows="5" name="shop_address" maxlength="150" placeholder=" "></textarea>
+                            <label class="wrapper_input-label" for="shop_name">Địa chỉ của shop</label>
+                        </div>
+                        <div class="wrapper_input">
+                            <input name="shop_phone_number" class="wrapper_input-input shop_phone_number" type="text" placeholder=" " maxlength="50" required>
+                            <label class="wrapper_input-label" for="shop_phone_number">Số điện thoại liên hệ</label>
+                        </div>
+                        <span class="add_shop_avatar_text">Ảnh đại diện của shop</span>
+                        <div class="shop_avatar">
+                            <div class="add_shop_avatar">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <input type="file">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
         <div id="footer_seller"></div>
     </div>
 
+    <!-- ======================================================== đăng ký chủ shop ============================================ -->
     <script>
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
@@ -62,7 +84,7 @@
         let nextBtn = $('.next_btn');
         let emailIput = $('.input_email');
         let sendBtn = $('.send_code_btn ');
-        let code = '';
+        let code = 0;
         
         function sendMail(){
             Email.send({
@@ -80,7 +102,11 @@
         
         sendBtn.onclick = function(){
             code = Math.floor(Math.random() * 1000001);
-            sendMail();
+            while(code < 100000){
+                code = Math.floor(Math.random() * 1000001);
+            }
+            console.log(code);
+            // sendMail();
         }
 
         nextBtn.onclick = function(){
@@ -89,6 +115,55 @@
             }
             else console.log('ma sai');
         }
+
+    </script>
+    <!-- ======================================================== Đăng ký shop ============================================= -->
+    <script>
+        $('.textarea_name').onkeypress = function(e){
+            if(e.which == 13){
+                let numberOfLines = (this.value.match(/\n/g) || []).length + 1;
+                if(numberOfLines >= 5) return false;
+            }
+        }
+
+        // =========================================================== xử lý hình ảnh =======================================
+        const reader = new FileReader();
+        $('.shop_avatar input').addEventListener("change", (event) => {
+            const files = event.target.files;
+            reader.readAsDataURL(files[0]);
+            reader.addEventListener("load", (event) => {
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                // console.log(base64String);  lấy dạng base64 của hình ảnh vừa chọn
+
+                const binary = event.target.result;
+                var img = binary.slice(binary.lastIndexOf(',') + 1);
+
+                // hàm tạo url cho thuộc tính src của ảnh
+                const b64toBlob = (img, contentType = '', sliceSize = 512) => {
+                    const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
+                    const byteArrays = [];
+
+                    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                        const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                        const byteNumbers = new Array(slice.length);
+                        for (let i = 0; i < slice.length; i++) {
+                            byteNumbers[i] = slice.charCodeAt(i); // lấy mã Unicode 
+                        }
+
+                        const byteArray = new Uint8Array(byteNumbers); // tạo mảng kiểu 8bit
+                        byteArrays.push(byteArray);
+                    }
+
+                    const blob = new Blob(byteArrays, { type: contentType });
+                    return blob;
+                }
+                const blob = b64toBlob(img, 'image/jpeg');
+                const blobUrl = URL.createObjectURL(blob);  // tạo url mới
+                $('.shop_avatar').style.background = `url(${blobUrl}) no-repeat center / contain`;
+                $('.add_shop_avatar').classList.add('hidden');
+            })
+        })
 
     </script>
 

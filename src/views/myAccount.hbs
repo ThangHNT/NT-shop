@@ -663,7 +663,7 @@
         reader.readAsDataURL(files[0]);
         reader.addEventListener("load", (event) => {
             base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-            {{!-- console.log(base64String);    // lấy dạng base64 của hình ảnh vừa chọn --}}
+            {{!-- console.log(base64String); --}} // lấy dạng base64 của hình ảnh vừa chọn
 
             const binary = event.target.result;
             var img = binary.slice(binary.lastIndexOf(',') + 1);
