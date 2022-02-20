@@ -93,6 +93,8 @@
     transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
     background-color: #fff;
     padding: 0 10px;
+    font-weight: normal;
+    font-size: 16px;
 }
 
 .wrapper_input input:focus {
@@ -111,20 +113,26 @@
     color: #666;
 }
 
-.next_btn {
-    background-color: rgb(255, 102, 0);
+.signup_btn {
     cursor: pointer;
     border-radius: 3px;
     padding:10px 15px;
     color: #fff;
+    min-width: 80px;
+    text-align: center;
 }
 
-.next_btn:hover {
+.signup_btn:hover {
     opacity: 0.85;
 }
 
+.next_btn {
+    background-color: rgb(255, 102, 0);
+}
 
-
+.send_code_btn {
+    background-color: #007bff;
+}
 
 
 

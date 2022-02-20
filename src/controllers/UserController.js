@@ -159,6 +159,10 @@ class UserController {
         })
     }
 
+    sellerSignup(req, res,next){
+        res.render('seller_signup');
+    }
+
 }
 
 module.exports = new UserController;

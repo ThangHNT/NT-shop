@@ -1,0 +1,86 @@
+<div id="main_seller">
+    <div id="header_seller">
+        <div class="header_seller-title">
+            <img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
+            <h3>Đăng ký trở thành người bán của NT SHOP</h3>
+        </div>
+    </div>
+    <div id="content_seller" class="content_seller_signup">
+        <div class="content_seller_signup-wrapper">
+            <form class="content_seller_signup-form" method="post" autocomplete="off">
+                <h4 class="content_seller_signup-form-title">Đăng ký chủ sở hữu</h4>
+                <div class="content_seller_signup-user_info">
+                    <div class="wrapper_input">
+                        <input name="name" class="wrapper_input-input input_name" type="text" placeholder=" "
+                            maxlength="50" required>
+                        <label class="wrapper_input-label" for="name">Họ tên</label>
+                    </div>
+                    <div class="wrapper_input">
+                        <input name="identity" class="wrapper_input-input input_identity" type="text" placeholder=" "
+                            maxlength="20" required>
+                        <label class="wrapper_input-label" for="identity">Số CCCD/CMND</label>
+                    </div>
+                    <div class="wrapper_input">
+                        <input name="phone_number" class="wrapper_input-input input_phone_number" type="text"
+                            placeholder=" " maxlength="15" required>
+                        <label class="wrapper_input-label" for="phone_number">Số điện thoại</label>
+                    </div>
+                    <div class="wrapper_input">
+                        <input name="email" class="wrapper_input-input input_email" type="text" placeholder=" "
+                            maxlength="30" required>
+                        <label class="wrapper_input-label" for="email">Email</label>
+                    </div>
+                    <!-- <span class = "notify_text">(Vui lòng kiểm tra email để nhận mã)</span> -->
+                    <span class="send_code_btn signup_btn">Gửi mã</span>
+                    <div class="wrapper_input">
+                        <input name="confirm_code" class="wrapper_input-input input_confirm_code" type="text"
+                            placeholder=" " maxlength="6" required>
+                        <label class="wrapper_input-label" for="confirm_code">Mã xác nhận</label>
+                    </div>
+                    <span class="next_btn signup_btn">Tiếp</span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="footer_seller"></div>
+</div>
+
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    let nextBtn = $('.next_btn');
+    let emailIput = $('.input_email');
+    let sendBtn = $('.send_code_btn ');
+    let code = '';
+
+    function sendMail() {
+        Email.send({
+            SecureToken: "43c30770-0c5f-4b6a-975a-d2b1170f477c",
+            // password to create secureToken: D058E92B98DA65D960EDA0E9C8985B7CD971
+            To: emailIput.value,
+            From: "xacthucmail123@gmail.com",
+            Subject: "Use this code to sign-up",
+            Body: `<h3>Mã xác nhận của bạn là  <strong>${code}</strong></h3>`
+        }).then(
+            () => alert("Vui lòng kiểm tra email của bạn")
+        ); 
+    }
+        // thanghn2503@gmail.com
+
+    sendBtn.onclick = function () {
+        code = Math.floor(Math.random() * 1000001) + '';
+        sendMail();
+    }
+
+    nextBtn.onclick = function () {
+        if ($('.input_confirm_code').value == code) {
+            console.log('hop le');
+        }
+        else console.log('ma sai');
+    }
+
+</script>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+

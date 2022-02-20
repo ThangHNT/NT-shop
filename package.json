@@ -18,6 +18,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.1.7",
     "mongoose-slug-generator": "^1.0.4",
+    "nodemailer": "^6.7.2",
     "passport": "^0.5.2",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0"
