@@ -2,7 +2,7 @@
 #header_seller {
     width:100%;
     height: 60px;
-    background-color: #fff;
+    background-color: #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,8 @@
 /* =========================================================== content ================================================================ */
 
 .content_seller_signup {
-    background-color: rgb(211, 203, 203);
+    /* background-color: rgb(211, 203, 203); */
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRffDTakYN_cIJ_nW9IyTC-tDBPJjZxTmPDEw&usqp=CAU') no-repeat center / cover;
     padding-bottom: 30px;
 }
 
@@ -130,7 +131,7 @@
     background-color: rgb(255, 102, 0);
 }
 
-.send_code_btn {
+.send_code_btn, .sign_up_btn {
     background-color: #007bff;
 }
 
@@ -199,7 +200,19 @@
     color: #1791f2;
 }
 
+.btn_form {
+    margin: 15px 0;
+    font-size: 16px;
+}
 
+.sign_up_btn {
+    font-size: 14px;
+}
+
+.back_btn_signup {
+    background-color: #6c757d;
+    margin-right: 20px;
+}
 
 
 

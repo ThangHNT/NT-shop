@@ -11,6 +11,7 @@ router.delete('/delete/address', userController.deleteAddress); // xóa địa c
 router.put('/edit/address', userController.editAddress);  // chỉnh sửa địa chỉ
 router.get('/json/avatar',userController.getJsonAvatar);  // tao trang json cho data image
 router.get('/json/address',userController.getJsonAddress);   // tao trang json cho data address
-router.get('/seller-signup',userController.sellerSignup);
+router.get('/seller/signup/view',userController.sellerSignup); // tạo trang đăng ký người bán
+router.post('/seller/signup/successful',userController.sellerSignupSuccessful); // đăng ký ng bán thành công
 
 module.exports = router;

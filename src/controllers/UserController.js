@@ -163,6 +163,9 @@ class UserController {
         res.render('seller_signup');
     }
 
+    sellerSignupSuccessful(req,res,next){
+        res.redirect('/');
+    }
 }
 
 module.exports = new UserController;

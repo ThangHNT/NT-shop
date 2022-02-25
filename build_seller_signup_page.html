@@ -49,13 +49,14 @@
                         </div>
                         <span class="next_btn signup_btn">Tiếp</span>
                     </div>
+
                     <div class="content_seller_signup-shop_info">
                         <div class="wrapper_input">
-                            <input name="shop_name" class="wrapper_input-input input_name" type="text" placeholder=" " maxlength="50" required>
+                            <input name="shop_name" class="wrapper_input-input shop_name" type="text" placeholder=" " maxlength="50" required>
                             <label class="wrapper_input-label" for="shop_name">Tên shop</label>
                         </div>
                         <div class="wrapper_input">
-                            <textarea class="wrapper_input-input textarea_name" wrap="hard" rows="5" name="shop_address" maxlength="150" placeholder=" "></textarea>
+                            <textarea class="wrapper_input-input textarea_name" required wrap="hard" rows="5" name="shop_address" maxlength="150" placeholder=" "></textarea>
                             <label class="wrapper_input-label" for="shop_name">Địa chỉ của shop</label>
                         </div>
                         <div class="wrapper_input">
@@ -68,6 +69,10 @@
                                 <i class="fa-solid fa-plus"></i>
                             </div>
                             <input type="file">
+                        </div>
+                        <div class="btn_form">
+                            <span class="back_btn_signup signup_btn">Quay lại</span>
+                            <button type="button" class="sign_up_btn signup_btn" >Đăng ký</button>
                         </div>
                     </div>
                 </form>
@@ -85,6 +90,7 @@
         let emailIput = $('.input_email');
         let sendBtn = $('.send_code_btn ');
         let code = 0;
+        let form = $('.content_seller_signup-form');
         
         function sendMail(){
             Email.send({
@@ -93,36 +99,67 @@
                 To : emailIput.value,
                 From : "xacthucmail123@gmail.com",
                 Subject : "Use this code to sign-up",
-                Body : 'Mã xác nhận của bạn là ' + code,
+                Body : `<h3>Mã xác nhận của bạn là  <strong>${code}</strong></h3>`
             }).then(
-                () => alert("Vui long kiem tra email cua ban ")
+                () => alert("Vui lòng kiểm tra email của bạn (chú ý spam).")
             ); 
         }
         // thanghn2503@gmail.com
         
         sendBtn.onclick = function(){
-            code = Math.floor(Math.random() * 1000001);
-            while(code < 100000){
-                code = Math.floor(Math.random() * 1000001);
+            if(emailIput.value.length <= 6){
+                alert('Vui lòng đúng nhập emai của bạn.');
             }
-            console.log(code);
-            // sendMail();
+            else {
+                code = Math.floor(Math.random() * 1000001);
+                while(code < 100000){
+                    code = Math.floor(Math.random() * 1000001);
+                }
+                sendMail();
+            }
         }
 
         nextBtn.onclick = function(){
-            if($('.input_confirm_code').value == code){
-                console.log('hop le');
+            if($('.input_confirm_code').value != code || code == ''){
+                alert('Mã sai, vui lòng kiểm tra lại.')
             }
-            else console.log('ma sai');
+            else if($('.input_name').value.length == 0 || $('.input_email').value.length == 0 || $('.input_identity').value.length == 0 || $('.input_phone_number').value.length == 0){
+                alert('Vui lòng điền đầy đủ các thông tin.')
+            }
+            else {
+                $('.content_seller_signup-user_info').classList.add('hidden');
+                $('.content_seller_signup-shop_info').classList.remove('hidden');
+            }
         }
 
     </script>
     <!-- ======================================================== Đăng ký shop ============================================= -->
     <script>
+        let shopAvatar = $('.shop_avatar');
+
         $('.textarea_name').onkeypress = function(e){
             if(e.which == 13){
                 let numberOfLines = (this.value.match(/\n/g) || []).length + 1;
                 if(numberOfLines >= 5) return false;
+            }
+        }
+
+        $('.back_btn_signup').onclick = function(){
+            $('.content_seller_signup-user_info').classList.remove('hidden');
+            $('.content_seller_signup-shop_info').classList.add('hidden');
+        }
+
+        form.onsubmit = function(e){
+            e.preventDefault();
+        }
+
+        $('.sign_up_btn').onclick = function(){
+            if($('.shop_name').value.length == 0 || $('.textarea_name').value.length == 0 || $('.shop_phone_number').value.length == 0){
+                alert('Vui lòng điền đầy đủ thông tin');
+            }
+            else {
+                form.action = '/user/seller/signup/successful';
+                form.submit();
             }
         }
 
