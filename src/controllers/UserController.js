@@ -2,8 +2,6 @@
 const User = require('../model/user.js');
 const Address = require('../model/address.js');
 const Shop = require('../model/shop.js');
-const Seller = require('../model/seller.js');
-const shop = require('../model/shop.js');
 
 class UserController {
     login(req,res,next){
@@ -167,25 +165,26 @@ class UserController {
     }
 
     sellerSignupSuccessful(req,res,next){
-        // res.redirect('/');
-        const seller = new Seller();
-        seller.name = req.body.name;
-        seller.identity = req.body.identity;
-        seller.email = req.body.email;
-        const shop = new Shop();
-        shop.brand = req.body.shop_name;
-        shop.address = req.body.shop_address;
-        shop.phoneContact = req.body.shop_phone_number;
-        shop.owner = seller._id;
-        shop.save();
-        seller.shop = shop._id;
-        seller.save();
-        if(req.files){
-            const dataBase64 = req.files.shop_avatar.data.toString("base64");
-            shop.avatar_base64.data = dataBase64;
-            shop.avatar_base64.contentType = req.files.shop_avatar.mimetype;
-        }
-        res.send('thanh cong');
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
+            const shop = new Shop();
+            shop.brand = req.body.shop_name;
+            shop.address = req.body.shop_address;
+            shop.phoneContact = req.body.shop_phone_number;
+            shop.owner = user._id;
+            if(req.files){
+                const dataBase64 = req.files.shop_avatar.data.toString("base64");
+                shop.avatar_base64.data = dataBase64;
+                shop.avatar_base64.contentType = req.files.shop_avatar.mimetype;
+            }
+            shop.save();
+            user.shop = shop._id;
+            user.save();
+            res.send('thanh cong');
+            return;
+        })
     }
 
     manageShop(req, res, next){

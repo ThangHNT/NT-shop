@@ -8,34 +8,11 @@
     <div id="content_seller" class="content_seller_signup">
         <div class="content_seller_signup-wrapper">
             <form class="content_seller_signup-form" method="post" autocomplete="off" enctype="multipart/form-data">
-                <h4 class="content_seller_signup-form-title">Đăng ký chủ Shop</h4>
+                <h4 class="content_seller_signup-form-title">
+                    <a href="/"><i class="fa-solid fa-arrow-left"></i></a>
+                    Đăng ký Shop
+                </h4>
                 <div class="content_seller_signup-user_info">
-                    <div class="wrapper_input">
-                        <input name="name" class="wrapper_input-input input_name" type="text" placeholder=" "
-                            maxlength="50" required>
-                        <label class="wrapper_input-label" for="name">Họ tên</label>
-                    </div>
-                    <div class="wrapper_input">
-                        <input name="identity" class="wrapper_input-input input_identity" type="text" placeholder=" "
-                            maxlength="20" required>
-                        <label class="wrapper_input-label" for="identity">Số CCCD/CMND</label>
-                    </div>
-                    <div class="wrapper_input">
-                        <input name="email" class="wrapper_input-input input_email" type="text" placeholder=" "
-                            maxlength="30" required>
-                        <label class="wrapper_input-label" for="email">Email</label>
-                    </div>
-                    
-                    <span class="send_code_btn signup_btn">Gửi mã</span>
-                    <div class="wrapper_input">
-                        <input name="confirm_code" class="wrapper_input-input input_confirm_code" type="text"
-                            placeholder=" " maxlength="6" required>
-                        <label class="wrapper_input-label" for="confirm_code">Mã xác nhận</label>
-                    </div>
-                    <span class="next_btn signup_btn">Tiếp</span>
-                </div>
-
-                <div class="content_seller_signup-shop_info hidden">
                     <div class="wrapper_input">
                         <input name="shop_name" class="wrapper_input-input shop_name" type="text" placeholder=" "
                             maxlength="50" required>
@@ -59,7 +36,7 @@
                         <input type="file" accept=".jpg, .png" name="shop_avatar">
                     </div>
                     <div class="btn_form">
-                        <span class="back_btn_signup signup_btn">Quay lại</span>
+                        <button class="back_btn_signup signup_btn"><a href="/">Quay lại</a></button>
                         <button type="button" class="sign_up_btn signup_btn">Đăng ký</button>
                     </div>
                 </div>
@@ -80,7 +57,7 @@
     let code = 0;
     let form = $('.content_seller_signup-form');
 
-    function sendMail() {
+    {{!-- function sendMail() {
         Email.send({
             SecureToken: "43c30770-0c5f-4b6a-975a-d2b1170f477c",
             // password to create secureToken: D058E92B98DA65D960EDA0E9C8985B7CD971
@@ -91,35 +68,9 @@
         }).then(
             () => alert("Vui lòng kiểm tra email của bạn (chú ý spam).")
         );
-    }
+    } --}}
     // thanghn2503@gmail.com
 
-    sendBtn.onclick = function () {
-        if (emailIput.value.length <= 6) {
-            alert('Vui lòng đúng nhập emai của bạn.');
-        }
-        else {
-            code = Math.floor(Math.random() * 1000001);
-            while (code < 100000) {
-                code = Math.floor(Math.random() * 1000001);
-            }
-            {{!-- sendMail(); --}}
-        }
-    }
-
-    nextBtn.onclick = function () {
-        {{!-- if ($('.input_confirm_code').value != code || code == '') {
-            alert('Mã sai, vui lòng kiểm tra lại.')
-        } --}}
-         if ($('.input_name').value.length == 0 || $('.input_email').value.length == 0 || $('.input_identity').value.length == 0 ) {
-            alert('Vui lòng điền đầy đủ các thông tin.')
-        }
-        else {
-            $('.content_seller_signup-user_info').classList.add('hidden');
-            $('.content_seller_signup-shop_info').classList.remove('hidden');
-            $('.content_seller_signup-form-title').innerHTML = 'Đăng ký shop';
-        }
-    }
 
 </script>
 <!-- ======================================================== Đăng ký shop ============================================= -->
@@ -131,12 +82,6 @@
             let numberOfLines = (this.value.match(/\n/g) || []).length + 1;
             if (numberOfLines >= 5) return false;
         }
-    }
-
-    $('.back_btn_signup').onclick = function () {
-        $('.content_seller_signup-user_info').classList.remove('hidden');
-        $('.content_seller_signup-shop_info').classList.add('hidden');
-        $('.content_seller_signup-form-title').innerHTML = 'Đăng ký chủ shop';
     }
 
     form.onsubmit = function (e) {

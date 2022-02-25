@@ -16,7 +16,8 @@ class HomeController {
                             user: object(user),
                             avatar: user.avatar,
                             avatar_base64: user.avatar_base64.data,
-                            products : multiObject(products)
+                            products : multiObject(products),
+                            seller: user.shop,
                         })
                     })
                     .catch(next);

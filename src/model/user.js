@@ -6,6 +6,7 @@ const User = new Schema({
     phoneNumber:{type:String,maxlength: 11, default:'0123456789'},
     email: {type:String, default:''},
     gender:{type:String},
+    shop:{type:Schema.Types.ObjectId, ref:'Shop'},
     dayOfBirth:{type:String, maxlength: 2, default:'01'},
     monthOfBirth:{type:String, maxlength:2, default:'01'},
     yearOfBirth:{type:String, maxlength: 4,default:'2000'},
