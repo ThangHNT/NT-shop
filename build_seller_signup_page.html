@@ -33,10 +33,10 @@
                             <input name="identity" class="wrapper_input-input input_identity" type="text" placeholder=" " maxlength="20" required>
                             <label class="wrapper_input-label" for="identity">Số CCCD/CMND</label>
                         </div>
-                        <div class="wrapper_input">
+                        <!-- <div class="wrapper_input">
                             <input name="phone_number" class="wrapper_input-input input_phone_number" type="text" placeholder=" " maxlength="15" required>
                             <label class="wrapper_input-label" for="phone_number">Số điện thoại</label>
-                        </div>
+                        </div> -->
                         <div class="wrapper_input">
                             <input name="email" class="wrapper_input-input input_email" type="text" placeholder=" " maxlength="30" required>
                             <label class="wrapper_input-label" for="email">Email</label>
@@ -154,7 +154,7 @@
         }
 
         $('.sign_up_btn').onclick = function(){
-            if($('.shop_name').value.length == 0 || $('.textarea_name').value.length == 0 || $('.shop_phone_number').value.length == 0){
+            if($('.shop_name').value.length == 0 || $('.textarea_name').value.length == 0 ){
                 alert('Vui lòng điền đầy đủ thông tin');
             }
             else {

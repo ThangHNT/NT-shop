@@ -1,6 +1,9 @@
 
 const User = require('../model/user.js');
 const Address = require('../model/address.js');
+const Shop = require('../model/shop.js');
+const Seller = require('../model/seller.js');
+const shop = require('../model/shop.js');
 
 class UserController {
     login(req,res,next){
@@ -164,7 +167,29 @@ class UserController {
     }
 
     sellerSignupSuccessful(req,res,next){
-        res.redirect('/');
+        // res.redirect('/');
+        const seller = new Seller();
+        seller.name = req.body.name;
+        seller.identity = req.body.identity;
+        seller.email = req.body.email;
+        const shop = new Shop();
+        shop.brand = req.body.shop_name;
+        shop.address = req.body.shop_address;
+        shop.phoneContact = req.body.shop_phone_number;
+        shop.owner = seller._id;
+        shop.save();
+        seller.shop = shop._id;
+        seller.save();
+        if(req.files){
+            const dataBase64 = req.files.shop_avatar.data.toString("base64");
+            shop.avatar_base64.data = dataBase64;
+            shop.avatar_base64.contentType = req.files.shop_avatar.mimetype;
+        }
+        res.send('thanh cong');
+    }
+
+    manageShop(req, res, next){
+        // res.json()
     }
 }
 

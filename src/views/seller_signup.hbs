@@ -7,8 +7,8 @@
     </div>
     <div id="content_seller" class="content_seller_signup">
         <div class="content_seller_signup-wrapper">
-            <form class="content_seller_signup-form" method="post" autocomplete="off">
-                <h4 class="content_seller_signup-form-title">Đăng ký chủ sở hữu</h4>
+            <form class="content_seller_signup-form" method="post" autocomplete="off" enctype="multipart/form-data">
+                <h4 class="content_seller_signup-form-title">Đăng ký chủ Shop</h4>
                 <div class="content_seller_signup-user_info">
                     <div class="wrapper_input">
                         <input name="name" class="wrapper_input-input input_name" type="text" placeholder=" "
@@ -21,16 +21,11 @@
                         <label class="wrapper_input-label" for="identity">Số CCCD/CMND</label>
                     </div>
                     <div class="wrapper_input">
-                        <input name="phone_number" class="wrapper_input-input input_phone_number" type="text"
-                            placeholder=" " maxlength="15" required>
-                        <label class="wrapper_input-label" for="phone_number">Số điện thoại</label>
-                    </div>
-                    <div class="wrapper_input">
                         <input name="email" class="wrapper_input-input input_email" type="text" placeholder=" "
                             maxlength="30" required>
                         <label class="wrapper_input-label" for="email">Email</label>
                     </div>
-                    <!-- <span class = "notify_text">(Vui lòng kiểm tra email để nhận mã)</span> -->
+                    
                     <span class="send_code_btn signup_btn">Gửi mã</span>
                     <div class="wrapper_input">
                         <input name="confirm_code" class="wrapper_input-input input_confirm_code" type="text"
@@ -61,7 +56,7 @@
                         <div class="add_shop_avatar">
                             <i class="fa-solid fa-plus"></i>
                         </div>
-                        <input type="file">
+                        <input type="file" accept=".jpg, .png" name="shop_avatar">
                     </div>
                     <div class="btn_form">
                         <span class="back_btn_signup signup_btn">Quay lại</span>
@@ -116,12 +111,13 @@
         {{!-- if ($('.input_confirm_code').value != code || code == '') {
             alert('Mã sai, vui lòng kiểm tra lại.')
         } --}}
-         if ($('.input_name').value.length == 0 || $('.input_email').value.length == 0 || $('.input_identity').value.length == 0 || $('.input_phone_number').value.length == 0) {
+         if ($('.input_name').value.length == 0 || $('.input_email').value.length == 0 || $('.input_identity').value.length == 0 ) {
             alert('Vui lòng điền đầy đủ các thông tin.')
         }
         else {
             $('.content_seller_signup-user_info').classList.add('hidden');
             $('.content_seller_signup-shop_info').classList.remove('hidden');
+            $('.content_seller_signup-form-title').innerHTML = 'Đăng ký shop';
         }
     }
 
@@ -140,6 +136,7 @@
     $('.back_btn_signup').onclick = function () {
         $('.content_seller_signup-user_info').classList.remove('hidden');
         $('.content_seller_signup-shop_info').classList.add('hidden');
+        $('.content_seller_signup-form-title').innerHTML = 'Đăng ký chủ shop';
     }
 
     form.onsubmit = function (e) {
