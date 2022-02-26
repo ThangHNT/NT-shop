@@ -1,0 +1,97 @@
+
+#header_myShop {
+    width: 100%;
+    min-height: 60px;
+    max-height: 60px;
+    background-color: #ddd;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+.header_myShop-navbar {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 90%;
+}
+
+.header_myShop-navbar img {
+    width: 100px;
+    height: 60px;
+}
+
+.header_myShop-navbar-account {
+    display: flex;
+    align-items:center;
+    cursor: pointer;
+    position: relative;
+}
+
+.header_myShop-navbar-account img {
+    border-radius:50%;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.header_myShop-navbar-account h5 {
+    color: rgb(88, 86, 86);
+    margin-right: 10px;
+}
+
+.header_myShop-navbar-account-option {
+    position: absolute;
+    background-color:#fff;
+    top: 52px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 160px;
+    height: 85px;
+    padding: 18px;
+    cursor: default;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 0 #999;
+    transform-origin: top;
+    animation: showList ease-in 0.25s;
+    display: none;
+}
+
+.header_myShop-navbar-account-option a {
+    color: rgb(53, 52, 52);
+}
+
+.header_myShop-navbar-account-option a:hover {
+    color: orange;
+}
+
+.header_myShop-navbar-account-option::before {
+    content: "";
+    display: block;
+    position:absolute;
+    border-style: solid;
+    border-width: 10px 10px;
+    border-color: transparent transparent #fff transparent;
+    top: -20px;
+}
+
+.header_myShop-navbar-account:hover .header_myShop-navbar-account-option {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
