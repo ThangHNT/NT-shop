@@ -28,6 +28,16 @@
     position: relative;
 }
 
+.header_myShop-navbar-account::after {
+    content: "";
+    display: block;
+    position:absolute;
+    width: 160px;
+    height: 20px;
+    background-color:transparent;
+    top: 35px;
+}
+
 .header_myShop-navbar-account img {
     border-radius:50%;
     width: 45px;
@@ -80,6 +90,110 @@
 .header_myShop-navbar-account:hover .header_myShop-navbar-account-option {
     display: flex;
 }
+
+/* ================================================================== content ============================================================ */
+
+#content_myShop {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+}
+
+/* --------------------------------------------------------------- side bar ------------------------------------------------------ */
+
+.content_myShop-side_bar {
+    width: 20%;
+}
+
+.content_myShop-side_bar-item {
+    margin-top: 30px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.content_myShop-side_bar-delivery {
+    margin-top: 0;
+}
+
+.content_myShop-side_bar-item li {
+    list-style: none;
+    margin: 5px 15px;
+    display: inline-block;
+}
+
+.content_myShop-side_bar-item li:hover {
+    color: blue;
+}
+
+/*  ---------------------------------------------------------------content body ------------------------------------------------ */
+
+.content_myShop-body {
+    width: 80%;
+    background-color: #ddd;
+    padding: 20px 30px;
+}
+
+.content_myShop-body-wrapper {
+    padding: 20px;
+    background-color: #fff;
+    height: 100%;
+}
+
+.content_myShop-body-item-title h3 {
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.separate_line_vertical {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 0;
+}
+
+.content_myShop-body-product-main-item {
+    margin: 15px 0;
+}
+
+.content_myShop-body-product-main-item {
+    display: flex;
+    align-items: center;
+}
+
+.content_myShop-body-product-main-item label {
+    font-size: 15px;
+    min-width: 200px;
+}
+
+.content_myShop-body-product-main-item input {
+    width: 70%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    letter-spacing: 1.5px ;
+}
+
+.content_myShop-body-product-main-Category-list {
+    min-width: 300px;
+    height: 400px;
+    background-color: #ddd;
+    overflow-x: hidden;
+}
+
+.content_myShop-body-product-main-Category-list li {
+    list-style: none;
+    margin: 10px 0;
+    display: block;
+}
+
+
+
+
+
+
+
 
 
 
