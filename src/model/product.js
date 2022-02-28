@@ -12,7 +12,7 @@ const Product = new Schema({
     brand: {type: String, default: '', required: true},
     sold: {type: String, default: ''},
     available: {type: String, default: ''},
-    genus:[{name:String,amount:String}],
+    category:{type:String, default: '',required:true},
     detail:[{title:String,content:String,default:''}],
     img: [{type: String, default: ''}],
     img_base64 :[{data: Buffer,contentType: String,src:String,}]
