@@ -116,40 +116,15 @@
         // =========================================================== xử lý hình ảnh =======================================
         const reader = new FileReader();
         $('.shop_avatar input').addEventListener("change", (event) => {
-            const files = event.target.files;
-            reader.readAsDataURL(files[0]);
-            reader.addEventListener("load", (event) => {
+            let input = event.target;
+            let reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+            reader.onload = function(){
+                let dataUrl = reader.result;
                 base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-                // console.log(base64String);  lấy dạng base64 của hình ảnh vừa chọn
-    
-                const binary = event.target.result;
-                var img = binary.slice(binary.lastIndexOf(',') + 1);
-    
-                // hàm tạo url cho thuộc tính src của ảnh
-                const b64toBlob = (img, contentType = '', sliceSize = 512) => {
-                    const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
-                    const byteArrays = [];
-    
-                    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                        const slice = byteCharacters.slice(offset, offset + sliceSize);
-    
-                        const byteNumbers = new Array(slice.length);
-                        for (let i = 0; i < slice.length; i++) {
-                            byteNumbers[i] = slice.charCodeAt(i); // lấy mã Unicode 
-                        }
-    
-                        const byteArray = new Uint8Array(byteNumbers); // tạo mảng kiểu 8bit
-                        byteArrays.push(byteArray);
-                    }
-    
-                    const blob = new Blob(byteArrays, { type: contentType });
-                    return blob;
-                }
-                const blob = b64toBlob(img, 'image/jpeg');
-                const blobUrl = URL.createObjectURL(blob);  // tạo url mới
-                $('.shop_avatar').style.background = `url(${blobUrl}) no-repeat center / contain`;
+                $('.shop_avatar').style.background = `url(${dataUrl}) no-repeat center / contain`;
                 $('.add_shop_avatar').classList.add('hidden');
-            })
+            }
         })
     
     </script>

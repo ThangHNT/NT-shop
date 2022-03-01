@@ -43,7 +43,7 @@
                 <ul class="content_myShop-side_bar-manage_product content_myShop-side_bar-item"> 
                     <h4>Quản lý sản phẩm</h4>
                     <li class="content_myShop-side_bar-manage_product-item">Tất cả</li>
-                    <li class="content_myShop-side_bar-manage_product-item">Thêm sản phẩm</li>
+                    <li class="content_myShop-side_bar-manage_product-item active">Thêm sản phẩm</li>
                     <li class="content_myShop-side_bar-manage_product-item">Sản phẩm vi phạm</li>
                     <li class="content_myShop-side_bar-manage_product-item">Sản phẩm chưa bán hết</li>
                 </ul>
@@ -100,7 +100,7 @@
                                     <h4>chọn ảnh đại diện sản phẩm</h4>
                                     <div class="main-Category-imgs-wrapper">
                                         <input type="file" accept="image/*">
-                                        <img class="content_myShop-body-product-main-Category-imgs-avatar main-Category-imgs-item" src="https://cf.shopee.vn/file/9fd16dc16de7980e6a8760d1e24f1864" alt="">
+                                        <img class="content_myShop-body-product-main-Category-imgs-avatar main-Category-imgs-item" src="" alt="">
                                         <div class="circle-blue">
                                             <i class="fa-solid fa-plus"></i>
                                         </div>
@@ -109,56 +109,56 @@
                                     <div class="content_myShop-body-product-main-Category-some_imgs">
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/05fc34bb3a63973a3e0a103ccd9360e3" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/62e35164407f5b6e1b40b3ed409c60b4" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/5bfeb2b7bfe86c92c8e65273d3a04f70" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/3b0b2a16132fe5939e5a70482ed0645a" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/4993906b472eef6b18058abdbda6cfa0" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/348a4ea0338fa5e4de1bbfb8e3d7c957" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/7be491bce2ea7e2852c7d5ccbcd166b1" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
-                                            <img class="main-Category-imgs-item" src="https://cf.shopee.vn/file/7be491bce2ea7e2852c7d5ccbcd166b1" alt="">
+                                            <img class="main-Category-imgs-item" src="" alt="">
                                             <div class="circle-blue">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
@@ -186,7 +186,6 @@
                                             <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                             <div class="content_myShop-body-store_btn">
@@ -201,6 +200,52 @@
 
         </div>
     </div>
+
+    <!-- =========================================================== Chọn loại sản phẩm ======================================== -->
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+
+        let productCategory = $$('.content_myShop-body-product-main-Category-list li');
+        productCategory.forEach((element,index) => {
+            element.onclick = function(){
+                removeAllSelected(index);
+                element.classList.add('select_product_category');
+            }    
+        });
+        function removeAllSelected(k){
+            productCategory.forEach((element,index) => {
+                if(index != k){
+                    element.classList.remove('select_product_category');
+                }
+            });
+        }
+
+    </script>
+
+    <!-- ======================================================= chọn ảnh sản phẩm ============================================= -->
+    <script>
+        let productImgs = $$('.main-Category-imgs-wrapper input');
+        let base64String = '';
+
+        const reader = new FileReader();
+        productImgs.forEach((element,index) => {
+            element.onchange = function(event){
+                let input = event.target;
+                let reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+                reader.onload = function(){
+                    let dataUrl = reader.result;
+                    var output = $$('.main-Category-imgs-wrapper img')[index];
+                    output.src = dataUrl;
+                    $$('.main-Category-imgs-wrapper img')[index].style.display = 'block';
+                    base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                    $$('.circle-blue')[index].classList.add('hidden');
+                }
+            }
+        })
+
+    </script>
 
     <!-- link fontawesome icons -->
     <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>
