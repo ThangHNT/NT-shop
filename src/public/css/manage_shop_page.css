@@ -323,20 +323,13 @@
     display: block;
 }
 
-.add_product_detail {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgb(99, 98, 98);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+.product_detail_btn_remove {
+    margin-left: 10px;
 }
 
-.add_product_detail:hover i {
-    color: red;
+.product_detail_btn_remove i {
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .content_myShop-body-product-main-detail-wrapper-item {

@@ -178,12 +178,48 @@
                                 <label for="">Chi tiết sản phẩm</label>
                                 <div class="content_myShop-body-product-main-detail-wrapper">
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="add_product_detail">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                        <div class="product_detail_input hidden">
+                                        <div class="product_detail_input">
                                             <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
                                             <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
+                                        </div>
+                                        <div class="product_detail_btn_remove">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <div class="product_detail_input">
+                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
+                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
+                                        </div>
+                                        <div class="product_detail_btn_remove">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <div class="product_detail_input">
+                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
+                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
+                                        </div>
+                                        <div class="product_detail_btn_remove">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <div class="product_detail_input">
+                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
+                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
+                                        </div>
+                                        <div class="product_detail_btn_remove">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </div>
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <div class="product_detail_input">
+                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
+                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
+                                        </div>
+                                        <div class="product_detail_btn_remove">
+                                            <i class="fa-solid fa-circle-xmark"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -244,6 +280,22 @@
                 }
             }
         })
+
+    </script>
+
+    <!-- ===================================================== chi tiết sản phẩm =============================================== -->
+    <script>
+        let deleteContentDetailBtn = $$('.product_detail_btn_remove i');
+        let productDetailTitle = $$('.product_detail_input-title');
+        let productDetailContent = $$('.product_detail_input-content');
+
+        deleteContentDetailBtn.forEach((element, index) => {
+            element.onclick = function () {
+                productDetailTitle[index].value = '';
+                productDetailContent[index].value = '';
+            }
+        })
+        
 
     </script>
 
