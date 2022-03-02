@@ -99,7 +99,7 @@
                                 <div class="content_myShop-body-product-main-Category-imgs">
                                     <h4>chọn ảnh đại diện sản phẩm</h4>
                                     <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
+                                        <input class="product_avatar" type="file" accept="image/*">
                                         <img class="content_myShop-body-product-main-Category-imgs-avatar main-Category-imgs-item" src="" alt="">
                                         <div class="circle-blue">
                                             <i class="fa-solid fa-plus"></i>
@@ -175,52 +175,35 @@
                                 <textarea name="product_description" rows="10" maxlength="500"></textarea>
                             </div>
                             <div class="content_myShop-body-product-main-detail content_myShop-body-product-main-item">
-                                <label for="">Chi tiết sản phẩm</label>
+                                <label for="">Thông tin sản phẩm</label>
                                 <div class="content_myShop-body-product-main-detail-wrapper">
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="product_detail_input">
-                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
-                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
-                                        </div>
-                                        <div class="product_detail_btn_remove">
-                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        <label for="">Số lượng:</label>
+                                        <input class="product_detail_input-item product_detail_input-number product_detail_input-amount" maxlength="5" name="product_detail_input-item" type="text">
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <label for="">Giá:</label>
+                                        <input class="product_detail_input-item product_detail_input-number product_detail_input-price" maxlength="13" name="product_detail_input-item" type="text">
+                                        <span class="currency">VND</span>
+                                    </div>
+                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                        <label for="">Giảm giá:</label>
+                                        <input class="product_detail_input-item product_detail_input-number product_detail_input-discount" maxlength="13" name="product_detail_input-item" type="text">
+                                        <div class="kind_discount">
+                                            <span>%</span>
+                                            <div class="separate_line"></div>
+                                            <span>VND</span>
                                         </div>
                                     </div>
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="product_detail_input">
-                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
-                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
-                                        </div>
-                                        <div class="product_detail_btn_remove">
-                                            <i class="fa-solid fa-circle-xmark"></i>
-                                        </div>
+                                        <label for="">Xuất xứ:</label>
+                                        <input class="product_detail_input-item" maxlength="50" name="product_detail_input-item" type="text">
+                                        <i class="fa-solid fa-circle-xmark"></i>
                                     </div>
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="product_detail_input">
-                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
-                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
-                                        </div>
-                                        <div class="product_detail_btn_remove">
-                                            <i class="fa-solid fa-circle-xmark"></i>
-                                        </div>
-                                    </div>
-                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="product_detail_input">
-                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
-                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
-                                        </div>
-                                        <div class="product_detail_btn_remove">
-                                            <i class="fa-solid fa-circle-xmark"></i>
-                                        </div>
-                                    </div>
-                                    <div class="content_myShop-body-product-main-detail-wrapper-item">
-                                        <div class="product_detail_input">
-                                            <input class="product_detail_input-title" maxlength="50" placeholder="Tiêu đề" name="product_detail_input-title" type="text">
-                                            <textarea class="product_detail_input-content" placeholder="Nội dung" rows="3" cols="60" name="product_detail_input-content"></textarea>
-                                        </div>
-                                        <div class="product_detail_btn_remove">
-                                            <i class="fa-solid fa-circle-xmark"></i>
-                                        </div>
+                                        <label for="">Vận chuyển từ:</label>
+                                        <input class="product_detail_input-item" maxlength="50" name="product_detail_input-item" type="text">
+                                        <i class="fa-solid fa-circle-xmark"></i>
                                     </div>
                                 </div>
                             </div>
@@ -261,11 +244,11 @@
 
     <!-- ======================================================= chọn ảnh sản phẩm ============================================= -->
     <script>
-        let productImgs = $$('.main-Category-imgs-wrapper input');
+        let productImgsInput = $$('.main-Category-imgs-wrapper input');
         let base64String = '';
 
         const reader = new FileReader();
-        productImgs.forEach((element,index) => {
+        productImgsInput.forEach((element,index) => {
             element.onchange = function(event){
                 let input = event.target;
                 let reader = new FileReader();
@@ -274,7 +257,7 @@
                     let dataUrl = reader.result;
                     var output = $$('.main-Category-imgs-wrapper img')[index];
                     output.src = dataUrl;
-                    $$('.main-Category-imgs-wrapper img')[index].style.display = 'block';
+                    $$('.main-Category-imgs-wrapper img')[index].style.opacity = '1';
                     base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
                     $$('.circle-blue')[index].classList.add('hidden');
                 }
@@ -283,19 +266,101 @@
 
     </script>
 
-    <!-- ===================================================== chi tiết sản phẩm =============================================== -->
+    <!-- ===================================================== thông tin sản phẩm =============================================== -->
     <script>
-        let deleteContentDetailBtn = $$('.product_detail_btn_remove i');
-        let productDetailTitle = $$('.product_detail_input-title');
-        let productDetailContent = $$('.product_detail_input-content');
+        let deleteIcons = $$('.content_myShop-body-product-main-detail-wrapper-item i');
+        let productInfoInput = $$('.product_detail_input-item');
+        let inputNumber = $$('.product_detail_input-number');
+        let unit = $$('.kind_discount span');
 
-        deleteContentDetailBtn.forEach((element, index) => {
+        unit[0].onclick = function(){
+            this.classList.add('select_unit');
+            unit[1].classList.remove('select_unit');
+        }
+        unit[1].onclick = function(){
+            this.classList.add('select_unit');
+            unit[0].classList.remove('select_unit');
+        }
+        
+        deleteIcons.forEach((element,index) => {
             element.onclick = function () {
-                productDetailTitle[index].value = '';
-                productDetailContent[index].value = '';
+                console.log(1);
+                productInfoInput[index + 3].value = '';
+            }
+        })
+
+        inputNumber.forEach((element,index) => {
+            element.onblur = function() {
+                if(isNaN(element.value)){
+                    alert('Vui lòng chỉ nhập số!');
+                }
             }
         })
         
+    </script>
+
+    <!-- =================================================== khi ấn nút lưu ======================================================= -->
+    <script>
+        let storeBtn = $('.content_myShop-body-store_btn span');
+        
+        function checkName(){
+            if($('.content_myShop-body-product-main-name input').value.length == 0) return false;
+            return true;
+        }
+        function checkCategory(){
+            let dem = 0;
+            productCategory.forEach((element,index) => {
+                if(element.classList.contains('select_product_category')) {
+                    dem = 1;
+                }
+            })
+            if(dem == 0) return false;
+            return true;
+        }
+        function checkImgs(){
+            let dem = 0;
+            productImages.forEach((element,index) => {
+                if(element.style.opacity == 1){
+                    dem++;
+                }
+            })
+            if($('.content_myShop-body-product-main-Category-imgs-avatar').style.opacity == 0) return false;
+            if(dem <= 2) return false;
+            return true;
+        }
+        function checkIntroduce(){
+            if($('.content_myShop-body-product-main-introduction input').value.length == 0) return false;
+            return true;
+        }
+        function checkDescription(){
+            if($('.content_myShop-body-product-main-item textarea').value.length == 0) return false;
+            return true;
+        }
+        function checkProductInfo(){
+            let check = true;
+            $$('.product_detail_input-item').forEach((element,index) => {
+                if(element.value.length == 0) check = false;
+            })
+            return check;
+        }
+        function checkUniDiscount(){
+            let dem  = 0;
+            unit.forEach((element,index) => {
+                if(element.classList.contains('select_unit')) dem++;
+            })
+            if(dem == 0) return false;
+            return true;
+        }
+        storeBtn.onclick = function(){
+            console.log('click');
+            if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
+            else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
+            else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
+            else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
+            else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
+            else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
+            // else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
+        }
 
     </script>
 

@@ -255,7 +255,7 @@
 .main-Category-imgs-item {
     width: 100%;
     height: 100%;
-    display: none;
+    opacity: 0;
 }
 
 
@@ -297,45 +297,63 @@
 
 .content_myShop-body-product-main-detail-wrapper {
     border: 1px solid #ccc;
-    width: 80%;
+    width: 70%;
     border-radius: 3px;
     padding: 10px;
 }
 
 
-
-.product_detail_input {
-    display: flex;
-    align-items: center;
-}
-
-.product_detail_input input {
-    width: 260px;
-    height: 40px;
-    margin-right: 15px;
-    
-}
-
-.product_detail_input textarea {
-    outline: none;
-    padding: 5px;
-    font-size: 15px;
-    display: block;
-}
-
-.product_detail_btn_remove {
-    margin-left: 10px;
-}
-
-.product_detail_btn_remove i {
-    font-size: 24px;
-    cursor: pointer;
-}
-
 .content_myShop-body-product-main-detail-wrapper-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.content_myShop-body-product-main-detail-wrapper-item label {
+    min-width: 130px;
+    color: #666;
+}
+
+.content_myShop-body-product-main-detail-wrapper-item input {
+    width: 60%;
+    border: 1px solid rgb(110, 108, 108);
+}
+
+.content_myShop-body-product-main-detail-wrapper-item i {
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.product_detail_input-price , .product_detail_input-discount{
+    width: 20% !important;
+}
+
+.currency {
+    margin-left: 10px;
+    color: #555;
+}
+
+.kind_discount {
+    display:flex;
+    margin-left: 10px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.kind_discount span {
+    margin: 0 5px;
+    padding: 0 5px;
+    font-size: 15px;
+}
+
+.kind_discount span:hover {
+    transform: scale(1.1);
+    color: red;
+}
+
+.product_detail_input-amount {
+    width: 10% !important;
 }
 
 /* ---------------------------------------------------------------- nút lưu ---------------------------------------------------- */
@@ -363,7 +381,10 @@
     color: rgb(243, 23, 60) !important;
 }
 
-
+.select_unit{
+    color: red;
+    font-size: 18px !important;
+}
 
 
 
