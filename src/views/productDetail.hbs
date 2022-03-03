@@ -150,11 +150,11 @@
                 </div>
                 <div class="product-introduction-option-price">
                     <span
-                        class="product-introduction-option-price-item product-introduction-option-price-origin">240.000đ</span>
+                        class="product-introduction-option-price-item product-introduction-option-price-origin">{{product.originPrice}}đ</span>
                     <p class="product-introduction-option-price-item product-introduction-option-price-after_discount">
-                        122.000đ</p>
+                        {{product.priceAfterDiscount}}đ</p>
                     <span class="product-introduction-option-price-item product-introduction-option-price-discount">Giảm
-                        49%</span>
+                        {{product.discount.amount}}{{product.discount.unit}} </span>
                 </div>
                 <div class="product-introduction-option-delivery product-introduction-option-item">
                     <span class="product-introduction-option-item-title">Vận chuyển</span>
@@ -236,35 +236,23 @@
                 <div class="product-detail-content-features">
                     <div class="product-detail-content-features-item">
                         <span>Danh Mục</span>
-                        <p>Shopee > Thiết Bị Điện Tử > Tai Nghe</p>
+                        <p>NTShop > {{product.category}}</p>
                     </div>
                     <div class="product-detail-content-features-item">
                         <span>Thương hiệu</span>
-                        <p>Tecsire</p>
-                    </div>
-                    <div class="product-detail-content-features-item">
-                        <span>Kiểu kết nối</span>
-                        <p>Không dây</p>
-                    </div>
-                    <div class="product-detail-content-features-item">
-                        <span>Các loại tai nghe</span>
-                        <p>Nhét tai</p>
-                    </div>
-                    <div class="product-detail-content-features-item">
-                        <span>Thiết bị âm thanh tương thích</span>
-                        <p>điện thoại di động, PC & Laptop</p>
-                    </div>
-                    <div class="product-detail-content-features-item">
-                        <span>Kiểu kết nối headphone</span>
-                        <p>Bluetooth</p>
+                        <p>{{product.brand}}</p>
                     </div>
                     <div class="product-detail-content-features-item">
                         <span>Loại bảo hành</span>
                         <p>Không bảo hành</p>
                     </div>
                     <div class="product-detail-content-features-item">
+                        <span>Xuất xứ</span>
+                        <p>{{product.madeIn}}</p>
+                    </div>
+                    <div class="product-detail-content-features-item">
                         <span>Gửi từ</span>
-                        <p>Nước ngoài</p>
+                        <p>{{product.deliveryFrom}}</p>
                     </div>
                 </div>
             </div>
@@ -275,22 +263,10 @@
             </div>
             <div class="product-description-content">
                 <h5>Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày</h5>
-                <h5>Độ trễ thấp HD</h5>
                 <p>Chip tùy chỉnh trò chơi, không có cảm giác trễ 0,06 giây, giúp chơi game tốt hơn. Ổn định hơn, mượt
                     mà hơn so với tai nghe thông thường.</p>
                 <h5>Pin tốt</h5>
-                <p>Nghe nhạc liên tục 20 giờ, thời gian chờ 350 Giờ.</p>
-                <p>Khả năng tương thích mạnh mẽ</p>
-                <h5>Thông tin chi tiết: </h5>
-                <p>Tên sản phẩm: Lenovo / Lenovo LP40s</p>
-                <p>Thương hiệu: Lenovo / Lenovo</p>
-                <p>Model: LP40s</p>
-                <p>Chức năng: chức năng cuộc gọi hỗ trợ tai nghe nhạc</p>
-                <p>Chất liệu: Nhựa</p>
-                <p>Xuất xứ: Trung Quốc đại lục</p>
-                <p>Phiên bản Bluetooth: 5.0</p>
-                <p>Hiệu suất chống thấm nước: IPX5</p>
-                <p>Phương thức kết nối tai nghe và thiết bị phát: Kết nối Bluetooth.</p>
+                {{product.description}}
             </div>
         </div>
         <div class="product-review">

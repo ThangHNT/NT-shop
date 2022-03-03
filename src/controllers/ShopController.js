@@ -23,10 +23,13 @@ class ShopController {
         // var id = req.user.id;
         User.findOne({id: '1384771445288690'}, function(err, user){
             // User.findOne({id: id, authType: provider}, function(err, user){
-                let unit = req.body.unit;
+                let unit = req.body.discount.unit;
                 let priceAfterDiscount = 0, price = Number(req.body.price);
                 if(unit == '%'){
-                    priceAfterDiscount = Math.floor((price*req.body.discount.amount)/100);
+                    priceAfterDiscount = Math.floor(price - (price*req.body.discount.amount)/100);
+                }
+                else {
+                    priceAfterDiscount = Math.floor(Number(req.body.price) - req.body.discount.amount);
                 }
                 const product = new Product;
                 product.name = req.body.name;

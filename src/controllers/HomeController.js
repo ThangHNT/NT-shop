@@ -47,7 +47,7 @@ class HomeController {
             Product.findById({_id: req.params.id}, function(err, product){
                 if(product){
                     res.render('productDetail',{
-                        product: product,
+                        product: object(product),
                         avatar: product.avatar.data,
                         imgs : object(product.img_base64),
                     });
