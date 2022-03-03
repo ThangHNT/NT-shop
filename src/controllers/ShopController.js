@@ -1,5 +1,6 @@
 const Product = require('../model/product.js');
 const User = require('../model/user.js');
+const Shop = require('../model/shop.js');
 const {multiObject} = require('../convertToObject.js');
 const {object} = require('../convertToObject.js');
 
@@ -14,6 +15,29 @@ class ShopController {
                 userAvatar: user.avatar,
                 user_avatar_base64: user.avatar_base64.data
             });
+        })
+    }
+
+    addNewProduct(req,res,next){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+            // User.findOne({id: id, authType: provider}, function(err, user){
+                const product = new Product;
+                product.name = req.body.name;
+                product.category = req.body.productCategory;
+                product.price = req.body.price;
+                product.description = req.body.description;
+                product.totalAmount = req.body.totalAmount;
+                product.madeIn = req.body.madeIn;
+                product.deliveryFrom = req.body.deliveryFrom;
+                product.discount.amount = req.body.discount.amount;
+                product.discount.unit = req.body.discount.unit;
+                product.img_base64 = req.body.imgs;
+                product.introduction = req.body.introduction;
+                product.owner = user.shop;
+                product.brand = req.body.brand;
+                product.save();
         })
     }
 }

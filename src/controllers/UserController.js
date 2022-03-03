@@ -187,9 +187,7 @@ class UserController {
         })
     }
 
-    manageShop(req, res, next){
-        // res.json()
-    }
+    
 }
 
 module.exports = new UserController;

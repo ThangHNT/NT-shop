@@ -193,14 +193,20 @@
                                     </div>
                                 </div>
                                 <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                    <label for="">Thương hiệu:</label>
+                                    <input class="product_detail_input-item product_detail_input-brand" maxlength="50"
+                                        name="product_detail_input-item" type="text">
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                </div>
+                                <div class="content_myShop-body-product-main-detail-wrapper-item">
                                     <label for="">Xuất xứ:</label>
-                                    <input class="product_detail_input-item" maxlength="50"
+                                    <input class="product_detail_input-item product_detail_input-made_in" maxlength="50"
                                         name="product_detail_input-item" type="text">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                 </div>
                                 <div class="content_myShop-body-product-main-detail-wrapper-item">
                                     <label for="">Vận chuyển từ:</label>
-                                    <input class="product_detail_input-item" maxlength="50"
+                                    <input class="product_detail_input-item product_detail_input-delivery_from" maxlength="50"
                                         name="product_detail_input-item" type="text">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                 </div>
@@ -216,6 +222,17 @@
     </div>
     <div id="footer_myShop">
 
+    </div>
+</div>
+
+<div class="modal store_successfully hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-body modal-content">
+        <div class="modal-body-updated_profile">
+            <img style="width: 40px; height: 40px;" src="https://cachbothuocla.vn/wp-content/uploads/2019/03/tick-xanh.png"
+                alt="">
+            <h4>Cập nhật thành công</h4>
+        </div>
     </div>
 </div>
 
@@ -239,12 +256,23 @@
         });
     }
 
+    function getProductCategory(){
+        let ans = '';
+        productCategory.forEach((element, index) => {
+            if(element.classList.contains('select_product_category')){
+                ans = element.innerText;
+            }
+        });
+        return ans;
+    }
+
 </script>
 
 <!-- ======================================================= chọn ảnh sản phẩm ============================================= -->
 <script>
     let productImgsInput = $$('.main-Category-imgs-wrapper input');
     let base64String = '';
+    let listImg = [];
 
     const reader = new FileReader();
     productImgsInput.forEach((element, index) => {
@@ -257,8 +285,12 @@
                 var output = $$('.main-Category-imgs-wrapper img')[index];
                 output.src = dataUrl;
                 $$('.main-Category-imgs-wrapper img')[index].style.opacity = '1';
-                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
                 $$('.circle-blue')[index].classList.add('hidden');
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                listImg.push({
+                    data: base64String,
+                    contentType: 'image/png'
+                });
             }
         }
     })
@@ -295,13 +327,6 @@
             }
         }
     })
-
-</script>
-
-<!-- =================================================== khi ấn nút lưu ======================================================= -->
-<script>
-    let storeBtn = $('.content_myShop-body-store_btn span');
-    let productImages = $$('.main-Category-imgs-wrapper img');
 
     function checkName() {
         if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
@@ -351,15 +376,82 @@
         if (dem == 0) return false;
         return true;
     }
+    
+    function getUnitDiscount() {
+        let ans = '';
+         unit.forEach((element, index) => {
+            if (element.classList.contains('select_unit')) ans = element.innerText;
+        })
+        return ans;
+    }
+
+</script>
+
+<!-- =================================================== khi ấn nút lưu ======================================================= -->
+<script>
+    let storeBtn = $('.content_myShop-body-store_btn span');
+    let productImages = $$('.main-Category-imgs-wrapper img');
+    
+    // ------------------------------------------------ lấy dữ liệu để gửi về server ------------------------------------------
+    let newProduct = '';
+
+    function addNewProduct(url,data){
+        var option = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi them san pham');
+            })
+    }
+    
     storeBtn.onclick = function () {
-        console.log('click');
         if (!checkName()) alert('Vui lòng điền tên sản phẩm!');
         else if (!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
-        else if (!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
+        {{!-- else if (!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!'); --}}
         else if (!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if (!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
         else if (!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
         else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
+        else {
+            newProduct = {
+                name: $('.content_myShop-body-product-main-name input').value,
+                productCategory: getProductCategory(),
+                imgs: listImg,
+                introduction: $('.content_myShop-body-product-main-introduction input').value,
+                description: $('.content_myShop-body-product-main-item textarea').value,
+                totalAmount: $('.product_detail_input-amount').value,
+                price: $('.product_detail_input-price').value,
+                discount: {amount:$('.product_detail_input-discount').value,unit: getUnitDiscount()},
+                madeIn: $('.product_detail_input-made_in').value,
+                deliveryFrom: $('.product_detail_input-delivery_from').value,
+                brand: $('.product_detail_input-brand').value
+            }
+            let promise = Promise.resolve();
+            promise
+                .then(() => {
+                    addNewProduct('/shop/add-product',newProduct);
+                    console.log(newProduct);
+                })
+                .then(() => {
+                    $('.store_successfully').classList.remove('hidden');
+                })
+                .then(() => {
+                    setTimeout(function (){
+                        $('.store_successfully').classList.add('hidden');
+                    },1000);
+                })
+                .catch(() => {console.log('co loi')})
+        }
+
+        
     }
 
 </script>

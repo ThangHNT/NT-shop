@@ -198,6 +198,7 @@
     cursor: pointer;
     padding: 6px 0;
     color: rgb(73, 72, 72);
+    font-size: 15px !important;
 }
 
 .content_myShop-body-product-main-Category-list li:hover {
