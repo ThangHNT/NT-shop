@@ -21,7 +21,7 @@
                     <img class = "user_avatar" src="https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg" alt="">
                     <h5>Thang Hoang</h5>
                     <div class="header_myShop-navbar-account-option">
-                        <a href="#">Hồ sơ người bán</a>
+                        <a href="#">Hồ sơ shop</a>
                         <a href="#">Đăng xuất</a>
                     </div>
                 </div>
@@ -302,6 +302,7 @@
     <!-- =================================================== khi ấn nút lưu ======================================================= -->
     <script>
         let storeBtn = $('.content_myShop-body-store_btn span');
+        let productImages = $$('.main-Category-imgs-wrapper img');
         
         function checkName(){
             if($('.content_myShop-body-product-main-name input').value.length == 0) return false;
@@ -355,16 +356,18 @@
             console.log('click');
             if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
             else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
+            else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
             else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
             else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
             else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
             else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
-            // else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
         }
 
     </script>
 
     <!-- link fontawesome icons -->
     <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>
+    
 </body>
+
 </html>
