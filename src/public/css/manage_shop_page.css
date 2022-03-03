@@ -326,7 +326,7 @@
     cursor: pointer;
 }
 
-.product_detail_input-price , .product_detail_input-discount{
+.product_detail_input-price , .product_detail_input-discount,.product_detail_input-amount {
     width: 20% !important;
 }
 
@@ -353,9 +353,6 @@
     color: red;
 }
 
-.product_detail_input-amount {
-    width: 10% !important;
-}
 
 /* ---------------------------------------------------------------- nút lưu ---------------------------------------------------- */
 .content_myShop-body-store_btn {

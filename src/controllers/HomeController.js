@@ -1,6 +1,5 @@
 const Product = require('../model/product.js');
 const User = require('../model/user.js');
-const passport = require('passport');
 const {multiObject} = require('../convertToObject.js');
 const {object} = require('../convertToObject.js');
 
@@ -41,7 +40,21 @@ class HomeController {
     }
 
     productDetail(req,res,next) {
-        res.render('productDetail');
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
+            Product.findById({_id: req.params.id}, function(err, product){
+                if(product){
+                    res.render('productDetail',{
+                        product: product,
+                        avatar: product.avatar.data,
+                        imgs : object(product.img_base64),
+                    });
+                    
+                }
+            })
+        })
     }
 }
 

@@ -4,7 +4,7 @@ const homeController = require('../controllers/HomeController.js');
 
 
 router.get('/logout',homeController.logout);
-router.get('/product/detail',homeController.productDetail);
+router.get('/product/detail/:id',homeController.productDetail);
 router.get('/',homeController.home);
 
 module.exports = router;

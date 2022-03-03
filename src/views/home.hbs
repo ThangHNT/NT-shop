@@ -357,13 +357,13 @@
         <!-- Danh sách sản phẩm -->
         <div class="content-product_list">
             {{#each products}}
-            <a href="/product/detail" class="content-product_list-item">
-                <img src="https://cf.shopee.vn/file/594fb14ee9a9b291493f3008c3921cad_tn" alt="">
+            <a href="/product/detail/{{this._id}}" class="content-product_list-item">
+                <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt="">
                 <div class="content-product_list-item-introduction container">
                     <p class="content-product_list-item-description">
-                        {{this.shortDescription}}
+                        {{this.introduction}}
                     </p>
-                    <span class="content-product_list-item-discount">Giảm {{this.discount}}</span>
+                    <span class="content-product_list-item-discount">Giảm {{this.discount.amount}} {{this.discount.unit}}</span>
                     <div class="content-product_list-item-status">
                         <div class="content-product_list-item-price">{{this.price}}đ</div>
                         <p class="content-product_list-item-sold">Đã bán 120</p>

@@ -23,10 +23,16 @@ class ShopController {
         // var id = req.user.id;
         User.findOne({id: '1384771445288690'}, function(err, user){
             // User.findOne({id: id, authType: provider}, function(err, user){
+                let unit = req.body.unit;
+                let priceAfterDiscount = 0, price = Number(req.body.price);
+                if(unit == '%'){
+                    priceAfterDiscount = Math.floor((price*req.body.discount.amount)/100);
+                }
                 const product = new Product;
                 product.name = req.body.name;
                 product.category = req.body.productCategory;
-                product.price = req.body.price;
+                product.originPrice = req.body.price;
+                product.priceAfterDiscount = priceAfterDiscount;
                 product.description = req.body.description;
                 product.totalAmount = req.body.totalAmount;
                 product.madeIn = req.body.madeIn;
@@ -34,6 +40,7 @@ class ShopController {
                 product.discount.amount = req.body.discount.amount;
                 product.discount.unit = req.body.discount.unit;
                 product.img_base64 = req.body.imgs;
+                product.avatar = req.body.imgs[0];
                 product.introduction = req.body.introduction;
                 product.owner = user.shop;
                 product.brand = req.body.brand;
