@@ -380,7 +380,7 @@
     <div class="modal-overlay"></div>
     <div class="modal-body modal-content">
         <div class="modal-body-updated_profile">
-            <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/png/512/716/716225.png"
+            <img style="width: 40px; height: 40px;" src="https://cachbothuocla.vn/wp-content/uploads/2019/03/tick-xanh.png"
                 alt="">
             <h4>Cập nhật thành công</h4>
         </div>
@@ -659,39 +659,14 @@
     // =========================================================== xử lý hình ảnh =======================================
 
     avatar.addEventListener("change", (event) => {
-        const files = event.target.files;
-        reader.readAsDataURL(files[0]);
-        reader.addEventListener("load", (event) => {
-            base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-            {{!-- console.log(base64String); --}} // lấy dạng base64 của hình ảnh vừa chọn
-
-            const binary = event.target.result;
-            var img = binary.slice(binary.lastIndexOf(',') + 1);
-
-            // hàm tạo url cho thuộc tính src của ảnh
-            const b64toBlob = (img, contentType = '', sliceSize = 512) => {
-                const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
-                const byteArrays = [];
-
-                for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-                    const byteNumbers = new Array(slice.length);
-                    for (let i = 0; i < slice.length; i++) {
-                        byteNumbers[i] = slice.charCodeAt(i); // lấy mã Unicode 
-                    }
-
-                    const byteArray = new Uint8Array(byteNumbers); // tạo mảng kiểu 8bit
-                    byteArrays.push(byteArray);
-                }
-
-                const blob = new Blob(byteArrays, { type: contentType });
-                return blob;
+        let input = event.target;
+            let reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+            reader.onload = function () {
+                let dataUrl = reader.result;
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                backgroundAvatar.style.background = `url(${dataUrl}) no-repeat center / cover`;
             }
-            const blob = b64toBlob(img, 'image/jpeg');
-            const blobUrl = URL.createObjectURL(blob);  // tạo url mới
-            backgroundAvatar.style.background = `url(${blobUrl}) no-repeat center / cover`;
-        })
     })
 </script>
 

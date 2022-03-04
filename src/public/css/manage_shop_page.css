@@ -238,7 +238,7 @@
     overflow: hidden;
 }
 
-.main-Category-imgs-wrapper input {
+.main-Category-imgs-wrapper input:first-child {
     width: 200%;
     height: 100%;
     position: absolute;

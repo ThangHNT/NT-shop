@@ -34,10 +34,10 @@ class ShopController {
                 const product = new Product;
                 product.name = req.body.name;
                 product.category = req.body.productCategory;
-                product.originPrice = req.body.price;
+                product.originPrice = req.body.price == '0' ? '1' : req.body.price;
                 product.priceAfterDiscount = priceAfterDiscount;
                 product.description = req.body.description;
-                product.totalAmount = req.body.totalAmount;
+                product.totalAmount = req.body.totalAmount == '0' ? '1' : req.body.totalAmount;
                 product.madeIn = req.body.madeIn;
                 product.deliveryFrom = req.body.deliveryFrom;
                 product.discount.amount = req.body.discount.amount;
@@ -47,6 +47,8 @@ class ShopController {
                 product.introduction = req.body.introduction;
                 product.owner = user.shop;
                 product.brand = req.body.brand;
+                product.available = Number(req.body.totalAmount);
+                product.sold = 0;
                 product.save();
         })
     }

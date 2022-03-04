@@ -42,13 +42,17 @@
                         Thông báo
                     </p>
                     <div class="header-notification-show">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
-                            alt="">
-                        <h3>Đăng nhập để xem thông báo</h3>
-                        <div class="header-notification-show-btn_login">
-                            <a href="#">Đăng ký</a>
-                            <a href="#">Đăng nhập</a>
-                        </div>
+                        {{#if user}}
+                            <h4>Chưa có thông báo mới</h4>
+                            {{else}}
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
+                                alt="">
+                            <h3>Đăng nhập để xem thông báo</h3>
+                            <div class="header-notification-show-btn_login">
+                                <a href="#">Đăng ký</a>
+                                <a href="#">Đăng nhập</a>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="header-support header-section-item">
@@ -71,7 +75,7 @@
                     </div>
                     {{else}}
                         <a class="account_signup" href="/user/login">Đăng ký</a>
-                        <a class="account_login" href="/user/login">Đăng nhập</a>
+                        <a class="account_login" href="/logout">Đăng nhập</a>
                     {{/if}}
                 </div>
             </div>
@@ -87,12 +91,27 @@
                 <a href="#"><i class="fas fa-search"></i></a>
             </div>
             <div class="header-cart">
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                <ul style="margin: 0;padding: 0;" class="header-cart-list_product">
-                    <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png"
-                        alt="">
-                    <h3>Chưa có sản phẩm nào</h3>
-                </ul>
+                <a href="#"><i class="fas fa-shopping-cart"></i>
+                        <div class="header-cart-number_display">1</div>
+                    </a>
+                    <div style="margin: 0;padding: 0;" class="header-cart-list_product">
+                        {{#if user}}
+                        <ul class="header-cart-list_product-ul">
+                            <li class="header-cart-list_product-item">
+                                <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
+                                <p>Tai nghe khong day nt-mega </p>
+                                <span>120.000đ</span>
+                            </li>
+                            
+                        </ul>
+                        <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
+                        {{else}}
+                            <div class="header-cart-list_product-wrapper">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png" alt="">
+                                <h3>Bạn chưa đăng nhập</h3>
+                            </div>
+                        {{/if}}
+                    </div>
             </div>
         </div>
     </div>

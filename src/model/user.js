@@ -17,10 +17,8 @@ const User = new Schema({
     facebookId:{type:String},
     googleId:{type:String},
     avatar:{type:String},
-    avatar_base64:{
-        data:Buffer,
-        contentType:String
-    }
+    avatar_base64:{data:Buffer,contentType:String},
+    cart: {type:Schema.Types.ObjectId, ref:'Cart'},
 })
 
 module.exports = mongoose.model('User',User);

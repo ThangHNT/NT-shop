@@ -24,12 +24,12 @@ class HomeController {
         }
         else {
             Product.find()
-                .then((products) => {
-                    res.render('home', {
-                        products : multiObject(products)
+                    .then((products) => {
+                        res.render('home', {
+                            products : multiObject(products),
+                        })
                     })
-                })
-                .catch(next);
+                    .catch(next);
         }
     }
 
@@ -39,23 +39,6 @@ class HomeController {
         res.redirect('/');
     }
 
-    productDetail(req,res,next) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
-            Product.findById({_id: req.params.id}, function(err, product){
-                if(product){
-                    res.render('productDetail',{
-                        product: object(product),
-                        avatar: product.avatar.data,
-                        imgs : object(product.img_base64),
-                    });
-                    
-                }
-            })
-        })
-    }
 }
 
 module.exports = new HomeController;

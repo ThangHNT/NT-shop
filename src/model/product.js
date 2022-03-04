@@ -16,9 +16,11 @@ const Product = new Schema({
     available: {type: String, default: ''},
     category:{type:String, default: '',required:true},
     avatar: {data: Buffer,contentType: String},
-    img: [{type: String, default: ''}],
+    imgs: [{type: String, default: ''}],
     img_base64 :[{data: Buffer,contentType: String,}],
     like: {type: Number, default: 0},
+    available:{type:Number, default: 1},
+    sold: {type: Number, default:0},
 });
 
 module.exports = mongoose.model('Product',Product);

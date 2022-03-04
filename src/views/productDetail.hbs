@@ -40,13 +40,17 @@
                         Thông báo
                     </p>
                     <div class="header-notification-show">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
-                            alt="">
-                        <h3>Đăng nhập để xem thông báo</h3>
-                        <div class="header-notification-show-btn_login">
-                            <a href="#">Đăng ký</a>
-                            <a href="#">Đăng nhập</a>
-                        </div>
+                        {{#if user}}
+                            <h4>Chưa có thông báo mới</h4>
+                            {{else}}
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
+                                alt="">
+                            <h3>Đăng nhập để xem thông báo</h3>
+                            <div class="header-notification-show-btn_login">
+                                <a href="#">Đăng ký</a>
+                                <a href="#">Đăng nhập</a>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="header-support header-section-item">
@@ -54,17 +58,27 @@
                     Hỗ trợ
                 </div>
                 <div class="header-account header-section-item">
+                    {{#if user}}
                     <div class="myAccount">
-                        <img class="avatar"
-                            src="https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" alt="">
-                        <a href="#" class="username">Thắng Hoàng</a>
+                        {{#if avatar_base64}}
+                            <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
+                        {{/if}}
+                        {{#if user}}
+                            <a href="#" class="username">{{user.username}}</a>
+                        {{else}}
+                            <a href="#" class="username">Thắng Hoàng</a>
+                        {{/if}}
                         <div class="myAccount-show">
-                            <a href="#">Tài khoản của tôi</a>
-                            <a href="#">Đăng xuất</a>
+                            <a href="/user/myAccount">Tài khoản của tôi</a>
+                            <a href="/logout">Đăng xuất</a>
                         </div>
                     </div>
-                    <!-- <a class="account_signup" href="#">Đăng ký</a>
-                        <a class="account_login" href="#">Đăng nhập</a> -->
+                    {{else}}
+                        <a class="account_signup" href="#">Đăng ký</a>
+                        <a class="account_login" href="#">Đăng nhập</a>
+                    {{/if}}
                 </div>
             </div>
 
@@ -79,12 +93,28 @@
                 <a href="#"><i class="fas fa-search"></i></a>
             </div>
             <div class="header-cart">
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                <ul style="margin: 0;padding: 0;" class="header-cart-list_product">
-                    <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png"
-                        alt="">
-                    <h3>Chưa có sản phẩm nào</h3>
-                </ul>
+                <a href="#"><i class="fas fa-shopping-cart"></i>
+                    <div class="header-cart-number_display">1</div>
+                </a>
+                <div style="margin: 0;padding: 0;" class="header-cart-list_product">
+                    {{#if user}}
+                    <ul class="header-cart-list_product-ul">
+                        <li class="header-cart-list_product-item">
+                            <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
+                            <p>Tai nghe khong day nt-mega </p>
+                            <span>120.000đ</span>
+                        </li>
+                
+                    </ul>
+                    <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
+                    {{else}}
+                    <div class="header-cart-list_product-wrapper">
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png"
+                            alt="">
+                        <h3>Bạn chưa đăng nhập</h3>
+                    </div>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
@@ -100,9 +130,13 @@
                 </div>
                 <div class="product-introduction-illustration-some_img">
                     <div class="product-introduction-illustration-some_img-wrapper">
-                        {{#each imgs}}
+                        {{#each imgs_base64}}
                         <img class="product-introduction-illustration-some_img-item"
                             src="data:image/jpeg;base64,{{this.data}}" alt="">
+                        {{/each}}
+                        {{#each imgs}}
+                        <img class="product-introduction-illustration-some_img-item"
+                            src="{{this}}" alt="">
                         {{/each}}
                     </div>
                 </div>
@@ -316,9 +350,7 @@
                             <span class="product-review-comment-user-kind_product">
                                 Loại hàng: Đen
                             </span>
-                            <p class="product-review-comment-content">Mình đã đặt 1 cái và bị lỗi shop đã hỗ trợ đổi lại
-                                cho mình cái khác ngay lập tức khá là hài longg với cách làm viênc này của shop. Shop QT
-                                thì giao hàng lâu khỏi bàn, tai nghe ổn ko hề bị delay nghe nhạc cũng khá oke nhá mng
+                            <p class="product-review-comment-content">Sản phẩm bên shop rất đẹp và chất lượng, mình rất hài lòng với sản phẩm này
                             </p>
                             <div class="product-review-comment-user-illustration_imgs">
                                 <img comment-index="0"
@@ -347,9 +379,8 @@
                             <span class="product-review-comment-user-kind_product">
                                 Loại hàng: Đen
                             </span>
-                            <p class="product-review-comment-content">Mình đã đặt 1 cái và bị lỗi shop đã hỗ trợ đổi lại
-                                cho mình cái khác ngay lập tức khá là hài longg với cách làm viênc này của shop. Shop QT
-                                thì giao hàng lâu khỏi bàn, tai nghe ổn ko hề bị delay nghe nhạc cũng khá oke nhá mng
+                            <p class="product-review-comment-content">Cái mình đặt có 1 chút lỗi kĩ thuật
+                                Mình cũng đã đc shop hỗ trợ r, giờ mọi thứ đều ổn. Hàng rất tốt và xịn xò.
                             </p>
                             <div class="product-review-comment-user-illustration_imgs">
                                 <img comment-index="1" src="https://cf.shopee.vn/file/ebe84dcc0b8b6fa93ca1964ee56c9b65"
