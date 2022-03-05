@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const User = new Schema({
     username:{type: String, required: true,maxlength:50},
-    phoneNumber:{type:String,maxlength: 11, default:'0123456789'},
+    phoneNumber:{type:String,maxlength: 11, default:''},
     email: {type:String, default:''},
     gender:{type:String},
     shop:{type:Schema.Types.ObjectId, ref:'Shop'},
