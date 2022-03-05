@@ -108,7 +108,8 @@
                             <ul class="header-cart-list_product-ul">
                                 {{#each products}}
                                 <li class="header-cart-list_product-item">
-                                    <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt="">
+                                    {{!-- <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt=""> --}}
+                                    <img src="{{this.avatar}}" alt="">
                                     <p>{{this.introduction}}</p>
                                     <span>{{this.priceAfterDiscount}}đ</span>
                                 </li>
@@ -137,8 +138,10 @@
     <div id="content_product_detail">
         <div class="product-introduction">
             <div class="product-introduction-illustration">
+                {{!-- <img data-id="{{productId}}" class="product-introduction-illustration-main_img"
+                    src="data:image/jpeg;base64,{{avatar}}" alt=""> --}}
                 <img data-id="{{productId}}" class="product-introduction-illustration-main_img"
-                    src="data:image/jpeg;base64,{{avatar}}" alt="">
+                    src="{{avatar}}" alt="">
                 <div class="product-introduction-illustration-change_img_arrow">
                     <i class="fa-solid fa-angle-left"></i>
                     <i class="fa-solid fa-angle-right"></i>
@@ -666,7 +669,7 @@
             let li = document.createElement('li');
             li.className = 'header-cart-list_product-item';
             let anh = document.createElement('img');
-            anh.src = $('.product-introduction-illustration-main_img').src;
+            anh.src = $$('.product-introduction-illustration-some_img-item')[0].src;
             let p = document.createElement('p');
             let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
             p.appendChild(textNode);

@@ -86,8 +86,11 @@
                                 <li>Voucher & dịch vụ</li>
                             </ul>
                             <div class="content_myShop-body-product-main-Category-imgs">
-                                <h4>chọn ảnh đại diện sản phẩm</h4>
-                                <div class="main-Category-imgs-wrapper">
+                                <h4>chọn ảnh đại diện sản phẩm (url)</h4>
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_avatar" type="text">
+                                </div>
+                                <div class="main-Category-imgs-wrapper hidden">
                                     <input class="product_avatar" type="file" accept="image/*">
                                     <img class="content_myShop-body-product-main-Category-imgs-avatar main-Category-imgs-item"
                                         src="" alt="">
@@ -95,8 +98,26 @@
                                         <i class="fa-solid fa-plus"></i>
                                     </div>
                                 </div>
-                                <h4 class="product_imgs">thêm ảnh sản phẩm</h4>
+                                <h4 class="product_imgs">thêm ảnh sản phẩm (url)</h4>
+                                {{!-- ===================== them anh bang url ===================================== --}}
                                 <div class="content_myShop-body-product-main-Category-some_imgs">
+                                        <div class="main-Category-imgs-wrapper2">
+                                            <input class="product_avatar" type="text">
+                                        </div>
+                                        <div class="main-Category-imgs-wrapper2">
+                                            <input class="product_avatar" type="text">
+                                        </div>
+                                        <div class="main-Category-imgs-wrapper2">
+                                            <input class="product_avatar" type="text">
+                                        </div>
+                                        <div class="main-Category-imgs-wrapper2">
+                                            <input class="product_avatar" type="text">
+                                        </div>
+                                        <div class="main-Category-imgs-wrapper2">
+                                            <input class="product_avatar" type="text">
+                                        </div>
+                                    </div>
+                                <div class="content_myShop-body-product-main-Category-some_imgs hidden">
                                     <div class="main-Category-imgs-wrapper">
                                         <input type="file" accept="image/*">
                                         <img class="main-Category-imgs-item" src="" alt="">
@@ -287,10 +308,11 @@
                 $$('.main-Category-imgs-wrapper img')[index].style.opacity = '1';
                 $$('.circle-blue')[index].classList.add('hidden');
                 base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-                listImg.push({
+                // Thêm ảnh mới = database64
+                {{!-- listImg.push({
                     data: base64String,
                     contentType: 'image/png'
-                });
+                }); --}}
             }
         }
     })
@@ -420,6 +442,9 @@
         else if (!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
         else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
         else {
+            $$('.main-Category-imgs-wrapper2 input').forEach(function(element) {
+                listImg.push(element.value);
+            })
             newProduct = {
                 name: $('.content_myShop-body-product-main-name input').value,
                 productCategory: getProductCategory(),
