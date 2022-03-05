@@ -3,6 +3,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
 var passport = require('passport');
 const User = require('../model/user.js');
+const Cart = require('../model/cart.js');
 
 function ggAthentication(app) {
     app.use(passport.initialize());
@@ -45,6 +46,10 @@ function ggAthentication(app) {
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
                 const user = new User({googleId :id, email : '', username : fullName,authType: 'google', avatar: avatar});
+                const cart = new Cart();
+                    cart.user = user._id;
+                    cart.save();
+                    user.cart = cart._id;
                 user.save()
                     .then(() => {
                         res.redirect(`/`);
