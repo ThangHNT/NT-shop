@@ -2,8 +2,12 @@
     <div id="header" class="header_product_detail">
         <div class="navbar">
             <div class="link_user">
-                <a href="#" class="my_shop">Shop của tôi</a>
-                <a href="#" class="create_shop">Mở shop trên web</a>
+                <a href="/" class="my_shop">Trang chủ</a>
+                {{#if seller}}
+                    <a href="/shop" class="create_shop">Shop của tôi</a>
+                {{else}}
+                    <a href="/user/seller/signup/view" class="create_shop">Trở thành người bán</a>
+                {{/if}}
                 <div class="download_app_on_mobile">
                     <p style="padding:0; margin:0">Tải ứng dụng</p>
                     <div class="qrcode_app">
@@ -94,26 +98,21 @@
             </div>
             <div class="header-cart">
                 <a href="#"><i class="fas fa-shopping-cart"></i>
-                    {{#if number}}
-                    <div class="header-cart-number_display">{{number}}</div>
+                    {{#if amount}}
+                    <div class="header-cart-number_display">{{amount}}</div>
                     {{/if}}
                 </a>
                 <div style="margin: 0;padding: 0;" class="header-cart-list_product">
                     {{#if user}}
-                        {{#if number}}
+                        {{#if amount}}
                             <ul class="header-cart-list_product-ul">
                                 {{#each products}}
                                 <li class="header-cart-list_product-item">
-                                    <img src="{{this.avatar}}" alt="">
+                                    <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt="">
                                     <p>{{this.introduction}}</p>
-                                    <span>{{this.priceAfterDiscount}}</span>
+                                    <span>{{this.priceAfterDiscount}}đ</span>
                                 </li>
                                 {{/each}}
-                                {{!-- <li class="header-cart-list_product-item">
-                                    <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
-                                    <p>Tai nghe khong day nt-mega </p>
-                                    <span>120.000đ</span>
-                                </li> --}}
                             </ul>
                             <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
                         {{else}}
@@ -138,7 +137,7 @@
     <div id="content_product_detail">
         <div class="product-introduction">
             <div class="product-introduction-illustration">
-                <img class="product-introduction-illustration-main_img"
+                <img data-id="{{productId}}" class="product-introduction-illustration-main_img"
                     src="data:image/jpeg;base64,{{avatar}}" alt="">
                 <div class="product-introduction-illustration-change_img_arrow">
                     <i class="fa-solid fa-angle-left"></i>
@@ -247,7 +246,7 @@
                         <i class="fa-solid fa-plus"></i>
                     </div>
                     <span class="product_available">
-                        <p>1500</p> sản phẩm có sẵn
+                        <p data="{{product.available}}">{{product.available}}</p> sản phẩm có sẵn
                     </span>
                 </div>
                 <div class="product-introduction-option-btn">
@@ -517,7 +516,6 @@
         })
     }
     selectColorBtn.forEach(function (element, index) {
-        $('.product_available p').innerText = '1500';
         element.onclick = function (e) {
             removeSelectBtn(index);
             element.classList.toggle('select_color');
@@ -534,7 +532,7 @@
                 }
             }
             else {
-                $('.product_available p').innerText = '1500';
+                $('.product_available p').innerText = $('.product_available p').getAttribute('data');
             }
         }
     })
@@ -639,11 +637,31 @@
 <script>
     let addProductToCart = $('.introduction-option-btn-add_to_cart');
     let cartProductNumber = $('.header-cart-number_display');
-    
+    let productId = $('.product-introduction-illustration-main_img').getAttribute('data-id');
+    function addProduct(url,data){
+        var option = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi them san pham vao gio hang');
+            })
+    }
 
     addProductToCart.onclick = function () {
         if ($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
-            console.log('run');
+            let data = {
+                productId: productId,
+            }
+            addProduct('/product/add-to-cart',data);
+            console.log(productId);
             $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
             let li = document.createElement('li');
             li.className = 'header-cart-list_product-item';
@@ -656,19 +674,30 @@
             let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
             span.appendChild(textNode2);
             li.append(anh, p, span);
-            $('.header-cart-list_product-ul').prepend(li);
 
             if($('.header-cart-number_display')){
                 let amount = Number($('.header-cart-number_display').innerText) + 1 + '';
                 $('.header-cart-number_display').innerText = amount;
+                $('.header-cart-list_product-ul').prepend(li);
             }
             else {
+                let ul = document.createElement('ul');
+                ul.className = 'header-cart-list_product-ul';
+                ul.prepend(li);
+                let showBtn = document.createElement('a');
+                let textNode4 = document.createTextNode('Xem giỏ hàng');
+                showBtn.className = 'view_cart_product_btn';
+                showBtn.appendChild(textNode4);
+                $('.header-cart-list_product').removeChild($('.header-cart-list_product-wrapper'));
+                $('.header-cart-list_product').appendChild(ul);
+                $('.header-cart-list_product').appendChild(showBtn);
                 let amountProductCart = document.createElement('div');
                 amountProductCart.className = 'header-cart-number_display';
                 let textNode3 = document.createTextNode('1');
                 amountProductCart.appendChild(textNode3);
                 $('.header-cart a').appendChild(amountProductCart);
             }
+            
         }
     }
 

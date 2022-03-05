@@ -9,10 +9,10 @@ class UserController {
     }
 
     myAccount(req,res,next){
-        const provider = req.user.provider;
-        var id = req.user.id;
-        // User.findOne({id: '1384771445288690'}, function(err, user){
-        User.findOne({id: id, authType: provider}, function(err, user){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 res.render('myAccount', {
                     user: user,
@@ -165,10 +165,10 @@ class UserController {
     }
 
     sellerSignupSuccessful(req,res,next){
-        const provider = req.user.provider;
-        var id = req.user.id;
-        // User.findOne({id: '1384771445288690'}, function(err, user){
-        User.findOne({id: id, authType: provider}, function(err, user){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
             const shop = new Shop();
             shop.brand = req.body.shop_name;
             shop.address = req.body.shop_address;
@@ -182,7 +182,7 @@ class UserController {
             shop.save();
             user.shop = shop._id;
             user.save();
-            res.send('thanh cong');
+            res.redirect('/shop');
             return;
         })
     }
