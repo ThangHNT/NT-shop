@@ -412,6 +412,7 @@ html {
     align-items:  center;
     justify-content:center;
     flex-direction: column;
+    cursor: default;
 }
 
 .header-cart-list_product-ul {

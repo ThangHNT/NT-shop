@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const Product = new Schema({
     name: {type: String, default: '', required: true},
     introduction:{type: String, default: '', required: true},
-    owner:{type: Schema.Types.ObjectId, ref:'shop'},
+    owner:{type: Schema.Types.ObjectId, ref:'Shop'},
+    cart:{type: Schema.Types.ObjectId, ref:'Cart'},
     description:{type:String,default: '', required: true},
     originPrice: {type: String,default: '0', required: true},
     priceAfterDiscount: {type: String,default:'0'},

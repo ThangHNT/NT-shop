@@ -616,13 +616,20 @@
             if(number > 0){
                 cartProductNumber.innerText = number + 1 + '';
                 number = -1;
-                addProductToCart.style.opacity = 0.5;
-                addProductToCart.style.cursor = 'default';
+                addProductToCart.classList.add('added_cart');
                 $('.introduction-option-btn-add_to_cart span').innerText = 'Đã thêm vào giỏ hàng';
-                let p = document.createElement("p");
-                let node = document.createTextNode('hello');
-                p.appendChild(node);
-                $('.header-cart-list_product').prepend(p);
+                let li = document.createElement('li');
+                li.className = 'header-cart-list_product-item';
+                let anh = document.createElement('img');
+                anh.src = $('.product-introduction-illustration-main_img').src;
+                let p = document.createElement('p');
+                let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
+                p.appendChild(textNode);
+                let span = document.createElement('span');
+                let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
+                span.appendChild(textNode2);
+                li.append(anh,p,span);
+                $('.header-cart-list_product-ul').prepend(li);
             }
         }
 
