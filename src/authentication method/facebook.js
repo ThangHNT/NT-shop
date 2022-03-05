@@ -3,6 +3,7 @@ var passport = require('passport');
 var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../model/user.js');
+const Cart = require('../model/cart.js');
 
 function authenticate(app) {
     app.set('trust proxy', 1) // trust first proxy
@@ -46,16 +47,18 @@ function authenticate(app) {
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
                     const user = new User({facebookId :id, username : name,authType: 'facebook', avatar : avatar});
+                    const cart = new Cart();
+                    cart.user = user._id;
+                    cart.save();
+                    user.cart = cart._id;
                     user.save()
                         .then(() => {
                             res.redirect(`/`);
-                            // res.status(200).send('thanh cong 2');
                         })
                         .catch(next);
                 }
                 else {
                     res.redirect(`/`);
-                    // res.status(200).send('thanh cong 2');
                 }
             })
         });
