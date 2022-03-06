@@ -393,7 +393,8 @@
         <div class="content-product_list">
             {{#each products}}
             <a href="/product/detail/{{this._id}}" class="content-product_list-item">
-                <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt="">
+                {{!-- <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt=""> --}}
+                <img src="{{this.avatar}}" alt="">
                 <div class="content-product_list-item-introduction container">
                     <p class="content-product_list-item-description">
                         {{this.introduction}}

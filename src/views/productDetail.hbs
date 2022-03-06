@@ -148,10 +148,10 @@
                 </div>
                 <div class="product-introduction-illustration-some_img">
                     <div class="product-introduction-illustration-some_img-wrapper">
-                        {{#each imgs_base64}}
+                        {{!-- {{#each imgs_base64}}
                         <img class="product-introduction-illustration-some_img-item"
                             src="data:image/jpeg;base64,{{this.data}}" alt="">
-                        {{/each}}
+                        {{/each}} --}}
                         {{#each imgs}}
                         <img class="product-introduction-illustration-some_img-item"
                             src="{{this}}" alt="">
@@ -318,10 +318,9 @@
                 <h3>Mô tả sản phẩm</h3>
             </div>
             <div class="product-description-content">
-                <h5>Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày</h5>
+                {{!-- <h5>Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày</h5>
                 <p>Chip tùy chỉnh trò chơi, không có cảm giác trễ 0,06 giây, giúp chơi game tốt hơn. Ổn định hơn, mượt
-                    mà hơn so với tai nghe thông thường.</p>
-                <h5>Pin tốt</h5>
+                    mà hơn so với tai nghe thông thường.</p> --}}
                 {{product.description}}
             </div>
         </div>

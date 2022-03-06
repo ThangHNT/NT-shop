@@ -1,0 +1,122 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main_cart {
+    background-color: #ddd;
+    display: block;
+}
+
+#header_cart {
+    width: 100%;
+    height: 40px;
+    padding: 0 200px;
+    max-height: 40px;
+    background: linear-gradient(-180deg,#642b73, #c6426e);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.header_cart-links a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-right: 12px;
+    font-size: 15px !important;
+}
+
+.header_cart-links a:hover {
+    color: rgb(8, 201, 169);
+}
+
+.header_cart-user , .header_cart-user-support, .header_cart-user-account-wrapper{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header_cart-user-account-wrapper {
+    position: relative;
+}
+
+.header_cart-user-account-wrapper span {
+    font-size: 15px !important;
+}
+
+.header_cart-user-support {
+    margin-right: 25px;
+    font-size: 15px !important;
+}
+
+.header_cart-user-support i {
+    margin-right: 5px;
+}
+
+.header_cart-user-account-user_avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.header_cart-user-account-option {
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    justify-content:center;
+    align-items: center;
+    width : 150px;
+    height: 80px;
+    border-radius: 3px;
+    background-color:#fff;
+    box-shadow: 0 0 2px 0 #ccc;
+    margin-top: 8px;
+    background-color:#fff;
+    transform-origin: top;
+    animation: showList ease-in 0.25s;
+    display: none;
+}
+
+.header_cart-user-account-option::before {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 10px 10px;
+    border-color: transparent  transparent #fff transparent;
+    position: absolute;
+    top: -20px;
+}
+
+.header_cart-user-account-option::after {
+    content: "";
+    display: block;
+    width: 130px;
+    height: 20px;
+    background-color: transparent;
+    position: absolute;
+    top: -14px;
+}
+
+.header_cart-user-account:hover .header_cart-user-account-option {
+    display: flex;
+}
+
+.header_cart-user-account-option a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.header_cart-user-account-option a:hover {
+    color: rgb(189, 91, 11);
+}
+
+
+
+

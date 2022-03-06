@@ -443,7 +443,9 @@
         else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
         else {
             $$('.main-Category-imgs-wrapper2 input').forEach(function(element) {
-                listImg.push(element.value);
+                if(element.value.length > 0){
+                    listImg.push(element.value);
+                }
             })
             newProduct = {
                 name: $('.content_myShop-body-product-main-name input').value,
