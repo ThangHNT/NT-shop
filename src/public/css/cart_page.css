@@ -6,7 +6,6 @@
 }
 
 #main_cart {
-    background-color: #ddd;
     display: block;
 }
 
@@ -116,6 +115,93 @@
 .header_cart-user-account-option a:hover {
     color: rgb(189, 91, 11);
 }
+
+/* =============================================================== content ===================================================== */
+
+#content_cart {
+    padding: 0 200px;
+    background-color:#ddd;
+}
+
+.content_cart-control-wrapper, .content_cart-product {
+    display: flex;
+    padding: 0 40px;
+    background-color: #fff;
+}
+
+.content_cart-product_info {
+    min-width: 60%;
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.content_cart-product_info input {
+    margin-right: 10px;
+}
+
+
+.content_cart-control-item {
+    max-width: 10%;
+    min-width: 10%;
+}
+
+.content_cart-control-item span {
+    color: rgb(100, 99, 99);
+    text-align: center;
+}
+
+/* --------------------------------------------------- danh sach san pham trog cart --------------- ------------------------------ */
+
+.content_cart-product {
+    flex-direction: column;
+    width: 100%;
+}
+
+.content_cart-product-item {
+    display: flex;
+    width: 100%;
+}
+
+.content_cart-product-item-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.content_cart-product-item-wrapper-link {
+    display: flex;
+    align-items: center;
+}
+
+.content_cart-product-item-avatar {
+    height: 80px;
+    width: 80px;
+}
+
+.content_cart-product-item-introduction {
+    color: #000;
+    font-size: 15px;
+    line-height: 16px;
+    height: 32px;
+    max-width: 60% ;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-left: 10px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
