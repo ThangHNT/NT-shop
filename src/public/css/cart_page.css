@@ -150,7 +150,7 @@
     margin-right: 10px;
 }
 
-.select_checkbox {
+.select_checkbox, .select_all {
     min-width: 18px;
     min-height: 18px;
 }
@@ -267,7 +267,7 @@
     margin-right: 10px;
 }
 
-.select_all {
+.select_all_text {
     margin-right: 20px;
 }
 
@@ -277,8 +277,11 @@
     
 }
 
-.content_cart-product-manipulation-total_price, .content_cart-product-manipulation-buy_product p {
-    margin-right: 10px;
+.content_cart-product-manipulation-total_price-btn {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+    margin:0 5px;
 }
 
 .content_cart-product-manipulation-buy_btn {
@@ -287,10 +290,21 @@
     border-radius: 3px;
     color: #fff;
     cursor: pointer;
+    margin-left: 15px;
 }
 
 .content_cart-product-manipulation-buy_btn:hover {
     background-color: rgb(5, 106, 201);
+}
+
+.content_cart-product-empty-img {
+    width: 100%;
+    height: 100%;
+}
+
+.delete_cart_product-all:hover {
+    cursor: pointer;
+    color: red;
 }
 
 /* ========================================================== footer ========================================================= */
@@ -299,6 +313,7 @@
     margin-top: 80px;
     background-color:#fff !important;
 }
+
 
 
 

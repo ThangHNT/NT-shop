@@ -41,7 +41,7 @@
             <div class="content_cart-control">
                 <div class="content_cart-control-wrapper">
                     <div class="content_cart-product_info">
-                        <input class = "select_checkbox select_all" type="checkbox" >
+                        <input class = "select_all" type="checkbox" >
                         <span>Sản phẩm</span>
                     </div>
                     <div class="content_cart-control-item">
@@ -122,15 +122,19 @@
                     </div>
                 </div>
 
+                <div class="content_cart-product-empty">
+                    <img class ="content_cart-product-empty-img hidden" src="https://cdn.wedevs.com/uploads/2020/05/WooCommerce-Empty-Cart-1.png" alt="">
+                </div>
+
                 <div class="content_cart-product-manipulation">
                     <div class="content_cart-product-manipulation-selection">
-                        <input type="checkbox" class="select_checkbox">
-                        <span class="select_all">Chọn tất cả (2)</span>
-                        <span class="delete_cart_product">Xóa</span>
+                        <input type="checkbox" class="select_all">
+                        <span class="select_all_text">Chọn tất cả </span>
+                        <span class="delete_cart_product-all">Xóa</span>
                     </div>
                     <div class="content_cart-product-manipulation-buy_product">
-                        <p>Tổng thanh toán (0 sản phẩm):</p>
-                        <span class="content_cart-product-manipulation-total_price">0đ</span>
+                        <span class="content_cart-product-manipulation-total_price-btn">Xem tổng tiền: </span>
+                        <p class="content_cart-product-manipulation-total_price"></p>
                         <div class="content_cart-product-manipulation-buy_btn">Mua hàng</div>
                     </div>
                 </div>
@@ -210,75 +214,93 @@
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
-        let checkBox = $$('.select_checkbox');
-        let productPrice = $$('.content_cart-control-item-price span');
-        let countCheckbox = 0;
-        let totalPrice = 0;
-        let productAmountSelect = $$('.content_cart-control-item-amount input');
-
-        checkBox.forEach(function(element,index) {
+        let checkboxItems = $$('.select_checkbox');
+        let selectAllCheckbox = $$('.select_all');
+        let priceItems = $$('.content_cart-control-item-price span');
+        let selectedProduct = 0;
+        
+        let deleteCartproduct = $$('.delete_cart_product');
+        let productItems = $$('.content_cart-product-item');
+        deleteCartproduct.forEach(function(element,index){
             element.onclick = function(){
-                len = checkBox.length;
-                if(index == 0 || index == len -1){
-                    if(element.checked){
-                        selectAllCheckbox();
-                    }
-                    else {
-                        removeAllCheckbox();
+                console.log(index);
+                deleteCartproduct = $$('.delete_cart_product');
+                productItems = $$('.content_cart-product-item');
+                productItems[index].remove();
+            }
+            
+        })
+
+        $('.content_cart-product-manipulation-total_price-btn').onclick = function () {
+            let totalPrice = 0;
+            checkboxItems.forEach(function(element, index){
+                if(element.checked){
+                    let productPrice = Number(priceItems[index].innerText)*Number($$('.content_cart-control-item-amount input')[index].value);
+                    totalPrice += productPrice;
+                }
+            })
+            $('.content_cart-product-manipulation-total_price').innerText = totalPrice + 'đ';
+        }
+
+        checkboxItems.forEach(function(element, index){
+            element.onclick = function () {
+                $('.content_cart-product-manipulation-total_price').innerText = '';
+                if(element.checked){
+                    selectedProduct += 1;
+                    if(selectedProduct == checkboxItems.length){
+                        selectAllCheckbox[0].checked = true;
+                        selectAllCheckbox[1].checked = true;
                     }
                 }
                 else {
-                    if(element.checked){
-                        countCheckbox += 1;
-                        totalPrice += Number(productPrice[index-1].innerText);
-                    }
-                    else {
-                        countCheckbox -= 1;
-                        checkBox[0].checked = false;
-                        checkBox[len-1].checked = false;
-                        totalPrice -= Number(productPrice[index-1].innerText);
-                    }
-                    if(countCheckbox == len - 2){
-                        selectAllCheckbox();
-                    }
+                    selectAllCheckbox[0].checked = false;
+                    selectAllCheckbox[1].checked = false;
+                    selectedProduct -= 1;
                 }
-                $('.content_cart-product-manipulation-buy_product p').innerText = `Tổng thanh toán (${countCheckbox} sản phẩm):`;
-                $('.content_cart-product-manipulation-total_price').innerText = totalPrice + 'đ';
-            }   
+            }
         })
-        
-        function selectAllCheckbox(){
-            let sum = 0;
-            checkBox.forEach(function(element,index){
+
+        selectAllCheckbox.forEach(function(element, index) {
+            element.onclick = function() {
+                let len = selectAllCheckbox.length;
+                if(element.checked){
+                    tickAllCheckbox();
+                    selectAllCheckbox[len-1-index].checked = true;
+                }
+                else {
+                    removeAllCheckbox();
+                    selectAllCheckbox[len-1-index].checked = false;
+                }
+            }
+        });
+        function tickAllCheckbox(){
+            checkboxItems.forEach(function(element,index){
                 element.checked = true;
-            })
-            countCheckbox = len-2;
-            totalPrice = 0;
-            productPrice.forEach(function(element,index){
-                totalPrice += Number(element.innerText);
             })
         }
         function removeAllCheckbox(){
-            checkBox.forEach(function(element){
+            checkboxItems.forEach(function(element,index){
                 element.checked = false;
             })
-            totalPrice = 0;
-            countCheckbox = 0;
         }
 
         $$('.dec_amount_btn').forEach(function(element,index){
             element.onclick = function () {
-                let value = productAmountSelect[index].value;
-                if(value > 1){
-                    productAmountSelect[index].value = Number(value) - 1; 
+                let amount = $$('.content_cart-control-item-amount input')[index].value;
+                if(amount > 1){ 
+                    $$('.content_cart-control-item-amount input')[index].value = Number(amount) - 1;
+                    $$('.content_cart-control-item-payment span')[index].innerText = (Number(amount) - 1)*Number(priceItems[index].innerText);
+                    $('.content_cart-product-manipulation-total_price').innerText = '';
                 }
             }
         })
         $$('.inc_amount_btn').forEach(function(element,index){
             element.onclick = function () {
-                let value = productAmountSelect[index].value;
-                if(value < 1000){
-                    productAmountSelect[index].value = Number(value) + 1; 
+                let amount = $$('.content_cart-control-item-amount input')[index].value;
+                if(amount < 999){ 
+                    $$('.content_cart-control-item-amount input')[index].value = Number(amount) + 1;
+                    $$('.content_cart-control-item-payment span')[index].innerText = (Number(amount) + 1)*Number(priceItems[index].innerText);
+                    $('.content_cart-product-manipulation-total_price').innerText = '';
                 }
             }
         })
