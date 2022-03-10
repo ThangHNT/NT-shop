@@ -218,17 +218,51 @@
         let selectAllCheckbox = $$('.select_all');
         let priceItems = $$('.content_cart-control-item-price span');
         let selectedProduct = 0;
-        
+        let dem = 0;
         let deleteCartproduct = $$('.delete_cart_product');
         let productItems = $$('.content_cart-product-item');
+
+
         deleteCartproduct.forEach(function(element,index){
             element.onclick = function(){
-                console.log(index);
-                deleteCartproduct = $$('.delete_cart_product');
+                dem++;
                 productItems = $$('.content_cart-product-item');
-                productItems[index].remove();
+                productItems[index].classList.add('hidden');
+                if(dem == deleteCartproduct.length){
+                    $('.content_cart-product-manipulation').classList.add('hidden');
+                    $('.content_cart-product-empty-img').classList.remove('hidden');
+                    selectAllCheckbox[0].classList.add('hidden');
+                }
             }
-            
+        })
+
+        $('.delete_cart_product-all').onclick = function () {
+            if(selectAllCheckbox[1].checked == true){
+                $('.content_cart-product-manipulation').classList.add('hidden');
+                $('.content_cart-product-empty-img').classList.remove('hidden');
+                productItems.forEach(function(element, index){
+                    element.classList.add('hidden');
+                })
+                selectAllCheckbox[0].classList.add('hidden');
+            }
+        }
+
+        $$('.content_cart-control-item-amount input').forEach(function(element,index){
+            element.onblur = function(){
+                console.log(5);
+                if(!isNaN(element.value)){
+                    if(Number(element.value) > 0){
+                        $$('.content_cart-control-item-payment span')[index].innerText = Number(element.value)*Number($$('.content_cart-control-item-price span')[index].innerText);
+                    }
+                    else {
+                        element.value = 1;
+                        $$('.content_cart-control-item-payment span')[index].innerText = Number($$('.content_cart-control-item-price span')[index].innerText);
+                    }
+                }
+                else {
+                    $$('.content_cart-control-item-payment span')[index].innerText = Number($$('.content_cart-control-item-price span')[index].innerText);
+                }
+            }
         })
 
         $('.content_cart-product-manipulation-total_price-btn').onclick = function () {
@@ -270,6 +304,7 @@
                 else {
                     removeAllCheckbox();
                     selectAllCheckbox[len-1-index].checked = false;
+                    $('.content_cart-product-manipulation-total_price').innerText = '';
                 }
             }
         });
