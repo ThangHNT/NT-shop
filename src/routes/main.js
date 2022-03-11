@@ -4,20 +4,20 @@ const shopRouter = require('./shop.js');
 const productRouter = require('./product.js');
 
 function route(app) {
-    // app.use('/user',(req, res, next) => {
-    //     if(req.user){
-    //         return next();
-    //     } else res.redirect('/user/login');
-    // }, userRouter);
-    // app.use('/',(req, res, next) => {
-    //     if(req.user){
-    //         return next();
-    //     } else res.redirect('/user/login');
-    // }, homeRouter);
+    app.use('/user',(req, res, next) => {
+        if(req.user){
+            return next();
+        } else res.redirect('/login');
+    }, userRouter);
+    app.use('/shop',(req, res, next) => {
+        if(req.user){
+            return next();
+        } else res.redirect('/login');
+    }, shopRouter);
     app.use('/product',productRouter);
-    app.use('/user',userRouter);
-    app.use('/shop',shopRouter);
     app.use('/',homeRouter);
+    // app.use('/user',userRouter);
+    // app.use('/shop',shopRouter);
 }
 
 module.exports = route;

@@ -278,11 +278,16 @@
     
 }
 
+.content_cart-product-manipulation-total_price {
+    font-size: 18px !important;
+}
+
 .content_cart-product-manipulation-total_price-btn {
     color: red;
     text-decoration: underline;
     cursor: pointer;
     margin:0 5px;
+    font-size: 18px !important;
 }
 
 .content_cart-product-manipulation-buy_btn {

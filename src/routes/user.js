@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/UserController.js');
 
-router.get('/login',userController.login); // view login
 router.get('/myAccount', userController.myAccount);
 router.post('/updateProfile', userController.updateProfile);
 router.post('/create/address', userController.createAddress);
@@ -14,5 +13,6 @@ router.get('/json/address',userController.getJsonAddress);   // tao trang json c
 router.get('/seller/signup/view',userController.sellerSignup); // tạo trang đăng ký người bán
 router.post('/seller/signup/successful',userController.sellerSignupSuccessful); // đăng ký ng bán thành công
 router.get('/cart',userController.cart); // trang giỏ hàng
+router.post('/add-to-cart',userController.addToCart);
 
 module.exports = router;

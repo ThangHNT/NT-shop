@@ -44,23 +44,23 @@
                 </div>
             </div>
         </div>
-        <!-- ---------------------------------------------- each product --------------------------------- -->
+        <!------------------------------------------------- each product ------------------------------------>
         <div class="content_cart-product">
+            {{#each product}}
             <div class="content_cart-product-item">
                 <div class="content_cart-product-item-wrapper">
                     <div class="content_cart-product_info">
                         <input type="checkbox" class="select_checkbox">
                         <a href="#" class="content_cart-product-item-wrapper-link">
                             <img class="content_cart-product-item-avatar"
-                                src="https://cf.shopee.vn/file/304c272486a52241d21fd3bbb33eff15" alt="">
+                                src="{{this.avatar}}" alt="">
                             <p class="content_cart-product-item-introduction">
-                                Tai nghe bluetooth TWS 3 âm thanh vòm, cảm biến , đổi tên , sạc không dây (bh lỗi 1 đổi
-                                1)0000000000000000000000000000000000000
+                                {{this.introduction}}
                             </p>
                         </a>
                     </div>
                     <div class="content_cart-control-item content_cart-control-item-price">
-                        <span>250000</span>
+                        <span>{{this.priceAfterDiscount}}</span>
                         <p>đ</p>
                     </div>
                     <div class="content_cart-control-item">
@@ -71,48 +71,17 @@
                         </div>
                     </div>
                     <div class="content_cart-control-item content_cart-control-item-payment">
-                        <span>250000</span>
+                        <span>{{this.priceAfterDiscount}}</span>
                         <p>đ</p>
                     </div>
+                    
                     <div class="content_cart-control-item content_cart-control-item-manipulation ">
                         <span class="delete_cart_product">Xóa</span>
                     </div>
                 </div>
             </div>
-
-            <div class="content_cart-product-item">
-                <div class="content_cart-product-item-wrapper">
-                    <div class="content_cart-product_info">
-                        <input type="checkbox" class="select_checkbox">
-                        <a href="#" class="content_cart-product-item-wrapper-link">
-                            <img class="content_cart-product-item-avatar"
-                                src="https://cf.shopee.vn/file/304c272486a52241d21fd3bbb33eff15" alt="">
-                            <p class="content_cart-product-item-introduction">
-                                Tai nghe bluetooth TWS 3 âm thanh vòm, cảm biến , đổi tên , sạc không dây (bh lỗi 1 đổi
-                                1)0000000000000000000000000000000000000
-                            </p>
-                        </a>
-                    </div>
-                    <div class="content_cart-control-item content_cart-control-item-price">
-                        <span>250000</span>
-                        <p>đ</p>
-                    </div>
-                    <div class="content_cart-control-item">
-                        <div class="content_cart-control-item-amount">
-                            <i class="fa-solid fa-minus change_amount_btn dec_amount_btn"></i>
-                            <input type="text" maxlength="3" value="1">
-                            <i class="fa-solid fa-plus change_amount_btn inc_amount_btn"></i>
-                        </div>
-                    </div>
-                    <div class="content_cart-control-item content_cart-control-item-payment">
-                        <span>250000</span>
-                        <p>đ</p>
-                    </div>
-                    <div class="content_cart-control-item content_cart-control-item-manipulation ">
-                        <span class="delete_cart_product">Xóa</span>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
+            
 
             <div class="content_cart-product-empty">
                 <img class="content_cart-product-empty-img hidden"

@@ -394,7 +394,7 @@ html {
     height: 260px;
     position: absolute;
     right: 18%;
-    top: 82%;
+    top: 84%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -465,7 +465,7 @@ html {
     position: absolute;
     border-width: 15px 15px;
     border-color: transparent transparent #fff transparent;
-    top: -10%;
+    top: -9%;
     right: 13px;
     cursor: pointer;
     z-index: 0;

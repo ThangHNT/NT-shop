@@ -137,8 +137,6 @@
     <div id="content_product_detail">
         <div class="product-introduction">
             <div class="product-introduction-illustration">
-                {{!-- <img data-id="{{productId}}" class="product-introduction-illustration-main_img"
-                    src="data:image/jpeg;base64,{{avatar}}" alt=""> --}}
                 <img data-id="{{productId}}" class="product-introduction-illustration-main_img"
                     src="{{avatar}}" alt="">
                 <div class="product-introduction-illustration-change_img_arrow">
@@ -147,10 +145,7 @@
                 </div>
                 <div class="product-introduction-illustration-some_img">
                     <div class="product-introduction-illustration-some_img-wrapper">
-                        {{!-- {{#each imgs_base64}}
-                        <img class="product-introduction-illustration-some_img-item"
-                            src="data:image/jpeg;base64,{{this.data}}" alt="">
-                        {{/each}} --}}
+                        
                         {{#each imgs}}
                         <img class="product-introduction-illustration-some_img-item"
                             src="{{this}}" alt="">
@@ -175,8 +170,7 @@
             <div class="product-introduction-option">
                 <div class="product-introduction-option-title">
                     <div class="product-introduction-option-title-name">
-                        <h4>Tai nghe chơi game Tws Bluetooth 5.0 không dây có mic với độ trễ thấp dùng cho điện thoại
-                            thông minh</h4>
+                        <h4>{{product.introduction}}</h4>
                     </div>
                     <div class="product-introduction-option-title-statistics">
                         <a href="#" class="product-introduction-option-title-statistics-rating_star">
@@ -216,7 +210,7 @@
                         </div>
                         <div class="product-introduction-option-delivery-from">
                             <span>Vận chuyển từ</span>
-                            <p>Nước ngoài</p>
+                            <p>{{product.deliveryFrom}}</p>
                         </div>
                     </div>
                 </div>
@@ -683,48 +677,54 @@
     }
 
     addProductToCart.onclick = function () {
-        if ($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
-            let data = {
-                productId: productId,
-            }
-            addProduct('/product/add-to-cart',data);
-            console.log(productId);
-            $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
-            let li = document.createElement('li');
-            li.className = 'header-cart-list_product-item';
-            let anh = document.createElement('img');
-            anh.src = $$('.product-introduction-illustration-some_img-item')[0].src;
-            let p = document.createElement('p');
-            let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
-            p.appendChild(textNode);
-            let span = document.createElement('span');
-            let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
-            span.appendChild(textNode2);
-            li.append(anh, p, span);
+        if($('.myAccount')){
+            if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
+                let data = {
+                    productId: productId,
+                }
+                addProduct('/product/add-to-cart',data);
+                console.log(productId);
+                $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
+                let li = document.createElement('li');
+                li.className = 'header-cart-list_product-item';
+                let anh = document.createElement('img');
+                anh.src = $$('.product-introduction-illustration-some_img-item')[0].src;
+                let p = document.createElement('p');
+                let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
+                p.appendChild(textNode);
+                let span = document.createElement('span');
+                let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
+                span.appendChild(textNode2);
+                li.append(anh, p, span);
 
-            if($('.header-cart-number_display')){
-                let amount = Number($('.header-cart-number_display').innerText) + 1 + '';
-                $('.header-cart-number_display').innerText = amount;
-                $('.header-cart-list_product-ul').prepend(li);
+                if($('.header-cart-number_display')){
+                    let amount = Number($('.header-cart-number_display').innerText) + 1 + '';
+                    $('.header-cart-number_display').innerText = amount;
+                    $('.header-cart-list_product-ul').prepend(li);
+                }
+                else {
+                    let ul = document.createElement('ul');
+                    ul.className = 'header-cart-list_product-ul';
+                    ul.prepend(li);
+                    let showBtn = document.createElement('a');
+                    let textNode4 = document.createTextNode('Xem giỏ hàng');
+                    showBtn.className = 'view_cart_product_btn';
+                    showBtn.appendChild(textNode4);
+                    $('.header-cart-list_product').removeChild($('.header-cart-list_product-wrapper'));
+                    $('.header-cart-list_product').appendChild(ul);
+                    $('.header-cart-list_product').appendChild(showBtn);
+                    let amountProductCart = document.createElement('div');
+                    amountProductCart.className = 'header-cart-number_display';
+                    let textNode3 = document.createTextNode('1');
+                    amountProductCart.appendChild(textNode3);
+                    $('.header-cart a').appendChild(amountProductCart);
+                }
+                
             }
-            else {
-                let ul = document.createElement('ul');
-                ul.className = 'header-cart-list_product-ul';
-                ul.prepend(li);
-                let showBtn = document.createElement('a');
-                let textNode4 = document.createTextNode('Xem giỏ hàng');
-                showBtn.className = 'view_cart_product_btn';
-                showBtn.appendChild(textNode4);
-                $('.header-cart-list_product').removeChild($('.header-cart-list_product-wrapper'));
-                $('.header-cart-list_product').appendChild(ul);
-                $('.header-cart-list_product').appendChild(showBtn);
-                let amountProductCart = document.createElement('div');
-                amountProductCart.className = 'header-cart-number_display';
-                let textNode3 = document.createTextNode('1');
-                amountProductCart.appendChild(textNode3);
-                $('.header-cart a').appendChild(amountProductCart);
-            }
-            
+
+        }
+        else {
+            alert("Bạn chưa đăng nhập!");
         }
     }
 

@@ -33,6 +33,10 @@ class HomeController {
         }
     }
 
+    login(req,res,next){
+        res.render('login');
+    }
+
     logout(req,res,next){
         req.session.destroy();
         req.user = null;

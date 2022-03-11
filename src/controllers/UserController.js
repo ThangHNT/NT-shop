@@ -2,18 +2,16 @@
 const User = require('../model/user.js');
 const Address = require('../model/address.js');
 const Shop = require('../model/shop.js');
-const res = require('express/lib/response');
+const Cart = require('../model/cart.js');
+const Product = require('../model/product.js');
+const {multiObject} = require('../convertToObject');
 
 class UserController {
-    login(req,res,next){
-        res.render('login');
-    }
-
     myAccount(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 res.render('myAccount', {
                     user: user,
@@ -166,10 +164,10 @@ class UserController {
     }
 
     sellerSignupSuccessful(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             const shop = new Shop();
             shop.brand = req.body.shop_name;
             shop.address = req.body.shop_address;
@@ -189,11 +187,37 @@ class UserController {
     }
 
     cart(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
-            res.render('cart');
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            Cart.findById({_id:user.cart},function(err, cart){
+                if(cart){
+                    Product.find({cart:cart._id},function(err, product){
+                        res.render('cart',{
+                            product: multiObject(product),
+                        })
+                    })
+                }
+                else res.send('Ban chua dang nhap');
+            })
+        })
+    }
+
+    addToCart(req, res, next) {
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            Cart.findOne({_id:user.cart},function(err,cart){
+                cart.products.push(req.body.productId);
+                cart.save();
+                Product.findById({_id:req.body.productId},function(err,product){
+                    product.cart.push(cart._id);
+                    product.save();
+                })
+                return res.send('thanh cong');
+            })
         })
     }
 }
