@@ -2,6 +2,7 @@
 const User = require('../model/user.js');
 const Address = require('../model/address.js');
 const Shop = require('../model/shop.js');
+const res = require('express/lib/response');
 
 class UserController {
     login(req,res,next){
@@ -187,7 +188,14 @@ class UserController {
         })
     }
 
-    
+    cart(req, res, next){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: id, authType: provider}, function(err, user){
+            res.render('cart');
+        })
+    }
 }
 
 module.exports = new UserController;

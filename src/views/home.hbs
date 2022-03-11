@@ -91,7 +91,7 @@
                 <a href="#"><i class="fas fa-search"></i></a>
             </div>
             <div class="header-cart">
-                <a href="#"><i class="fas fa-shopping-cart"></i>
+                <a href="/user/cart"><i class="fas fa-shopping-cart"></i>
                     {{#if number}}
                     <div class="header-cart-number_display">{{number}}</div>
                     {{/if}}
@@ -107,13 +107,8 @@
                                     <span>{{this.priceAfterDiscount}}</span>
                                 </li>
                                 {{/each}}
-                                {{!-- <li class="header-cart-list_product-item">
-                                    <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
-                                    <p>Tai nghe khong day nt-mega </p>
-                                    <span>120.000đ</span>
-                                </li> --}}
                             </ul>
-                            <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
+                            <a class="view_cart_product_btn" href="/user/cart">Xem giỏ hàng</a>
                         {{else}}
                             <div class="header-cart-list_product-wrapper">
                                 <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png"

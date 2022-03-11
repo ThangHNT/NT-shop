@@ -42,7 +42,6 @@ class ShopController {
             product.deliveryFrom = req.body.deliveryFrom;
             product.discount.amount = req.body.discount.amount;
             product.discount.unit = req.body.discount.unit;
-            // product.img_base64 = req.body.imgs;
             product.imgs = req.body.imgs;
             product.avatar = req.body.imgs[0];
             product.introduction = req.body.introduction;

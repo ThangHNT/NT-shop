@@ -1,7 +1,10 @@
 <div id="main_myShop">
     <div id="header_myShop">
         <div class="header_myShop-navbar">
-            <a href="/"><img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt=""></a>
+            <a href="/">
+                <img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
+                <h4>Trang chủ</h4>
+            </a>
             <div class="header_myShop-navbar-account">
                 {{#if user_avatar_base64}}
                     <img class="user_avatar" src="data:image/jpeg;base64,{{user_avatar_base64}}" alt="">
@@ -86,93 +89,28 @@
                                 <li>Voucher & dịch vụ</li>
                             </ul>
                             <div class="content_myShop-body-product-main-Category-imgs">
-                                <h4>chọn ảnh đại diện sản phẩm (url)</h4>
+                                <h4>chọn ảnh đại diện sản phẩm</h4>
                                 <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_avatar" type="text">
+                                    <input class="product_avatar" type="text" placeholder="URL hình ảnh">
                                 </div>
-                                <div class="main-Category-imgs-wrapper hidden">
-                                    <input class="product_avatar" type="file" accept="image/*">
-                                    <img class="content_myShop-body-product-main-Category-imgs-avatar main-Category-imgs-item"
-                                        src="" alt="">
-                                    <div class="circle-blue">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </div>
-                                </div>
-                                <h4 class="product_imgs">thêm ảnh sản phẩm (url)</h4>
+                                
+                                <h4 class="product_imgs">thêm ảnh sản phẩm</h4>
                                 {{!-- ===================== them anh bang url ===================================== --}}
                                 <div class="content_myShop-body-product-main-Category-some_imgs">
-                                        <div class="main-Category-imgs-wrapper2">
-                                            <input class="product_avatar" type="text">
-                                        </div>
-                                        <div class="main-Category-imgs-wrapper2">
-                                            <input class="product_avatar" type="text">
-                                        </div>
-                                        <div class="main-Category-imgs-wrapper2">
-                                            <input class="product_avatar" type="text">
-                                        </div>
-                                        <div class="main-Category-imgs-wrapper2">
-                                            <input class="product_avatar" type="text">
-                                        </div>
-                                        <div class="main-Category-imgs-wrapper2">
-                                            <input class="product_avatar" type="text">
-                                        </div>
+                                    <div class="main-Category-imgs-wrapper2">
+                                        <input class="product_img_item" placeholder="URL hình ảnh" type="text">
                                     </div>
-                                <div class="content_myShop-body-product-main-Category-some_imgs hidden">
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
+                                    <div class="main-Category-imgs-wrapper2">
+                                        <input class="product_img_item" placeholder="URL hình ảnh" type="text">
                                     </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
+                                    <div class="main-Category-imgs-wrapper2">
+                                        <input class="product_img_item" placeholder="URL hình ảnh" type="text">
                                     </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
+                                    <div class="main-Category-imgs-wrapper2">
+                                        <input class="product_img_item" placeholder="URL hình ảnh" type="text">
                                     </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="main-Category-imgs-wrapper">
-                                        <input type="file" accept="image/*">
-                                        <img class="main-Category-imgs-item" src="" alt="">
-                                        <div class="circle-blue">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </div>
+                                    <div class="main-Category-imgs-wrapper2">
+                                        <input class="product_img_item" placeholder="URL hình ảnh" type="text">
                                     </div>
                                 </div>
                             </div>
@@ -295,27 +233,6 @@
     let base64String = '';
     let listImg = [];
 
-    const reader = new FileReader();
-    productImgsInput.forEach((element, index) => {
-        element.onchange = function (event) {
-            let input = event.target;
-            let reader = new FileReader();
-            reader.readAsDataURL(input.files[0]);
-            reader.onload = function () {
-                let dataUrl = reader.result;
-                var output = $$('.main-Category-imgs-wrapper img')[index];
-                output.src = dataUrl;
-                $$('.main-Category-imgs-wrapper img')[index].style.opacity = '1';
-                $$('.circle-blue')[index].classList.add('hidden');
-                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-                // Thêm ảnh mới = database64
-                {{!-- listImg.push({
-                    data: base64String,
-                    contentType: 'image/png'
-                }); --}}
-            }
-        }
-    })
 
 </script>
 
@@ -399,12 +316,6 @@
         return ans;
     }
 
-    {{!-- $$('.product_detail_input-number').forEach((element, index) => {
-        element.onblur = function(){
-            let k = this.value;
-            if(isNaN(k) || Number(k) <= 0) alert('Vui lòng điền số hợp lệ!');
-        }
-    }) --}}
 
 </script>
 
