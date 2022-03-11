@@ -290,9 +290,39 @@
                         <p>Thêm Địa Chỉ Mới</p>
                     </div>
                 </div>
-                <div class="info_control-address-content">
                     <div class="separation_line"></div>
-                    
+                <div class="info_control-address-content">
+                    {{#each address}}
+                    <div class="separation_line"></div>
+                    <div class="info_control-address-content-item">
+                        <div class="address-content-item-detail">
+                            <div class="address-content-item-detail-info">
+                                <span>Họ và tên</span>
+                                <p>{{this.receiverName}}</p>
+                                <div class="default_address">{{this.default}}</div>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Số Điện Thoại</span>
+                                <p>(+84) {{this.phoneNumber}}</p>
+                            </div>
+                            <div class="address-content-item-detail-info">
+                                <span>Địa chỉ</span>
+                                <div class="address-content-item-detail-info-wrapper">
+                                    <p class="address_detail">{{this.detail}}</p>
+                                    <p class="address_detail">{{this.district}}</p>
+                                    <p class="address_detail">{{this.city}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="address-content-item-option">
+                            <div class="address-content-item-option-edit">
+                                <span class="address-content-item-option-edit-modify">Sửa</span>
+                                <span class="address-content-item-option-edit-delete">Xóa</span>
+                            </div>
+                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
 
@@ -808,7 +838,7 @@
                 .then(() => {
                     //============================== thêm địa chỉ mới ==============================
                     if(method == 'POST'){
-                        createNewAddress('/user/create/address',addressData,method);  
+                        {{!-- createNewAddress('/user/create/address',addressData,method);   --}}
                         console.log('tao moi dia chi');
                     }
                     else if(method == 'PUT'){
@@ -840,14 +870,82 @@
                 })
                 .then(() => {
                     if(method == 'POST'){
-                        setTimeout(() => {
-                            renderAddress('/user/json/address');
-                        },400);
+                        renderNewAddress();
                     }
                     return;
                 })
                 .catch(() => {console.log('loi cap nhat dia chi')});
         }
+    }
+
+    function renderNewAddress(){
+        let separateLine = document.createElement('div');
+        separateLine.className = 'separation_line';
+        let address = document.createElement('div');
+        address.className = 'info_control-address-content-item';
+
+        let addressDetail = document.createElement('div');
+        addressDetail.className = 'address-content-item-detail';
+
+        let addressDetailInfo1 = document.createElement('div');
+        let addressDetailInfo2 = document.createElement('div');
+        let addressDetailInfo3 = document.createElement('div');
+        addressDetailInfo1.className = 'address-content-item-detail-info';
+        addressDetailInfo2.className = 'address-content-item-detail-info';
+        addressDetailInfo3.className = 'address-content-item-detail-info';
+        
+        let nameTitle = document.createElement('span');
+        nameTitle.createTextNode = 'Họ và tên';
+        let name = document.createElement('p');
+        name.createTextNode = $('.modal-body-address-item-name').value;
+        let defaultAddress = document.createElement('div');
+        defaultAddress.className = 'default_address';
+        addressDetailInfo1.append(nameTitle,name,defaultAddress);
+        
+        let numberPhoneTitle = document.createElement('span');
+        numberPhoneTitle.createTextNode = 'Số điện thoại';
+        let numberPhone = document.createElement('p');
+        numberPhone.createTextNode = '(+84) ' + $('.modal-body-address-item-number_phone').value;
+        addressDetailInfo2.append(numberPhoneTitle,numberPhone);
+
+        let addressTitle = document.createElement('span');
+        addressTitle.createTextNode = 'Địa chỉ';
+        let addressWrapper = document.createElement('div');
+        addressWrapper.className = 'address-content-item-detail-info-wrapper';
+        let city = document.createElement('p');
+        let district = document.createElement('p');
+        let detail = document.createElement('p');
+        detail.createTextNode = $('.modal-body-address-item-location-detail').value;
+        let cityDistrict = $('.modal-body-address-item-location').value;
+        let phay = cityDistrict.lastIndexOf(',');
+        city.createTextNode = cityDistrict.slice(0,phay);
+        district.createTextNode = cityDistrict.slice(phay+1);
+        city.className = 'address_detail';
+        district.className = 'address_detail';
+        detail.className = 'address_detail';
+        addressWrapper.append(detail,district,city);
+        addressDetailInfo3.append(addressTitle,addressWrapper);
+        addressDetail.append(addressDetailInfo1,addressDetailInfo2,addressDetailInfo3)
+        
+
+        let addressOption = document.createElement('div');
+        addressOption.className = 'address-content-item-option';
+        let addressOptionEdit = document.createElement('div');
+        addressOptionEdit.className = 'address-content-item-option-edit';
+        let modifyBtn = document.createElement('span');
+        modifyBtn.className = 'address-content-item-option-edit-modify';
+        modifyBtn.createTextNode = 'Sửa';
+        let deleteBtn = document.createElement('span');
+        deleteBtn.className = 'address-content-item-option-edit-delete';
+        deleteBtn.createTextNode = 'Xóa';
+        let defaultAddressBtn = document.createElement('div');
+        defaultAddressBtn.className = 'address-content-item-option-set_default';
+        defaultAddressBtn.createTextNode = 'Thiết lập mặc định';
+        addressOptionEdit.append(modifyBtn,deleteBtn);
+        addressOption.append(addressOptionEdit,defaultAddressBtn);
+
+        address.append(addressDetail)
+        $('.info_control-address-content').appendChild(separateLine,address);
     }
 
     function createNewAddress(url, data, Method) {
@@ -913,9 +1011,6 @@
 {{!-- ============================ click vào item ở navbar, chỉnh sửa or xóa địa chỉ, thay đổi địa chỉ mặc định  ============================================ --}}
 <script>
     let activeItems = $$('.active-item p');
-    {{!-- window.addEventListener('load', (event) => {
-        renderAddress('/user/json/address');
-    }); --}}
     let indexDeleteBtn;
     
 
@@ -931,7 +1026,6 @@
         $('.info_control-address').classList.remove('hidden');
         removeActiveItems();
         this.classList.add('active');
-        renderAddress('/user/json/address');
         clickEditBtn();
         clickDeleteBtn();
         setupDefaultAddress();
@@ -1087,47 +1181,6 @@
         return;
     }
 
-    function renderAddress(url){
-        fetch(url)
-            .then(function(response){
-                return response.json(); // chuyen ve dang json
-            })
-            .then(function (addesses) {
-                var htmls = addesses.map((element) =>{
-                    return `<div class="separation_line"></div>
-                    <div class="info_control-address-content-item">
-                        <div class="address-content-item-detail">
-                            <div class="address-content-item-detail-info">
-                                <span>Họ và tên</span>
-                                <p>${element.receiverName}</p>
-                                <div class="default_address">${element.default}</div>
-                            </div>
-                            <div class="address-content-item-detail-info">
-                                <span>Số Điện Thoại</span>
-                                <p>(+84) ${element.phoneNumber}</p>
-                            </div>
-                            <div class="address-content-item-detail-info">
-                                <span>Địa chỉ</span>
-                                <div class="address-content-item-detail-info-wrapper">
-                                    <p class="address_detail">${element.detail}</p>
-                                    <p class="address_detail">${element.district}</p>
-                                    <p class="address_detail">${element.city}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="address-content-item-option">
-                            <div class="address-content-item-option-edit">
-                                <span class="address-content-item-option-edit-modify">Sửa</span>
-                                <span class="address-content-item-option-edit-delete">Xóa</span>
-                            </div>
-                            <div class="address-content-item-option-set_default">Thiết lập mặc định</div>
-                        </div>
-                    </div>`;
-                })
-                $('.info_control-address-content').innerHTML = htmls.join('');
-            })
-        return;
-    }
 
     activeItems[0].onclick = function() {
         activeItems[1].classList.add('active');
