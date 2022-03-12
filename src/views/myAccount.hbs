@@ -895,31 +895,39 @@
         addressDetailInfo3.className = 'address-content-item-detail-info';
         
         let nameTitle = document.createElement('span');
-        nameTitle.createTextNode = 'Họ và tên';
+        let textNode1 = document.createTextNode('Họ và tên');
+        nameTitle.appendChild(textNode1);
         let name = document.createElement('p');
-        name.createTextNode = $('.modal-body-address-item-name').value;
+        let textNode2 = document.createTextNode(`${$('.modal-body-address-item-name').value}`);
+        name.appendChild(textNode2);
         let defaultAddress = document.createElement('div');
         defaultAddress.className = 'default_address';
         addressDetailInfo1.append(nameTitle,name,defaultAddress);
         
         let numberPhoneTitle = document.createElement('span');
-        numberPhoneTitle.createTextNode = 'Số điện thoại';
+        let textNode3 = document.createTextNode('Số điện thoại');
+        numberPhoneTitle.appendChild(textNode3);
         let numberPhone = document.createElement('p');
-        numberPhone.createTextNode = '(+84) ' + $('.modal-body-address-item-number_phone').value;
+        let textNode4 = document.createTextNode(`(+84) ${$('.modal-body-address-item-number_phone').value}`);
+        numberPhone.appendChild(textNode4);
         addressDetailInfo2.append(numberPhoneTitle,numberPhone);
 
         let addressTitle = document.createElement('span');
-        addressTitle.createTextNode = 'Địa chỉ';
+        let textNode5 = document.createTextNode('Địa chỉ');
+        addressTitle.appendChild(textNode5);
         let addressWrapper = document.createElement('div');
         addressWrapper.className = 'address-content-item-detail-info-wrapper';
         let city = document.createElement('p');
         let district = document.createElement('p');
         let detail = document.createElement('p');
-        detail.createTextNode = $('.modal-body-address-item-location-detail').value;
+        let textNode6 = document.createTextNode(`${$('.modal-body-address-item-location-detail').value}`)
+        detail.appendChild(textNode6);
         let cityDistrict = $('.modal-body-address-item-location').value;
         let phay = cityDistrict.lastIndexOf(',');
-        city.createTextNode = cityDistrict.slice(0,phay);
-        district.createTextNode = cityDistrict.slice(phay+1);
+        let textNode7 = document.createTextNode(cityDistrict.slice(0,phay));
+        city.appendChild(textNode7);
+        let textNode8 = document.createTextNode(cityDistrict.slice(phay+1));
+        district.appendChild(textNode8);
         city.className = 'address_detail';
         district.className = 'address_detail';
         detail.className = 'address_detail';
@@ -934,18 +942,21 @@
         addressOptionEdit.className = 'address-content-item-option-edit';
         let modifyBtn = document.createElement('span');
         modifyBtn.className = 'address-content-item-option-edit-modify';
-        modifyBtn.createTextNode = 'Sửa';
+        let textNode9 = document.createTextNode('Sửa');
+        modifyBtn.appendChild(textNode9);
         let deleteBtn = document.createElement('span');
         deleteBtn.className = 'address-content-item-option-edit-delete';
-        deleteBtn.createTextNode = 'Xóa';
+        let textNode10 = document.createTextNode('Xoa');
+        deleteBtn.appendChild(textNode10);
         let defaultAddressBtn = document.createElement('div');
         defaultAddressBtn.className = 'address-content-item-option-set_default';
-        defaultAddressBtn.createTextNode = 'Thiết lập mặc định';
+        let textNode11 = document.createTextNode('Thiết lập mặc định');
+        defaultAddressBtn.appendChild(textNode11);
         addressOptionEdit.append(modifyBtn,deleteBtn);
         addressOption.append(addressOptionEdit,defaultAddressBtn);
 
-        address.append(addressDetail)
-        $('.info_control-address-content').appendChild(separateLine,address);
+        address.append(addressDetail,addressOption);
+        $('.info_control-address-content').append(separateLine,address);
     }
 
     function createNewAddress(url, data, Method) {
@@ -1031,11 +1042,11 @@
         setupDefaultAddress();
     }
 
-    $('.info_control-address').onmouseover = function() {
+    {{!-- $('.info_control-address').onmouseover = function() {
         clickEditBtn();
         clickDeleteBtn();
         setupDefaultAddress();
-    }
+    } --}}
 
     function setupDefaultAddress(){
         setupDefaultBtn = $$('.address-content-item-option-set_default');
