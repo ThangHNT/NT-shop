@@ -46,7 +46,7 @@ function authenticate(app) {
             const avatar = req.user.photos[0].value;
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
-                    const user = new User({facebookId :id, username : name,authType: 'facebook', avatar : avatar});
+                    const user = new User({id :id, username : name,authType: 'facebook', avatar : avatar});
                     const cart = new Cart();
                     cart.user = user._id;
                     cart.save();
