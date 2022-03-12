@@ -60,6 +60,12 @@
 .header_myShop-navbar-account h5 {
     color: rgb(88, 86, 86);
     margin-right: 10px;
+    font-size: 15px !important;
+    max-width: 100px;
+    max-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .header_myShop-navbar-account-option {
