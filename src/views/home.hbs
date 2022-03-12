@@ -92,15 +92,15 @@
             </div>
             <div class="header-cart">
                 <a href="/user/cart"><i class="fas fa-shopping-cart"></i>
-                    {{#if number}}
-                    <div class="header-cart-number_display">{{number}}</div>
+                    {{#if amount}}
+                    <div class="header-cart-number_display">{{amount}}</div>
                     {{/if}}
                 </a>
                 <div style="margin: 0;padding: 0;" class="header-cart-list_product">
                     {{#if user}}
-                        {{#if number}}
+                        {{#if amount}}
                             <ul class="header-cart-list_product-ul">
-                                {{#each products}}
+                                {{#each cartProduct}}
                                 <li class="header-cart-list_product-item">
                                     <img src="{{this.avatar}}" alt="">
                                     <p>{{this.introduction}}</p>

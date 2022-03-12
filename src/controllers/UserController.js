@@ -115,7 +115,7 @@ class UserController {
         User.findOne({id: id, authType: provider}, function(err, user){
             Address.findOneAndDelete({_id: user.address[req.body.index]}, function(err, address){
             })
-            user.address.splice(req.body.index, 1);
+            user.address.splice(req.body.index,1);
             user.save();
             return;
         })
