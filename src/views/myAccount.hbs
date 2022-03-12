@@ -838,7 +838,7 @@
                 .then(() => {
                     //============================== thêm địa chỉ mới ==============================
                     if(method == 'POST'){
-                        {{!-- createNewAddress('/user/create/address',addressData,method);   --}}
+                        createNewAddress('/user/create/address',addressData,method);  
                         console.log('tao moi dia chi');
                     }
                     else if(method == 'PUT'){
@@ -1054,7 +1054,6 @@
         setupDefaultBtn.forEach(function(element,index){
             element.onclick = function() {
                 if(!element.classList.contains('disabled')){
-                    console.log(5);
                     chageDefaultAddress('/user/default/address',index);
                     setTimeout(() => {
                         displayCurrentDefaultAddress();
