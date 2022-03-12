@@ -47,7 +47,7 @@ function ggAthentication(app) {
         if(lastName == null) lastName = '';
         const fullName = `${lastName} ${firstName}`;
         const avatar = req.user.photos[0].value;
-        User.findOne({googleId: id}, function(err, user) {
+        User.findOne({id: id}, function(err, user) {
             if(user == null) {
                 const user = new User({id :id, email : '', username : fullName,authType: 'google', avatar: avatar});
                 const cart = new Cart();
