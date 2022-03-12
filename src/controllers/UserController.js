@@ -8,10 +8,10 @@ const {multiObject} = require('../convertToObject');
 
 class UserController {
     myAccount(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             Address.find({_id:user.address},function(err, address){
                 res.render('myAccount', {
                     user: user,
@@ -65,10 +65,10 @@ class UserController {
     }
 
     createAddress(req,res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        User.findOne({id: '1384771445288690'}, function(err, user){
-        // User.findOne({id: id, authType: provider}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
             if(user){
                 const address = new Address();
                 address.receiverName = req.body.receiverName;
