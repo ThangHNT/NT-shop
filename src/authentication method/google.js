@@ -41,7 +41,11 @@ function ggAthentication(app) {
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res,next) {
         const id = req.user.id;
-        const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
+        let firstName = req.user.name.givenName;
+        if(firstName == null) firstName = '';
+        let lastName = req.user.name.familyName;
+        if(lastName == null) lastName = '';
+        const fullName = `${lastName} ${firstName}`;
         const avatar = req.user.photos[0].value;
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
