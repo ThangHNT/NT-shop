@@ -659,6 +659,7 @@
     let addProductToCart = $('.introduction-option-btn-add_to_cart');
     let cartProductNumber = $('.header-cart-number_display');
     let productId = $('.product-introduction-illustration-main_img').getAttribute('data-id');
+
     function addProduct(url,data){
         var option = {
             method: "POST",
@@ -682,7 +683,7 @@
                 let data = {
                     productId: productId,
                 }
-                addProduct('/product/add-to-cart',data);
+                addProduct('/user/add-to-cart',data);
                 console.log(productId);
                 $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
                 let li = document.createElement('li');
