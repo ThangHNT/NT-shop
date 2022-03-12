@@ -10,6 +10,7 @@ class HomeController {
             const provider = req.user.provider;
             const id = req.user.id;
             User.findOne({id:id, authType:provider}, function(err,user){
+            // User.findOne({googleId: '110832461352388283166'}, function(err, user){
             // User.findOne({facebookId: '1384771445288690'}, function(err, user){
                 Product.find({}, function(err,products) {
                     Cart.findById({_id: user.cart},function(err, cart){
