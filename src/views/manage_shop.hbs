@@ -275,12 +275,12 @@
     }
     function checkImgs() {
         let dem = 0;
-        productImages.forEach((element, index) => {
-            if (element.style.opacity == 1) {
+        productImagesUrl.forEach((element, index) => {
+            if (element.value.length > 5) {
                 dem++;
             }
         })
-        if ($('.content_myShop-body-product-main-Category-imgs-avatar').style.opacity == 0) return false;
+        if($('.product_avatar').value.length == 0) return false;
         if (dem <= 2) return false;
         return true;
     }
@@ -322,7 +322,7 @@
 <!-- =================================================== khi ấn nút lưu ======================================================= -->
 <script>
     let storeBtn = $('.content_myShop-body-store_btn span');
-    let productImages = $$('.main-Category-imgs-wrapper img');
+    let productImagesUrl = $$('.main-Category-imgs-wrapper2 input');
     
     // ------------------------------------------------ lấy dữ liệu để gửi về server ------------------------------------------
     let newProduct = '';
@@ -347,7 +347,7 @@
     storeBtn.onclick = function () {
         if (!checkName()) alert('Vui lòng điền tên sản phẩm!');
         else if (!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
-        {{!-- else if (!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!'); --}}
+        else if(!checkImgs()) alert('Bạn chưa chọn đủ ảnh!');
         else if (!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if (!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
         else if (!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
