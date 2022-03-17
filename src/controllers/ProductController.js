@@ -9,8 +9,8 @@ class ProductController {
         if(req.user){
             const provider = req.user.provider;
             var id = req.user.id;
-            // User.findOne({id: '1384771445288690'}, function(err, user){
             User.findOne({id: id, authType: provider}, function(err, user){
+            // User.findOne({id: '1384771445288690'}, function(err, user){
                 if(user){
                     Product.findById({_id: req.params.id}, function(err, product){
                         Cart.findById({_id:user.cart}, function(err,cart){

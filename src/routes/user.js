@@ -12,6 +12,7 @@ router.get('/json/avatar',userController.getJsonAvatar);  // tao trang json cho 
 router.get('/seller/signup/view',userController.sellerSignup); // tạo trang đăng ký người bán
 router.post('/seller/signup/successful',userController.sellerSignupSuccessful); // đăng ký ng bán thành công
 router.get('/cart',userController.cart); // trang giỏ hàng
-router.post('/add-to-cart',userController.addToCart);
+router.post('/add-to-cart',userController.addToCart);   // thêm sp vào giỏ hàng
+router.patch('/cart/remove-product',userController.removeProductFromCart);  // xóa sản phẩm khỏi giỏ hàng
 
 module.exports = router;

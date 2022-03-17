@@ -588,13 +588,15 @@
     let productImgIndex = -1;
     let productImgList = $$('.product-introduction-illustration-some_img-item');
     $('.fa-angle-right').onclick = function () {
-        if (productImgIndex < productImgList.length - 6) {
+        console.log(productImgIndex);
+        if (productImgIndex <= productImgList.length - 6) {
             productImgIndex += 1;
             productImgList[productImgIndex].classList.add('hidden');
         }
     }
     $('.fa-angle-left').onclick = function () {
-        if (productImgIndex > 0) {
+            console.log(productImgIndex);
+        if (productImgIndex >= 0) {
             productImgList[productImgIndex].classList.remove('hidden');
             productImgIndex -= 1;
         }

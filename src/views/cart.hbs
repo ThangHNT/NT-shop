@@ -12,9 +12,12 @@
             </div>
             <div class="header_cart-user-account">
                 <div class="header_cart-user-account-wrapper">
-                    <img class="header_cart-user-account-user_avatar"
-                        src="https://cf.shopee.vn/file/91f4e46ce92c28b31efcbb6c39d0172a_tn" alt="">
-                    <span>Thắng Hoàng</span>
+                    {{#if avatar_base64}}
+                        <img class="header_cart-user-account-user_avatar" src="data:image/jpeg;base64,{{avatar_base64}}" alt="">
+                    {{else}}
+                        <img class="header_cart-user-account-user_avatar" src="{{user.avatar}}" alt="">
+                    {{/if}}
+                    <span>{{user.username}}</span>
                 </div>
                 <div class="header_cart-user-account-option">
                     <a href="#">Tài khoản của tôi</a>
@@ -46,12 +49,13 @@
         </div>
         <!------------------------------------------------- each product ------------------------------------>
         <div class="content_cart-product">
+            {{#if productAmount}}
             {{#each product}}
             <div class="content_cart-product-item">
                 <div class="content_cart-product-item-wrapper">
                     <div class="content_cart-product_info">
                         <input type="checkbox" class="select_checkbox">
-                        <a href="#" class="content_cart-product-item-wrapper-link">
+                        <a href="#" class="content_cart-product-item-wrapper-link" product-id="{{this._id}}">
                             <img class="content_cart-product-item-avatar"
                                 src="{{this.avatar}}" alt="">
                             <p class="content_cart-product-item-introduction">
@@ -81,13 +85,10 @@
                 </div>
             </div>
             {{/each}}
-            
-
             <div class="content_cart-product-empty">
                 <img class="content_cart-product-empty-img hidden"
                     src="https://cdn.wedevs.com/uploads/2020/05/WooCommerce-Empty-Cart-1.png" alt="">
             </div>
-
             <div class="content_cart-product-manipulation">
                 <div class="content_cart-product-manipulation-selection">
                     <input type="checkbox" class="select_all">
@@ -100,6 +101,13 @@
                     <div class="content_cart-product-manipulation-buy_btn">Mua hàng</div>
                 </div>
             </div>
+            {{else}}
+                <div class="content_cart-product-empty">
+                    <img class="content_cart-product-empty-img"
+                        src="https://cdn.wedevs.com/uploads/2020/05/WooCommerce-Empty-Cart-1.png" alt="">
+                </div>
+            {{/if}}
+
         </div>
 
     </div>
@@ -217,17 +225,50 @@
     let deleteCartproduct = $$('.delete_cart_product');
     let productItems = $$('.content_cart-product-item');
 
+    function deleteProductFromCart(url,data){
+        var option = {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa sp khoi gio hang');
+            })
+    }
 
     deleteCartproduct.forEach(function (element, index) {
         element.onclick = function () {
-            dem++;
-            productItems = $$('.content_cart-product-item');
-            productItems[index].classList.add('hidden');
-            if (dem == deleteCartproduct.length) {
-                $('.content_cart-product-manipulation').classList.add('hidden');
-                $('.content_cart-product-empty-img').classList.remove('hidden');
-                selectAllCheckbox[0].classList.add('hidden');
-            }
+            let promise = Promise.resolve();
+            promise
+                .then(() => {
+                    dem++;
+                    productItems = $$('.content_cart-product-item');
+                    productItems[index].classList.add('hidden');
+                    if (dem == deleteCartproduct.length) {
+                        $('.content_cart-product-manipulation').classList.add('hidden');
+                        $('.content_cart-product-empty-img').classList.remove('hidden');
+                        selectAllCheckbox[0].classList.add('hidden');
+                    }
+                })
+                .then(() => {
+                    let productId = $$('.content_cart-product-item-wrapper-link')[index].getAttribute('product-id');
+                    let data = {
+                        thisIndex: index,
+                        productId: productId,
+                    }
+                    deleteProductFromCart('/user/cart/remove-product',data);
+                    return;
+                })
+                .then(() => {
+                    alert('Xóa thành công!');
+                })
+                .catch((err) => {console.log(err)});
         }
     })
 

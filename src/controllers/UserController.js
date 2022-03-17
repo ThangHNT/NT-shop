@@ -5,6 +5,7 @@ const Shop = require('../model/shop.js');
 const Cart = require('../model/cart.js');
 const Product = require('../model/product.js');
 const {multiObject} = require('../convertToObject');
+const {object} = require('../convertToObject');
 
 class UserController {
     myAccount(req,res,next){
@@ -179,9 +180,14 @@ class UserController {
                 if(cart){
                     Product.find({cart:cart._id},function(err, product){
                         res.render('cart',{
+                            user: object(user),
+                            avatar: user.avatar,
+                            avatar_base64: object(user.avatar_base64.data),
                             product: multiObject(product),
+                            productAmount: cart.products.length,
                         })
                     })
+                    // res.send('thanh cong');
                 }
                 else res.send('Ban chua dang nhap');
             })
@@ -194,14 +200,40 @@ class UserController {
         // User.findOne({id: '1384771445288690'}, function(err, user){
         User.findOne({id: id, authType: provider}, function(err, user){
             Cart.findOne({_id:user.cart},function(err,cart){
-                cart.products.push(req.body.productId);
+                cart.products.unshift(req.body.productId);
                 cart.save();
                 Product.findById({_id:req.body.productId},function(err,product){
-                    product.cart.push(cart._id);
-                    product.save();
+                    let check = product.cart.some((item) => {
+                        return item == cart._id;
+                    })
+                    if(!check){
+                        product.cart.push(cart._id);
+                        product.save();
+                    }
                 })
                 return res.send('thanh cong');
             })
+        })
+    }
+
+    removeProductFromCart(req, res,next){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            Cart.findOne({_id:user.cart},function(err,cart){
+                if(cart){
+                    let id = cart.products.indexOf(req.body.productId);
+                    cart.products.splice(id,1);
+                    Product.findById({_id: req.body.productId}, function(err,product){
+                        let cartIndex = product.cart.indexOf(cart._id);
+                        product.cart.splice(cartIndex,1);
+                        product.save();
+                    })
+                    cart.save();
+                }
+            })
+            return res.send('thanh cong');
         })
     }
 }

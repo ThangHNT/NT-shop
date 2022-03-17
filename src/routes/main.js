@@ -14,10 +14,10 @@ function route(app) {
             return next();
         } else res.redirect('/login');
     }, shopRouter);
-    app.use('/product',productRouter);
-    app.use('/',homeRouter);
     // app.use('/user',userRouter);
     // app.use('/shop',shopRouter);
+    app.use('/product',productRouter);
+    app.use('/',homeRouter);
 }
 
 module.exports = route;
