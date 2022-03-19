@@ -8,14 +8,17 @@ class ShopController {
     manageShop(req, res, next){
         const provider = req.user.provider;
         var id = req.user.id;
-        // User.findOne({id: '1384771445288690'}, function(err, user){
         User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             if(user.shop){
-                res.render('manage_shop', { 
-                    userName: user.username,
-                    userAvatar: user.avatar,
-                    user_avatar_base64: user.avatar_base64.data
-                });
+                Product.find({shop: user.shop}, function(err, product){
+                    res.render('manage_shop', { 
+                        userName: user.username,
+                        userAvatar: user.avatar,
+                        user_avatar_base64: user.avatar_base64.data,
+                        product: multiObject(product),
+                    });
+                })
             }
             else {
                 res.redirect(`/user/seller/signup/view`);
@@ -62,6 +65,20 @@ class ShopController {
                 }
             })
         })
+    }
+
+    modifyProductView(req, res,next){
+        if(req.user){
+            res.render('modify_product');
+        }
+        else res.send('ko co user');
+    }
+
+    modifyProduct(req, res, next){
+        if(req.user){
+            res.send('co user')
+        }
+        else res.send('ko co');
     }
 }
 

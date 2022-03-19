@@ -1,0 +1,354 @@
+<div id="main_myShop">
+    <div id="header_myShop">
+        <div class="header_myShop-navbar">
+            <a href="#"><img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt=""></a>
+            <div class="header_myShop-navbar-account">
+                <img class="user_avatar"
+                    src="https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg" alt="">
+                <h5>hoang ngoc thang B19dcat186</h5>
+                <div class="header_myShop-navbar-account-option">
+                    <a href="#">Hồ sơ shop</a>
+                    <a href="#">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content_edit_product">
+        <form method="POST" class="content_edit_product-wrapper">
+            <div class="content_myShop-body-item content_myShop-body-product">
+                <div class="content_myShop-body-item-title">
+                    <h3>Chỉnh sửa thông tin sản phẩm </h3>
+                </div>
+                <div class="separate_line_vertical"></div>
+                <div class="content_myShop-body-product-main">
+                    <div class="content_myShop-body-product-main-item content_myShop-body-product-main-name">
+                        <label for="">Tên sản phẩm:</label>
+                        <input name="product_name" type="text" maxlength="100">
+                    </div>
+                    <div class="content_myShop-body-product-main-item content_myShop-body-product-main-Category">
+                        <label for="">Chọn loại sản phẩm</label>
+                        <ul class="content_myShop-body-product-main-Category-list">
+                            <li>Máy ảnh & máy quay phim</li>
+                            <li>Đồng hồ</li>
+                            <li>Giày dép nam</li>
+                            <li>Thiết bị điện gia dụng</li>
+                            <li>Thể thao & du lịch</li>
+                            <li>Ô tô & xe máy & xe đạp</li>
+                            <li>Balo & túi ví nam</li>
+                            <li>Đồ chơi</li>
+                            <li>Chăm sóc thú cưng</li>
+                            <li>Thời trang nam</li>
+                            <li>Điện thoại & phụ kiện</li>
+                            <li>Thiết bị điện tử</li>
+                            <li>Máy tính & laptop</li>
+                            <li>Thời trang nữ</li>
+                            <li>Mẹ & bé</li>
+                            <li>Nhà cửa & đời sống</li>
+                            <li>Sắc đẹp</li>
+                            <li>Sức khỏe</li>
+                            <li>Giày dép nữ</li>
+                            <li>Túi ví nữ</li>
+                            <li>Phụ kiện & trang sức nữ</li>
+                            <li>Bách hóa online</li>
+                            <li>Nhà sách online</li>
+                            <li>Thời trang trẻ em</li>
+                            <li>Giặt giũ & chăm sóc nhà cửa</li>
+                            <li>Voucher & dịch vụ</li>
+                        </ul>
+                        <div class="content_myShop-body-product-main-Category-imgs">
+                            <h4>Thêm ảnh đại diện sản phẩm</h4>
+                            <div class="main-Category-imgs-wrapper2">
+                                <input class="product_avatar" type="text" placeholder="URL hình ảnh">
+                            </div>
+
+                            <h4 class="product_imgs">thêm ảnh sản phẩm</h4>
+                            <div class="content_myShop-body-product-main-Category-some_imgs">
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                </div>
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                </div>
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                </div>
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                </div>
+                                <div class="main-Category-imgs-wrapper2">
+                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_myShop-body-product-main-introduction content_myShop-body-product-main-item">
+                        <label for="">giới thiệu sản phẩm</label>
+                        <input type="text" , maxlength="200" name="product_introduction">
+                    </div>
+                    <div class="content_myShop-body-product-main-description content_myShop-body-product-main-item">
+                        <label for="">Mô tả sản phẩm</label>
+                        <textarea name="product_description" rows="10" maxlength="500"></textarea>
+                    </div>
+                    <div class="content_myShop-body-product-main-detail content_myShop-body-product-main-item">
+                        <label for="">Thông tin sản phẩm</label>
+                        <div class="content_myShop-body-product-main-detail-wrapper">
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Số lượng:</label>
+                                <input
+                                    class="product_detail_input-item product_detail_input-number product_detail_input-amount"
+                                    maxlength="5" name="product_detail_input-item" type="number" min="1" max="10000">
+                            </div>
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Giá:</label>
+                                <input
+                                    class="product_detail_input-item product_detail_input-number product_detail_input-price"
+                                    maxlength="13" name="product_detail_input-item" type="number" min="1000"
+                                    max="100000000">
+                                <span class="currency">VND</span>
+                            </div>
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Giảm giá:</label>
+                                <input
+                                    class="product_detail_input-item product_detail_input-number product_detail_input-discount"
+                                    maxlength="13" name="product_detail_input-item" type="number" min="1"
+                                    max="10000000">
+                                <div class="kind_discount">
+                                    <span>%</span>
+                                    <div class="separate_line"></div>
+                                    <span>VND</span>
+                                </div>
+                            </div>
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Thương hiệu:</label>
+                                <input class="product_detail_input-item product_detail_input-brand" maxlength="50"
+                                    name="product_detail_input-item" type="text">
+                            </div>
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Xuất xứ:</label>
+                                <input class="product_detail_input-item product_detail_input-made_in" maxlength="50"
+                                    name="product_detail_input-item" type="text">
+                            </div>
+                            <div class="content_myShop-body-product-main-detail-wrapper-item">
+                                <label for="">Vận chuyển từ:</label>
+                                <input class="product_detail_input-item product_detail_input-delivery_from"
+                                    maxlength="50" name="product_detail_input-item" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_myShop-body-store_btn">
+                        <span class="edit_product_btn">Lưu thay đổi</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+            <div class="footer_wrap container">
+                <div class="footer-element">
+                    <div class="footer-element-customer_care">
+                        <h4>CHĂM SÓC KHÁCH HÀNG</h4>
+                        <ul>
+                            <li>Trung tâm trợ giúp</li>
+                            <li>NT Blog</li>
+                            <li>NT Mail</li>
+                            <li>Hướng Dẫn Mua Hàng</li>
+                            <li>Hướng Dẫn Bán Hàng</li>
+                            <li>Thanh Toán</li>
+                            <li>NT coin</li>
+                            <li>Vận Chuyển</li>
+                            <li>Trả Hàng & Hoàn Tiền</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-about_us">
+                        <h4>VỀ NT shop</h4>
+                        <ul>
+                            <li>Giới Thiệu Về NT shop</li>
+                            <li>Tuyển dụng</li>
+                            <li>Điều khoản</li>
+                            <li>Chính Sách Bảo Mật</li>
+                            <li>Chính Hãng</li>
+                            <li>Kênh Người Bán</li>
+                            <li>Flash Sales</li>
+                            <li>Liên Hệ Với Truyền Thông</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-payment">
+                        <h4>THANH TOÁN</h4>
+                        <ul>
+                            <li>
+                                <img src="https://einvoice.vn/FileUpload/ArticleMaterials/images/thanh-toan-dien-tu-4.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-follow_us">
+                        <h4>THEO DÕI CHÚNG TÔI TRÊN</h4>
+                        <ul>
+                            <li><i class="fab fa-facebook"></i>Facebook</li>
+                            <li><i class="fab fa-instagram"></i> Instagram</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-element">
+                    <div class="footer-element-download_my_app">
+                        <h4>TẢI ỨNG DỤNG NT shop NGAY THÔI</h4>
+                        <a href="#">
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png" alt="" class="footer-element-download_my_app-qrcode">
+                            <div class="footer-element-download_my_app-apps">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png" alt="">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/f4f5426ce757aea491dce94201560583.png" alt="">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/1ae215920a31f2fc75b00d4ee9ae8551.png" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- ================================== modal ============================================== -->
+<div class="modal store_successfully hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-content-edit_product">
+        <div class="modal-body-updated_profile">
+            <img style="width: 40px; height: 40px;"
+                src="https://cachbothuocla.vn/wp-content/uploads/2019/03/tick-xanh.png" alt="">
+            <h4>Chỉnh sửa thành công</h4>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================== Chọn loại sản phẩm ======================================== -->
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    let productCategory = $$('.content_myShop-body-product-main-Category-list li');
+    productCategory.forEach((element, index) => {
+        element.onclick = function () {
+            removeAllSelected(index);
+            element.classList.add('select_product_category');
+        }
+    });
+    function removeAllSelected(k) {
+        productCategory.forEach((element, index) => {
+            if (index != k) {
+                element.classList.remove('select_product_category');
+            }
+        });
+    }
+
+</script>
+
+<!-- ===================================================== thông tin sản phẩm =============================================== -->
+<script>
+    let productInfoInput = $$('.product_detail_input-item');
+    let inputNumber = $$('.product_detail_input-number');
+    let unit = $$('.kind_discount span');
+
+    unit[0].onclick = function () {
+        this.classList.add('select_unit');
+        unit[1].classList.remove('select_unit');
+    }
+    unit[1].onclick = function () {
+        this.classList.add('select_unit');
+        unit[0].classList.remove('select_unit');
+    }
+
+    inputNumber.forEach((element, index) => {
+        element.onblur = function () {
+            if (isNaN(element.value)) {
+                alert('Vui lòng chỉ nhập số!');
+            }
+        }
+    })
+
+</script>
+
+<!-- =================================================== khi ấn nút lưu thay đổi ======================================================= -->
+<script>
+    let storeBtn = $('.content_myShop-body-store_btn span');
+    let productImages = $$('.main-Category-imgs-wrapper img');
+
+    function checkName() {
+        if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
+        return true;
+    }
+    function checkCategory() {
+        let dem = 0;
+        productCategory.forEach((element, index) => {
+            if (element.classList.contains('select_product_category')) {
+                dem = 1;
+            }
+        })
+        if (dem == 0) return false;
+        return true;
+    }
+    function checkImgs() {
+        let dem = 0;
+        productImagesUrl.forEach((element, index) => {
+            if (element.value.length > 5) {
+                dem++;
+            }
+        })
+        if ($('.product_avatar').value.length == 0) return false;
+        if (dem <= 2) return false;
+        return true;
+    }
+    function checkIntroduce() {
+        if ($('.content_myShop-body-product-main-introduction input').value.length == 0) return false;
+        return true;
+    }
+    function checkDescription() {
+        if ($('.content_myShop-body-product-main-item textarea').value.length == 0) return false;
+        return true;
+    }
+    function checkProductInfo() {
+        let check = true;
+        $$('.product_detail_input-item').forEach((element, index) => {
+            if (element.value.length == 0) check = false;
+        })
+        return check;
+    }
+    function checkUniDiscount() {
+        let dem = 0;
+        unit.forEach((element, index) => {
+            if (element.classList.contains('select_unit')) dem++;
+        })
+        if (dem == 0) return false;
+        return true;
+    }
+    storeBtn.onclick = function () {
+        // if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
+        // else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
+        // else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
+        // else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
+        // else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
+        // else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
+        // else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
+        {
+            let promise = Promise.resolve();
+            promise
+                .then(() => {
+                    // addNewProduct('/shop/add-product',newProduct);
+                    console.log('thanh cong');
+                })
+                .then(() => {
+                    $('.store_successfully').classList.remove('hidden');
+                })
+                .then(() => {
+                    setTimeout(function () {
+                        $('.store_successfully').classList.add('hidden');
+                    }, 1300);
+                })
+                .catch(() => { console.log('co loi') })
+        }
+    }
+
+</script>

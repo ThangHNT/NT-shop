@@ -366,6 +366,172 @@
 }
 
 
+/* ===================================================== view tất cả sản phẩm ========================================================= */
+
+.content_myShop-body-all_product-main {
+    width: 100%;
+    padding: 0 30px;
+}
+.content_myShop-body-all_product-main-control {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.content_myShop-body-all_product-main-control span {
+    color: #000 !important;
+}
+
+.content_myShop-body-all_product-main-name {
+    min-width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.content_myShop-body-all_product-main-amount, .content_myShop-body-all_product-main-sold, .content_myShop-body-all_product-main-action {
+    min-width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.content_myShop-body-all_product-main-item {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content_myShop-body-all_product-main-item-wrapper {
+    display: flex;
+}
+
+.content_myShop-body-all_product-main-item:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.content_myShop-body-all_product-main-action span {
+    color: #fff;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    height: 30px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.content_myShop-body-all_product-main-action-edit {
+    background-color: rgb(10, 180, 95) !important;
+}
+
+.content_myShop-body-all_product-main-action-edit:hover {
+    background-color: rgb(19, 216, 117) !important;
+}
+
+.content_myShop-body-all_product-main-action-delete {
+    background-color:rgb(212, 10, 10) !important;
+}
+
+.content_myShop-body-all_product-main-action-delete:hover {
+    background-color:rgb(238, 62, 62) !important;
+}
+
+.content_myShop-body-all_product-main-item {
+    display: flex;
+}
+
+.content_myShop-body-all_product-main-name img {
+    min-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    max-width: 90px;
+}
+
+.content_myShop-body-all_product-main-name span {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 15px !important;
+    margin-left: 10px;
+    line-height: 16px;
+    max-width: 250px;
+    max-height: 36px;
+    user-select: none;
+}
+
+/* ================================================================= modal ======================================================== */
+
+.modal-content_delete_product {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    background-color:#fff;
+    border-radius: 3px;
+    top:50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal-content_delete_product p {
+    font-size: 18px !important;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.modal-body-confirm_delete_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body-confirm_delete_btn button {
+    min-width: 70px !important;
+    padding: 8px 4px !important;
+    margin: 15px !important;
+    font-size: 16px !important;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.modal-body-confirm_delete_btn-yes {
+    background-color: rgb(240, 41, 68) !important;
+    color: #fff;
+}
+
+.modal-content-edit_product {
+    width: 280px;
+    height: 100px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =================================================================== edit product ====================================== */
+#content_edit_product {
+    padding: 30px 150px;
+}
+
+.content_edit_product-wrapper {
+    padding: 0 50px;
+    border-width: 0 2px 0 2px;
+    border-color: #ccc;
+    border-style: solid !important;
+}
+
+.edit_product_btn {
+    background-color: rgb(10, 139, 224) !important;
+}
+
+
+
+
+
 
 
 

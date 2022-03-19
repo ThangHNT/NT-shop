@@ -375,8 +375,8 @@
 }
 
 .modal-body {
-    width: 250px;
-    height: 100px;
+    width: 250px !important;
+    height: 100px !important;
 }
 
 .modal-body-updated_profile {
