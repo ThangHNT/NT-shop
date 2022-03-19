@@ -29,8 +29,8 @@ class ShopController {
     addNewProduct(req,res,next){
         const provider = req.user.provider;
         var id = req.user.id;
-        // User.findOne({id: '1384771445288690'}, function(err, user){
         User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             let unit = req.body.discount.unit;
             let priceAfterDiscount = 0, price = Number(req.body.price);
             if(unit == '%'){

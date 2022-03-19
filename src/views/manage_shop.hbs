@@ -49,7 +49,7 @@
         <div class="content_myShop-body">
             <div class="content_myShop-body-wrapper">
                 <!-- ================================ view tất cả sản phẩm   ============================================ -->
-                    <div class="content_myShop-body-item content_myShop-body-all_product">
+                    <div class="content_myShop-body-item content_myShop-body-all_product hidden">
                         <div class="content_myShop-body-item-title">
                             <h3>Tất cả sản phẩm </h3>
                         </div>
@@ -66,11 +66,11 @@
                                 <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
                                     <div class="content_myShop-body-all_product-main-item-wrapper">
                                         <div class="content_myShop-body-all_product-main-name">
-                                            <img src="https://cf.shopee.vn/file/304c272486a52241d21fd3bbb33eff15" alt="">
-                                            <span>Tai Nghe Không Dây Bluetooth Cao Cấp HOCO 3 Pro Phiên Bản Định Vị - Đổi Tên, Dùng Cho IOS và Androi</span>
+                                            <img src="{{this.avatar}}" alt="">
+                                            <span>{{this.introduction}}</span>
                                         </div>
-                                        <div class="content_myShop-body-all_product-main-amount">1200</div>
-                                        <div class="content_myShop-body-all_product-main-sold">0</div>
+                                        <div class="content_myShop-body-all_product-main-amount">{{this.totalAmount}}</div>
+                                        <div class="content_myShop-body-all_product-main-sold">{{this.sold}}</div>
                                         <div class="content_myShop-body-all_product-main-action">
                                             <span class="content_myShop-body-all_product-main-action-edit">
                                                 <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                <div class="content_myShop-body-item content_myShop-body-product hidden">
+                <div class="content_myShop-body-item content_myShop-body-product">
                     <div class="content_myShop-body-item-title">
                         <h3>Thêm sản phẩm mới</h3>
                     </div>
@@ -366,8 +366,31 @@
 
 {{!-- ================================================== ấn vào 1 mục ở side bar ========================================== --}}
 <script>
-    let sidebarItems = $$('.content_myShop-side_bar-manage_product-item');
-    console.log(sidebarItems);
+    let sidebarProductItems = $$('.content_myShop-side_bar-manage_product-item');
+    
+    sidebarProductItems.forEach(function(element,index){
+        element.onclick = function(){
+            removeAllActive();
+            element.classList.add('active');
+            removeAllContent();
+            if(index == 0){
+                $('.content_myShop-body-all_product').classList.remove('hidden');
+            }
+            else if(index == 1){
+                $('.content_myShop-body-product').classList.remove('hidden');
+            }
+        }
+    })
+    function removeAllActive(){
+        sidebarProductItems.forEach(function(element,index){
+            element.classList.remove('active');
+        })
+    }
+    function removeAllContent(){
+        $$('.content_myShop-body-item ').forEach(function(element,index){
+            element.classList.add('hidden');
+        })
+    }
 </script>
 
 <!-- =================================================== khi ấn nút lưu ======================================================= -->
@@ -397,12 +420,12 @@
     
     storeBtn.onclick = function () {
         if (!checkName()) alert('Vui lòng điền tên sản phẩm!');
-        {{!-- else if (!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
+        else if (!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
         else if(!checkImgs()) alert('Bạn chưa thêm đủ ảnh!');
         else if (!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if (!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
         else if (!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
-        else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm'); --}}
+        else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
         else {
             $$('.main-Category-imgs-wrapper2 input').forEach(function(element) {
                 if(element.value.length > 0){
@@ -425,7 +448,7 @@
             let promise = Promise.resolve();
             promise
                 .then(() => {
-                    // addNewProduct('/shop/add-product',newProduct);
+                    addNewProduct('/shop/add-product',newProduct);
                     console.log(newProduct);
                 })
                 .then(() => {
@@ -435,6 +458,11 @@
                     setTimeout(function (){
                         $('.store_successfully').classList.add('hidden');
                     },1300);
+                })
+                .then(() => {
+                    setTimeout(function (){
+                        location.reload();
+                    },1400);
                 })
                 .catch(() => {console.log('co loi')})
         }
