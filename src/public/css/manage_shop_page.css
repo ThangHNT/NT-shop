@@ -161,6 +161,7 @@
 .content_myShop-body-item-title h3 {
     text-transform: capitalize;
     font-size: 20px;
+    font-weight: bold !important;
 }
 
 .separate_line_vertical {
@@ -465,8 +466,8 @@
 
 .modal-content_delete_product {
     position: absolute;
-    width: 400px;
-    height: 200px;
+    width: 400px !important;
+    height: 200px !important;
     background-color:#fff;
     border-radius: 3px;
     top:50%;
@@ -526,6 +527,10 @@
 
 .edit_product_btn {
     background-color: rgb(10, 139, 224) !important;
+    color: #fff !important;
+    padding: 8px 10px !important;
+    font-size: 16px !important;
+    border-radius: 3px !important;
 }
 
 

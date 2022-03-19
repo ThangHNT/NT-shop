@@ -1,11 +1,11 @@
 <div id="main_myShop">
     <div id="header_myShop">
         <div class="header_myShop-navbar">
-            <a href="#"><img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt=""></a>
+            <a href="/"><img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt=""></a>
             <div class="header_myShop-navbar-account">
                 <img class="user_avatar"
-                    src="https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg" alt="">
-                <h5>hoang ngoc thang B19dcat186</h5>
+                    src="{{user.avatar}}" alt="">
+                <h5>{{user.username}}</h5>
                 <div class="header_myShop-navbar-account-option">
                     <a href="#">Hồ sơ shop</a>
                     <a href="#">Đăng xuất</a>
@@ -14,7 +14,7 @@
         </div>
     </div>
     <div id="content_edit_product">
-        <form method="POST" class="content_edit_product-wrapper">
+        <form method="POST" action="/shop/modify-product/{{product._id}}?_method=PUT" class="content_edit_product-wrapper">
             <div class="content_myShop-body-item content_myShop-body-product">
                 <div class="content_myShop-body-item-title">
                     <h3>Chỉnh sửa thông tin sản phẩm </h3>
@@ -23,11 +23,11 @@
                 <div class="content_myShop-body-product-main">
                     <div class="content_myShop-body-product-main-item content_myShop-body-product-main-name">
                         <label for="">Tên sản phẩm:</label>
-                        <input name="product_name" type="text" maxlength="100">
+                        <input name="product_name" type="text" maxlength="100" value = "{{product.name}}">
                     </div>
                     <div class="content_myShop-body-product-main-item content_myShop-body-product-main-Category">
                         <label for="">Chọn loại sản phẩm</label>
-                        <ul class="content_myShop-body-product-main-Category-list">
+                        <ul class="content_myShop-body-product-main-Category-list" category="{{product.category}}">
                             <li>Máy ảnh & máy quay phim</li>
                             <li>Đồng hồ</li>
                             <li>Giày dép nam</li>
@@ -54,89 +54,81 @@
                             <li>Thời trang trẻ em</li>
                             <li>Giặt giũ & chăm sóc nhà cửa</li>
                             <li>Voucher & dịch vụ</li>
+                            <input class ="hidden product_category" name="category" type="text" value="{{product.category}}">
                         </ul>
                         <div class="content_myShop-body-product-main-Category-imgs">
                             <h4>Thêm ảnh đại diện sản phẩm</h4>
                             <div class="main-Category-imgs-wrapper2">
-                                <input class="product_avatar" type="text" placeholder="URL hình ảnh">
+                                <input class="product_avatar" name="product_avatar" type="text" placeholder="URL hình ảnh" value="{{product.avatar}}">
                             </div>
 
                             <h4 class="product_imgs">thêm ảnh sản phẩm</h4>
                             <div class="content_myShop-body-product-main-Category-some_imgs">
+                                {{#each imgs}}
                                 <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
+                                    <input class="product_img_item" name="product_img_item" placeholder="URL hình ảnh" type="text" value ="{{this}}">
                                 </div>
-                                <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
-                                </div>
-                                <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
-                                </div>
-                                <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
-                                </div>
-                                <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" placeholder="URL hình ảnh" type="text">
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
                     <div class="content_myShop-body-product-main-introduction content_myShop-body-product-main-item">
                         <label for="">giới thiệu sản phẩm</label>
-                        <input type="text" , maxlength="200" name="product_introduction">
+                        <input type="text" , maxlength="200" name="product_introduction" value = "{{product.introduction}}">
                     </div>
                     <div class="content_myShop-body-product-main-description content_myShop-body-product-main-item">
                         <label for="">Mô tả sản phẩm</label>
-                        <textarea name="product_description" rows="10" maxlength="500"></textarea>
+                        <textarea name="product_description" rows="10" maxlength="500" >{{product.description}}</textarea>
                     </div>
                     <div class="content_myShop-body-product-main-detail content_myShop-body-product-main-item">
                         <label for="">Thông tin sản phẩm</label>
                         <div class="content_myShop-body-product-main-detail-wrapper">
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Số lượng:</label>
-                                <input
+                                <input value="{{product.totalAmount}}"
                                     class="product_detail_input-item product_detail_input-number product_detail_input-amount"
-                                    maxlength="5" name="product_detail_input-item" type="number" min="1" max="10000">
+                                    maxlength="5" name="totalAmount" type="number" min="1" max="10000">
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Giá:</label>
-                                <input
+                                <input value="{{product.originPrice}}"
                                     class="product_detail_input-item product_detail_input-number product_detail_input-price"
-                                    maxlength="13" name="product_detail_input-item" type="number" min="1000"
+                                    maxlength="13" name="originPrice" type="number" min="1000"
                                     max="100000000">
                                 <span class="currency">VND</span>
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Giảm giá:</label>
-                                <input
+                                <input value="{{product.discount.amount}}"
                                     class="product_detail_input-item product_detail_input-number product_detail_input-discount"
-                                    maxlength="13" name="product_detail_input-item" type="number" min="1"
+                                    maxlength="13" name="discount_amount" type="number" min="1"
                                     max="10000000">
-                                <div class="kind_discount">
-                                    <span>%</span>
+                                <div class="kind_discount" unit="{{product.discount.unit}}">
+                                    <span class="unit_percent">%</span>
                                     <div class="separate_line"></div>
-                                    <span>VND</span>
+                                    <span class="unit_vnd">VND</span>
+                                    <input type="text" class="hidden product_discount_unit" value="{{product.discount.unit}}" name = "discount_unit">
                                 </div>
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Thương hiệu:</label>
                                 <input class="product_detail_input-item product_detail_input-brand" maxlength="50"
-                                    name="product_detail_input-item" type="text">
+                                    name="brand" type="text" value="{{product.brand}}">
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Xuất xứ:</label>
                                 <input class="product_detail_input-item product_detail_input-made_in" maxlength="50"
-                                    name="product_detail_input-item" type="text">
+                                    name="made_in" type="text" value="{{product.madeIn}}">
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
                                 <label for="">Vận chuyển từ:</label>
                                 <input class="product_detail_input-item product_detail_input-delivery_from"
-                                    maxlength="50" name="product_detail_input-item" type="text">
+                                    maxlength="50" name="delivery_from" type="text" value="{{product.deliveryFrom}}">
                             </div>
                         </div>
                     </div>
                     <div class="content_myShop-body-store_btn">
-                        <span class="edit_product_btn">Lưu thay đổi</span>
+                        <button class="edit_product_btn">Lưu thay đổi</button>
                     </div>
                 </div>
             </div>
@@ -230,10 +222,19 @@
     const $$ = document.querySelectorAll.bind(document);
 
     let productCategory = $$('.content_myShop-body-product-main-Category-list li');
+    let ulCategory = $('.content_myShop-body-product-main-Category-list');
+    let category = ulCategory.getAttribute('category');
+    productCategory.forEach(function (element, index){
+        if(element.innerText == category){
+            element.classList.add('select_product_category');
+        }
+    })
+    
     productCategory.forEach((element, index) => {
         element.onclick = function () {
             removeAllSelected(index);
             element.classList.add('select_product_category');
+            $('.product_category').value = element.innerText;
         }
     });
     function removeAllSelected(k) {
@@ -251,13 +252,22 @@
     let productInfoInput = $$('.product_detail_input-item');
     let inputNumber = $$('.product_detail_input-number');
     let unit = $$('.kind_discount span');
+    let productUnit = $('.kind_discount').getAttribute('unit');
+    unit.forEach(function (element, index){
+        if(productUnit == 'VND'){
+            unit[1].classList.add('select_unit');
+        }
+        else unit[0].classList.add('select_unit');
+    })
 
     unit[0].onclick = function () {
         this.classList.add('select_unit');
+        $('.product_discount_unit').value = this.innerText;
         unit[1].classList.remove('select_unit');
     }
     unit[1].onclick = function () {
         this.classList.add('select_unit');
+        $('.product_discount_unit').value = this.innerText;
         unit[0].classList.remove('select_unit');
     }
 
@@ -273,8 +283,8 @@
 
 <!-- =================================================== khi ấn nút lưu thay đổi ======================================================= -->
 <script>
-    let storeBtn = $('.content_myShop-body-store_btn span');
-    let productImages = $$('.main-Category-imgs-wrapper img');
+    let storeBtn = $('.content_myShop-body-store_btn button');
+    let productImagesUrl = $$('.main-Category-imgs-wrapper2 input');
 
     function checkName() {
         if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
@@ -324,21 +334,23 @@
         if (dem == 0) return false;
         return true;
     }
+
+    let form = $('.content_edit_product-wrapper');
+    form.onsubmit = function(e){
+        e.preventDefault();
+    }
+
     storeBtn.onclick = function () {
-        // if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
-        // else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
-        // else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
-        // else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
-        // else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
-        // else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
-        // else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
-        {
+        if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
+        else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
+        else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
+        else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
+        else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
+        else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
+        else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
+        else {
             let promise = Promise.resolve();
             promise
-                .then(() => {
-                    // addNewProduct('/shop/add-product',newProduct);
-                    console.log('thanh cong');
-                })
                 .then(() => {
                     $('.store_successfully').classList.remove('hidden');
                 })
@@ -346,6 +358,11 @@
                     setTimeout(function () {
                         $('.store_successfully').classList.add('hidden');
                     }, 1300);
+                })
+                .then(() => {
+                    setTimeout(function () {
+                        form.submit();
+                    },1400);
                 })
                 .catch(() => { console.log('co loi') })
         }

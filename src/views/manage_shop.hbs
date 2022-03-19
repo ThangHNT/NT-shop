@@ -62,7 +62,8 @@
                                 <span class="content_myShop-body-all_product-main-action">Thao Tác</span>
                             </div>
                             <div class="content_myShop-body-all_product-main-wrapper">
-                                <div class="content_myShop-body-all_product-main-item" data-id="">
+                                {{#each product}}
+                                <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
                                     <div class="content_myShop-body-all_product-main-item-wrapper">
                                         <div class="content_myShop-body-all_product-main-name">
                                             <img src="https://cf.shopee.vn/file/304c272486a52241d21fd3bbb33eff15" alt="">
@@ -72,12 +73,13 @@
                                         <div class="content_myShop-body-all_product-main-sold">0</div>
                                         <div class="content_myShop-body-all_product-main-action">
                                             <span class="content_myShop-body-all_product-main-action-edit">
-                                                Sửa
+                                                <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
                                             </span>
                                             <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
                                         </div>
                                     </div>
                                 </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
@@ -445,7 +447,6 @@
     <script>
         let deleteProductBtn = $$('.content_myShop-body-all_product-main-action-delete');
         let listProduct = $$('.content_myShop-body-all_product-main-item');
-        let editProductBtn  = $$('.content_myShop-body-all_product-main-action-edit');
         let viewEditProduct = $$('.content_myShop-body-product-main');
         let productIndex = -1;
 
@@ -464,11 +465,6 @@
             $('.comfirm_delete_product').classList.add('hidden');
         }
 
-        editProductBtn.forEach(function(element, index){
-            element.onclick = function(){
-                 window.open('/shop/modify-product-page');
-            }
-        })
 
     </script>
 
