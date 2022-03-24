@@ -91,7 +91,7 @@
                     <div class="content_myShop-body-product-main">
                         <div class="content_myShop-body-product-main-item content_myShop-body-product-main-name">
                             <label for="">Tên sản phẩm:</label>
-                            <input name="product_name" type="text" maxlength="100">
+                            <input name="product_name" type="text" maxlength="100" autocomplete="off">
                         </div>
                         <div class="content_myShop-body-product-main-item content_myShop-body-product-main-Category">
                             <label for="">Chọn loại sản phẩm</label>
@@ -477,6 +477,7 @@
         let listProduct = $$('.content_myShop-body-all_product-main-item');
         let viewEditProduct = $$('.content_myShop-body-product-main');
         let productIndex = -1;
+        let productId = -1;
 
         deleteProductBtn.forEach(function (element,index){
             element.onclick = function(){
@@ -485,9 +486,31 @@
             }
         })
 
+        function deleteProduct(url,data){
+            var option = {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            fetch(url, option)
+                .then(function (response) {
+                    return response.json();
+                })
+                .catch(() => {
+                    console.log('da xay ra loi xoa san pham');
+                })
+        }
+
         $('.modal-body-confirm_delete_btn-yes').onclick = function(){
             listProduct[productIndex].remove();
             $('.comfirm_delete_product').classList.add('hidden');
+            productId = $$('.content_myShop-body-all_product-main-item')[productIndex].getAttribute('data-id');
+            let data = {
+                productId: productId
+            }
+            deleteProduct('/shop/delete-product', data);
         }
         $('.modal-body-confirm_delete_btn-no').onclick = function(){
             $('.comfirm_delete_product').classList.add('hidden');

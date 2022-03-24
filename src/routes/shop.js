@@ -6,5 +6,6 @@ router.get('/', shopController.manageShop);
 router.post('/add-product', shopController.addNewProduct);
 router.get('/modify-product-page/:id',shopController.modifyProductView); // view chỉnh sửa info sản phẩm
 router.put('/modify-product/:id', shopController.modifyProduct); 
+router.delete('/delete-product', shopController.deleteProduct); // Xóa sản phẩm
 
 module.exports = router;

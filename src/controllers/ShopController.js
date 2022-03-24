@@ -1,6 +1,7 @@
 const Product = require('../model/product.js');
 const User = require('../model/user.js');
 const Shop = require('../model/shop.js');
+const Cart = require('../model/cart.js');
 const {multiObject} = require('../convertToObject.js');
 const {object} = require('../convertToObject.js');
 
@@ -24,6 +25,7 @@ class ShopController {
                 res.redirect(`/user/seller/signup/view`);
             }
         })
+        return;
     }
 
     addNewProduct(req,res,next){
@@ -64,6 +66,7 @@ class ShopController {
                     shop.save();
                 }
             })
+            res.send('thanh cong');
         })
     }
 
@@ -85,8 +88,8 @@ class ShopController {
     modifyProduct(req, res, next){
         const provider = req.user.provider;
         var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-            User.findOne({id: '1384771445288690'}, function(err, user){
+        User.findOne({id: id, authType: provider}, function(err, user){
+            // User.findOne({id: '1384771445288690'}, function(err, user){
                 Product.findById({_id: req.params.id},function(err, product){
                     product.name = req.body.product_name;
                     product.introduction = req.body.product_introduction;
@@ -105,6 +108,28 @@ class ShopController {
                     res.redirect('/shop');
                 })
             })
+    }
+
+    deleteProduct(req, res, next){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+            if(user){
+                let productId = req.body.productId;
+                Product.findOneAndDelete({_id: productId}, function(err, product){
+                    Shop.findById({_id: user.shop},function(err, shop){
+                        let productIndex = shop.products.indexOf(productId);
+                        shop.products.splice(productIndex, 1);
+                        shop.save();
+                    })
+                })
+                return res.send('thanh cong');
+            }
+            else {
+                res.redirect('/login');
+            }
+        })
     }
 }
 

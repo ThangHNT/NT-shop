@@ -52,7 +52,7 @@ class UserController {
                 }
                 user.save();
             }
-            return;
+            res.send('thanh cong');
         })
     }
 
@@ -85,7 +85,7 @@ class UserController {
                 user.address.push(address._id);
                 user.save();
             }
-            return;
+            res.send('thanh cong');
         })
     }
 
@@ -105,7 +105,7 @@ class UserController {
                     address.save();
                 }
             })
-            return;
+            res.send('thanh cong');
         })
     }
 
@@ -118,7 +118,7 @@ class UserController {
             })
             user.address.splice(req.body.index,1);
             user.save();
-            return;
+            res.send('thanh cong');
         })
     }
 
@@ -140,7 +140,7 @@ class UserController {
                     }
                 })
             })
-            return;
+            res.send('thanh cong');
         })
     }
 
@@ -167,11 +167,10 @@ class UserController {
             user.shop = shop._id;
             user.save();
             res.redirect('/shop');
-            return;
         })
     }
 
-    cart(req, res, next){
+    cart(req, res, next){ // view cart
         const provider = req.user.provider;
         var id = req.user.id;
         // User.findOne({id: '1384771445288690'}, function(err, user){

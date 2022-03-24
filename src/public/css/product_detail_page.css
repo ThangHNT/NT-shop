@@ -475,7 +475,11 @@
 
 .product-description-content p {
     font-size: 14px;
-    margin: 10px 0
+    margin: 10px 0;
+    white-space: pre-wrap;
+    display: block;
+    text-align: left;
+    line-height: 20px;
 }
 
 /* ============================================================ Đánh giá ====================================================== */
