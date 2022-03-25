@@ -30,7 +30,13 @@
                         </div>
                         <span class="content_admin-delete_btn delete_btn_user">Xóa</span>
                     </div>
-                    
+                    <div class="content_admin-item-manage-person" user-id="">
+                        <div class="content_admin-item-manage-person-wrapper">
+                            <img class="content_admin-item-manage-person-avatar" src="https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg" alt="">
+                            <p>thang hoang</p>
+                        </div>
+                        <span class="content_admin-delete_btn delete_btn_user">Xóa</span>
+                    </div>
                 </div>
             </div>
             <div class="content_admin-item">
@@ -43,10 +49,76 @@
                         </div>
                         <span class="content_admin-delete_btn delete_btn_product">Xóa</span>
                     </div>
+                    <div class="content_admin-manage_product-item" product-id="">
+                        <div class="content_admin-manage_product-item-wrapper">
+                            <img src="http://hanoimoi.com.vn/Uploads/tuandiep/2018/4/8/1(1).jpg" alt="">
+                            <p>Tai nghe Airpod Pro-Buletooth 5.0 Định Vị - Đổi Tên - Pin Trâu - Tai Nghe Không Dây Dùng Cho IOS và Androi</p>
+                        </div>
+                        <span class="content_admin-delete_btn delete_btn_product">Xóa</span>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    let deleteUserBtn = $$('.delete_btn_user');
+    let people = $$('.content_admin-item-manage-person');
+    let deleteProductBtn = $$('.delete_btn_product');
+    let products = $$('.content_admin-manage_product-item');
+
+    deleteUserBtn.forEach(function(element,index){
+        element.onclick = function(){
+            people[index].remove();
+        }
+    })
+
+    deleteProductBtn.forEach(function(element,index){
+        element.onclick = function(){
+            products[index].remove();
+        }
+    })
+
+    function deleteProduct(url,data){
+        var option = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa san pham');
+            })
+    }
+
+    function deleteUser(url,data){
+        var option = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa san pham');
+            })
+    }
+
+
+</script>
+
 </body>
 </html>

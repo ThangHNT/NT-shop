@@ -1,0 +1,113 @@
+<div id="main_admin">
+    <div id="header_admin">
+        <a href="/">Trang chủ</a>
+        <a href="/logout">Đăng xuất</a>
+    </div>
+    <div id="content_admin">
+        <div class="content_admin-item">
+            <h2>Quản lý user</h2>
+            <div class="content_admin-item-manage content_admin-manage_user">
+                {{#each user}}
+                <div class="content_admin-item-manage-person" user-id="{{this._id}}">
+                    <div class="content_admin-item-manage-person-wrapper">
+                        {{!-- <img class="content_admin-item-manage-person-avatar"src="https://bloganh.net/wp-content/uploads/2021/03/chup-anh-dep-anh-sang-min.jpg" alt=""> --}}
+                        {{#if this.avatar_base64.data}}
+                            <img src="data:image/jpeg;base64,{{this.avatar_base64.data}}" class="content_admin-item-manage-person-avatar" alt="">
+                        {{else}}
+                            <img src="{{this.avatar}}" class="content_admin-item-manage-person-avatar" alt="">
+                        {{/if}}
+                        <p>{{this.username}}</p>
+                    </div>
+                    <span class="content_admin-delete_btn delete_btn_user">Xóa</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="content_admin-item">
+            <h2>Quản lý sản phẩm</h2>
+            <div class="content_admin-item-manage content_admin-manage_product">
+                {{#each product}}
+                <div class="content_admin-manage_product-item" product-id="{{this._id}}">
+                    <div class="content_admin-manage_product-item-wrapper">
+                        <img src="{{this.avatar}}" alt="">
+                        <p>{{this.introduction}}</p>
+                    </div>
+                    <span class="content_admin-delete_btn delete_btn_product">Xóa</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    let deleteUserBtn = $$('.delete_btn_user');
+    let people = $$('.content_admin-item-manage-person');
+    let deleteProductBtn = $$('.delete_btn_product');
+    let products = $$('.content_admin-manage_product-item');
+
+    deleteUserBtn.forEach(function (element, index) {
+        element.onclick = function () {
+            people[index].remove();
+        }
+    })
+
+    deleteProductBtn.forEach(function (element, index) {
+        element.onclick = function () {
+            let data = {
+                productId: products[index].getAttribute('product-id')
+            }
+            var promise = Promise.resolve();
+            promise
+                .then(() => {
+                    deleteProduct('/admin/delete/product',data);
+                })
+                .then(() => {
+                    products[index].remove();
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    })
+
+    function deleteProduct(url, data) {
+        var option = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa san pham');
+            })
+    }
+
+    function deleteUser(url, data) {
+        var option = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa san pham');
+            })
+    }
+
+
+</script>

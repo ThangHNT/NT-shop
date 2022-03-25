@@ -121,6 +121,13 @@ class ShopController {
                     Shop.findById({_id: user.shop},function(err, shop){
                         let productIndex = shop.products.indexOf(productId);
                         shop.products.splice(productIndex, 1);
+                        Cart.findById({_id: user.cart}, function(err, cart){
+                            let index = cart.products.indexOf(productId);
+                            if(index >= 0){
+                                cart.products.splice(index,1);
+                                cart.save();
+                            }
+                        })
                         shop.save();
                     })
                 })

@@ -99,7 +99,8 @@
 
 .content_admin-manage_product-item-wrapper p {
     font-size: 15px !important;
-    max-width: 400px;
+    max-width: 300px;
+    min-width: 300px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
