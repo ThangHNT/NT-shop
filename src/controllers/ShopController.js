@@ -7,10 +7,10 @@ const {object} = require('../convertToObject.js');
 
 class ShopController {
     manageShop(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-        User.findOne({id: '1384771445288690'}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             if(user.shop){
                 Product.find({owner: user.shop}, function(err, product){
                     res.render('manage_shop', { 
@@ -58,6 +58,7 @@ class ShopController {
             product.brand = req.body.brand;
             product.available = Number(req.body.totalAmount);
             product.sold = 0;
+            console.log(product);
             product.save();
             Shop.findById({_id:user.shop},function(err, shop){
                 if(shop){

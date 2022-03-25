@@ -443,7 +443,7 @@
             let promise = Promise.resolve();
             promise
                 .then(() => {
-                    {{!-- addNewProduct('/shop/add-product',newProduct); --}}
+                    addNewProduct('/shop/add-product',newProduct);
                     console.log(newProduct);
                 })
                 .then(() => {
@@ -454,11 +454,11 @@
                         $('.store_successfully').classList.add('hidden');
                     },1300);
                 })
-                {{!-- .then(() => {
+                .then(() => {
                     setTimeout(function (){
                         location.reload();
                     },1400);
-                }) --}}
+                })
                 .catch(() => {console.log('co loi')})
         }
 
