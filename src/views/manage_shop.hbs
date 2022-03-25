@@ -90,8 +90,8 @@
                     <div class="separate_line_vertical"></div>
                     <div class="content_myShop-body-product-main">
                         <div class="content_myShop-body-product-main-item content_myShop-body-product-main-name">
-                            <label for="">Tên sản phẩm:</label>
-                            <input name="product_name" type="text" maxlength="100" autocomplete="off">
+                            <label for="">Giới thiệu sản phẩm</label>
+                            <input name="product_introduction" type="text" maxlength="100" autocomplete="off">
                         </div>
                         <div class="content_myShop-body-product-main-item content_myShop-body-product-main-Category">
                             <label for="">Chọn loại sản phẩm</label>
@@ -150,14 +150,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div
+                        {{!-- <div
                             class="content_myShop-body-product-main-introduction content_myShop-body-product-main-item">
                             <label for="">giới thiệu sản phẩm</label>
                             <input type="text" , maxlength="200" name="product_introduction">
-                        </div>
+                        </div> --}}
                         <div class="content_myShop-body-product-main-description content_myShop-body-product-main-item">
                             <label for="">Mô tả sản phẩm</label>
-                            <textarea name="product_description" rows="10" maxlength="500"></textarea>
+                            <textarea name="product_description" rows="10" maxlength="1000"></textarea>
                         </div>
                         <div class="content_myShop-body-product-main-detail content_myShop-body-product-main-item">
                             <label for="">Thông tin sản phẩm</label>
@@ -304,10 +304,7 @@
         }
     })
 
-    function checkName() {
-        if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
-        return true;
-    }
+
     function checkCategory() {
         let dem = 0;
         productCategory.forEach((element, index) => {
@@ -330,7 +327,7 @@
         return true;
     }
     function checkIntroduce() {
-        if ($('.content_myShop-body-product-main-introduction input').value.length == 0) return false;
+        if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
         return true;
     }
     function checkDescription() {
@@ -419,10 +416,9 @@
     }
     
     storeBtn.onclick = function () {
-        if (!checkName()) alert('Vui lòng điền tên sản phẩm!');
+        if (!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if (!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
         else if(!checkImgs()) alert('Bạn chưa thêm đủ ảnh!');
-        else if (!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if (!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
         else if (!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
         else if (!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
@@ -433,10 +429,9 @@
                 }
             })
             newProduct = {
-                name: $('.content_myShop-body-product-main-name input').value,
                 productCategory: getProductCategory(),
                 imgs: listImg,
-                introduction: $('.content_myShop-body-product-main-introduction input').value,
+                introduction: $('.content_myShop-body-product-main-name input').value,
                 description: $('.content_myShop-body-product-main-item textarea').value,
                 totalAmount: $('.product_detail_input-amount').value,
                 price: $('.product_detail_input-price').value,
@@ -448,7 +443,7 @@
             let promise = Promise.resolve();
             promise
                 .then(() => {
-                    addNewProduct('/shop/add-product',newProduct);
+                    {{!-- addNewProduct('/shop/add-product',newProduct); --}}
                     console.log(newProduct);
                 })
                 .then(() => {
@@ -459,11 +454,11 @@
                         $('.store_successfully').classList.add('hidden');
                     },1300);
                 })
-                .then(() => {
+                {{!-- .then(() => {
                     setTimeout(function (){
                         location.reload();
                     },1400);
-                })
+                }) --}}
                 .catch(() => {console.log('co loi')})
         }
 

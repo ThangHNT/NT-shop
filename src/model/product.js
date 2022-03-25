@@ -2,7 +2,6 @@ const mongoose = require('../connectToMongooseDB.js');
 
 const Schema = mongoose.Schema;
 const Product = new Schema({
-    name: {type: String, default: '', required: true},
     introduction:{type: String, default: '', required: true},
     owner:{type: Schema.Types.ObjectId, ref:'Shop'},
     cart:[{type: Schema.Types.ObjectId, ref:'Cart'}],
