@@ -17,7 +17,7 @@ function route(app) {
     }, shopRouter);
     app.use('/admin',(req, res, next) => {
         if(req.user){
-            if(req.user.id === '1384771445288690') return next();
+            if(req.user.id == '1384771445288690') return next();
             else res.redirect('/');
         }
         else res.redirect('/login');
