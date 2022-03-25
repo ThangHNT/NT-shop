@@ -15,14 +15,14 @@ function route(app) {
             return next();
         } else res.redirect('/login');
     }, shopRouter);
-    // app.use('/admin',(req, res, next) => {
-    //     if(req.user){
-    //         if(req.user.id === '1384771445288690') return next();
-    //         else res.redirect('/');
-    //     }
-    //     else res.redirect('/login');
-    // })
-    app.use('/admin',adminRouter);
+    app.use('/admin',(req, res, next) => {
+        if(req.user){
+            if(req.user.id === '1384771445288690') return next();
+            else res.redirect('/');
+        }
+        else res.redirect('/login');
+    })
+    // app.use('/admin',adminRouter);
     // app.use('/user',userRouter);
     // app.use('/shop',shopRouter);
     app.use('/product',productRouter);

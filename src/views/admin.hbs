@@ -52,7 +52,18 @@
 
     deleteUserBtn.forEach(function (element, index) {
         element.onclick = function () {
-            people[index].remove();
+            let data = {
+                userId : people[index].getAttribute('user-id')
+            }
+            var promise = Promise.resolve();
+            promise
+                .then(() => {
+                    people[index].remove();
+                })
+                .then(() => {
+                    deleteUser('/admin/delete/user',data);
+                })
+                .catch(() => {console.log('co loi')})
         }
     })
 
@@ -105,7 +116,7 @@
                 return response.json();
             })
             .catch(() => {
-                console.log('da xay ra loi xoa san pham');
+                console.log('da xay ra loi xoa user');
             })
     }
 
