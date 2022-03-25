@@ -22,8 +22,8 @@
                 <div class="separate_line_vertical"></div>
                 <div class="content_myShop-body-product-main">
                     <div class="content_myShop-body-product-main-item content_myShop-body-product-main-name">
-                        <label for="">Tên sản phẩm:</label>
-                        <input name="product_name" type="text" maxlength="100" value = "{{product.name}}">
+                        <label for="">Giới thiệu sản phẩm</label>
+                        <input name="product_introduction" type="text" maxlength="100" autocomplete="off">
                     </div>
                     <div class="content_myShop-body-product-main-item content_myShop-body-product-main-Category">
                         <label for="">Chọn loại sản phẩm</label>
@@ -71,10 +71,6 @@
                                 {{/each}}
                             </div>
                         </div>
-                    </div>
-                    <div class="content_myShop-body-product-main-introduction content_myShop-body-product-main-item">
-                        <label for="">giới thiệu sản phẩm</label>
-                        <input type="text" , maxlength="200" name="product_introduction" value = "{{product.introduction}}">
                     </div>
                     <div class="content_myShop-body-product-main-description content_myShop-body-product-main-item">
                         <label for="">Mô tả sản phẩm</label>
@@ -286,10 +282,6 @@
     let storeBtn = $('.content_myShop-body-store_btn button');
     let productImagesUrl = $$('.main-Category-imgs-wrapper2 input');
 
-    function checkName() {
-        if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
-        return true;
-    }
     function checkCategory() {
         let dem = 0;
         productCategory.forEach((element, index) => {
@@ -316,7 +308,7 @@
         return true;
     }
     function checkDescription() {
-        if ($('.content_myShop-body-product-main-item textarea').value.length == 0) return false;
+        if ($('.content_myShop-body-product-main-name input').value.length == 0) return false;
         return true;
     }
     function checkProductInfo() {
@@ -341,10 +333,9 @@
     }
 
     storeBtn.onclick = function () {
-        if(!checkName()) alert('Vui lòng điền tên sản phẩm!');
+        if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!');
         else if(!checkCategory()) alert('Bạn chưa chọn loại sản phẩm!');
         else if(!checkImgs()) alert('Bạn cần chọn ít nhất 1 ảnh đại diện và 2 ảnh minh họa cho sản phẩm!');
-        else if(!checkIntroduce()) alert('Chưa có giới thiệu sản phẩm!')
         else if(!checkDescription()) alert('Vui lòng điền phần mô tả sản phẩm!');
         else if(!checkUniDiscount()) alert('Vui lòng chọn đơn vị giảm giá');
         else if(!checkProductInfo()) alert('Vui lòng điền đầy đủ thông tin sản phẩm');
