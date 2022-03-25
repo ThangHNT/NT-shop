@@ -21,7 +21,7 @@ function route(app) {
             else res.redirect('/');
         }
         else res.redirect('/login');
-    })
+    }, adminRouter);
     // app.use('/admin',adminRouter);
     // app.use('/user',userRouter);
     // app.use('/shop',shopRouter);
