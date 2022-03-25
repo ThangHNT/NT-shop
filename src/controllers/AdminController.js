@@ -39,37 +39,35 @@ class AdminController {
 
     deleteUser(req, res, next){
         let userId = req.body.userId;
-        // User.findOneAndDelete({_id: userId}, function(err, user){
-        User.findOne({_id: userId}, function(err, user){
+        User.findOneAndDelete({_id: userId}, function(err, user){
             if(user){
                 var promise = Promise.resolve();
                 promise 
                     .then(() => {
-                        // Cart.findOneAndDelete({_id: user.cart}, function(err, cart){
-                        Cart.findById({_id: user.cart}, function(err, cart){
+                        Cart.findOneAndDelete({_id: user.cart}, function(err, cart){
                             cart.products.forEach(function(element,index){
                                 Product.findById({_id: element}, function(err, product){
                                     console.log(product);
-                                    // let cartIndex = product.cart.indexOf(element);
-                                    // product.cart.splice(cartIndex,1);
-                                    // product.save();
+                                    let cartIndex = product.cart.indexOf(element);
+                                    product.cart.splice(cartIndex,1);
+                                    product.save();
                                 })
                             })
                         })
+                        return;
                     })
                     .then(() => {
-                        // Shop.findOneAndDelete({_id: user.shop},function(err, shop){
-                        // Shop.findById({_id: user.shop},function(err, shop){
-                        //     if(shop){
-                        //         if(shop.products.length > 0){
-                        //             shop.products.forEach(function(element,index){
-                        //                 Product.findOneAndDelete({_id: element}, function(err, product){
-        
-                        //                 })
-                        //             })
-                        //         }
-                        //     }
-                        // })
+                        Shop.findOneAndDelete({_id: user.shop},function(err, shop){
+                            if(shop){
+                                if(shop.products.length > 0){
+                                    shop.products.forEach(function(element,index){
+                                        Product.findOneAndDelete({_id: element}, function(err, product){
+
+                                        })
+                                    })
+                                }
+                            }
+                        })
                     })
                     .catch((err) => {console.log(err)});
             }
