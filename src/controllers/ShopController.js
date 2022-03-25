@@ -76,10 +76,11 @@ class ShopController {
         User.findOne({id: id, authType: provider}, function(err, user){
             // User.findOne({id: '1384771445288690'}, function(err, user){
                 Product.findById({_id: req.params.id},function(err, product){
+                    let productImgs = product.imgs.slice(1);
                     res.render('modify_product',{
                         user: object(user),
                         product: object(product),
-                        imgs: product.imgs,
+                        imgs: productImgs,
                     });
                 })
             })
