@@ -64,14 +64,14 @@
                         <div class="content_myShop-body-product-main-Category-imgs">
                             <h4>Thêm ảnh đại diện sản phẩm</h4>
                             <div class="main-Category-imgs-wrapper2">
-                                <input class="product_avatar" name="product_avatar" type="text" placeholder="URL hình ảnh" value="{{product.avatar}}">
+                                <input class="product_avatar" name="product_avatar" maxlength="500" type="text" placeholder="URL hình ảnh" value="{{product.avatar}}">
                             </div>
 
                             <h4 class="product_imgs">thêm ảnh sản phẩm</h4>
                             <div class="content_myShop-body-product-main-Category-some_imgs">
                                 {{#each imgs}}
                                 <div class="main-Category-imgs-wrapper2">
-                                    <input class="product_img_item" name="product_img_item" placeholder="URL hình ảnh" type="text" value ="{{this}}">
+                                    <input class="product_img_item" maxlength="500" name="product_img_item" placeholder="URL hình ảnh" type="text" value ="{{this}}">
                                 </div>
                                 {{/each}}
                             </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="content_myShop-body-product-main-description content_myShop-body-product-main-item">
                         <label for="">Mô tả sản phẩm</label>
-                        <textarea name="product_description" rows="10" maxlength="500" >{{product.description}}</textarea>
+                        <textarea name="product_description" rows="10" maxlength="1000" >{{product.description}}</textarea>
                     </div>
                     <div class="content_myShop-body-product-main-detail content_myShop-body-product-main-item">
                         <label for="">Thông tin sản phẩm</label>
@@ -94,8 +94,7 @@
                                 <label for="">Giá:</label>
                                 <input value="{{product.originPrice}}"
                                     class="product_detail_input-item product_detail_input-number product_detail_input-price"
-                                    maxlength="13" name="originPrice" type="number" min="1000"
-                                    max="100000000">
+                                    maxlength="13" name="originPrice" type="number" min="1000" max="100000000">
                                 <span class="currency">VND</span>
                             </div>
                             <div class="content_myShop-body-product-main-detail-wrapper-item">
