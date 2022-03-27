@@ -77,10 +77,17 @@
                 <a href="/">
                     <img style="width: 160px; height: 50px;" class="logo_web" src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
                 </a>
-                <div class="header-search_bar">
+                <form method="GET" class="header-search_bar">
                     <input type="text" placeholder="Search ..." maxlength="50">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                </div>
+                    <a class="search_product" href="#"><i class="fas fa-search"></i></a>
+                    <ul class="search_result hidden">
+                        <!-- <li>xe may</li>
+                        <li>xe dap</li>
+                        <li>xe dien</li>
+                        <li>xe xich lo</li>
+                        <li>xe o to</li> -->
+                    </ul>
+                </form>
                 <div class="header-cart">
                     <a href="#"><i class="fas fa-shopping-cart"></i>
                         <div class="header-cart-number_display hidden">1</div>
@@ -101,11 +108,6 @@
                                 <p>Tai nghe khong day nt-mega </p>
                                 <span>120.000đ</span>
                             </li>
-                            <!-- <li class="header-cart-list_product-item">
-                                <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
-                                <p>Tai nghe khong day nt-mega </p>
-                                <span>120.000đ</span>
-                            </li> -->
                         </ul>
                         <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
                     </div>
@@ -492,6 +494,33 @@
             categoryArrow[1].style.visibility = 'visible';
             categoryArrow[0].style.visibility = 'hidden';
         }
+    </script>
+
+    <!-- ================================================== chức năng tìm kiếm sp =========================================== -->
+    <script>
+        let $ = document.querySelector.bind(document);
+        let $$ = document.querySelectorAll.bind(document);
+        
+        let searchInput = $('.header-search_bar input');
+        let form = $('.header-search_bar');
+
+        searchInput.onkeyup = function(e){
+            $('.search_result').classList.remove('hidden');
+            $('.search_result').innerHTML = `<li>xe may</li>
+                        <li>xe dap</li>
+                        <li>xe dien</li>
+                        <li>xe xich lo</li>
+                        <li>xe o to</li>`;
+            if(e.which == 13){
+                form.action = '/';
+                form.submit();
+            }
+
+        }
+        searchInput.onblur = function(e){
+            $('.search_result').classList.add('hidden');
+        }
+
     </script>
 
     <!-- bootstrap 3 -->

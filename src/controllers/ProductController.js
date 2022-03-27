@@ -68,6 +68,21 @@ class ProductController {
         }
     }
 
+    listedProduct(req, res,next){
+        Product.find({},function(err,product){
+            let data = [];
+            product.forEach(function(element,index){
+                let text = element.introduction + ' '+ element.category;
+                text = text.replace(/\n/g,' ');
+                text = text.toLocaleLowerCase();
+                let dt = {text: text};
+                data.push(dt);
+            })
+            res.json(data);
+        })
+    }
+
+
 }
 
 module.exports = new ProductController;
