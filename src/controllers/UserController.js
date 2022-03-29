@@ -171,10 +171,10 @@ class UserController {
     }
 
     cart(req, res, next){ // view cart
-        const provider = req.user.provider;
-        var id = req.user.id;
-        // User.findOne({id: '1384771445288690'}, function(err, user){
-        User.findOne({id: id, authType: provider}, function(err, user){
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        // User.findOne({id: id, authType: provider}, function(err, user){
+        User.findOne({id: '1384771445288690'}, function(err, user){
             Cart.findById({_id:user.cart},function(err, cart){
                 if(cart){
                     Product.find({cart:cart._id},function(err, product){

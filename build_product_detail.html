@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="icon" type="image/x-icon" href="http://hanoimoi.com.vn/Uploads/tuandiep/2018/4/8/1(1).jpg">
+    <link rel="icon" type="image/x-icon" href="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!-- bootstrap 3 --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="./src/public/css/home_page.css">
+    <link rel="stylesheet" href="./src//public//css/cart_page.css">
     <link rel="stylesheet" href="./src/public/css/product_detail_page.css">
 </head>
 <body>
@@ -228,9 +229,9 @@
                             <i class="fa-solid fa-cart-plus"></i>
                             <span>Thêm vào giỏ hàng</span>
                         </div>
-                        <div class="introduction-option-btn-buy_now">
+                        <a class="introduction-option-btn-buy_now" href="#">
                             <span>Mua ngay</span>
-                        </div>
+                        </a>
                     </div>
                     <div class="product-introduction-option-delivery_policy">
                         <div class="introduction-option-delivery_policy-item">
@@ -469,7 +470,35 @@
                 <i class="fa-solid fa-arrow-up"></i>
             </a>
         </div>
-        
+    </div>
+
+    <div class="modal modal_buy_product hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal_content-cart">
+            <h3>Chọn hình thức chuyển tiền</h3>
+            <div class="modal_content-cart-item">
+                <div class="modal_content-cart-item-title">
+                    <h3>Chuyển tiền qua momo</h3>
+                </div>
+                <div class="modal_content-cart-item-body">
+                    <img src="https://cdn.tgdd.vn/2020/08/content/Vi%CC%81-MOMO-1200x900(1)-800x450.jpg" alt="">
+                    <p>0946599502</p>
+                </div>
+            </div>
+            <div class="modal_content-cart-item">
+                <div class="modal_content-cart-item-title">
+                    <h3>Chuyển tiền qua ngân hàng</h3>
+                </div>
+                <div class="modal_content-cart-item-body">
+                    <img src="https://thebank.vn/uploads/2019/08/25/thebank_guitienvaotheatmvietinbankmin_1566725757.png"
+                        alt="">
+                    <p>108869841348</p>
+                </div>
+            </div>
+            <div class="modal_content-cart-item">
+                <button class="modal_content-cart-item-btn" type="button">OK</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -638,15 +667,12 @@
             }
         }
 
-        let descriptionProduct = $('.product-description-content p');
-        let text = descriptionProduct.outerText;
-        console.log(text);
-        // for(let i = 0; i < text.length; i++) {
-        //     if(text[i] === '\n') console.log(1);
-        // }
-
-
+        
     </script>
+
+    
+
+
 
     <!-- link fontawesome icons -->
     <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>
