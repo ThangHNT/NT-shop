@@ -400,7 +400,10 @@
 <!-- ==================================================== khi ấn nút mua hàng ========================================= -->
 <script>
     $('.content_cart-product-manipulation-buy_btn').onclick = function () {
-        $('.modal_buy_product').classList.remove('hidden');
+        if(selectedProduct > 0){
+            $('.modal_buy_product').classList.remove('hidden');
+        }
+        else alert('Vui lòng tick chọn sản phẩm!');
     }
     $('.modal_content-cart-confirm_btn').onclick = function () {
         $('.modal_buy_product').classList.add('hidden');
