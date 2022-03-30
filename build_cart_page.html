@@ -225,36 +225,35 @@
             <div class="modal_content-comfirm_buy_product-item">
                 <label for="">Địa chỉ</label>
                 <p>to 1 luong xa loc hoa
-                    tinh nam dinh
+                    tinh nam dinh 000000000000000000000 00000000000000000000000000
                 </p>
             </div>
-            <a href="#" class="modal_content-comfirm_buy_product-item-add_new_address">Thêm địa chỉ mới</a>
             <div class="modal_content-comfirm_buy_product-item">
                 <label for="">Đơn vị vận chuyển</label>
-                <div class="unit_of_delivery">
-                    <span>VNPost - EMS (Bưu điện Việt Nam)</span>
-                    <span>Viettel Post</span>
-                    <span>Giaohangnhanh - GHN</span>
-                    <span>Giaohangtietkiem - GHTK.</span>
-                    <span>J&T Express</span>
-                </div>
+                <select class="unit_of_delivery">
+                    <option>VNPost - EMS (Bưu điện Việt Nam)</option>
+                    <option>Viettel Post</option>
+                    <option>Giaohangnhanh - GHN</option>
+                    <option>Giaohangtietkiem - GHTK.</option>
+                    <option>J&T Express</option>
+                </select>
             </div>
             <div class="modal_content-comfirm_buy_product-item">
                 <label for="">Hình thức thanh toán</label>
                 <div class="payment_form-wrapper">
                     <div class="payment_form-pre payment_form-wrapper-item">
-                        <p>Thanh toán trước</p>
-                        <i class="fa-solid fa-check"></i>
+                        <p>Trả trước</p>
+                        <i class="fa-solid fa-check payment_form_select hidden"></i>
                     </div>
                     <div class="payment_form-after payment_form-wrapper-item">
-                        <p>Thanh toán sau</p>
-                        <i class="fa-solid fa-check"></i>
+                        <p>Trả sau</p>
+                        <i class="fa-solid fa-check payment_form_select hidden"></i>
                     </div>
                 </div>
             </div>
             
             <div class="modal_content-cart-item">
-                <!-- <button class="modal_content-cart-confirm_btn" type="button">OK</button> -->
+                <button class="modal_content-cart-confirm_btn" type="button">OK</button>
             </div>
         </div>
     </div>
@@ -396,10 +395,21 @@
         $('.content_cart-product-manipulation-buy_btn').onclick = function () {
             $('.modal_buy_product').classList.remove('hidden');
         }
-
         $('.modal_content-cart-confirm_btn').onclick = function () {
             $('.modal_buy_product').classList.add('hidden');
         }
+
+        let paymentFormBtn = $$('.payment_form-wrapper-item');
+        let paymentFormSelect = $$('.payment_form_select');
+        paymentFormBtn.forEach(function(element,index){
+            element.onclick = function() {
+                paymentFormSelect[index].classList.toggle('hidden');
+                paymentFormSelect[1-index].classList.add('hidden');
+                element.style.border = '2px solid gray';
+                paymentFormBtn[1-index].style.border = '1px solid #ccc';
+            }
+        })
+
     </script>
 
     <!-- link fontawesome icons -->

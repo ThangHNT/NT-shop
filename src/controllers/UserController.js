@@ -171,22 +171,32 @@ class UserController {
     }
 
     cart(req, res, next){ // view cart
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-        User.findOne({id: '1384771445288690'}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             Cart.findById({_id:user.cart},function(err, cart){
                 if(cart){
                     Product.find({cart:cart._id},function(err, product){
-                        res.render('cart',{
-                            user: object(user),
-                            avatar: user.avatar,
-                            avatar_base64: object(user.avatar_base64.data),
-                            product: multiObject(product),
-                            productAmount: cart.products.length,
+                        user.address.forEach(function(element){
+                            Address.findById({_id: element},function(err, address){
+                                if(address.default === 'Mặc định'){
+                                    res.render('cart',{
+                                        user: object(user),
+                                        avatar: user.avatar,
+                                        avatar_base64: object(user.avatar_base64.data),
+                                        product: multiObject(product),
+                                        productAmount: cart.products.length,
+                                        phoneNumber: address.phoneNumber,
+                                        receiverName: address.receiverName,
+                                        city: address.city,
+                                        distric: address.distric,
+                                        detail: address.detail,
+                                    })
+                                }
+                            })
                         })
                     })
-                    // res.send('thanh cong');
                 }
                 else res.send('Ban chua dang nhap');
             })

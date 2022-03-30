@@ -5,11 +5,11 @@ const productRouter = require('./product.js');
 const adminRouter = require('./admin.js');
 
 function route(app) {
-    // app.use('/user',(req, res, next) => {
-    //     if(req.user){
-    //         return next();
-    //     } else res.redirect('/login');
-    // }, userRouter);
+    app.use('/user',(req, res, next) => {
+        if(req.user){
+            return next();
+        } else res.redirect('/login');
+    }, userRouter);
     app.use('/shop',(req, res, next) => {
         if(req.user){
             return next();
@@ -23,7 +23,7 @@ function route(app) {
         else res.redirect('/login');
     }, adminRouter);
     // app.use('/admin',adminRouter);
-    app.use('/user',userRouter);
+    // app.use('/user',userRouter);
     // app.use('/shop',shopRouter);
     app.use('/product',productRouter);
     app.use('/',homeRouter);

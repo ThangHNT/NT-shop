@@ -184,31 +184,50 @@
         </div>
     </div>
 </div>
-<div class="modal modal_buy_product hidden">
+
+<div class="modal modal_buy_product ">
     <div class="modal-overlay"></div>
-    <div class="modal_content-cart">
-        <h3>Chọn hình thức chuyển tiền</h3>
-        <div class="modal_content-cart-item">
-            <div class="modal_content-cart-item-title">
-                <h3>Chuyển tiền qua momo</h3>
-            </div>
-            <div class="modal_content-cart-item-body">
-                <img src="https://cdn.tgdd.vn/2020/08/content/Vi%CC%81-MOMO-1200x900(1)-800x450.jpg" alt="">
-                <p>0946599502</p>
+    <div class="modal_content-comfirm_buy_product">
+        <h3>Xác nhận mua hàng</h3>
+        <div class="modal_content-comfirm_buy_product-item">
+            <label for="">Người nhận</label>
+            <input type="text" maxlength="30" value="{{user.username}}">
+        </div>
+        <div class="modal_content-comfirm_buy_product-item">
+            <label for="">Số điện thoại</label>
+            <input type="text" maxlength="12" value="{{phoneNumber}}">
+        </div>
+        <div class="modal_content-comfirm_buy_product-item">
+            <label for="">Địa chỉ</label>
+            <p>{{detail}} {{district}} {{city}}</p>
+
+        </div>
+        <div class="modal_content-comfirm_buy_product-item">
+            <label for="">Đơn vị vận chuyển</label>
+            <select class="unit_of_delivery">
+                <option>VNPost - EMS (Bưu điện Việt Nam)</option>
+                <option>Viettel Post</option>
+                <option>Giaohangnhanh - GHN</option>
+                <option>Giaohangtietkiem - GHTK.</option>
+                <option>J&T Express</option>
+            </select>
+        </div>
+        <div class="modal_content-comfirm_buy_product-item">
+            <label for="">Hình thức thanh toán</label>
+            <div class="payment_form-wrapper">
+                <div class="payment_form-pre payment_form-wrapper-item">
+                    <p>Trả trước</p>
+                    <i class="fa-solid fa-check payment_form_select hidden"></i>
+                </div>
+                <div class="payment_form-after payment_form-wrapper-item">
+                    <p>Trả sau</p>
+                    <i class="fa-solid fa-check payment_form_select hidden"></i>
+                </div>
             </div>
         </div>
+        
         <div class="modal_content-cart-item">
-            <div class="modal_content-cart-item-title">
-                <h3>Chuyển tiền qua ngân hàng</h3>
-            </div>
-            <div class="modal_content-cart-item-body">
-                <img src="https://thebank.vn/uploads/2019/08/25/thebank_guitienvaotheatmvietinbankmin_1566725757.png"
-                    alt="">
-                <p>108869841348</p>
-            </div>
-        </div>
-        <div class="modal_content-cart-item">
-            <button class="modal_content-cart-item-btn" type="button">OK</button>
+            <button class="modal_content-cart-confirm_btn" type="button">OK</button>
         </div>
     </div>
 </div>
@@ -383,10 +402,21 @@
     $('.content_cart-product-manipulation-buy_btn').onclick = function () {
         $('.modal_buy_product').classList.remove('hidden');
     }
-
-    $('.modal_content-cart-item-btn').onclick = function () {
+    $('.modal_content-cart-confirm_btn').onclick = function () {
         $('.modal_buy_product').classList.add('hidden');
     }
+
+    let paymentFormBtn = $$('.payment_form-wrapper-item');
+    let paymentFormSelect = $$('.payment_form_select');
+    paymentFormBtn.forEach(function(element,index){
+        element.onclick = function() {
+            paymentFormSelect[index].classList.remove('hidden');
+            paymentFormSelect[1-index].classList.add('hidden');
+            element.style.border = '2px solid gray';
+            paymentFormBtn[1-index].style.border = '1px solid #ccc';
+        }
+    })
+
 </script>
 
 <!-- link fontawesome icons -->
