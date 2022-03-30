@@ -7,7 +7,8 @@ const Shop = new Schema({
     products:[{type:Schema.Types.ObjectId, ref:'Product'}],
     address: {type:String, required:true,maxlength: 100},
     phoneContact: {type: String, required:true, default:'',maxlength: 15},
-    avatar_base64 :{data: Buffer,contentType: String,}
+    avatar_base64 :{data: Buffer,contentType: String,},
+    description: {type: String, default: '', maxlength: 500}
 })
 
 module.exports = mongoose.model('Shop',Shop);

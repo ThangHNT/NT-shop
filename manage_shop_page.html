@@ -91,7 +91,7 @@
                     </div>
 
                     <!-- =============================== view thêm sản phẩm mới ====================================-->
-                    <div class="content_myShop-body-item content_myShop-body-product ">
+                    <div class="content_myShop-body-item content_myShop-body-product hidden">
                         <div class="content_myShop-body-item-title">
                             <h3>Thêm sản phẩm mới</h3>
                         </div>
@@ -267,6 +267,44 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ================================ view hồ sơ shop ===================================================== -->
+                    <div class="content_myShop-body-item content_myShop-body-profile">
+                        <div class="content_myShop-body-item-title">
+                            <h3>Hồ sơ shop</h3>
+                        </div>
+                        <div class="separate_line_vertical"></div>
+                        <div class="content_myShop-body-profile-main">
+                            <div class="content_myShop-body-profile-main-wrapper">
+                                <div class="content_myShop-body-profile-main-avatar">
+                                    <span>Ảnh đại diện shop</span>
+                                    <img name="shop_avatar" src="https://meta.vn/Data/image/2022/01/13/anh-dep-thien-nhien-3.jpg" alt="">
+                                    <input type="file" accept="image/*">
+                                </div>
+                                <div class="content_myShop-body-profile-main-info">
+                                    <div class="content_myShop-body-profile-main-info-item">
+                                        <span>Tên shop</span>
+                                        <input type="text" class="shop_name" name="shop_name" maxlength="30">
+                                    </div>
+                                    <div class="content_myShop-body-profile-main-info-item input_item">
+                                        <span>Số điện thoại liên hệ</span>
+                                        <input type="text" class="shop_phone_number" name="shop_phone_number" maxlength="12">
+                                    </div>
+                                    <div class="content_myShop-body-profile-main-info-item input_item">
+                                        <span>Địa chỉ</span>
+                                        <input type="text" class="shop_address" name="shop_address" maxlength="80">
+                                    </div>
+                                    <div class="content_myShop-body-profile-main-info-item input_item">
+                                        <span>Mô tả shop</span>
+                                        <textarea class="shop_description" name="shop_description" placeholder="Nhập thông tin mô tả về shop tại đây" cols="50" rows="7" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="store_shop_profile">
+                                <span>Lưu</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -297,7 +335,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- =========================================================== Chọn loại sản phẩm ======================================== -->
@@ -518,6 +555,48 @@
                 
         //     }
         // })
+
+    </script>
+
+    <!-- ================================================== hồ sơ shop ====================================================== -->
+    <script>
+        $('.content_myShop-body-profile-main-avatar input').onchange = function(e){
+            let input = e.target;
+            let reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+            reader.onload = function(){
+                let dataUrl = reader.result;
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                $('.content_myShop-body-profile-main-avatar img').src = dataUrl;
+            }
+        }
+
+        let storeShopProfileBtn = $('.store_shop_profile');
+        storeShopProfileBtn.onclick = function(){
+            if(checkInput() == false){
+                alert('Thiếu tên shop hoặc số điện thoại hoặc địa chỉ');
+            }
+            else {
+                let promise = Promise.resolve();
+                promise
+                    .then(() => {
+                        $('.store_successfully').classList.remove('hidden');
+                    })
+                    .then(() => {
+                        setTimeout(() =>{
+                            $('.store_successfully').classList.add('hidden');
+                        },1500);
+                    })
+                    .catch(() => {console.log('co loi')});
+            }
+        }
+
+        function checkInput(){
+            if($('.shop_name').value.length == 0) return false;
+            if($('.shop_phone_number').value.length == 0) return false;
+            if($('.shop_address').value.length == 0) return false;
+            return true;
+        }
 
     </script>
 

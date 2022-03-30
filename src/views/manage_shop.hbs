@@ -13,7 +13,7 @@
                 {{/if}}
                 <h5>{{userName}}</h5>
                 <div class="header_myShop-navbar-account-option">
-                    <a href="#">Hồ sơ shop</a>
+                    <a class ="shop_profile" href="#">Hồ sơ shop</a>
                     <a href="/logout">Đăng xuất</a>
                 </div>
             </div>
@@ -23,66 +23,68 @@
         <div class="content_myShop-side_bar">
             <ul class="content_myShop-side_bar-delivery content_myShop-side_bar-item">
                 <h4>Vận chuyển</h4>
-                <li class="content_myShop-side_bar-delivery-item">Cài đặt vận chuyển</li>
+                <li class="content_myShop-side_bar-delivery-item side_bar_item">Cài đặt vận chuyển</li>
             </ul>
             <ul class="content_myShop-side_bar-manage_order content_myShop-side_bar-item">
                 <h4>Quản lý đơn hàng</h4>
-                <li class="content_myShop-side_bar-manage_order-item">Tất cả</li>
-                <li class="content_myShop-side_bar-manage_order-item">Đơn thành công</li>
-                <li class="content_myShop-side_bar-manage_order-item">Đơn hủy</li>
-                <li class="content_myShop-side_bar-manage_order-item">Đơn lỗi/hoàn trả</li>
+                <li class="content_myShop-side_bar-manage_order-item side_bar_item">Tất cả</li>
+                <li class="content_myShop-side_bar-manage_order-item side_bar_item">Đơn thành công</li>
+                <li class="content_myShop-side_bar-manage_order-item side_bar_item">Đơn hủy</li>
+                <li class="content_myShop-side_bar-manage_order-item side_bar_item">Đơn lỗi/hoàn trả</li>
             </ul>
             <ul class="content_myShop-side_bar-manage_product content_myShop-side_bar-item">
                 <h4>Quản lý sản phẩm</h4>
-                <li class="content_myShop-side_bar-manage_product-item">Tất cả sản phẩm</li>
-                <li class="content_myShop-side_bar-manage_product-item active">Thêm sản phẩm</li>
-                <li class="content_myShop-side_bar-manage_product-item">Sản phẩm vi phạm</li>
-                <li class="content_myShop-side_bar-manage_product-item">Sản phẩm chưa bán hết</li>
+                <li class="content_myShop-side_bar-manage_product-item side_bar_item">Tất cả sản phẩm</li>
+                <li class="content_myShop-side_bar-manage_product-item active side_bar_item">Thêm sản phẩm</li>
+                <li class="content_myShop-side_bar-manage_product-item side_bar_item">Sản phẩm vi phạm</li>
+                <li class="content_myShop-side_bar-manage_product-item side_bar_item">Sản phẩm chưa bán hết</li>
             </ul>
             <ul class="content_myShop-side_bar-manage_shop content_myShop-side_bar-item">
                 <h4>Quản lý shop</h4>
-                <li class="content_myShop-side_bar-manage_shop-item">Hồ sơ shop</li>
-                <li class="content_myShop-side_bar-manage_shop-item">Đánh giá shop</li>
-                <li class="content_myShop-side_bar-manage_shop-item">Gỡ bỏ cửa hàng</li>
+                <li class="content_myShop-side_bar-manage_shop-item side_bar_item">Hồ sơ shop</li>
+                <li class="content_myShop-side_bar-manage_shop-item side_bar_item">Đánh giá shop</li>
+                <li class="content_myShop-side_bar-manage_shop-item side_bar_item">Gỡ bỏ cửa hàng</li>
             </ul>
         </div>
         <div class="content_myShop-body">
             <div class="content_myShop-body-wrapper">
                 <!-- ================================ view tất cả sản phẩm   ============================================ -->
-                    <div class="content_myShop-body-item content_myShop-body-all_product hidden">
-                        <div class="content_myShop-body-item-title">
-                            <h3>Tất cả sản phẩm </h3>
+                <div class="content_myShop-body-item content_myShop-body-all_product hidden">
+                    <div class="content_myShop-body-item-title">
+                        <h3>Tất cả sản phẩm </h3>
+                    </div>
+                    <div class="separate_line_vertical"></div>
+                    <div class="content_myShop-body-all_product-main">
+                        <div class="content_myShop-body-all_product-main-control">
+                            <span class="content_myShop-body-all_product-main-name">Sản Phẩm</span>
+                            <span class="content_myShop-body-all_product-main-amount">Số Lượng</span>
+                            <span class="content_myShop-body-all_product-main-sold">Đã Bán</span>
+                            <span class="content_myShop-body-all_product-main-action">Thao Tác</span>
                         </div>
-                        <div class="separate_line_vertical"></div>
-                        <div class="content_myShop-body-all_product-main">
-                            <div class="content_myShop-body-all_product-main-control">
-                                <span class="content_myShop-body-all_product-main-name">Sản Phẩm</span>
-                                <span class="content_myShop-body-all_product-main-amount">Số Lượng</span>
-                                <span class="content_myShop-body-all_product-main-sold">Đã Bán</span>
-                                <span class="content_myShop-body-all_product-main-action">Thao Tác</span>
-                            </div>
-                            <div class="content_myShop-body-all_product-main-wrapper">
-                                {{#each product}}
-                                <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
-                                    <div class="content_myShop-body-all_product-main-item-wrapper">
-                                        <div class="content_myShop-body-all_product-main-name">
-                                            <img src="{{this.avatar}}" alt="">
-                                            <span>{{this.introduction}}</span>
-                                        </div>
-                                        <div class="content_myShop-body-all_product-main-amount">{{this.totalAmount}}</div>
-                                        <div class="content_myShop-body-all_product-main-sold">{{this.sold}}</div>
-                                        <div class="content_myShop-body-all_product-main-action">
-                                            <span class="content_myShop-body-all_product-main-action-edit">
-                                                <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
-                                            </span>
-                                            <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
-                                        </div>
+                        <div class="content_myShop-body-all_product-main-wrapper">
+                            {{#each product}}
+                            <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
+                                <div class="content_myShop-body-all_product-main-item-wrapper">
+                                    <div class="content_myShop-body-all_product-main-name">
+                                        <img src="{{this.avatar}}" alt="">
+                                        <span>{{this.introduction}}</span>
+                                    </div>
+                                    <div class="content_myShop-body-all_product-main-amount">{{this.totalAmount}}</div>
+                                    <div class="content_myShop-body-all_product-main-sold">{{this.sold}}</div>
+                                    <div class="content_myShop-body-all_product-main-action">
+                                        <span class="content_myShop-body-all_product-main-action-edit">
+                                            <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
+                                        </span>
+                                        <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
                                     </div>
                                 </div>
-                                {{/each}}
                             </div>
+                            {{/each}}
                         </div>
                     </div>
+                </div>
+
+                <!-- ================================ view thêm sản phẩm mới  ============================================ -->
                 <div class="content_myShop-body-item content_myShop-body-product">
                     <div class="content_myShop-body-item-title">
                         <h3>Thêm sản phẩm mới</h3>
@@ -208,6 +210,48 @@
                             </div>
                         </div>
                         <div class="content_myShop-body-store_btn">
+                            <span>Lưu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================ view hồ sơ shop ===================================================== -->
+                <div class="content_myShop-body-item content_myShop-body-profile hidden">
+                    <div class="content_myShop-body-item-title">
+                        <h3>Hồ sơ shop</h3>
+                    </div>
+                    <div class="separate_line_vertical"></div>
+                    <div class="content_myShop-body-profile-main">
+                        <div class="content_myShop-body-profile-main-wrapper">
+                            <div class="content_myShop-body-profile-main-avatar">
+                                <span>Ảnh đại diện shop</span>
+                                {{#if shopAvatar}}
+                                    <img name="shop_avatar" src="data:image/jpeg;base64,{{shopAvatar}}" alt="">
+                                    {{else}}
+                                    <img name="shop_avatar" src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg" alt="">
+                                {{/if}}
+                                <input type="file" accept="image/*">
+                            </div>
+                            <div class="content_myShop-body-profile-main-info">
+                                <div class="content_myShop-body-profile-main-info-item">
+                                    <span>Tên shop</span>
+                                    <input type="text" class="shop_name" name="shop_name" maxlength="30" value="{{brand}}">
+                                </div>
+                                <div class="content_myShop-body-profile-main-info-item input_item">
+                                    <span>Số điện thoại liên hệ</span>
+                                    <input type="text" class="shop_phone_number" name="shop_phone_number" maxlength="12" value="{{phoneContact}}">
+                                </div>
+                                <div class="content_myShop-body-profile-main-info-item input_item">
+                                    <span>Địa chỉ</span>
+                                    <input type="text" class="shop_address" name="shop_address" maxlength="80" value="{{shopAddress}}">
+                                </div>
+                                <div class="content_myShop-body-profile-main-info-item input_item">
+                                    <span>Mô tả shop</span>
+                                    <textarea class="shop_description" name="shop_description" placeholder="Nhập thông tin mô tả về shop tại đây" cols="50" rows="7" maxlength="500"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="store_shop_profile">
                             <span>Lưu</span>
                         </div>
                     </div>
@@ -364,28 +408,31 @@
 
 {{!-- ================================================== ấn vào 1 mục ở side bar ========================================== --}}
 <script>
-    let sidebarProductItems = $$('.content_myShop-side_bar-manage_product-item');
+    let sideBarItems = $$('.side_bar_item');
     
-    sidebarProductItems.forEach(function(element,index){
+    sideBarItems.forEach(function(element,index){
         element.onclick = function(){
             removeAllActive();
             element.classList.add('active');
             removeAllContent();
-            if(index == 0){
+            if(index == 5){
                 $('.content_myShop-body-all_product').classList.remove('hidden');
             }
-            else if(index == 1){
+            else if(index == 6){
                 $('.content_myShop-body-product').classList.remove('hidden');
+            }
+            else if(index == 9){
+                $('.content_myShop-body-profile').classList.remove('hidden');
             }
         }
     })
     function removeAllActive(){
-        sidebarProductItems.forEach(function(element,index){
+        sideBarItems.forEach(function(element,index){
             element.classList.remove('active');
         })
     }
     function removeAllContent(){
-        $$('.content_myShop-body-item ').forEach(function(element,index){
+        $$('.content_myShop-body-item').forEach(function(element,index){
             element.classList.add('hidden');
         })
     }
@@ -468,52 +515,130 @@
 </script>
 
 <!-- ========================================================== sửa, Xóa sản phẩm ============================================= -->
-    <script>
-        let deleteProductBtn = $$('.content_myShop-body-all_product-main-action-delete');
-        let listProduct = $$('.content_myShop-body-all_product-main-item');
-        let viewEditProduct = $$('.content_myShop-body-product-main');
-        let productIndex = -1;
-        let productId = -1;
+<script>
+    let deleteProductBtn = $$('.content_myShop-body-all_product-main-action-delete');
+    let listProduct = $$('.content_myShop-body-all_product-main-item');
+    let viewEditProduct = $$('.content_myShop-body-product-main');
+    let productIndex = -1;
+    let productId = -1;
 
-        deleteProductBtn.forEach(function (element,index){
-            element.onclick = function(){
-                $('.comfirm_delete_product').classList.remove('hidden');
-                productIndex = index;
-            }
-        })
-
-        function deleteProduct(url,data){
-            var option = {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-            fetch(url, option)
-                .then(function (response) {
-                    return response.json();
-                })
-                .catch(() => {
-                    console.log('da xay ra loi xoa san pham');
-                })
+    deleteProductBtn.forEach(function (element,index){
+        element.onclick = function(){
+            $('.comfirm_delete_product').classList.remove('hidden');
+            productIndex = index;
         }
+    })
 
-        $('.modal-body-confirm_delete_btn-yes').onclick = function(){
-            listProduct[productIndex].remove();
-            $('.comfirm_delete_product').classList.add('hidden');
-            productId = $$('.content_myShop-body-all_product-main-item')[productIndex].getAttribute('data-id');
+    function deleteProduct(url,data){
+        var option = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi xoa san pham');
+            })
+    }
+
+    $('.modal-body-confirm_delete_btn-yes').onclick = function(){
+        listProduct[productIndex].remove();
+        $('.comfirm_delete_product').classList.add('hidden');
+        productId = $$('.content_myShop-body-all_product-main-item')[productIndex].getAttribute('data-id');
+        let data = {
+            productId: productId
+        }
+        deleteProduct('/shop/delete-product', data);
+    }
+    $('.modal-body-confirm_delete_btn-no').onclick = function(){
+        $('.comfirm_delete_product').classList.add('hidden');
+    }
+
+
+</script>
+
+<!-- ================================================== hồ sơ shop ====================================================== -->
+<script>
+    $('.content_myShop-body-profile-main-avatar input').onchange = function(e){
+        let input = e.target;
+        let reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function(){
+            let dataUrl = reader.result;
+            base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+            $('.content_myShop-body-profile-main-avatar img').src = dataUrl;
+        }
+    }
+
+    $('.shop_profile').onclick = function(){
+        removeAllContent();
+        removeAllActive();
+        $('.content_myShop-body-profile').classList.remove('hidden');
+        sideBarItems[9].classList.add('active');
+    }
+
+    let storeShopProfileBtn = $('.store_shop_profile');
+    storeShopProfileBtn.onclick = function(){
+        console.log(base64String);
+        if(checkInput() == false){
+            alert('Thiếu tên shop hoặc số điện thoại hoặc địa chỉ!');
+        }
+        else {
             let data = {
-                productId: productId
+                brand : $('.shop_name').value,
+                phoneContact: $('.shop_phone_number').value,
+                address: $('.shop_address').value,
+                description: $('.shop_description').value,
+                avatar_base64: base64String
             }
-            deleteProduct('/shop/delete-product', data);
+            let promise = Promise.resolve();
+            promise
+                .then(() => {
+                    updateShopProfile('/shop/profile/update',data);
+                })
+                .then(() => {
+                    $('.store_successfully').classList.remove('hidden');
+                })
+                .then(() => {
+                    setTimeout(() =>{
+                        $('.store_successfully').classList.add('hidden');
+                    },1500);
+                })
+                .catch(() => {console.log('co loi')});
         }
-        $('.modal-body-confirm_delete_btn-no').onclick = function(){
-            $('.comfirm_delete_product').classList.add('hidden');
-        }
+    }
+
+    function checkInput(){
+        if($('.shop_name').value.length == 0) return false;
+        if($('.shop_phone_number').value.length == 0) return false;
+        if($('.shop_address').value.length == 0) return false;
+        return true;
+    }
+
+    function updateShopProfile(url,data){
+        var option = {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch(url, option)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(() => {
+                console.log('da xay ra loi cap nhat shop info');
+            })
+    }
 
 
-    </script>
+</script>
 
 <!-- link fontawesome icons -->
 <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>

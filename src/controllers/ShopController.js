@@ -12,13 +12,19 @@ class ShopController {
         User.findOne({id: id, authType: provider}, function(err, user){
         // User.findOne({id: '1384771445288690'}, function(err, user){
             if(user.shop){
-                Product.find({owner: user.shop}, function(err, product){
-                    res.render('manage_shop', { 
-                        userName: user.username,
-                        userAvatar: user.avatar,
-                        user_avatar_base64: user.avatar_base64.data,
-                        product: multiObject(product),
-                    });
+                Shop.findById({_id: user.shop},function(err, shop){
+                    Product.find({owner: user.shop}, function(err, product){
+                        res.render('manage_shop', { 
+                            userName: user.username,
+                            userAvatar: user.avatar,
+                            user_avatar_base64: user.avatar_base64.data,
+                            product: multiObject(product),
+                            brand: shop.brand,
+                            phoneContact: shop.phoneContact,
+                            shopAddress: shop.address,
+                            shopAvatar: shop.avatar_base64.data,
+                        });
+                    })
                 })
             }
             else {
@@ -139,6 +145,26 @@ class ShopController {
             }
         })
     }
+
+    updateProfile(req, res, next){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+            Shop.findById({_id: user.shop},function(err, shop){
+                shop.brand = req.body.brand;
+                shop.address = req.body.address;
+                shop.phoneContact = req.body.phoneContact;
+                shop.description = req.body.description;
+                if(req.body.avatar_base64 !== ''){
+                    shop.avatar_base64.data = req.body.avatar_base64;
+                }
+                shop.save();
+            })
+            res.send('thanh cong');
+        })
+    }
+
 }
 
 module.exports = new ShopController;
