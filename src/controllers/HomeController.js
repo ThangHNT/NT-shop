@@ -73,6 +73,10 @@ class HomeController {
         res.redirect('/');
     }
 
+    visitShop(req, res, next){
+        res.render('visit_shop');
+    }
+
 }
 
 module.exports = new HomeController;

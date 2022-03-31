@@ -391,7 +391,6 @@
         <div class="content-product_list" id="content-product_list">
             {{#each products}}
             <a href="/product/detail/{{this._id}}" class="content-product_list-item">
-                {{!-- <img src="data:image/jpeg;base64,{{this.avatar.data}}" alt=""> --}}
                 <img src="{{this.avatar}}" alt="">
                 <div class="content-product_list-item-introduction container">
                     <p class="content-product_list-item-description">
@@ -400,7 +399,7 @@
                     <span class="content-product_list-item-discount">Giảm {{this.discount.amount}} {{this.discount.unit}}</span>
                     <div class="content-product_list-item-status">
                         <div class="content-product_list-item-price">{{this.priceAfterDiscount}}đ</div>
-                        <p class="content-product_list-item-sold">Đã bán 120</p>
+                        <p class="content-product_list-item-sold">0</p>
                     </div>
                 </div>
             </a>
