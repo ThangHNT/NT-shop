@@ -210,6 +210,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal modal_buy_product hidden">
         <div class="modal-overlay"></div>
         <div class="modal_content-comfirm_buy_product">
@@ -254,6 +255,16 @@
             
             <div class="modal_content-cart-item">
                 <button class="modal_content-cart-confirm_btn" type="button">OK</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal store_successfully hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-body modal-content">
+            <div class="modal-body-updated_profile">
+                <img style="width: 40px; height: 40px;" src="https://cachbothuocla.vn/wp-content/uploads/2019/03/tick-xanh.png"
+                    alt="">
+                <h4>Đặt hàng thành công</h4>
             </div>
         </div>
     </div>
@@ -399,7 +410,23 @@
             else alert('Vui lòng tick chọn sản phẩm!');
         }
         $('.modal_content-cart-confirm_btn').onclick = function () {
-            $('.modal_buy_product').classList.add('hidden');
+            let promise = Promise.resolve();
+            promise
+                .then(() => {
+                    $('.modal_buy_product').classList.add('hidden');
+                    
+                })
+                .then(() => {
+                    setTimeout(() => {
+                        $('.store_successfully').classList.remove('hidden');
+                    },500);
+                })
+                .then(() => {
+                    setTimeout(() => {
+                        $('.store_successfully').classList.add('hidden');
+                    },2000);
+                })
+                .catch(() => {console.log('co loi')});
         }
 
         let paymentFormBtn = $$('.payment_form-wrapper-item');
