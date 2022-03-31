@@ -20,7 +20,7 @@ class AdminController {
         let productId = req.body.productId;
         Product.findOneAndDelete({_id: productId}, function(err, product){
             if(product){
-                Shop.findById({_id: product.owner}, function(err, shop){
+                Shop.findById({_id: product.shop}, function(err, shop){
                     let productIndex = shop.products.indexOf(productId);
                     shop.products.splice(productIndex,1);
                     product.cart.forEach(function(element,index) {

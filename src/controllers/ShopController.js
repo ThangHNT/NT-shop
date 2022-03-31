@@ -48,6 +48,7 @@ class ShopController {
                 priceAfterDiscount = Math.floor(Number(req.body.price) - req.body.discount.amount);
             }
             const product = new Product;
+            product.seller = user._id;
             product.category = req.body.productCategory;
             product.originPrice = req.body.price == '0' ? '1' : req.body.price;
             product.priceAfterDiscount = priceAfterDiscount;
@@ -60,11 +61,10 @@ class ShopController {
             product.imgs = req.body.imgs;
             product.avatar = req.body.imgs[0];
             product.introduction = req.body.introduction;
-            product.owner = user.shop;
+            product.shop = user.shop;
             product.brand = req.body.brand;
             product.available = Number(req.body.totalAmount);
             product.sold = 0;
-            console.log(product);
             product.save();
             Shop.findById({_id:user.shop},function(err, shop){
                 if(shop){
