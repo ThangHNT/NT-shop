@@ -80,23 +80,47 @@ class HomeController {
             const id = req.user.id;
             User.findOne({id:id, authType:provider}, function(err,user){
             // User.findOne({id: '1384771445288690'}, function(err, user){
-                Shop.findById({_id: req.params.shopId},function(err, shop){
-                    Product.find({shop: shop._id}, function(err, product){
-                        res.render('visit_shop', {
-                            user: object(user),
-                            product: multiObject(product),
-                            shop: shop
-                        })
+                Product.find({shop: req.params.id}, function(err,products) {
+                    Cart.findById({_id: user.cart},function(err, cart){
+                        if(cart.products.length > 0){
+                            Product.find({cart: cart._id},function(err, cartProduct){
+                                Shop.findOne({_id: req.params.id}, function(err, shop){
+                                    res.render('visit_shop', {
+                                        user: object(user),
+                                        avatar: user.avatar,
+                                        avatar_base64: user.avatar_base64.data,
+                                        products : multiObject(products),
+                                        seller: user.shop,
+                                        cartProduct: multiObject(cartProduct),
+                                        amount : cart.products.length,
+                                        shop: object(shop)
+                                    })
+                                })
+                            })
+                        }
+                        else {
+                            Shop.findOne({_id: req.params.id}, function(err, shop){
+                                res.render('visit_shop', {
+                                    user: object(user),
+                                    avatar: user.avatar,
+                                    avatar_base64: user.avatar_base64.data,
+                                    products : multiObject(products),
+                                    seller: user.shop,
+                                    shop: object(shop)
+                                })
+                            })
+                        }
                     })
+
                 })
             })
         }
         else {
-            Shop.findById({_id: req.params.shopId},function(err, shop){
-                Product.find({shop: shop._id}, function(err, product){
+            Shop.findOne({_id: req.params.id}, function(err, shop){
+                Product.find({shop:req.params.id}, function(err, product){
                     res.render('visit_shop', {
-                        product: multiObject(product),
-                        shop: shop
+                        products : multiObject(product),
+                        shop: object(shop)
                     })
                 })
             })

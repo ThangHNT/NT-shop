@@ -139,8 +139,12 @@
             <div class="content_visit_shop-introduction-wrapper">
                 <div class="content_visit_shop-introduction-img">
                     <div class="content_visit_shop-introduction-img-name">
-                        <img src="https://truongquochoc.com/wp-content/uploads/2020/10/top-30-hinh-anh-canh-dong-hoa-dep-nhat-the-gioi-1.jpg" alt="">
-                        <span>NT shop</span>
+                        {{#if shop.avatar_base64.data}}
+                            <img src="data:image/jpeg;base64,{{shop.avatar_base64.data}}" alt="">
+                        {{else}}
+                            <img src="https://hinhgaixinh.com/wp-content/uploads/2021/11/hinh-anh-gai-xinh-deo-mat-kinh-dep-nhat-the-gioi.jpg" alt="">
+                        {{/if}}
+                        <span>{{shop.brand}}</span>
                     </div>
                     <div class="content_visit_shop-introduction-img-action">
                         <div class="content_visit_shop-introduction-action_item">
@@ -157,7 +161,7 @@
                     <div class="content_visit_shop-introduction-about-item">
                         <i class="fa-solid fa-store"></i>
                         <label for="">Sản phẩm:</label>
-                        <span>150</span>
+                        <span>{{shop.products.length}}</span>
                     </div>
                     <div class="content_visit_shop-introduction-about-item">
                         <i class="fa-solid fa-user-group"></i>
@@ -177,37 +181,37 @@
                     <div class="content_visit_shop-introduction-about-item">
                         <i class="fa-solid fa-location-dot"></i>
                         <label for="">địa chỉ:</label>
-                        <span>145 Trần Hưng Đạo, Nam Định</span>
+                        <span>{{shop.address}}</span>
                     </div>
                     <div class="content_visit_shop-introduction-about-item">
                         <i class="fa-solid fa-phone"></i>
                         <label for="">số điện thoại:</label>
-                        <span>094658214</span>
+                        <span>{{shop.phoneContact}}</span>
                     </div>
                 </div>
             </div>
         </div>
+        {{#if shop.description}}
         <div class="content_visit_shop-introduction-description content_visit_shop-item">
-            <pre>Lamode Chuyên sỉ/lẻ quần áo thời trang, phụ kiện nam nữ, ship COD toàn quốc, FREESHIP đơn 0 đồng, hoàn xu 100k
-                ◾ Hàng luôn có sẵn, nhận hàng siêu tốc trong ngày, liên tỉnh 2-4 ngày.
-
-                LIÊN HỆ Sỉ/lẻ, Đặt in áo, áo nhóm, áo lớp 
-                ◾ SĐT hoặc Zalo: 0703188664
-                ◾ Địa chỉ kho gửi hàng (không có hàng trưng bày): 25/2E Đường Xuân Thới 13, Xuân Thới Đông 1, Hóc Môn
-                ◾ Thời gian làm việc: 8:00-17:00, 7 ngày 1 tuần, nghỉ Lễ</pre>
+            <pre>{{shop.description}}</pre>
         </div>
+        {{/if}}
         <div class="content_visit_shop-product">
-            <a class="content_visit_shop-product-item" href="#">
-                <img class="content_visit_shop-product-avatar" src="http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-1.jpg" alt="">
-                <div class="content_visit_shop-product-introduction">
-                    <p class="content_visit_shop-product-description">25/2E Đường Xuân Thới 13, Xuân Thới Đông 1, Hóc Môn</p>
-                    <span class="content-product_list-item-discount">Giảm 10%</span>
-                    <div class="content-product_list-item-status">
-                        <span>250000đ</span>
-                        <p>0</p>
+            <div class="content_visit_shop-product-wrapper">
+                {{#each products}}
+                <a class="content_visit_shop-product-item" href="/product/detail/{{this._id}}">
+                    <img class="content_visit_shop-product-avatar" src="{{this.avatar}}" alt="">
+                    <div class="content_visit_shop-product-introduction">
+                        <p class="content_visit_shop-product-description">{{this.description}}</p>
+                        <span class="content-product_list-item-discount">Giảm {{this.discount.amount}} {{this.discount.unit}}</span>
+                        <div class="content-product_list-item-status">
+                            <span>{{this.priceAfterDiscount}}đ</span>
+                            <p>{{this.sold}}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                {{/each}}
+            </div>
         </div>
     </div>
 

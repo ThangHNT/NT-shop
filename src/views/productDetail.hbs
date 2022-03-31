@@ -277,6 +277,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="product-shop">
+            <div class="product-shop-item">
+                {{#if shop.avatar_base64.data}}
+                    <img src="data:image/jpeg;base64,{{shop.avatar_base64.data}}" alt="">
+                {{else}}
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlqsyY5rh2kAACkIXtTDO97F5_Hsa7bCYDEg&usqp=CAU" alt="">
+                {{/if}}
+            </div>
+            <div class="product-shop-item">
+                <h4>{{shop.brand}}</h4>
+                <div class="product-shop-item-btn">
+                    <a href="#" class="chat_with_shop">
+                        <i class="fa-solid fa-comments"></i>
+                        Chat ngay</a>
+                    <a class="visit_shop" href="/visit-shop/{{shop._id}}">
+                        <i class="fa-solid fa-shop"></i>
+                        xem shop
+                    </a>
+                </div>
+            </div>
+            <h3>Hãy ghé thắm shop để xem những sản phẩm tốt nhé!</h3>
+        </div>
+
         <div class="product-detail">
             <div class="product-detail-title title_header">
                 <h3>Chi tiết sản phẩm</h3>

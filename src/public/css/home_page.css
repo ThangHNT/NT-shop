@@ -678,12 +678,7 @@ html {
     box-shadow: 0 0 4px 0 #ccc;
     cursor: pointer;
 }
-/* .content-category-carousel-product:hover .carousel-arrow_item{
-    width: 45px;
-    height: 45px;
-    font-size: 20px;
-    
-} */
+
 .content-category-carousel-product:active .carousel-arrow_item {
     background-color: #ddd;
 }
@@ -714,6 +709,13 @@ html {
     margin-top: 15px;
     background-color: #fff;
     box-shadow: 0 0 2px 0 #ccc;
+    border: 2px solid #fff;
+    overflow: hidden;
+}
+
+.content-product_list-item:hover {
+    display: block;
+    border: 2px solid rgb(241, 44, 60);
 }
 
 .content-product_list a {
@@ -775,11 +777,6 @@ html {
     font-size: 13px;
 }
 
-.content-product_list-item:hover {
-    display: block;
-    border: 1px solid rgb(241, 44, 60);
-    transform: translateY(-2px);
-}
 
 
 /* ========================================================== footer ================================================================ */
