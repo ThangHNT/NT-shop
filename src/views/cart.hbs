@@ -409,7 +409,10 @@
 
 <!-- ==================================================== khi ấn nút mua hàng ========================================= -->
 <script>
+    let listProduct = [];
     $('.content_cart-product-manipulation-buy_btn').onclick = function () {
+        getSelectedProduct();
+        console.log(listProduct);
         if(selectedProduct > 0){
             $('.modal_buy_product').classList.remove('hidden');
         }
@@ -417,11 +420,14 @@
     }
     // ---------------------- xác nhận mua hàng ------------------------------
     $('.modal_content-cart-confirm_btn').onclick = function () {
+        let data = {
+            listProduct : listProduct,
+        }
         let promise = Promise.resolve();
         promise
             .then(() => {
+                buyProduct('/user/buy-product',data);
                 $('.modal_buy_product').classList.add('hidden');
-                
             })
             .then(() => {
                 setTimeout(() => {
@@ -437,9 +443,10 @@
     }
 
     function getSelectedProduct(){
+        listProduct = [];
         checkboxItems.forEach(function (element, index) {
-            if(element.checked = true){
-                
+            if(element.checked == true){
+                listProduct.push($$('.content_cart-product-item-wrapper-link')[index].getAttribute('product-id'));
             }
         })
     }

@@ -25,6 +25,7 @@ function route(app) {
     // app.use('/admin',adminRouter);
     // app.use('/user',userRouter);
     // app.use('/shop',shopRouter);
+    
     app.use('/product',productRouter);
     app.use('/',homeRouter);
 }

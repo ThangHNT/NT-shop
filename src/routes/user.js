@@ -14,5 +14,6 @@ router.post('/seller/signup/successful',userController.sellerSignupSuccessful); 
 router.get('/cart',userController.cart); // trang giỏ hàng
 router.post('/add-to-cart',userController.addToCart);   // thêm sp vào giỏ hàng
 router.patch('/cart/remove-product',userController.removeProductFromCart);  // xóa sản phẩm khỏi giỏ hàng
+router.post('/buy-product',userController.buyProduct)       // user mua sản phẩm
 
 module.exports = router;

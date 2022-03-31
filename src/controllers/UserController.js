@@ -245,6 +245,26 @@ class UserController {
             return res.send('thanh cong');
         })
     }
+
+    buyProduct(req, res, next) {
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+            let listProduct = req.body.listProduct;
+            listProduct.forEach(function(element,index){
+                Product.findById({_id: element}, function(err, product){
+                    if(product){
+                        if(product.seller != user._id){
+                            user.purchaseOrder.push(element);
+                            user.save();
+                        }
+                    }
+                })
+            })
+            res.send('thanh cong');
+        })
+    }
 }
 
 module.exports = new UserController;
