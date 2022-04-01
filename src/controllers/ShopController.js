@@ -23,6 +23,7 @@ class ShopController {
                             phoneContact: shop.phoneContact,
                             shopAddress: shop.address,
                             shopAvatar: shop.avatar_base64.data,
+                            shopDescription: shop.description
                         });
                     })
                 })
