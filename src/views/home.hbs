@@ -633,24 +633,33 @@
     let mousePress = false;
     let x = categoryProduct.getBoundingClientRect().left;
     let first = 0, second = 0;
+    let check = true;
+
     categoryProduct.style.position = 'relative';
 
     categoryProduct.addEventListener('touchstart',function(e) {
         mousePress = true;
         first = e.touches[0].pageX;
-        {{!-- console.log('first: ' + first); --}}
+        console.log(categoryProduct.getBoundingClientRect().left);
     })
     categoryProduct.addEventListener('touchmove',function(e) {
-        if(mousePress == true){
+        if(mousePress == true ){
             second = e.touches[0].pageX;
             let newPos = second - first;
-            categoryProduct.style.left = (x + newPos) + 'px';
-            x = categoryProduct.getBoundingClientRect().left ;
-            console.log(x);
+            if(check || newPos > 0) {
+                categoryProduct.style.left = (x + newPos) + 'px';
+                check = true;
+            }
+            
         }
     })
     categoryProduct.addEventListener('touchend',function(e){
         mousePress = false;
+        x = categoryProduct.getBoundingClientRect().left;
+        if(categoryProduct.getBoundingClientRect().left <= -715){
+            categoryProduct.style.left = (-715) + 'px';
+            check = false;
+        }
     })
 
 </script>
