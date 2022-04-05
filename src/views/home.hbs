@@ -624,5 +624,33 @@
         return str;
     }
 
+</script>
+
+{{!-- =============================================== drag product category ============================================= --}}
+
+<script>
+    let categoryProduct = $('.content-category-product');
+    let mousePress = false;
+    let x = categoryProduct.getBoundingClientRect().left;
+    let first = 0, second = 0;
+    categoryProduct.style.position = 'relative';
+
+    categoryProduct.addEventListener('touchstart',function(e) {
+        mousePress = true;
+        first = e.touches[0].pageX;
+        {{!-- console.log('first: ' + first); --}}
+    })
+    categoryProduct.addEventListener('touchmove',function(e) {
+        if(mousePress == true){
+            second = e.touches[0].pageX;
+            let newPos = second - first;
+            categoryProduct.style.left = (x + newPos) + 'px';
+            x = categoryProduct.getBoundingClientRect().left ;
+            console.log(x);
+        }
+    })
+    categoryProduct.addEventListener('touchend',function(e){
+        mousePress = false;
+    })
 
 </script>

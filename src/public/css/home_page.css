@@ -373,6 +373,7 @@ html {
     background-color: #fff;
     box-shadow: 0 0 2px 0 #ccc;
     overflow: hidden;
+    z-index: 10;
 }
 
 .search_result li {
@@ -435,7 +436,7 @@ html {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 3px 1px #ccc;
+    box-shadow: 0px 0px 2px 1px #ccc;
     transform-origin: 95% top;
     animation: showList ease-in 0.25s;
     border-radius: 4px;
@@ -563,6 +564,7 @@ html {
     height: 100%;
     display: flex;
     padding-top: 20px;
+    z-index: 0;
 }
 
 .banners-carousel {
@@ -729,6 +731,7 @@ html {
     width: 208px !important;
     height: 208px !important;
     padding-top: 1px;
+    object-fit: cover;
 }
 
 .content-product_list-item-introduction {

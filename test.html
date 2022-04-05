@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 300px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h3 draggable="true">hello</h3>
+    <div class="box">box</div>
+</body>
+
+
+
+<script>
+    let box = document.querySelector('.box');
+    let mousePress = false;
+    box.style.position = 'relative';
+    let x = box.getBoundingClientRect().left;
+    let first = 0, second = 0;
+    box.addEventListener('mousedown',function(e) {
+        console.log(e.offsetX);
+        mousePress = true;
+        first = e.offsetX;
+    })
+    box.addEventListener('mousemove',function(e) {
+        if(mousePress){
+            console.log(e.offsetX);
+            second = e.offsetX;
+            let newPos = second - first;
+            box.style.left = x + newPos + 'px';
+            x = box.getBoundingClientRect().left;
+        }
+    })
+    box.addEventListener('mouseup',function(e){
+        mousePress = false;
+    })
+
+
+</script>
+
+
+
+</html>
