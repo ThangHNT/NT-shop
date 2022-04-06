@@ -34,7 +34,7 @@
 
     .user, .header-cart i {
         font-size: 18px !important;
-        margin: 0 5px;
+        margin: 0 10px;
     }
 
     .header-search_bar {
@@ -57,6 +57,8 @@
     .header-cart:hover .header-cart-list_product{
         display: none !important;
     }
+
+    
 
     .header-cart-number_display {
         width: 18px !important;
