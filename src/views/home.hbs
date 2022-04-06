@@ -631,9 +631,8 @@
 <script>
     let categoryProduct = $('.content-category-product');
     let mousePress = false;
-    let x = categoryProduct.getBoundingClientRect().left;
+    let x = 0;
     let first = 0, second = 0;
-    let check = true;
 
     categoryProduct.style.position = 'relative';
 
@@ -646,19 +645,19 @@
         if(mousePress == true ){
             second = e.touches[0].pageX;
             let newPos = second - first;
-            if(check || newPos > 0) {
-                categoryProduct.style.left = (x + newPos) + 'px';
-                check = true;
-            }
-            
+            categoryProduct.style.left = (x + newPos) + 'px';
         }
     })
     categoryProduct.addEventListener('touchend',function(e){
         mousePress = false;
         x = categoryProduct.getBoundingClientRect().left;
-        if(categoryProduct.getBoundingClientRect().left <= -715){
-            categoryProduct.style.left = (-715) + 'px';
-            check = false;
+        if(categoryProduct.getBoundingClientRect().left <= -718){
+            categoryProduct.style.left = (-718) + 'px';
+            x = -718;
+        }
+        else if(categoryProduct.getBoundingClientRect().left >= 15){
+            categoryProduct.style.left = (0) + 'px';
+            x = 0;
         }
     })
 
