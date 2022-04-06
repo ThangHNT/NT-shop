@@ -58,18 +58,6 @@
         display: none !important;
     }
 
-    .header-cart-list_product {
-        display: none;
-        width: 260px;
-        height: 160px;
-        right: 9%;
-        top: 76%;
-    }
-
-    .header-cart-list_product::before {
-        top: -18%;
-    }
-
     .header-cart-number_display {
         width: 18px !important;
         height: 18px !important;
