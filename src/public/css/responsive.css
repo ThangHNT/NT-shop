@@ -149,7 +149,7 @@
     /* ====================================================== product detail page ============================================= */
     
     .header_product_detail {
-        height: 35px !important;
+        height: 50px !important;
         display:flex !important;
         justify-content:center;
         align-items:center;
@@ -231,6 +231,10 @@
         padding : 10px;
     }
 
+    .product-introduction-option-price-discount {
+        padding: 2px 3px;
+    }
+
     .product-introduction-option-item-title, .product-introduction-option-delivery-content {
         font-size: 15px;
     }
@@ -245,12 +249,17 @@
         position: fixed;
         display: flex;
         bottom: 0;
-        justify-content:  space-between;
+        justify-content: space-between;
     }
 
-    .introduction-option-btn-add_to_cart {
+    .introduction-option-btn-add_to_cart, .introduction-option-btn-buy_now {
         width: 60%;
         border-radius: 0;
+        padding: 12px 10px;
+    }
+
+    .introduction-option-btn-add_to_cart span {
+        font-size: 15px;
     }
 
     .introduction-option-btn-buy_now {

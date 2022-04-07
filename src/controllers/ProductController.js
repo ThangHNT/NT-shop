@@ -77,7 +77,7 @@ class ProductController {
         }
     }
 
-    listedProduct(req, res,next){
+    listedProduct(req, res,next){       // chuỗi json
         Product.find({},function(err,product){
             let data = [];
             product.forEach(function(element,index){
