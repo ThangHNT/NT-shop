@@ -198,6 +198,11 @@
         justify-content: center;
     }
 
+    .product-review-comment-user-illustration_imgs-zoom {
+        width : 280px;
+        height: 280px;
+    }
+
     .product-introduction-illustration-some_img-item {
         min-width: 60px;
         min-height: 60px;
