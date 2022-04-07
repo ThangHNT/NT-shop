@@ -2,7 +2,6 @@
     <div id="header" class="header_product_detail">
         <div class="navbar">
             <div class="link_user">
-                <a href="/" class="my_shop">Trang chủ</a>
                 {{#if seller}}
                     <a href="/shop" class="create_shop">Shop của tôi</a>
                 {{else}}
@@ -12,8 +11,7 @@
                     <p style="padding:0; margin:0">Tải ứng dụng</p>
                     <div class="qrcode_app">
                         <img style="width:180px; height:180px;"
-                            src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
-                            alt="">
+                            src="/image/link facebook.png" alt="">
                         <div class="some_app">
                             <img style="width:70px; height:16px"
                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png"
@@ -51,8 +49,8 @@
                                 alt="">
                             <h3>Đăng nhập để xem thông báo</h3>
                             <div class="header-notification-show-btn_login">
-                                <a href="#">Đăng ký</a>
-                                <a href="#">Đăng nhập</a>
+                                <a href="/login">Đăng ký</a>
+                                <a href="/login">Đăng nhập</a>
                             </div>
                         {{/if}}
                     </div>
@@ -69,33 +67,33 @@
                         {{else}}
                             <img class="avatar" src="{{user.avatar}}" alt="avatar">
                         {{/if}}
-                        {{#if user}}
-                            <a href="#" class="username">{{user.username}}</a>
-                        {{else}}
-                            <a href="#" class="username">Thắng Hoàng</a>
-                        {{/if}}
+                        <a href="#" class="username">{{user.username}}</a>
                         <div class="myAccount-show">
                             <a href="/user/myAccount">Tài khoản của tôi</a>
                             <a href="/logout">Đăng xuất</a>
                         </div>
                     </div>
                     {{else}}
-                        <a class="account_signup" href="#">Đăng ký</a>
-                        <a class="account_login" href="#">Đăng nhập</a>
+                        <a class="account_signup" href="/login">Đăng ký</a>
+                        <a class="account_login" href="/login">Đăng nhập</a>
                     {{/if}}
                 </div>
             </div>
 
         </div>
         <div class="container header-search">
-            <a href="/">
-                <img style="width: 160px; height: 50px;" class="logo_web"
-                    src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
+            <a href="/" class="web_logo">
+                <img style="width: 70px; height: 70px;" class="logo_web"
+                    src="/image/logo.png" alt="">
             </a>
-            <div class="header-search_bar">
+            <div class="header-search_bar header-search_bar-product_detail_page" action="">
                 <input type="text" placeholder="Search ..." maxlength="50">
-                <a href="#"><i class="fas fa-search"></i></a>
+                <a class="search_product" href="#content-product_list"><i class="fas fa-search"></i></a>
+                <ul class="search_result hidden">
+                    
+                </ul>
             </div>
+            <a class="arrow_left_back on_mobile" href="/"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="header-cart">
                 <a href="/user/cart"><i class="fas fa-shopping-cart"></i>
                     {{#if amount}}
@@ -106,11 +104,11 @@
                     {{#if user}}
                         {{#if amount}}
                             <ul class="header-cart-list_product-ul">
-                                {{#each products}}
+                                {{#each cartProduct}}
                                 <li class="header-cart-list_product-item">
                                     <img src="{{this.avatar}}" alt="">
                                     <p>{{this.introduction}}</p>
-                                    <span>{{this.priceAfterDiscount}}đ</span>
+                                    <span>{{this.priceAfterDiscount}}</span>
                                 </li>
                                 {{/each}}
                             </ul>
@@ -131,6 +129,9 @@
                     {{/if}}
                 </div>
             </div>
+            <a href="/login" class="on_mobile user">
+                <i class="fa-solid fa-user"></i>
+            </a>
         </div>
     </div>
 
@@ -245,7 +246,7 @@
                         <p data="{{product.available}}">{{product.available}}</p> sản phẩm có sẵn
                     </span>
                 </div>
-                <div class="product-introduction-option-btn">
+                <div class="product-introduction-option-btn on_pc_flex">
                     <div class="introduction-option-btn-add_to_cart">
                         <i class="fa-solid fa-cart-plus"></i>
                         {{#if added}}
@@ -298,7 +299,7 @@
                     </a>
                 </div>
             </div>
-            <h3>Hãy ghé thắm shop để xem những sản phẩm tốt nhé!</h3>
+            <h3 class="let_visit_shop">Hãy ghé thắm shop để xem những sản phẩm tốt nhé!</h3>
         </div>
 
         <div class="product-detail">
@@ -333,6 +334,7 @@
         <div class="product-description">
             <div class="product-description-title title_header">
                 <h3>Mô tả sản phẩm</h3>
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="product-description-content">
                 <p>
@@ -401,7 +403,7 @@
 
     <div id="footer" class="footer_product_detail">
         <div class="footer_wrap container">
-            <div class="footer-element">
+            <div class="footer-element ">
                 <div class="footer-element-customer_care">
                     <h4>CHĂM SÓC KHÁCH HÀNG</h4>
                     <ul>
@@ -432,7 +434,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-element">
+            <div class="footer-element on_pc">
                 <div class="footer-element-payment">
                     <h4>THANH TOÁN</h4>
                     <ul>
@@ -443,7 +445,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-element">
+            <div class="footer-element on_pc">
                 <div class="footer-element-follow_us">
                     <h4>THEO DÕI CHÚNG TÔI TRÊN</h4>
                     <ul>
@@ -456,7 +458,7 @@
                 <div class="footer-element-download_my_app">
                     <h4>TẢI ỨNG DỤNG NT shop NGAY THÔI</h4>
                     <a href="#">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
+                        <img class="app_qrcode" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
                             alt="" class="footer-element-download_my_app-qrcode">
                         <div class="footer-element-download_my_app-apps">
                             <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png"
@@ -470,9 +472,22 @@
                 </div>
             </div>
         </div>
-        <a href="#" class="move_top">
+        <a href="#" class="move_top on_pc_flex">
             <i class="fa-solid fa-arrow-up"></i>
         </a>
+        <div class="product-introduction-option-btn">
+            <div class="introduction-option-btn-add_to_cart">
+                <i class="fa-solid fa-cart-plus"></i>
+                {{#if added}}
+                    <span>Đã thêm vào giỏ hàng</span>
+                {{else}}
+                    <span>Thêm vào giỏ hàng</span>
+                {{/if}}
+            </div>
+            <a class="introduction-option-btn-buy_now" href="#">
+                <span>Mua ngay</span>
+            </a>
+        </div>
     </div>
 
 </div>
@@ -618,10 +633,10 @@
 
 <!-- ====================================================== thêm sp vào giỏ hàng =================================================== -->
 <script>
-    let addProductToCart = $('.introduction-option-btn-add_to_cart');
+    let addProductToCart = $$('.introduction-option-btn-add_to_cart');
+    let buyNowBtn = $$('.introduction-option-btn-buy_now');
     let cartProductNumber = $('.header-cart-number_display');
     let productId = $('.product-introduction-illustration-main_img').getAttribute('data-id');
-    let buyNowBtn = $('.introduction-option-btn-buy_now');
 
     function addProduct(url,data){
         var option = {
@@ -640,68 +655,72 @@
             })
     }
 
-    addProductToCart.onclick = function () {
-        if($('.myAccount')){
-            if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
-                let data = {
-                    productId: productId,
-                }
-                addProduct('/user/add-to-cart',data);
-                console.log(productId);
-                $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
-                let li = document.createElement('li');
-                li.className = 'header-cart-list_product-item';
-                let anh = document.createElement('img');
-                anh.src = $$('.product-introduction-illustration-some_img-item')[0].src;
-                let p = document.createElement('p');
-                let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
-                p.appendChild(textNode);
-                let span = document.createElement('span');
-                let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
-                span.appendChild(textNode2);
-                li.append(anh, p, span);
+    addProductToCart.forEach(function (element, index){
+        element.onclick = function () {
+            console.log(5);
+            if($('.myAccount')){
+                if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
+                    let data = {
+                        productId: productId,
+                    }
+                    addProduct('/user/add-to-cart',data);
+                    console.log(productId);
+                    $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
+                    let li = document.createElement('li');
+                    li.className = 'header-cart-list_product-item';
+                    let anh = document.createElement('img');
+                    anh.src = $$('.product-introduction-illustration-some_img-item')[0].src;
+                    let p = document.createElement('p');
+                    let textNode = document.createTextNode(`${$('.product-introduction-option-title-name h4').innerText}`);
+                    p.appendChild(textNode);
+                    let span = document.createElement('span');
+                    let textNode2 = document.createTextNode(`${$('.product-introduction-option-price-after_discount').innerText}`);
+                    span.appendChild(textNode2);
+                    li.append(anh, p, span);
 
-                if($('.header-cart-number_display')){
-                    let amount = Number($('.header-cart-number_display').innerText) + 1 + '';
-                    $('.header-cart-number_display').innerText = amount;
-                    $('.header-cart-list_product-ul').prepend(li);
+                    if($('.header-cart-number_display')){
+                        let amount = Number($('.header-cart-number_display').innerText) + 1 + '';
+                        $('.header-cart-number_display').innerText = amount;
+                        $('.header-cart-list_product-ul').prepend(li);
+                    }
+                    else {
+                        let ul = document.createElement('ul');
+                        ul.className = 'header-cart-list_product-ul';
+                        ul.prepend(li);
+                        let showBtn = document.createElement('a');
+                        let textNode4 = document.createTextNode('Xem giỏ hàng');
+                        showBtn.className = 'view_cart_product_btn';
+                        showBtn.appendChild(textNode4);
+                        $('.header-cart-list_product').removeChild($('.header-cart-list_product-wrapper'));
+                        $('.header-cart-list_product').appendChild(ul);
+                        $('.header-cart-list_product').appendChild(showBtn);
+                        let amountProductCart = document.createElement('div');
+                        amountProductCart.className = 'header-cart-number_display';
+                        let textNode3 = document.createTextNode('1');
+                        amountProductCart.appendChild(textNode3);
+                        $('.header-cart a').appendChild(amountProductCart);
+                    }
+                    
                 }
-                else {
-                    let ul = document.createElement('ul');
-                    ul.className = 'header-cart-list_product-ul';
-                    ul.prepend(li);
-                    let showBtn = document.createElement('a');
-                    let textNode4 = document.createTextNode('Xem giỏ hàng');
-                    showBtn.className = 'view_cart_product_btn';
-                    showBtn.appendChild(textNode4);
-                    $('.header-cart-list_product').removeChild($('.header-cart-list_product-wrapper'));
-                    $('.header-cart-list_product').appendChild(ul);
-                    $('.header-cart-list_product').appendChild(showBtn);
-                    let amountProductCart = document.createElement('div');
-                    amountProductCart.className = 'header-cart-number_display';
-                    let textNode3 = document.createTextNode('1');
-                    amountProductCart.appendChild(textNode3);
-                    $('.header-cart a').appendChild(amountProductCart);
-                }
-                
             }
-
+            else {
+                alert("Bạn chưa đăng nhập!");
+            }
         }
-        else {
-            alert("Bạn chưa đăng nhập!");
+    })
+    
+    buyNowBtn.forEach(function (element, index) {
+        element.onclick = function(e){
+            if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
+                let data = {productId: productId}
+                addProduct('/user/add-to-cart',data);
+                element.href = '/user/cart';
+            }
+            else {
+                element.href = '/user/cart';
+            }
         }
-    }
-
-    buyNowBtn.onclick = function(e){
-        if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
-            let data = {productId: productId}
-            addProduct('/user/add-to-cart',data);
-            buyNowBtn.href = '/user/cart';
-        }
-        else {
-            buyNowBtn.href = '/user/cart';
-        }
-    }
+    })
 
 </script>
 
