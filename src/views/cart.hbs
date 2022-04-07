@@ -230,6 +230,7 @@
         </div>
         
         <div class="modal_content-cart-item">
+            <button class="modal_content-cart-reject_btn" type="button">Hủy bỏ</button>
             <button class="modal_content-cart-confirm_btn" type="button">Mua</button>
         </div>
     </div>
@@ -368,11 +369,13 @@
             if (element.checked) {
                 tickAllCheckbox();
                 selectAllCheckbox[len - 1 - index].checked = true;
+                selectedProduct = 1;
             }
             else {
                 removeAllCheckbox();
                 selectAllCheckbox[len - 1 - index].checked = false;
                 $('.content_cart-product-manipulation-total_price').innerText = '';
+                selectedProduct = 0;
             }
         }
     });
@@ -415,7 +418,6 @@
     let listProduct = [];
     $('.content_cart-product-manipulation-buy_btn').onclick = function () {
         getSelectedProduct();
-        console.log(listProduct);
         if(selectedProduct > 0){
             $('.modal_buy_product').classList.remove('hidden');
         }
@@ -481,6 +483,10 @@
             paymentFormBtn[1-index].style.border = '1px solid #ccc';
         }
     })
+
+    $('.modal_content-cart-reject_btn').onclick = function () {
+        $('.modal_buy_product').classList.add('hidden');
+    }
 
 </script>
 
