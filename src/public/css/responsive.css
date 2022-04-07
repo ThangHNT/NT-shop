@@ -115,6 +115,11 @@
         width: 47% !important;
     }
 
+    .content-product_list-item img {
+        width: 100% !important;
+        height: 176px !important;
+    }
+
     .content-product_list-item-status {
         padding-bottom: 5px;
     }

@@ -128,9 +128,17 @@
                     {{/if}}
                 </div>
             </div>
-            <a href="/login" class="on_mobile user">
-                <i class="fa-solid fa-user"></i>
-            </a>
+            {{#if user}}
+                {{#if avatar_base64}}
+                            <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
+                        {{/if}}
+                {{else}}
+                <a href="/login" class="on_mobile user">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            {{/if}}
         </div>
     </div>
     <div id="content">
@@ -402,7 +410,7 @@
                     <span class="content-product_list-item-discount">Giảm {{this.discount.amount}} {{this.discount.unit}}</span>
                     <div class="content-product_list-item-status">
                         <div class="content-product_list-item-price">{{this.priceAfterDiscount}}đ</div>
-                        <p class="content-product_list-item-sold">0</p>
+                        <p class="content-product_list-item-sold">Đã bán 0</p>
                     </div>
                 </div>
             </a>

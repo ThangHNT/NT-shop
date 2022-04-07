@@ -729,6 +729,8 @@
 </script>
 
 {{!-- ====================================================== on mobile ============================================= --}}
+
+{{!-- --------------------------- mô tả sản phẩm ------------------ --}}
 <script>
     let seeMoreBtn = $('.see_more span');
     let seeMoreArrow = $$('.see_more i');
@@ -741,6 +743,43 @@
         }
         else seeMoreBtn.innerText = 'Xem thêm';
     }
+</script>
+{{!-- ----------------------- trượt list hình ảnh ---------- --}}
+<script>
+    let listProductImg = $('.product-introduction-illustration-some_img-wrapper');
+    let productImgs = $$('.product-introduction-illustration-some_img-item');
+    if (productImgs.length > 6) {
+        let mousePress = false;
+        let x = 0;
+        let first = 0, second = 0;
+        listProductImg.style.position = 'relative';
+
+        listProductImg.addEventListener('touchstart',function(e) {
+            mousePress = true;
+            first = e.touches[0].pageX;
+            console.log(listProductImg.getBoundingClientRect().left);
+        })
+        listProductImg.addEventListener('touchmove',function(e) {
+            if(mousePress == true ){
+                second = e.touches[0].pageX;
+                let newPos = second - first;
+                listProductImg.style.left = (x + newPos) + 'px';
+            }
+        })
+        listProductImg.addEventListener('touchend',function(e){
+            mousePress = false;
+            x = listProductImg.getBoundingClientRect().left;
+            if(listProductImg.getBoundingClientRect().left <= -63){
+                listProductImg.style.left = (-63) + 'px';
+                x = -63;
+            }
+            else if(listProductImg.getBoundingClientRect().left >= 20){
+                listProductImg.style.left = (0) + 'px';
+                x = 0;
+            }
+        })
+    }
+
 </script>
 
 
