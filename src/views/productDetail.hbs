@@ -81,7 +81,7 @@
             </div>
 
         </div>
-        <div class="container header-search">
+        <div class="container header-search header-search-product_detail_page">
             <a href="/" class="web_logo">
                 <img style="width: 70px; height: 70px;" class="logo_web"
                     src="/image/logo.png" alt="">
@@ -333,10 +333,14 @@
         </div>
         <div class="product-description">
             <div class="product-description-title title_header">
-                <h3>Mô tả sản phẩm</h3>
-                <i class="fa-solid fa-chevron-down"></i>
+                <h3 class="on_pc">Mô tả sản phẩm</h3>
+                <div class="on_mobile_flex see_more">
+                    <span>Xem thêm</span>
+                    <i class="fa-solid fa-chevron-down hidden"></i>
+                    <i class="fa-solid fa-chevron-up"></i>
+                </div>
             </div>
-            <div class="product-description-content">
+            <div class="product-description-content hidden">
                 <p>
                     {{product.description}}
                 </p>
@@ -475,7 +479,7 @@
         <a href="#" class="move_top on_pc_flex">
             <i class="fa-solid fa-arrow-up"></i>
         </a>
-        <div class="product-introduction-option-btn">
+        <div class="product-introduction-option-btn on_mobile_flex">
             <div class="introduction-option-btn-add_to_cart">
                 <i class="fa-solid fa-cart-plus"></i>
                 {{#if added}}
@@ -723,5 +727,24 @@
     })
 
 </script>
+
+{{!-- ====================================================== on mobile ============================================= --}}
+<script>
+    let seeMoreBtn = $('.see_more span');
+    let seeMoreArrow = $$('.see_more i');
+    seeMoreBtn.onclick = function(e){
+        seeMoreArrow[0].classList.toggle('hidden');
+        seeMoreArrow[1].classList.toggle('hidden');
+        $('.product-description-content').classList.toggle('hidden');
+        if(seeMoreBtn.innerText == 'Xem thêm') {
+            seeMoreBtn.innerText = 'Thu gọn';
+        }
+        else seeMoreBtn.innerText = 'Xem thêm';
+    }
+</script>
+
+
+
+
 
 
