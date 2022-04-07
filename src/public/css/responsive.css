@@ -27,7 +27,7 @@
 
     #main {
         max-width: 46.1875em;
-        overflow: hidden;
+        overflow: hidden ;
     }
 
     #header {
@@ -45,7 +45,7 @@
 
     .user, .header-cart i {
         font-size: 18px !important;
-        margin: 0 10px;
+        margin: 0 15px;
     }
 
     .header-search_bar {
@@ -69,7 +69,11 @@
         display: none !important;
     }
 
-    
+    .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+    }
 
     .header-cart-number_display {
         width: 18px !important;
@@ -368,9 +372,37 @@
     }
 
 
+    /* ================================================== cart page ===================================================== */
+    #header_cart {
+        padding: 0 10px;
+    }
+
+    .header_cart-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .header_cart-links-item {
+        display: none;
+    }
     
-    /* ------------------------------------------------- footer ------------------------------------------------------ */
-    
+    /* ------------------------------------------- content ----------------------------------------- */
+    #content_cart, .content_cart-product-item {
+        padding: 0 10px ;
+    }
+
+    .content_cart-product-item-wrapper {
+        flex-direction: column;
+    } 
+
+    .content_cart-product-item-wrapper {
+        align-items: flex-start;
+    }
+
+    .content_cart-control {
+        display:none;
+    }
+
 
 }
 

@@ -129,9 +129,17 @@
                     {{/if}}
                 </div>
             </div>
-            <a href="/login" class="on_mobile user">
-                <i class="fa-solid fa-user"></i>
-            </a>
+            {{#if user}}
+                {{#if avatar_base64}}
+                            <img class="avatar on_mobile" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar on_mobile" src="{{user.avatar}}" alt="avatar">
+                        {{/if}}
+                {{else}}
+                <a href="/login" class="on_mobile user">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            {{/if}}
         </div>
     </div>
 

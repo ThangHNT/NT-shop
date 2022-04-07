@@ -217,7 +217,7 @@
 
     <div id="footer" class="footer_product_detail">
         <div class="footer_wrap container">
-            <div class="footer-element">
+            <div class="footer-element ">
                 <div class="footer-element-customer_care">
                     <h4>CHĂM SÓC KHÁCH HÀNG</h4>
                     <ul>
@@ -248,7 +248,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-element">
+            <div class="footer-element on_pc">
                 <div class="footer-element-payment">
                     <h4>THANH TOÁN</h4>
                     <ul>
@@ -259,7 +259,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-element">
+            <div class="footer-element on_pc">
                 <div class="footer-element-follow_us">
                     <h4>THEO DÕI CHÚNG TÔI TRÊN</h4>
                     <ul>
@@ -272,7 +272,7 @@
                 <div class="footer-element-download_my_app">
                     <h4>TẢI ỨNG DỤNG NT shop NGAY THÔI</h4>
                     <a href="#">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
+                        <img class="app_qrcode" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
                             alt="" class="footer-element-download_my_app-qrcode">
                         <div class="footer-element-download_my_app-apps">
                             <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png"
@@ -285,6 +285,22 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <a href="#" class="move_top on_pc_flex">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+        <div class="product-introduction-option-btn on_mobile_flex">
+            <div class="introduction-option-btn-add_to_cart">
+                <i class="fa-solid fa-cart-plus"></i>
+                {{#if added}}
+                    <span>Đã thêm vào giỏ hàng</span>
+                {{else}}
+                    <span>Thêm vào giỏ hàng</span>
+                {{/if}}
+            </div>
+            <a class="introduction-option-btn-buy_now" href="#">
+                <span>Mua ngay</span>
+            </a>
         </div>
     </div>
 
