@@ -130,9 +130,9 @@
             </div>
             {{#if user}}
                 {{#if avatar_base64}}
-                            <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                            <img class="avatar on_mobile" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
                         {{else}}
-                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
+                            <img class="avatar on_mobile" src="{{user.avatar}}" alt="avatar">
                         {{/if}}
                 {{else}}
                 <a href="/login" class="on_mobile user">
