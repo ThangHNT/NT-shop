@@ -209,7 +209,7 @@
             <div class="content_visit_shop-product-wrapper">
                 {{#each products}}
                 <a class="content_visit_shop-product-item" href="/product/detail/{{this._id}}">
-                    <img class="content_visit_shop-product-avatar" src="{{this.avatar}}" alt="">
+                    <img class="content_visit_shop-product-avatar" src="{{this.avatar}}" alt="" loading="lazy">
                     <div class="content_visit_shop-product-introduction">
                         <p class="content_visit_shop-product-description">{{this.description}}</p>
                         <span class="content-product_list-item-discount">Giảm {{this.discount.amount}} {{this.discount.unit}}</span>
