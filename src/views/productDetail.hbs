@@ -488,7 +488,7 @@
             <i class="fa-solid fa-arrow-up"></i>
         </a>
         <div class="product-introduction-option-btn on_mobile_flex">
-            <div class="introduction-option-btn-add_to_cart">
+            <div class="introduction-option-btn-add_to_cart fixed_btn">
                 <i class="fa-solid fa-cart-plus"></i>
                 {{#if added}}
                     <span>Đã thêm vào giỏ hàng</span>
@@ -496,7 +496,7 @@
                     <span>Thêm vào giỏ hàng</span>
                 {{/if}}
             </div>
-            <a class="introduction-option-btn-buy_now" href="#">
+            <a class="introduction-option-btn-buy_now fixed_btn" href="#">
                 <span>Mua ngay</span>
             </a>
         </div>
@@ -669,14 +669,16 @@
 
     addProductToCart.forEach(function (element, index){
         element.onclick = function () {
-            console.log(5);
+            console.log('them gio hang');
             if($('.myAccount')){
-                if($('.introduction-option-btn-add_to_cart span').innerText == 'Thêm Vào Giỏ Hàng') {
+                if($$('.introduction-option-btn-add_to_cart span')[0].innerText == 'Thêm Vào Giỏ Hàng' || 
+                    $$('.introduction-option-btn-add_to_cart span')[1].innerText == 'Thêm Vào Giỏ Hàng') {
                     let data = {
                         productId: productId,
                     }
                     addProduct('/user/add-to-cart',data);
-                    $('.introduction-option-btn-add_to_cart span').innerText = 'Đã Thêm Vào Giỏ Hàng';
+                    $$('.introduction-option-btn-add_to_cart span')[0].innerText = 'Đã Thêm Vào Giỏ Hàng';
+                    $$('.introduction-option-btn-add_to_cart span')[1].innerText = 'Đã Thêm Vào Giỏ Hàng';
                     let li = document.createElement('li');
                     li.className = 'header-cart-list_product-item';
                     let anh = document.createElement('img');
