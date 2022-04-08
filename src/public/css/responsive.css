@@ -549,6 +549,11 @@
         margin: 0 0 0 10px;
     }
 
+    .content_visit_shop-introduction-action_item {
+        margin: 5px 0 0 0;
+        color: red;
+    }
+
     .content_visit_shop-introduction-about {
         display: flex;
         justify-content: center;
@@ -576,10 +581,8 @@
 
     .content_visit_shop-product-wrapper {
         flex-direction: row;
-        /* max-width: 46.1875em;
-        min-width: 46.1875em; */
-        min-width: 375px;
-        max-width: 375px;
+        max-width: 100%;
+        min-width: 100%;
     }
 
     .content_visit_shop-product-item {
@@ -590,6 +593,11 @@
 
     .content_visit_shop-product-item img {
         width: 100%;
+        height: 178px;
+    }
+
+    .footer_visit_shop {
+        top: 0;
     }
 
 
