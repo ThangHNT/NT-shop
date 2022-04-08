@@ -2,7 +2,6 @@
     <div id="header" class="header_product_detail">
         <div class="navbar">
             <div class="link_user">
-                <a href="/" class="my_shop">Trang chủ</a>
                 {{#if seller}}
                     <a href="/shop" class="create_shop">Shop của tôi</a>
                 {{else}}
@@ -12,8 +11,7 @@
                     <p style="padding:0; margin:0">Tải ứng dụng</p>
                     <div class="qrcode_app">
                         <img style="width:180px; height:180px;"
-                            src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
-                            alt="">
+                            src="/image/link facebook.png" alt="">
                         <div class="some_app">
                             <img style="width:70px; height:16px"
                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png"
@@ -69,11 +67,7 @@
                         {{else}}
                             <img class="avatar" src="{{user.avatar}}" alt="avatar">
                         {{/if}}
-                        {{#if user}}
-                            <a href="#" class="username">{{user.username}}</a>
-                        {{else}}
-                            <a href="#" class="username">Thắng Hoàng</a>
-                        {{/if}}
+                        <a href="#" class="username">{{user.username}}</a>
                         <div class="myAccount-show">
                             <a href="/user/myAccount">Tài khoản của tôi</a>
                             <a href="/logout">Đăng xuất</a>
@@ -87,15 +81,19 @@
             </div>
 
         </div>
-        <div class="container header-search">
-            <a href="/">
-                <img style="width: 160px; height: 50px;" class="logo_web"
-                    src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
+        <div class="container header-search header-search-product_detail_page">
+            <a href="/" class="web_logo">
+                <img style="width: 70px; height: 70px;" class="logo_web"
+                    src="/image/logo.png" alt="">
             </a>
-            <div class="header-search_bar">
+            <div class="header-search_bar header-search_bar-product_detail_page" action="">
                 <input type="text" placeholder="Search ..." maxlength="50">
-                <a href="#"><i class="fas fa-search"></i></a>
+                <a class="search_product" href="#content-product_list"><i class="fas fa-search"></i></a>
+                <ul class="search_result hidden">
+                    
+                </ul>
             </div>
+            <a class="arrow_left_back on_mobile" href="/"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="header-cart">
                 <a href="/user/cart"><i class="fas fa-shopping-cart"></i>
                     {{#if amount}}
@@ -106,11 +104,11 @@
                     {{#if user}}
                         {{#if amount}}
                             <ul class="header-cart-list_product-ul">
-                                {{#each products}}
+                                {{#each cartProduct}}
                                 <li class="header-cart-list_product-item">
                                     <img src="{{this.avatar}}" alt="">
                                     <p>{{this.introduction}}</p>
-                                    <span>{{this.priceAfterDiscount}}đ</span>
+                                    <span>{{this.priceAfterDiscount}}</span>
                                 </li>
                                 {{/each}}
                             </ul>
@@ -131,6 +129,17 @@
                     {{/if}}
                 </div>
             </div>
+            {{#if user}}
+                {{#if avatar_base64}}
+                            <img class="avatar on_mobile" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar on_mobile" src="{{user.avatar}}" alt="avatar">
+                        {{/if}}
+                {{else}}
+                <a href="/login" class="on_mobile user">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            {{/if}}
         </div>
     </div>
 
@@ -289,19 +298,6 @@
         <a href="#" class="move_top on_pc_flex">
             <i class="fa-solid fa-arrow-up"></i>
         </a>
-        <div class="product-introduction-option-btn on_mobile_flex">
-            <div class="introduction-option-btn-add_to_cart">
-                <i class="fa-solid fa-cart-plus"></i>
-                {{#if added}}
-                    <span>Đã thêm vào giỏ hàng</span>
-                {{else}}
-                    <span>Thêm vào giỏ hàng</span>
-                {{/if}}
-            </div>
-            <a class="introduction-option-btn-buy_now" href="#">
-                <span>Mua ngay</span>
-            </a>
-        </div>
     </div>
 
 </div>
