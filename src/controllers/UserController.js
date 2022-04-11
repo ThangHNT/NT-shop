@@ -180,20 +180,18 @@ class UserController {
                     Product.find({cart:cart._id},function(err, product){
                         user.address.forEach(function(element){
                             Address.findById({_id: element},function(err, address){
-                                if(address.default === 'Mặc định'){
-                                    res.render('cart',{
-                                        user: object(user),
-                                        avatar: user.avatar,
-                                        avatar_base64: object(user.avatar_base64.data),
-                                        product: multiObject(product),
-                                        productAmount: cart.products.length,
-                                        phoneNumber: address.phoneNumber,
-                                        receiverName: address.receiverName,
-                                        city: address.city,
-                                        distric: address.distric,
-                                        detail: address.detail,
-                                    })
-                                }
+                                res.render('cart',{
+                                    user: object(user),
+                                    avatar: user.avatar,
+                                    avatar_base64: object(user.avatar_base64.data),
+                                    product: multiObject(product),
+                                    productAmount: cart.products.length,
+                                    phoneNumber: address.phoneNumber,
+                                    receiverName: address.receiverName,
+                                    city: address.city,
+                                    distric: address.distric,
+                                    detail: address.detail,
+                                })
                             })
                         })
                     })
