@@ -26,6 +26,7 @@ class UserController {
                     avatar_base64: user.avatar_base64.data,
                     avatar: user.avatar,
                     address: multiObject(address),
+                    seller: user.seller
                 });
             })
         })
