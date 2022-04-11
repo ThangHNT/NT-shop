@@ -2,14 +2,16 @@
     <div id="header">
         <div class="navbar">
             <div class="link_user">
-                <a href="/" class="my_shop">Trang Chủ</a>
-                <a href="/user/seller/signup/view" class="create_shop">Trở thành người bán</a>
+                {{#if seller}}
+                    <a href="/shop" class="create_shop">Shop của tôi</a>
+                {{else}}
+                    <a href="/user/seller/signup/view" class="create_shop">Trở thành người bán</a>
+                {{/if}}
                 <div class="download_app_on_mobile">
                     <p style="padding:0; margin:0">Tải ứng dụng</p>
                     <div class="qrcode_app">
                         <img style="width:180px; height:180px;"
-                            src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png"
-                            alt="">
+                            src="/image/link facebook.png" alt="">
                         <div class="some_app">
                             <img style="width:70px; height:16px"
                                 src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/39f189e19764dab688d3850742f13718.png"
@@ -40,13 +42,17 @@
                         Thông báo
                     </p>
                     <div class="header-notification-show">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
-                            alt="">
-                        <h3>Đăng nhập để xem thông báo</h3>
-                        <div class="header-notification-show-btn_login">
-                            <a href="#">Đăng ký</a>
-                            <a href="#">Đăng nhập</a>
-                        </div>
+                        {{#if user}}
+                            <h4>Chưa có thông báo mới</h4>
+                            {{else}}
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png"
+                                alt="">
+                            <h3>Đăng nhập để xem thông báo</h3>
+                            <div class="header-notification-show-btn_login">
+                                <a href="/login">Đăng ký</a>
+                                <a href="/login">Đăng nhập</a>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="header-support header-section-item">
@@ -54,55 +60,58 @@
                     Hỗ trợ
                 </div>
                 <div class="header-account header-section-item">
+                    {{#if user}}
                     <div class="myAccount">
                         {{#if avatar_base64}}
-                        <img class="avatar avatar-item" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
-                            {{else}}
-                            <img class="avatar avatar-item" src="{{avatar}}" alt="avatar">
+                            <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
                         {{/if}}
-                        <a href="#" class="username">{{username}}</a>
+                        <a href="#" class="username">{{user.username}}</a>
                         <div class="myAccount-show">
-                            <a href="/">Trang chủ</a>
+                            <a href="/user/myAccount">Tài khoản của tôi</a>
                             <a href="/logout">Đăng xuất</a>
                         </div>
                     </div>
+                    {{else}}
+                        <a class="account_signup" href="/login">Đăng ký</a>
+                        <a class="account_login" href="/login">Đăng nhập</a>
+                    {{/if}}
                 </div>
             </div>
 
         </div>
         <div class="container header-search">
-            <a href="/">
-                <img style="width: 160px; height: 50px;" class="logo_web"
-                    src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt="">
+            <a href="/" class="web_logo">
+                <img style="width: 70px; height: 70px;" class="logo_web"
+                    src="/image/logo.png" alt="">
             </a>
-            <div class="header-search_bar">
+            <div class="header-search_bar" action="">
                 <input type="text" placeholder="Search ..." maxlength="50">
-                <a href="#"><i class="fas fa-search"></i></a>
+                <a class="search_product" href="#content-product_list"><i class="fas fa-search"></i></a>
+                <ul class="search_result hidden">
+                    
+                </ul>
             </div>
             <div class="header-cart">
-                <a href="#"><i class="fas fa-shopping-cart"></i>
-                    {{#if number}}
-                    <div class="header-cart-number_display">{{number}}</div>
+                <a href="/user/cart"><i class="fas fa-shopping-cart"></i>
+                    {{#if amount}}
+                    <div class="header-cart-number_display">{{amount}}</div>
                     {{/if}}
                 </a>
                 <div style="margin: 0;padding: 0;" class="header-cart-list_product">
                     {{#if user}}
-                        {{#if number}}
+                        {{#if amount}}
                             <ul class="header-cart-list_product-ul">
-                                {{#each products}}
+                                {{#each cartProduct}}
                                 <li class="header-cart-list_product-item">
                                     <img src="{{this.avatar}}" alt="">
                                     <p>{{this.introduction}}</p>
                                     <span>{{this.priceAfterDiscount}}</span>
                                 </li>
                                 {{/each}}
-                                {{!-- <li class="header-cart-list_product-item">
-                                    <img src="https://cf.shopee.vn/file/93e411dbc1f883bc49954f97902820b5" alt="">
-                                    <p>Tai nghe khong day nt-mega </p>
-                                    <span>120.000đ</span>
-                                </li> --}}
                             </ul>
-                            <a class="view_cart_product_btn" href="#">Xem giỏ hàng</a>
+                            <a class="view_cart_product_btn" href="/user/cart">Xem giỏ hàng</a>
                         {{else}}
                             <div class="header-cart-list_product-wrapper">
                                 <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png"
@@ -119,8 +128,20 @@
                     {{/if}}
                 </div>
             </div>
+            {{#if user}}
+                {{#if avatar_base64}}
+                            <img class="avatar on_mobile" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
+                        {{else}}
+                            <img class="avatar on_mobile" src="{{user.avatar}}" alt="avatar">
+                        {{/if}}
+                {{else}}
+                <a href="/login" class="on_mobile user">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            {{/if}}
         </div>
     </div>
+
     <div id="content-account">
         <div class="container">
             <div class="navbar_control">
