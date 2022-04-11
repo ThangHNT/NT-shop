@@ -175,7 +175,7 @@ class UserController {
         var id = req.user.id;
         User.findOne({id: id, authType: provider}, function(err, user){
         // User.findOne({id: '1384771445288690'}, function(err, user){
-            Cart.findById({_id:user.cart},function(err, cart){
+            Cart.findById({_id: user.cart},function(err, cart){
                 if(cart){
                     Product.find({cart:cart._id},function(err, product){
                         user.address.forEach(function(element){
