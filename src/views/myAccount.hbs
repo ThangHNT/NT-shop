@@ -65,9 +65,9 @@
                         {{#if avatar_base64}}
                             <img class="avatar" src= "data:image/jpeg;base64,{{avatar_base64}}" alt="avatar">
                         {{else}}
-                            <img class="avatar" src="{{user.avatar}}" alt="avatar">
+                            <img class="avatar" src="{{avatar}}" alt="avatar">
                         {{/if}}
-                        <a href="#" class="username">{{user.username}}</a>
+                        <a href="#" class="username">{{username}}</a>
                         <div class="myAccount-show">
                             <a href="/user/myAccount">Tài khoản của tôi</a>
                             <a href="/logout">Đăng xuất</a>
@@ -141,7 +141,6 @@
             {{/if}}
         </div>
     </div>
-
     <div id="content-account">
         <div class="container">
             <div class="navbar_control">
