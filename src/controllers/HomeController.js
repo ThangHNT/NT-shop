@@ -2,6 +2,7 @@ const Product = require('../model/product.js');
 const User = require('../model/user.js');
 const Cart = require('../model/cart.js');
 const Shop = require('../model/shop.js');
+const Link = require('../model/link.js');
 const {multiObject} = require('../convertToObject.js');
 const {object} = require('../convertToObject.js');
 
@@ -125,6 +126,29 @@ class HomeController {
                 })
             })
         }
+    }
+
+    getLink(req, res, next) {
+        Link.find({}, function(err, links){
+            res.render('store_link', {
+                link: multiObject(links)
+            })
+        })
+    }
+
+    addLink(req, res, next) {
+        const link = new Link();
+        link.href = req.body.link;
+        link.note = req.body.note;
+        link.save();
+        res.redirect('/link');
+    }
+
+    deleteLink(req, res, next) {
+        Link.findOneAndDelete({_id: req.params.id}, function(err,link){
+            console.log(link)
+        })
+        res.send('thanh cong');
     }
 
 }
