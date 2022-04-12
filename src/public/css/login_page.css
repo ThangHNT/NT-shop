@@ -36,13 +36,18 @@
     font-weight:bold ;
 }
 
-.header_content a {
+.header_content > a {
     color: rgb(219, 96, 24);
     text-decoration: none;
     display: flex;
     width: 50%;
     justify-content: flex-end;
     font-size: 15px;
+}
+
+.header-wraper a {
+    margin-left: 15px;
+    font-size: 16px;
 }
 
 /* ======================================================================== content =============================================== */
