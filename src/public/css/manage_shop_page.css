@@ -624,5 +624,7 @@
     background-color: rgb(16, 199, 56);
 }
 
-
+.disabled {
+    color: #ccc !important;
+}
 
