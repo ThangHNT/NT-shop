@@ -128,28 +128,6 @@ class HomeController {
         }
     }
 
-    getLink(req, res, next) {
-        Link.find({}, function(err, links){
-            res.render('store_link', {
-                link: multiObject(links)
-            })
-        })
-    }
-
-    addLink(req, res, next) {
-        const link = new Link();
-        link.href = req.body.link;
-        link.note = req.body.note;
-        link.save();
-        res.redirect('/link');
-    }
-
-    deleteLink(req, res, next) {
-        Link.findOneAndDelete({_id: req.params.id}, function(err,link){
-            console.log(link)
-        })
-        res.send('thanh cong');
-    }
 
 }
 
