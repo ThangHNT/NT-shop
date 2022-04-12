@@ -152,8 +152,8 @@ class UserController {
     sellerSignupSuccessful(req,res,next){
         const provider = req.user.provider;
         var id = req.user.id;
-        // User.findOne({id: '110832461352388283166'}, function(err, user){
         User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '110832461352388283166'}, function(err, user){
             const shop = new Shop();
             shop.brand = req.body.shop_name;
             shop.address = req.body.shop_address;

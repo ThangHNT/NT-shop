@@ -62,24 +62,28 @@
                             <span class="content_myShop-body-all_product-main-action">Thao Tác</span>
                         </div>
                         <div class="content_myShop-body-all_product-main-wrapper">
-                            {{#each product}}
-                            <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
-                                <div class="content_myShop-body-all_product-main-item-wrapper">
-                                    <div class="content_myShop-body-all_product-main-name">
-                                        <img src="{{this.avatar}}" alt="">
-                                        <span>{{this.introduction}}</span>
-                                    </div>
-                                    <div class="content_myShop-body-all_product-main-amount">{{this.totalAmount}}</div>
-                                    <div class="content_myShop-body-all_product-main-sold">{{this.sold}}</div>
-                                    <div class="content_myShop-body-all_product-main-action">
-                                        <span class="content_myShop-body-all_product-main-action-edit">
-                                            <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
-                                        </span>
-                                        <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
+                            {{#if product}}
+                                {{#each product}}
+                                <div class="content_myShop-body-all_product-main-item" data-id="{{this._id}}">
+                                    <div class="content_myShop-body-all_product-main-item-wrapper">
+                                        <div class="content_myShop-body-all_product-main-name">
+                                            <img src="{{this.avatar}}" alt="">
+                                            <span>{{this.introduction}}</span>
+                                        </div>
+                                        <div class="content_myShop-body-all_product-main-amount">{{this.totalAmount}}</div>
+                                        <div class="content_myShop-body-all_product-main-sold">{{this.sold}}</div>
+                                        <div class="content_myShop-body-all_product-main-action">
+                                            <span class="content_myShop-body-all_product-main-action-edit">
+                                                <a href="/shop/modify-product-page/{{this._id}}">Sửa</a>
+                                            </span>
+                                            <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {{/each}}
+                                {{/each}}
+                            {{else}}
+                                <h3>Shop chưa có sản phẩm nào</h3>
+                            {{/if}}
                         </div>
                     </div>
                 </div>

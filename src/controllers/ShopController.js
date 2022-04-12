@@ -10,10 +10,10 @@ class ShopController {
         const provider = req.user.provider;
         var id = req.user.id;
         User.findOne({id: id, authType: provider}, function(err, user){
-        // User.findOne({id: '1384771445288690'}, function(err, user){
+        // User.findOne({id: '110832461352388283166'}, function(err, user){
             if(user.shop){
                 Shop.findById({_id: user.shop},function(err, shop){
-                    Product.find({owner: user.shop}, function(err, product){
+                    Product.find({shop: user.shop}, function(err, product){
                         res.render('manage_shop', { 
                             userName: user.username,
                             userAvatar: user.avatar,
