@@ -86,6 +86,8 @@ class ShopController {
                     let productImgs = product.imgs.slice(1);
                     res.render('modify_product',{
                         user: object(user),
+                        user_avatar_base64: user.avatar_base64.data,
+                        userAvatar: user.avatar,
                         product: object(product),
                         imgs: productImgs,
                     });

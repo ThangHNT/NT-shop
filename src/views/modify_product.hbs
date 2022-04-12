@@ -3,8 +3,11 @@
         <div class="header_myShop-navbar">
             <a href="/"><img src="https://anhdep.tv/attachments/ac1afeb3909de0315b221710d037f01c-jpeg.5868/" alt=""></a>
             <div class="header_myShop-navbar-account">
-                <img class="user_avatar"
-                    src="{{user.avatar}}" alt="">
+                {{#if user_avatar_base64}}
+                    <img src="data:image/jpeg;base64,{{user_avatar_base64}}" alt="">
+                {{else}}
+                    <img class="user_avatar" src="{{userAvatar}}" alt="">
+                {{/if}}
                 <h5>{{user.username}}</h5>
                 <div class="header_myShop-navbar-account-option">
                     <a href="#">Hồ sơ shop</a>
