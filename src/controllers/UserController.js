@@ -167,8 +167,8 @@ class UserController {
             shop.save();
             user.shop = shop._id;
             user.save();
-            res.redirect('/shop');
         })
+        res.redirect('/shop');
     }
 
     cart(req, res, next){ // view cart
