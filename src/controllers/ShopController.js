@@ -114,7 +114,7 @@ class ShopController {
                 product.brand = req.body.brand;
                 product.madeIn = req.body.made_in;
                 product.deliveryFrom = req.body.delivery_from;
-                // product.save();
+                product.save();
             })
             res.redirect('/shop');
         })
