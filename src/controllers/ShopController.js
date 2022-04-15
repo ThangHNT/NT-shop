@@ -81,18 +81,18 @@ class ShopController {
         const provider = req.user.provider;
         var id = req.user.id;
         User.findOne({id: id, authType: provider}, function(err, user){
-            // User.findOne({id: '1384771445288690'}, function(err, user){
-                Product.findById({_id: req.params.id},function(err, product){
-                    let productImgs = product.imgs.slice(1);
-                    res.render('modify_product',{
-                        user: object(user),
-                        user_avatar_base64: user.avatar_base64.data,
-                        userAvatar: user.avatar,
-                        product: object(product),
-                        imgs: productImgs,
-                    });
-                })
+        // User.findOne({id: '1384771445288690'}, function(err, user){
+            Product.findById({_id: req.params.id},function(err, product){
+                let productImgs = product.imgs.slice(1);
+                res.render('modify_product',{
+                    user: object(user),
+                    user_avatar_base64: user.avatar_base64.data,
+                    userAvatar: user.avatar,
+                    product: object(product),
+                    imgs: productImgs,
+                });
             })
+        })
     }
 
     modifyProduct(req, res, next){
