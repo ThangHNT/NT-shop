@@ -103,7 +103,7 @@ class ShopController {
             Product.findById({_id: req.params.id},function(err, product){
                 // res.json(req.body);
                 product.introduction = req.body.product_introduction;
-                product.category = req.body.product_category;
+                if(req.body.product_category) product.category = req.body.product_category;
                 product.avatar = req.body.product_avatar;
                 product.imgs = req.body.product_img_item;
                 product.description = req.body.product_description;
