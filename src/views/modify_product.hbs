@@ -66,6 +66,7 @@
                                 <li>Nhà cửa & đời sống</li>
                                 <li>Giặt giũ & chăm sóc nhà cửa</li>
                                 <li>Voucher & dịch vụ</li>
+                                <input class="product_category" type="text" name="category" value="{{product.category}}">
                             </ul>
                         <div class="content_myShop-body-product-main-Category-imgs">
                             <h4>Thêm ảnh đại diện sản phẩm</h4>
@@ -239,7 +240,7 @@
         element.onclick = function () {
             removeAllSelected(index);
             element.classList.add('select_product_category');
-            {{!-- $('.product_category').value = element.innerText; --}}
+            $('.product_category').value = element.innerText;
         }
     });
     function removeAllSelected(k) {
