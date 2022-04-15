@@ -106,7 +106,7 @@
                                 <label for="">Giảm giá:</label>
                                 <input value="{{product.discount.amount}}"
                                     class="product_detail_input-item product_detail_input-number product_detail_input-discount"
-                                    maxlength="13" name="discount_amount" type="number" min="1"
+                                    maxlength="13" name="discount_amount" type="number" min="0"
                                     max="10000000">
                                 <div class="kind_discount" unit="{{product.discount.unit}}">
                                     <span class="unit_percent">%</span>
@@ -239,7 +239,7 @@
         element.onclick = function () {
             removeAllSelected(index);
             element.classList.add('select_product_category');
-            $('.product_category').value = element.innerText;
+            {{!-- $('.product_category').value = element.innerText; --}}
         }
     });
     function removeAllSelected(k) {
