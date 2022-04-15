@@ -99,24 +99,25 @@ class ShopController {
         const provider = req.user.provider;
         var id = req.user.id;
         User.findOne({id: id, authType: provider}, function(err, user){
+            res.send('thanh cong');
         // User.findOne({id: '1384771445288690'}, function(err, user){
-            Product.findById({_id: req.params.id},function(err, product){
-                product.name = req.body.product_name;
-                product.introduction = req.body.product_introduction;
-                product.category = req.body.category;
-                product.avatar = req.body.product_avatar;
-                product.imgs = req.body.product_img_item;
-                product.description = req.body.product_description;
-                product.totalAmount = req.body.totalAmount;
-                product.originPrice = req.body.originPrice;
-                product.discount.amount = req.body.discount_amount;
-                product.discount.unit = req.body.discount_unit;
-                product.brand = req.body.brand;
-                product.madeIn = req.body.made_in;
-                product.deliveryFrom = req.body.delivery_from;
-                product.save();
-                res.redirect('/shop');
-            })
+            // Product.findById({_id: req.params.id},function(err, product){
+            //     product.name = req.body.product_name;
+            //     product.introduction = req.body.product_introduction;
+            //     product.category = req.body.category;
+            //     product.avatar = req.body.product_avatar;
+            //     product.imgs = req.body.product_img_item;
+            //     product.description = req.body.product_description;
+            //     product.totalAmount = req.body.totalAmount;
+            //     product.originPrice = req.body.originPrice;
+            //     product.discount.amount = req.body.discount_amount;
+            //     product.discount.unit = req.body.discount_unit;
+            //     product.brand = req.body.brand;
+            //     product.madeIn = req.body.made_in;
+            //     product.deliveryFrom = req.body.delivery_from;
+            //     product.save();
+            //     res.redirect('/shop');
+            // })
         })
     }
 
