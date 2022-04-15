@@ -16,6 +16,10 @@
     display: none !important;
 }
 
+.on_mobile_flex {
+    display: none !important;
+}
+
 @media screen and (max-width: 46.1875em) {
     .on_mobile {
         display: block !important;
