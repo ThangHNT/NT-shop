@@ -7,10 +7,10 @@ const {object} = require('../convertToObject.js');
 
 class ShopController {
     manageShop(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-        User.findOne({id: '1384771445288690'}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             if(user.shop){
                 Shop.findById({_id: user.shop},function(err, shop){
                     Product.find({shop: user.shop}, function(err, product){
@@ -78,10 +78,10 @@ class ShopController {
     }
 
     modifyProductView(req, res,next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-            User.findOne({id: '1384771445288690'}, function(err, user){
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+            // User.findOne({id: '1384771445288690'}, function(err, user){
                 Product.findById({_id: req.params.id},function(err, product){
                     let productImgs = product.imgs.slice(1);
                     res.render('modify_product',{
@@ -96,11 +96,10 @@ class ShopController {
     }
 
     modifyProduct(req, res, next){
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // User.findOne({id: id, authType: provider}, function(err, user){
-        User.findOne({id: '1384771445288690'}, function(err, user){
-            // res.redirect('/shop')
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id, authType: provider}, function(err, user){
+        // User.findOne({id: '1384771445288690'}, function(err, user){
             Product.findById({_id: req.params.id},function(err, product){
                 product.name = req.body.product_name;
                 product.introduction = req.body.product_introduction;
@@ -115,7 +114,7 @@ class ShopController {
                 product.brand = req.body.brand;
                 product.madeIn = req.body.made_in;
                 product.deliveryFrom = req.body.delivery_from;
-                // product.save();
+                product.save();
                 res.redirect('/shop');
             })
         })
