@@ -412,7 +412,7 @@
 }
 
 .content_myShop-body-all_product-main-action a {
-    color: #fff;
+    color: #fff !important;
     margin-right: 15px;
     cursor: pointer;
     font-size: 15px;
