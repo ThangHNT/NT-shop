@@ -57,7 +57,7 @@
             <div class="content_myShop-body">
                 <div class="content_myShop-body-wrapper">
                     <!-- ================================ view tất cả sản phẩm   ============================================ -->
-                    <div class="content_myShop-body-item content_myShop-body-all_product hidden">
+                    <div class="content_myShop-body-item content_myShop-body-all_product">
                         <div class="content_myShop-body-item-title">
                             <h3>Tất cả sản phẩm </h3>
                         </div>
@@ -79,10 +79,10 @@
                                         <div class="content_myShop-body-all_product-main-amount">1200</div>
                                         <div class="content_myShop-body-all_product-main-sold">0</div>
                                         <div class="content_myShop-body-all_product-main-action">
-                                            <span class="content_myShop-body-all_product-main-action-edit">
-                                                <a href="https://www.youtube.com/">Sửa</a>
-                                            </span>
-                                            <span class="content_myShop-body-all_product-main-action-delete">Xóa</span>
+                                            <a href="#" class="content_myShop-body-all_product-main-action-edit">
+                                                Sửa
+                                            </a>
+                                            <a class="content_myShop-body-all_product-main-action-delete">Xóa</a>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                     </div>
 
                     <!-- =============================== view thêm sản phẩm mới ====================================-->
-                    <div class="content_myShop-body-item content_myShop-body-product ">
+                    <div class="content_myShop-body-item content_myShop-body-product hidden ">
                         <div class="content_myShop-body-item-title">
                             <h3>Thêm sản phẩm mới</h3>
                         </div>
@@ -239,7 +239,7 @@
                                     </div>
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
                                         <label for="">Giá:</label>
-                                        <input class="product_detail_input-item product_detail_input-number product_detail_input-price" maxlength="13" name="product_detail_input-item" type="text">
+                                        <input class="product_detail_input-item product_detail_input-number product_detail_input-price" maxlength="13" name="product_detail_input-item" type="number">
                                         <span class="currency">VND</span>
                                     </div>
                                     <div class="content_myShop-body-product-main-detail-wrapper-item">
@@ -621,7 +621,7 @@
         listImg.appendChild(div);
         imgInputs = $$('.main-Category-imgs-wrapper2 input');
     }
-    console.log($$('.product_avatar'));
+    // console.log($$('.product_avatar'));
 
     
 </script>
