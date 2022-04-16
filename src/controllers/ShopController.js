@@ -101,7 +101,6 @@ class ShopController {
         User.findOne({id: id, authType: provider}, function(err, user){
         // User.findOne({id: '1384771445288690'}, function(err, user){
             Product.findById({_id: req.params.id},function(err, product){
-                // res.json(req.body);
                 product.introduction = req.body.product_introduction;
                 if(req.body.product_category) product.category = req.body.product_category;
                 product.avatar = req.body.product_avatar;

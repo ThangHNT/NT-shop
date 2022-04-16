@@ -91,7 +91,7 @@
                     </div>
 
                     <!-- =============================== view thêm sản phẩm mới ====================================-->
-                    <div class="content_myShop-body-item content_myShop-body-product hidden">
+                    <div class="content_myShop-body-item content_myShop-body-product ">
                         <div class="content_myShop-body-item-title">
                             <h3>Thêm sản phẩm mới</h3>
                         </div>
@@ -152,7 +152,7 @@
                                         <div class="main-Category-imgs-wrapper2">
                                             <input class="product_avatar" type="text">
                                         </div>
-                                        <div class="main-Category-imgs-wrapper2">
+                                        <!-- <div class="main-Category-imgs-wrapper2">
                                             <input class="product_avatar" type="text">
                                         </div>
                                         <div class="main-Category-imgs-wrapper2">
@@ -160,9 +160,9 @@
                                         </div>
                                         <div class="main-Category-imgs-wrapper2">
                                             <input class="product_avatar" type="text">
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <div class="content_myShop-body-product-main-Category-some_imgs hidden">
+                                    <!-- <div class="content_myShop-body-product-main-Category-some_imgs hidden">
                                         <div class="main-Category-imgs-wrapper">
                                             <input type="file" accept="image/*">
                                             <img class="main-Category-imgs-item" src="" alt="">
@@ -219,7 +219,7 @@
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="content_myShop-body-product-main-introduction content_myShop-body-product-main-item">
@@ -269,7 +269,7 @@
                     </div>
 
                     <!-- ================================ view hồ sơ shop ===================================================== -->
-                    <div class="content_myShop-body-item content_myShop-body-profile">
+                    <div class="content_myShop-body-item content_myShop-body-profile hidden">
                         <div class="content_myShop-body-item-title">
                             <h3>Hồ sơ shop</h3>
                         </div>
@@ -604,5 +604,24 @@
     <script src="https://kit.fontawesome.com/f53f2021c2.js" crossorigin="anonymous"></script>
     
 </body>
+
+<script>
+    let imgInputs = $$('.main-Category-imgs-wrapper2 input');
+    let listImg = $('.content_myShop-body-product-main-Category-some_imgs');
+    while(imgInputs.length < 6) {
+        let div = document.createElement('div');
+        div.className = 'main-Category-imgs-wrapper2';
+        let input = document.createElement('input');
+        input.className = 'product_avatar';
+        input.type = 'text';
+        input.setAttribute('maxlength',10) ;
+        input.placeholder = 'URL hình ảnh';
+        div.appendChild(input);
+        listImg.appendChild(div);
+        imgInputs = $$('.main-Category-imgs-wrapper2 input');
+    }
+
+    
+</script>
 
 </html>
