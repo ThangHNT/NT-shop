@@ -287,6 +287,26 @@
 
 </script>
 
+{{!-- ======================================== bổ sung input thêm hình ảnh ====================================== --}}
+<script>
+    let imgInputs = $$('.main-Category-imgs-wrapper2 input');
+    let listImg = $('.content_myShop-body-product-main-Category-some_imgs');
+    while(imgInputs.length < 6) {
+        let div = document.createElement('div');
+        div.className = 'main-Category-imgs-wrapper2';
+        let input = document.createElement('input');
+        input.className = 'product_avatar';
+        input.type = 'text';
+        input.setAttribute('maxlength',500) ;
+        input.placeholder = 'URL hình ảnh';
+        input.name = 'product_img_item';
+        div.appendChild(input);
+        listImg.appendChild(div);
+        imgInputs = $$('.main-Category-imgs-wrapper2 input');
+    }
+
+</script>
+
 <!-- =================================================== khi ấn nút lưu thay đổi ======================================================= -->
 <script>
     let storeBtn = $('.content_myShop-body-store_btn button');
@@ -371,22 +391,4 @@
 
 </script>
 
-{{!-- ======================================== bổ sung input thêm hình ảnh ====================================== --}}
-<script>
-    let imgInputs = $$('.main-Category-imgs-wrapper2 input');
-    let listImg = $('.content_myShop-body-product-main-Category-some_imgs');
-    while(imgInputs.length < 6) {
-        let div = document.createElement('div');
-        div.className = 'main-Category-imgs-wrapper2';
-        let input = document.createElement('input');
-        input.className = 'product_avatar';
-        input.type = 'text';
-        input.setAttribute('maxlength',500) ;
-        input.placeholder = 'URL hình ảnh';
-        input.name = 'product_img_item';
-        div.appendChild(input);
-        listImg.appendChild(div);
-        imgInputs = $$('.main-Category-imgs-wrapper2 input');
-    }
 
-</script>
