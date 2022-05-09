@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = process.env.PORT || 3000;
 const handlebars = require('express-handlebars');
 const route = require('./routes/main.js');
 const fbauthentication = require('./authentication method/facebook.js');
 const ggAthentication = require('./authentication method/google.js');
 const upload = require('express-fileupload');
 const methodOverride = require('method-override')
+require('dotenv').config();
+const port = process.env.PORT || 3000;
+
 
 app.engine('.hbs',handlebars({extname: '.hbs'}));
 app.set('view engine','.hbs');
