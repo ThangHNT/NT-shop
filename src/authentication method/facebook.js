@@ -4,6 +4,7 @@ var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../model/user.js');
 const Cart = require('../model/cart.js');
+require('dotenv').config();
 
 function authenticate(app) {
     app.set('trust proxy', 1) // trust first proxy
@@ -26,7 +27,7 @@ function authenticate(app) {
     // ==========================
     passport.use(new FacebookStrategy({
         clientID: '610750163507271',
-        clientSecret: '20360b31af2259f76484428ea92e0fd4',
+        clientSecret: process.env.clientSecret,
         callbackURL: "https://shop-hnt.herokuapp.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
