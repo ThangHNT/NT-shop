@@ -26,7 +26,7 @@ function ggAthentication(app) {
 
     passport.use(new GoogleStrategy({
         clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
-        clientSecret: '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',
+        clientSecret: process.env.clientSecretgg,
         callbackURL: "https://shop-hnt.herokuapp.com/auth/google/callback"
         },
         function(accessToken, refreshToken, profile, cb) {

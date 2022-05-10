@@ -27,7 +27,7 @@ function authenticate(app) {
     // ==========================
     passport.use(new FacebookStrategy({
         clientID: '610750163507271',
-        // clientSecret: process.env.clientSecret,
+        clientSecret: process.env.clientSecret,
         callbackURL: "https://shop-hnt.herokuapp.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
