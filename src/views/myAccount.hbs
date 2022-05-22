@@ -178,7 +178,7 @@
                 </div>
             </div>
             {{!-- ========================================== profile ======================================================= --}}
-            <div class="info_control info_control-category hidden">
+            <div class="info_control info_control-category">
                 <div class="info_control-item">
                     <div class="info_control-item-wrap">
                         <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
@@ -347,24 +347,27 @@
             </div>
 
             {{!-- ======================================================= purchase ==================================== --}}
-            <div class="info_control-purchase info_control-category">
+            <div class="info_control-purchase info_control-category hidden">
+                {{#each products}}
                 <div class="info_control-purchase-item">
-                    <div class="info_control-purchase-item-product">
-                        <img class="info_control-purchase-product-img" src="https://elead.com.vn/wp-content/uploads/2020/04/anh-dep-hoa-huong-duong-va-mat-troi_022805970-1-1181x800-6.jpg"></img>
+                    <a href="" class="info_control-purchase-item-product">
+                        <img class="info_control-purchase-product-img" src="{{this.avatar}}"></img>
                         <div class="info_control-purchase-product-introduction">
-                            <p class="info_control-purchase-product-name">gai xinh 000000000000000000000000000000000000000</p>
+                            <p class="info_control-purchase-product-name">{{this.introduction}}</p>
                             <span class="info_control-purchase-product-amount">Số lượng: 1</span>
                         </div>
-                        <span class="info_control-purchase-product-price">150000d</span>
-                    </div>
+                        <span class="info_control-purchase-product-price">{{this.priceAfterDiscount}}đ</span>
+                    </a>
                     <div class="info_control-purchase-item-options">
-                        <span class="info_control-purchase-item-options-total_price">Tổng tiền: 180000</span>
+                        <span class="info_control-purchase-item-options-total_price">Tổng tiền: {{this.priceAfterDiscount}}đ</span>
                         <div class="info_control-purchase-item-options-wrapper">
-                            <div class="option-btn info_control-purchase-item-options-buy_again"></div>
-                            <div class="option-btn info_control-purchase-item-options-contact_with_seller"></div>
+                            <div class="option-btn info_control-purchase-item-options-buy_again">Mua lại</div>
+                            <div class="option-btn info_control-purchase-item-options-contact_with_seller">Liên hệ người bán</div>
                         </div>
                     </div>
+                    <div class="separation_line"></div>
                 </div>
+                {{/each}}
             </div>
 
             {{!-- ======================================================= notification ==================================== --}}
@@ -1080,8 +1083,11 @@
         setupDefaultAddress();
     }
 
+    // hiển thị đơn mua của người dùng  purchase order
     activeItems[3].onclick = function() {
         hideCategories();
+        removeActiveItems();
+        this.classList.add('active');
         $('.info_control-purchase').classList.remove('hidden');
     }
 

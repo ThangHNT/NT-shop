@@ -759,9 +759,18 @@
     width: 100%;
 }
 
+.info_control-purchase-item {
+    margin-top: 30px;
+}
+
+.info_control-purchase-item:first-child {
+    margin-top: 10px;
+}
+
 .info_control-purchase-item-product {
     display: flex;
     align-items: center;
+    color: #000 !important;
 }
 
 .info_control-purchase-product-introduction {
@@ -781,17 +790,37 @@
 }
 
 .info_control-purchase-item-options-total_price {
-    text-align: right;
+    text-align: center;
     width: 80%;
 }
 
 .info_control-purchase-item-options {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 30px;
 }
 
+.info_control-purchase-item-options-wrapper {
+    display: flex;
+    width: 80%;
+    margin-top: 15px;
+    justify-content:center;
+}
 
-
+.option-btn {
+    padding: 8px 0;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 140px;
+    text-align: center;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.info_control-purchase-item-options-buy_again {
+    background-color: red;
+    color: #fff;
+}
 
 
 
