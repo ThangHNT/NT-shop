@@ -178,7 +178,7 @@
                 </div>
             </div>
             {{!-- ========================================== profile ======================================================= --}}
-            <div class="info_control info_control-category">
+            <div class="info_control info_control-category hidden">
                 <div class="info_control-item">
                     <div class="info_control-item-wrap">
                         <h3 class="info_control-item-wrap-title">Hồ sơ của tôi</h3>
@@ -347,7 +347,25 @@
             </div>
 
             {{!-- ======================================================= purchase ==================================== --}}
-            <div class="info_control-purchase info_control-category"></div>
+            <div class="info_control-purchase info_control-category">
+                <div class="info_control-purchase-item">
+                    <div class="info_control-purchase-item-product">
+                        <img class="info_control-purchase-product-img" src="https://elead.com.vn/wp-content/uploads/2020/04/anh-dep-hoa-huong-duong-va-mat-troi_022805970-1-1181x800-6.jpg"></img>
+                        <div class="info_control-purchase-product-introduction">
+                            <p class="info_control-purchase-product-name">gai xinh 000000000000000000000000000000000000000</p>
+                            <span class="info_control-purchase-product-amount">Số lượng: 1</span>
+                        </div>
+                        <span class="info_control-purchase-product-price">150000d</span>
+                    </div>
+                    <div class="info_control-purchase-item-options">
+                        <span class="info_control-purchase-item-options-total_price">Tổng tiền: 180000</span>
+                        <div class="info_control-purchase-item-options-wrapper">
+                            <div class="option-btn info_control-purchase-item-options-buy_again"></div>
+                            <div class="option-btn info_control-purchase-item-options-contact_with_seller"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             {{!-- ======================================================= notification ==================================== --}}
             <div class="info_control-notification info_control-category"></div>
@@ -1060,6 +1078,11 @@
         clickEditBtn();
         clickDeleteBtn();
         setupDefaultAddress();
+    }
+
+    activeItems[3].onclick = function() {
+        hideCategories();
+        $('.info_control-purchase').classList.remove('hidden');
     }
 
     $('.info_control-address').onmouseover = function() {
