@@ -30,7 +30,7 @@ function ggAthentication(app) {
         clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
         clientSecret: process.env.clientSecretgg,
         // clientSecret: '',
-        callbackURL: "https://shop-hnt.herokuapp.com/auth/google/callback"
+        callbackURL: "https://nt-shop.onrender.com/auth/google/callback"
         },
         function(accessToken, refreshToken, profile, cb) {
             return cb(null,profile);

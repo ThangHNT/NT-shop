@@ -30,7 +30,7 @@ function authenticate(app) {
         clientID: '610750163507271',
         clientSecret: process.env.clientSecretfb,
         // clientSecret: '',
-        callbackURL: "https://shop-hnt.herokuapp.com/auth/facebook/callback",
+        callbackURL: "https://nt-shop.onrender.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
